@@ -1,0 +1,26 @@
+.demo-loadmore-list {
+    min-height: 350px;
+   background-color: #8196a3e8;
+   margin: 10%;
+   box: shadow 100px;
+  }
+
+.AdminHome-header {
+    background-color: rgb(148, 156, 223);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+.NavBar-color {
+    background-color: #E8999C;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: rgb(20, 231, 69);
+}
+  
