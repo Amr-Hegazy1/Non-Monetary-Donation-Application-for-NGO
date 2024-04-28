@@ -1,25 +1,17 @@
-import logo from './logo.svg';
+import React, { useEffect } from 'react';
 import './App.css';
 import NavBar from './components/NavBar';
+import OrganizationList from './components/OrganizationList';
 
 function App() {
+  useEffect(() => {
+    document.body.style.backgroundColor = '#E7E3BE';
+  }, []);
+
   return (
     <div className="App">
       <NavBar />
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <OrganizationList/>
     </div>
   );
 }
