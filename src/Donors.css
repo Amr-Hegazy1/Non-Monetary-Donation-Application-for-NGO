@@ -1,0 +1,11 @@
+.Donors {
+    text-align: center;
+  }
+.NavBar {
+  width: 100%;
+}
+  
+body, .parent {
+  margin: 0;
+  padding: 0;
+}

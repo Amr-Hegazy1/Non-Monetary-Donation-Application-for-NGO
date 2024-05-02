@@ -4,11 +4,17 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Donors from './Donors';
+import AdminDashboard from './DonorSubmission';
+import DonorList from './components/DonorList';
+import VerifyCodePage from './components/Verify';
+import AdminHome from './AdminHome';
+import DonorSubmission from './DonorSubmission';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <DonorList />
   </React.StrictMode>
 );
 
