@@ -70,7 +70,7 @@ const AdminHome = () => {
       dataSource={list}
       renderItem={(item) => (
         <List.Item
-          actions={[<a key="list-loadmore-edit">edit</a>, <a key="list-loadmore-more">more</a>]}
+          actions={[<a key="list-loadmore-edit">view details</a> ]}
         >
           <Skeleton avatar title={false} loading={item.loading} active>
             <List.Item.Meta
