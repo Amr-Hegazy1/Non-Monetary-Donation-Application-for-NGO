@@ -1,12 +1,20 @@
-import React, { useEffect, useRef, useReducer } from "react";
-import "./styles.css";
+import React, { useEffect, useRef, useReducer,useState } from "react";
+import "./Verify.css";
+import { message } from 'antd';
 
 function doSubmit(submittedValues) {
-  console.log(`Submitted: ${submittedValues.join("")}`);
+  const hardcodedCode = "000000"; // This is the hardcoded verification code
+  const submittedCode = submittedValues.join("");
 
-  return new Promise((resolve) => {
+  console.log(`Submitted: ${submittedCode}`);
+
+  return new Promise((resolve, reject) => {
     setTimeout(() => {
-      resolve();
+      if (submittedCode === hardcodedCode) {
+        resolve();
+      } else {
+        reject();
+      }
     }, 1500);
   });
 }
@@ -66,6 +74,12 @@ function reducer(state, action) {
         status: "idle"
       };
 
+      case "VERIFY_FAILURE":
+        return {
+          ...state,
+          status: "error"
+        };
+
     default:
       throw new Error("unknown action");
   }
@@ -82,7 +96,7 @@ export default function VerifyCodePage() {
     reducer,
     initialState
   );
-  // console.log(focusedIndex);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   function handleInput(index, value) {
     dispatch({ type: "INPUT", payload: { index, value } });
@@ -109,12 +123,23 @@ export default function VerifyCodePage() {
 
   function handleSubmit(e) {
     e.preventDefault();
-
+  
     dispatch({ type: "VERIFY" });
-    doSubmit(inputValues).then(() => dispatch({ type: "VERIFY_SUCCESS" }));
+    doSubmit(inputValues)
+      .then(() => {
+        message.success('Verification code is correct.');
+        dispatch({ type: "VERIFY_SUCCESS" });
+      })
+      .catch((error) => {
+        message.error('Invalid verification code. Please try again.');
+        dispatch({ type: "VERIFY_FAILURE" });
+      });
   }
 
   return (
+    <div className="verify-container">
+    <h1 style={{ textAlign: 'center' }}>Please enter the verification code</h1>
+    <h2 style={{ textAlign: 'center' }}>that has been sent to your email</h2>
     <form onSubmit={handleSubmit}>
       <div className="inputs">
         {inputValues.map((value, index) => {
@@ -132,11 +157,13 @@ export default function VerifyCodePage() {
             />
           );
         })}
+        {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
       </div>
       <button disabled={status === "pending"}>
         {status === "pending" ? "Verifying..." : "Verify"}
       </button>
     </form>
+    </div>
   );
 }
 
@@ -197,6 +224,3 @@ function Input({
     />
   );
 }
-
-// 123456
-// 654321

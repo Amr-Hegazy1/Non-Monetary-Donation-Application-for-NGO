@@ -1,21 +1,19 @@
 import React, { useEffect } from 'react';
-import './App.css';
 import NavBar from './components/NavBar';
 import DonorList from './components/DonorList';
+import "./Donors.css";
 
-
-
-function App() {
+function Donors() {
   useEffect(() => {
     document.body.style.backgroundColor = '#E7E3BE';
   }, []);
 
   return (
-    <div className="App">
+    <div className="Donors">
       <NavBar />
-      <DonorList/>
+        <DonorList />
     </div>
   );
 }
 
-export default App;
+export default Donors;
