@@ -10,11 +10,15 @@ import DonorList from './components/DonorList';
 import VerifyCodePage from './components/Verify';
 import AdminHome from './AdminHome';
 import DonorSubmission from './DonorSubmission';
+import Password from 'antd/es/input/Password';
+import PasswordManagement from './PasswordManagement';
+import OrganizationList from './components/OrganizationList';
+import Organizations from './Organizations';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <DonorList />
+    <Organizations/>
   </React.StrictMode>
 );
 
