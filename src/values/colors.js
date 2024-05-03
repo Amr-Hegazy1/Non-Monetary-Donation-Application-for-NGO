@@ -10,4 +10,5 @@ export const COLORS = {
     textColor: '#000000',
     primaryLightLessOpacity: 'rgba(234, 177, 160, 0.5)',
 
+ 
 };

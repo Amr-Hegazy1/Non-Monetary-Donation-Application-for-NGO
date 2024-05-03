@@ -1,8 +1,8 @@
 import './App.css';
 import NavBar from './components/NavBar';
 // import ViewDonationRequests from './components/ViewDonationRequests';
-import ViewEstimatedArrival from './components/ViewEstimatedArrival';
-//  import CreatePost from './components/CreatePost';
+//import ViewEstimatedArrival from './components/ViewEstimatedArrival';
+  import CreatePost from './components/CreatePost';
 //  import ViewRequestImage from './components/ViewRequestImage.jpg';
  import React from 'react';
 //  import {Button} from 'antd';
@@ -10,30 +10,30 @@ import ViewEstimatedArrival from './components/ViewEstimatedArrival';
 
 
 function App() {
-  const [buttonClicked, setButtonClicked] = useState(false);
+//   const [buttonClicked, setButtonClicked] = useState(false);
 
 
-  const [hovered, setHovered] = useState(false);
+//   const [hovered, setHovered] = useState(false);
 
-  const handleMouseEnter = () => {
-      setHovered(true);
-    };
+//   const handleMouseEnter = () => {
+//       setHovered(true);
+//     };
   
-    const handleMouseLeave = () => {
-      setHovered(false);
-    };  
-   const handleButtonClick = () => {
-     setButtonClicked(true);
- }
+//     const handleMouseLeave = () => {
+//       setHovered(false);
+//     };  
+//    const handleButtonClick = () => {
+//      setButtonClicked(true);
+//  }
   return (
   
 
     <div className="App">
     <NavBar />
     {/* <ViewEstimatedArrival/> */}
-    {/* <CreatePost/>  */}
+    <CreatePost/> 
 
-    {!buttonClicked && (
+    {/* {!buttonClicked && (
       <Button
         type="primary"
         onMouseEnter={handleMouseEnter}
@@ -44,7 +44,7 @@ function App() {
       </Button>
     )}
 
-    {buttonClicked && <ViewDonationRequests />}
+    {buttonClicked && <ViewDonationRequests />} */}
     
     <header className="App-header"></header>
   </div>
