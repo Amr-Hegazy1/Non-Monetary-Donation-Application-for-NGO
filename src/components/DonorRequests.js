@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { List, Input, Button } from 'antd';
 import VirtualList from 'rc-virtual-list';
 import { Row, Col } from 'antd';
-import './DonorList.css';
+import './DonorRequests.css';
 import { message } from 'antd';
 
 const fakeDataUrl =
   'https://randomuser.me/api/?results=20&inc=name,gender,email,nat,picture&noinfo';
 const ContainerHeight = 400;
 
-const DonorList = () => {
+const DonorRequests = () => {
   const [data, setData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -31,20 +31,15 @@ const DonorList = () => {
     }
   };
 
-  const handleDelete = (email) => {
-    setData(data.filter(item => item.email !== email));
-    message.error('User deleted');
-  };
-
   const filteredData = data.filter(item => item.name.last.toLowerCase().includes(searchTerm.toLowerCase()));
 
   return (
-    <div className='DonorList'>
-      <h1 className='donor-list-header'>Donor Submissions</h1>
+    <div className='DonorRequests'> 
+      <h1 className='donor-list-header'>Donor Requests</h1>
       <Row justify="center">
       <Col span={12}>
       <Input className='search-box' 
-         placeholder="Search for a Donor" 
+         placeholder="Search for a Requester" 
          onChange={e => setSearchTerm(e.target.value)} 
          style={{ maxWidth: '500px', width: '100%' }}
         />
@@ -65,7 +60,6 @@ const DonorList = () => {
                 title={item.name.last}
                 description={item.email}
               />
-              <Button className="delete-button" type="link" size="small" onClick={() => handleDelete(item.email)}>Delete</Button>
             </div>
           </List.Item>
           )}
@@ -75,4 +69,4 @@ const DonorList = () => {
   );
 };
 
-export default DonorList;
+export default DonorRequests;

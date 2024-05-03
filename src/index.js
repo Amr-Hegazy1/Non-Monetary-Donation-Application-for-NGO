@@ -14,11 +14,13 @@ import Password from 'antd/es/input/Password';
 import PasswordManagement from './PasswordManagement';
 import OrganizationList from './components/OrganizationList';
 import Organizations from './Organizations';
+import Requests from './Requests';
+import RequestInfo from './components/RequestInfo';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Organizations/>
+    <Requests/>
   </React.StrictMode>
 );
 
