@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { List, Input, Button } from 'antd';
 import VirtualList from 'rc-virtual-list';
 import { Row, Col } from 'antd';
-import './DonorList.css';
-import { message } from 'antd';
+import { message } from 'antd'
+import './OrganizationList.css';
 
 const fakeDataUrl =
   'https://randomuser.me/api/?results=20&inc=name,gender,email,nat,picture&noinfo';
 const ContainerHeight = 400;
 
-const DonorList = () => {
+const OrganizationList = () => {
   const [data, setData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -39,12 +39,12 @@ const DonorList = () => {
   const filteredData = data.filter(item => item.name.last.toLowerCase().includes(searchTerm.toLowerCase()));
 
   return (
-    <div className='DonorList'>
-      <h1 className='donor-list-header'>Registered Donors</h1>
+    <div className='OrganizationList'>
+      <h1 className='organization-list-header'>Registered Organizations</h1>
       <Row justify="center">
       <Col span={12}>
       <Input className='search-box' 
-         placeholder="Search for a Donor" 
+         placeholder="Search for an Organization" 
          onChange={e => setSearchTerm(e.target.value)} 
          style={{ maxWidth: '500px', width: '100%' }}
         />
@@ -75,4 +75,4 @@ const DonorList = () => {
   );
 };
 
-export default DonorList;
+export default OrganizationList;

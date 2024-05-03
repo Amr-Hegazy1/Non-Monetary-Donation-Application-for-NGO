@@ -4,14 +4,10 @@ import DonorList from './components/DonorList';
 import "./Donors.css";
 
 function Donors() {
-  useEffect(() => {
-    document.body.style.backgroundColor = '#E7E3BE';
-  }, []);
-
   return (
     <div className="Donors">
       <NavBar />
-        <DonorList />
+      <DonorList />
     </div>
   );
 }
