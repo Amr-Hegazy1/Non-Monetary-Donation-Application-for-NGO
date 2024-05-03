@@ -5,10 +5,16 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import FulfilledDonations from './components/FulfilledDonations';
+import SchedulePickup from './components/SchedulePickup';
+import OrganizationSignUp from './components/OrganizationSignUp';
+import DonorSignUp from './components/DonorSignUp';
+import Homepage from './components/Homepage.js';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <FulfilledDonations />
   </React.StrictMode>
 );
 
