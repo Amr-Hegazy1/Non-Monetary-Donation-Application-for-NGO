@@ -14,11 +14,12 @@ import Password from 'antd/es/input/Password';
 import PasswordManagement from './PasswordManagement';
 import OrganizationList from './components/OrganizationList';
 import Organizations from './Organizations';
+import AdminLogin from './LoginAmin';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Organizations/>
+    <DonorSubmission/>
   </React.StrictMode>
 );
 

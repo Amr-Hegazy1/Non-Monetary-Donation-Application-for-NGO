@@ -7,7 +7,7 @@ import DonorList from './components/DonorList';
 
 function App() {
   useEffect(() => {
-    document.body.style.backgroundColor = '#E7E3BE';
+    document.body.style.backgroundColor = "'#E7E3BE'";
   }, []);
 
   return (

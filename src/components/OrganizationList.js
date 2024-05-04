@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { List, Input, Button } from 'antd';
 import VirtualList from 'rc-virtual-list';
 import { Row, Col } from 'antd';
-import { message } from 'antd'
+import { message } from 'antd';
+import { Modal } from 'antd';
+
 import './OrganizationList.css';
 
 const fakeDataUrl =
@@ -32,8 +34,26 @@ const OrganizationList = () => {
   };
 
   const handleDelete = (email) => {
-    setData(data.filter(item => item.email !== email));
-    message.error('User deleted');
+    Modal.confirm({
+    title: 'Are you sure you want to delete this item?',
+    okText: 'Yes',
+    cancelText: 'Cancel',
+    centered: true,
+    okButtonProps: { style: { backgroundColor: 'green', borderColor: 'green', color: 'white' } },
+    cancelButtonProps: { style: { backgroundColor: 'red', borderColor: 'red', color: 'white' } },
+      onOk() {
+        // Remove the item from the data array
+  
+        // Update the state
+        setData(data.filter(item => item.email !== email));
+  
+        // Display a confirmation message
+        message.success('Item deleted successfully');
+      },
+      onCancel() {
+        // Do nothing
+      },
+    });
   };
 
   const filteredData = data.filter(item => item.name.last.toLowerCase().includes(searchTerm.toLowerCase()));

@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
-import { Link } from 'react-router-dom';
 import { message } from 'antd';
+import IconButton from '@mui/material/IconButton';
+import InputAdornment from '@mui/material/InputAdornment';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import {
   MDBContainer,
   MDBInput,
@@ -9,6 +12,7 @@ import {
   MDBBtn,
   MDBIcon,
 } from 'mdb-react-ui-kit';
+import { HiRefresh } from 'react-icons/hi';
 
 function AdminLogin() {
   const [email, setEmail] = useState('');
@@ -28,7 +32,8 @@ function AdminLogin() {
       message.success('Logged in successfully , redirecting ...');
       // You can redirect to another page or perform other actions on success
     } else {
-      message.error('Invalid credentials');    }
+      message.error('Invalid credentials');    
+    }
   };
 
   const toggleShowPassword = () => {
@@ -38,8 +43,8 @@ function AdminLogin() {
   return (
     <MDBContainer className="p-3 my-5 d-flex flex-column w-105">
       <div className="text-center">
-        <img src="logo192.png" style={{ width: '185px' }} alt="logo" />
-        <h4 className="mt-1 mb-5 pb-1" style={{color:'#E7E3BE'}}>Admin Login</h4>
+        <img src="logo.png" style={{ width: '185px' }} alt="logo" />
+        <h4 className="mt-1 mb-5 pb-1" style={{color:'black'}}>Admin Login</h4>
       </div>
 
       <MDBInput
@@ -57,7 +62,18 @@ function AdminLogin() {
         type={showPassword ? 'text' : 'password'} // Toggle password visibility
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-      />
+         endAdornment={
+    <InputAdornment position="end">
+      <IconButton
+        aria-label="toggle password visibility"
+        onClick={() => setShowPassword(!showPassword)}
+      >
+        {showPassword ? <Visibility /> : <VisibilityOff />}
+      </IconButton>
+    </InputAdornment>
+  }
+/>
+      
 
 
       <div className="d-flex justify-content-between mb-4">
@@ -75,15 +91,15 @@ function AdminLogin() {
 </div>
 
 <div className="d-flex justify-content-between mb-4">
-  <Link to="/password-management" className="text-decoration-none" style={{width: '300px', color: '#007bff'}}> {/* Change the link color */}
+  <a href="/password-management" className="text-decoration-none" style={{width: '300px', color: '#007bff'}}> {/* Change the link color */}
     Forgot password?
-  </Link>
+  </a>
 </div>
 
 <Button variant="contained" onClick={handleLogin} 
  style={{
   width: '300px', 
-  backgroundColor: '#E7E3BE', 
+  backgroundColor: 'white', 
   color: 'black', 
   border: 'none', 
   borderRadius: '4px', 

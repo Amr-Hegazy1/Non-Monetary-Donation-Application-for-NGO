@@ -34,7 +34,7 @@ function PasswordManagement() {
   return (
     <MDBContainer className="p-3 my-5 d-flex flex-column w-105">
       <div className="text-center">
-        <img src="logo192.png" style={{ width: '185px' }} alt="logo" />
+        <img src="logo.png" style={{ width: '185px' }} alt="logo" />
         <h4 className="mt-1 mb-5 pb-1" style={{color:'#E7E3BE'}}> Change Password</h4>
       </div>
 
