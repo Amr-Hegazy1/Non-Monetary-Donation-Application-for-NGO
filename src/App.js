@@ -6,9 +6,9 @@ import DonorList from './components/DonorList';
 
 
 function App() {
-  useEffect(() => {
-    document.body.style.backgroundColor = "'#E7E3BE'";
-  }, []);
+  // useEffect(() => {
+  //   document.body.style.backgroundColor = "white";
+  // }, []);
 
   return (
     <div className="App">

@@ -2,9 +2,7 @@ import UserDetails from './components/UserDetails';
 import React, { useEffect } from 'react';
 
 const DonorSubmission = () => {
-    useEffect(() => {
-        document.body.style.backgroundColor = '#E7E3BE';
-      }, []);
+    
     const user = {
     firstName: 'John',
     lastName: 'Doe',
