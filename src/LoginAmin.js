@@ -1,19 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
-import { Link } from 'react-router-dom';
 import { message } from 'antd';
-import {
-  MDBContainer,
-  MDBInput,
-  MDBCheckbox, // Not used anymore
-  MDBBtn,
-  MDBIcon,
-} from 'mdb-react-ui-kit';
+import IconButton from '@mui/material/IconButton';
+import InputAdornment from '@mui/material/InputAdornment';
+import Iconify from './components/iconify';
+import TextField from '@mui/material/TextField';
+import Stack from '@mui/material/Stack';
 
 function AdminLogin() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false); // State for password visibility
+
+  useEffect(() => {
+    document.body.style.backgroundColor = 'white'; // Set the background color of the document
+  }, []);
 
   const handleLogin = (e) => {
     e.preventDefault(); // Prevent default form submission behavior
@@ -28,71 +29,78 @@ function AdminLogin() {
       message.success('Logged in successfully , redirecting ...');
       // You can redirect to another page or perform other actions on success
     } else {
-      message.error('Invalid credentials');    }
+      message.error('Invalid credentials');    
+    }
   };
 
-  const toggleShowPassword = () => {
-    setShowPassword(!showPassword);
-  };
+  
 
   return (
-    <MDBContainer className="p-3 my-5 d-flex flex-column w-105">
+  
+   < >
       <div className="text-center">
-        <img src="logo192.png" style={{ width: '185px' }} alt="logo" />
-        <h4 className="mt-1 mb-5 pb-1" style={{color:'#E7E3BE'}}>Admin Login</h4>
+          <img src="logo.png" style={{ width: '185px' }} alt="logo" />
+          <h4 className="mt-1 mb-5 pb-1" style={{color: 'darkred', fontSize: '24px', fontWeight: 'bold', textShadow: '2px 2px 4px #aaa'}}>
+              Admin Login
+          </h4>     
       </div>
+      <Stack spacing={3}>
+          <TextField
+            name="email"
+            label="Email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+      
+          <TextField
+            name="password"
+            label="Password"
+            type={showPassword ? 'text' : 'password'} // Toggle password visibility
+            value={password}
+            height="50"
+            width="20"
+            onChange={(e) => setPassword(e.target.value)}
+            InputProps={{
+            endAdornment:(
+            <InputAdornment position="end">
+              <IconButton
+                onClick={() => setShowPassword(!showPassword)} edge="end"
+              >
+              <Iconify 
+                icon={showPassword ? 'eva:eye-fill' : 'eva:eye-off-fill'} 
+                style={{ color: 'darkred', fontSize: '40px' }}
+              />        
+            </IconButton>
+            </InputAdornment>
+                         ), 
+                        }}
+          />
+      
+      
+      
+          <div className="d-flex justify-content-between mb-4">
+            <a href="/password-management" className="text-decoration-none" style={{width: '300px', color: '#007bff'}}> {/* Change the link color */}
+              Forgot password?
+            </a>
+          </div>
+     
+          <Button variant="contained" onClick={handleLogin} 
+          style={{
+            width: '300px', 
+            backgroundColor: 'darkred', 
+            color: 'white', 
+            border: 'none', 
+            borderRadius: '4px', 
+            padding: '10px 20px',
+            fontSize: '16px',
+            cursor: 'pointer'}}>
+            Login
+          </Button>
+      </Stack>
+    </>
 
-      <MDBInput
-        className="mb-4"
-        placeholder="Email address"
-        id="form1"
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <MDBInput
-        className="mb-4"
-        placeholder="Password"
-        id="form2"
-        type={showPassword ? 'text' : 'password'} // Toggle password visibility
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
 
-
-      <div className="d-flex justify-content-between mb-4">
-  <div className="d-flex align-items-center" style={{width: '300px'}}> {/* Add some margin-bottom */}
-    <span className="text-muted mr-2">View password</span>
-    <div style={{position: 'relative', marginLeft: '10px'}}>
-      <input
-        type="checkbox"
-        checked={showPassword}
-        onChange={toggleShowPassword}
-        style={{width: '15px', height: '15px'}}
-      />
-    </div>
-  </div>
-</div>
-
-<div className="d-flex justify-content-between mb-4">
-  <Link to="/password-management" className="text-decoration-none" style={{width: '300px', color: '#007bff'}}> {/* Change the link color */}
-    Forgot password?
-  </Link>
-</div>
-
-<Button variant="contained" onClick={handleLogin} 
- style={{
-  width: '300px', 
-  backgroundColor: '#E7E3BE', 
-  color: 'black', 
-  border: 'none', 
-  borderRadius: '4px', 
-  padding: '10px 20px',
-  fontSize: '16px',
-  cursor: 'pointer'}}>
-  Login
-</Button>
-   </MDBContainer>
   );
 }
 
