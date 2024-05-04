@@ -1,0 +1,58 @@
+
+.request-info-textarea::-webkit-scrollbar {
+  width: 3px;
+}
+
+.request-info-textarea::-webkit-scrollbar-thumb {
+  background: #888; /* Adjust as needed */
+}
+
+.request-info-textarea::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Adjust as needed */
+}
+.request-info-textarea {
+    resize: none;
+    width: 50vw; /* 50% of the viewport width */
+    height: 50vh; /* 50% of the viewport height */
+    margin: 0 auto;
+    display: block;
+    background-color: #E7E3BE;
+  }
+
+  .request-info-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin-top: 100px;
+  }
+
+  .button-container {
+    display: flex;
+    gap: 20px; /* Adjust as needed */
+    margin-top: 20px; /* Adjust as needed */
+  }
+  
+  .action-button {
+    width: 150px; /* Adjust as needed */
+  }
+
+  .request-info-title {
+    text-align: center;
+    width: 100%;
+    margin-top: -200px;
+  }
+
+  .download-button {
+    width: 100px; /* Adjust as needed */
+  }
+
+  .donor-type-header {
+    font-size: 1.2em; /* Adjust as needed */
+    margin-top: 10px; /* Adjust as needed */
+  }
+
+  .request-info-textarea {
+    border: none;
+  }

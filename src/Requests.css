@@ -1,0 +1,15 @@
+.Requests {
+    text-align: center;
+  }
+.bg-body-tertiary {
+    background-color: #E7E3BE !important;
+}
+
+body {
+  background-color: #E7E3BE;
+}
+
+.content-container {
+  margin-top: -60px;
+}
+
