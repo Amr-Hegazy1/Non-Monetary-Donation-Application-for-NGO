@@ -34,9 +34,14 @@ const NavConfig = [
   },
   {
     title: 'Donation Requests',
-    path: '/404',
+    path: '/requests',
     icon: icon('ic_disabled'),
   },
+  {
+    title: 'Validate Donor Accounts',
+    path: '/user details',
+    icon: icon('ic_disabled'),
+  }
 ];
 
 export default NavConfig;
