@@ -138,8 +138,8 @@ export default function VerifyCodePage() {
 
   return (
     <div className="verify-container">
-    <h1 style={{ textAlign: 'center' }}>Please enter the verification code</h1>
-    <h2 style={{ textAlign: 'center' }}>that has been sent to your email</h2>
+    <h1 style={{ textAlign: 'center' , color:'darkred '}}>Please enter the verification code</h1>
+    <h2 style={{ textAlign: 'center' , color:'darkred' }}>A code has been sent to your email *****@*mail.com</h2>
     <form onSubmit={handleSubmit}>
       <div className="inputs">
         {inputValues.map((value, index) => {
@@ -159,7 +159,7 @@ export default function VerifyCodePage() {
         })}
         {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
       </div>
-      <button disabled={status === "pending"}>
+      <button style={{background:'darkred'}}disabled={status === "pending"}>
         {status === "pending" ? "Verifying..." : "Verify"}
       </button>
     </form>
