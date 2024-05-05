@@ -61,11 +61,12 @@ const DonorList = () => {
           {(item) => (
             <List.Item key={item.email}>
             <div className="list-item-container">
+            <div className="spacer"></div>
               <List.Item.Meta
                 title={item.name.last}
                 description={item.email}
               />
-              <Button className="delete-button" type="link" size="small" >View Info</Button>
+              <Button className="view-button" type="link" size="small" >View Info</Button>
             </div>
           </List.Item>
           )}
