@@ -17,11 +17,26 @@ import Organizations from './Organizations';
 import Requests from './Requests';
 import RequestInfo from './components/RequestInfo';
 import AdminLogin from './LoginAmin';
+import UserDetails from './components/UserDetails';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import NavConfig from './components/AdminHomePage/config-navigation';
+import DashboardLayout from './components/AdminHomePage/index';
+import { BrowserRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import Chart from './components/AdminHomePage/charts/chart';
+import Main from './components/AdminHomePage/main';
+import UseChart from './components/AdminHomePage/charts/use-chart';
+import AppConversionRates from './components/AdminHomePage/Views/app-conversion-rates';
+import AppWebsiteVisits from './components/AdminHomePage/Views/app-website-visits';
+import AppView from './components/AdminHomePage/App/app-view';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <AdminLogin/>
+           {/* Your application components here */}
+      {/* This Link component will now have access to the router context */}
+      <AppView />  {/* Assuming this component uses LinkWithRef */}
+
   </React.StrictMode>
 );
 
