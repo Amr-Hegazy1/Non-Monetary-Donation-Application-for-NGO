@@ -95,6 +95,15 @@ export default function Homepage() {
                                     <p>120 listings</p>
                                 </div>
                             </li>
+                            <li>
+                                <div className="single-list-topics-content">
+                                    <div className="single-list-topics-icon">
+                                        <i className="icon icon-non-profit"></i>
+                                    </div>
+                                    <h2><a href="#">Orphanage</a></h2>
+                                    <p>120 listings</p>
+                                </div>
+                            </li>
                         </ul>
                     </div>
                 </div>

@@ -182,6 +182,7 @@ export default function OrganizationSignUp() {
                     <MenuItem>Church</MenuItem>
                     <MenuItem>Mosque</MenuItem>
                     <MenuItem>Non-Profit</MenuItem>
+                    <MenuItem>Orphanage</MenuItem>
                 </Select>
             </FormControl>
             <br/>
