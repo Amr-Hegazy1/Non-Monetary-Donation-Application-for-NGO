@@ -15,6 +15,12 @@ import AppWidgetSummary from '../Views/app-widget-summary';
 import AppTrafficBySite from '../Views/app-traffic-by-site';
 import AppCurrentSubject from '../Views/app-current-subject';
 import AppConversionRates from '../Views/app-conversion-rates';
+import glassBagIcon from '../icons/ic_glass_bag.png';
+import glassUsersIcon from '../icons/ic_glass_users.png';
+import glassMessageIcon from '../icons/ic_glass_message.png';
+import glassBuyIcon from '../icons/ic_glass_buy.png';
+import glassTickIcon from '../icons/ic-glass-tick.png';
+
 
 // ----------------------------------------------------------------------
 
@@ -22,34 +28,32 @@ export default function AppView() {
   return (
     <Container maxWidth="xl">
       <Typography variant="h4" sx={{ mb: 5 }}>
-        Hi, Welcome back 👋
+        Hi, Welcome back Admin 👋
       </Typography>
 
       <Grid container spacing={3}>
         <Grid xs={12} sm={6} md={3}>
           <AppWidgetSummary
-            title="Weekly Sales"
-            total={714000}
+            title="Weekly Donations"
+            total={7140}
             color="success"
-            icon={<img alt="icon" src="/assets/icons/glass/ic_glass_bag.png" />}
-          />
+            icon={<img alt="icon" src={glassTickIcon} />}          />
         </Grid>
 
         <Grid xs={12} sm={6} md={3}>
           <AppWidgetSummary
             title="New Users"
-            total={1352831}
+            total={135255}
             color="info"
-            icon={<img alt="icon" src="/assets/icons/glass/ic_glass_users.png" />}
-          />
+            icon={<img alt="icon" src={glassUsersIcon} />}            />
         </Grid>
-
+      
         <Grid xs={12} sm={6} md={3}>
           <AppWidgetSummary
-            title="Item Orders"
-            total={1723315}
+            title="Donation Requests"
+            total={1724}
             color="warning"
-            icon={<img alt="icon" src="/assets/icons/glass/ic_glass_buy.png" />}
+            icon={<img alt="icon" src={glassBuyIcon}/>}
           />
         </Grid>
 
@@ -58,13 +62,13 @@ export default function AppView() {
             title="Bug Reports"
             total={234}
             color="error"
-            icon={<img alt="icon" src="/assets/icons/glass/ic_glass_message.png" />}
+            icon={<img alt="icon" src={glassMessageIcon}/>}
           />
         </Grid>
 
         <Grid xs={12} md={6} lg={8}>
           <AppWebsiteVisits
-            title="Website Visits"
+            title="Fullfilled Donations"
             subheader="(+43%) than last year"
             chart={{
               labels: [
@@ -82,19 +86,19 @@ export default function AppView() {
               ],
               series: [
                 {
-                  name: 'Team A',
+                  name: 'Organisation A',
                   type: 'column',
                   fill: 'solid',
                   data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30],
                 },
                 {
-                  name: 'Team B',
+                  name: 'Organsiation B',
                   type: 'area',
                   fill: 'gradient',
                   data: [44, 55, 41, 67, 22, 43, 21, 41, 56, 27, 43],
                 },
                 {
-                  name: 'Team C',
+                  name: 'Organisation C',
                   type: 'line',
                   fill: 'solid',
                   data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39],
@@ -106,7 +110,7 @@ export default function AppView() {
 
         <Grid xs={12} md={6} lg={4}>
           <AppCurrentVisits
-            title="Current Visits"
+            title="Donations Contributions"
             chart={{
               series: [
                 { label: 'America', value: 4344 },
@@ -118,9 +122,9 @@ export default function AppView() {
           />
         </Grid>
 
-        <Grid xs={12} md={6} lg={8}>
+        <Grid xs={12} md={8} lg={8}>
           <AppConversionRates
-            title="Conversion Rates"
+            title="New Users per Country"
             subheader="(+43%) than last year"
             chart={{
               series: [
@@ -141,86 +145,48 @@ export default function AppView() {
 
         <Grid xs={12} md={6} lg={4}>
           <AppCurrentSubject
-            title="Current Subject"
+            title="Current Targets Achieved"
             chart={{
-              categories: ['English', 'History', 'Physics', 'Geography', 'Chinese', 'Math'],
+              categories: ['Clothes', 'Books', 'Medical Supplies', 'Blood donations', 'Teaching'],
               series: [
-                { name: 'Series 1', data: [80, 50, 30, 40, 100, 20] },
-                { name: 'Series 2', data: [20, 30, 40, 80, 20, 80] },
-                { name: 'Series 3', data: [44, 76, 78, 13, 43, 10] },
+                { name: 'Organisation 1', data: [80, 50, 30, 40, 100, 20] },
+                { name: 'Organisation 2', data: [20, 30, 40, 80, 20, 80] },
+                { name: 'Organisation 3', data: [44, 76, 78, 13, 43, 10] },
               ],
             }}
           />
         </Grid>
 
-        <Grid xs={12} md={6} lg={8}>
-          <AppNewsUpdate
-            title="News Update"
-            list={[...Array(5)].map((_, index) => ({
-              id: faker.string.uuid(),
-              title: faker.person.jobTitle(),
-              description: faker.commerce.productDescription(),
-              image: `/assets/images/covers/cover_${index + 1}.jpg`,
-              postedAt: faker.date.recent(),
-            }))}
-          />
-        </Grid>
+        
 
-        <Grid xs={12} md={6} lg={4}>
+        <Grid xs={12} md={6} lg={8}>
           <AppOrderTimeline
-            title="Order Timeline"
+            title="Requests Timeline"
             list={[...Array(5)].map((_, index) => ({
               id: faker.string.uuid(),
               title: [
-                '1983, orders, $4220',
-                '12 Invoices have been paid',
-                'Order #37745 from September',
-                'New order placed #XF-2356',
-                'New order placed #XF-2346',
+                '1983, Requests, books',
+                '12 requested  by Organisation A',
+                'Reuest #37745 from September',
+                'New Request placed #XF-2356',
+                'New Request placed #XF-2346',
               ][index],
-              type: `order${index + 1}`,
+              type: `request${index + 1}`,
               time: faker.date.past(),
             }))}
           />
         </Grid>
 
+       
         <Grid xs={12} md={6} lg={4}>
-          <AppTrafficBySite
-            title="Traffic by Site"
-            list={[
-              {
-                name: 'FaceBook',
-                value: 323234,
-                icon: <Iconify icon="eva:facebook-fill" color="#1877F2" width={32} />,
-              },
-              {
-                name: 'Google',
-                value: 341212,
-                icon: <Iconify icon="eva:google-fill" color="#DF3E30" width={32} />,
-              },
-              {
-                name: 'Linkedin',
-                value: 411213,
-                icon: <Iconify icon="eva:linkedin-fill" color="#006097" width={32} />,
-              },
-              {
-                name: 'Twitter',
-                value: 443232,
-                icon: <Iconify icon="eva:twitter-fill" color="#1C9CEA" width={32} />,
-              },
-            ]}
-          />
-        </Grid>
-
-        <Grid xs={12} md={6} lg={8}>
           <AppTasks
             title="Tasks"
             list={[
-              { id: '1', name: 'Create FireStone Logo' },
-              { id: '2', name: 'Add SCSS and JS files if required' },
-              { id: '3', name: 'Stakeholder Meeting' },
-              { id: '4', name: 'Scoping & Estimations' },
-              { id: '5', name: 'Sprint Showcase' },
+              { id: '1', name: 'View Bug reports' },
+              { id: '2', name: 'Meeting with Organisation A' },
+              { id: '3', name: 'View reported users' },
+              { id: '4', name: 'Meeting with developers' },
+              { id: '5', name: 'Accept/reject Requests' },
             ]}
           />
         </Grid>
