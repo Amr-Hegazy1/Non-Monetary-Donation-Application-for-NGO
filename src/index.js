@@ -29,13 +29,16 @@ import UseChart from './components/AdminHomePage/charts/use-chart';
 import AppConversionRates from './components/AdminHomePage/Views/app-conversion-rates';
 import AppWebsiteVisits from './components/AdminHomePage/Views/app-website-visits';
 import AppView from './components/AdminHomePage/App/app-view';
+import ThemeProvider from '../src/components/AdminHomePage/theme';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
            {/* Your application components here */}
       {/* This Link component will now have access to the router context */}
+      <ThemeProvider>
       <AppView />  {/* Assuming this component uses LinkWithRef */}
+      </ThemeProvider>
 
   </React.StrictMode>
 );
