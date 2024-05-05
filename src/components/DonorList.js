@@ -65,7 +65,7 @@ const DonorList = () => {
                 title={item.name.last}
                 description={item.email}
               />
-              <Button className="delete-button" type="link" size="small" onClick={() => handleDelete(item.email)}>Delete</Button>
+              <Button className="delete-button" type="link" size="small" >View Info</Button>
             </div>
           </List.Item>
           )}

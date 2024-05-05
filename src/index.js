@@ -16,12 +16,13 @@ import OrganizationList from './components/OrganizationList';
 import Organizations from './Organizations';
 import Requests from './Requests';
 import RequestInfo from './components/RequestInfo';
-import AdminLogin from './LoginAmin';
+import OrganizationSubmissions from './OrganizationSubmissions';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <AdminLogin/>
+    <OrganizationSubmissions/>
   </React.StrictMode>
 );
 
