@@ -1,39 +1,39 @@
-import SvgColor from './svg-color';
+import SvgColor from '../svg-color';
 
 // ----------------------------------------------------------------------
 
 const icon = (name) => (
-  <SvgColor src={`/assets/icons/navbar/${name}.svg`} sx={{ width: 1, height: 1 }} />
+  <SvgColor src={'logo.png'} sx={{ width: 1, height: 1 }} />
 );
 
 const NavConfig = [
   {
-    title: 'dashboard',
+    title: 'Admin Dashboard',
     path: '/',
     icon: icon('ic_analytics'),
   },
   {
-    title: 'user',
+    title: 'View Organisations',
     path: '/user',
     icon: icon('ic_user'),
   },
   {
-    title: 'product',
-    path: '/products',
+    title: 'View Donors',
+    path: '/donors',
     icon: icon('ic_cart'),
   },
   {
-    title: 'blog',
-    path: '/blog',
+    title: 'Chnage Password',
+    path: '/change password',
     icon: icon('ic_blog'),
   },
   {
-    title: 'login',
-    path: '/login',
+    title: 'Account Management',
+    path: '/account mangement',
     icon: icon('ic_lock'),
   },
   {
-    title: 'Not found',
+    title: 'Donation Requests',
     path: '/404',
     icon: icon('ic_disabled'),
   },

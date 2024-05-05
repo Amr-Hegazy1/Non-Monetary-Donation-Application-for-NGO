@@ -6,11 +6,19 @@ import Toolbar from '@mui/material/Toolbar';
 import { useTheme } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 
-import { UseResponsive, UseWidth } from './use-responsive';
+import { UseResponsive} from '../use-responsive';
 
 
-import Iconify from '../iconify';
+import Iconify from '../../iconify';
 import { NAV, HEADER } from './config-layout';
+import { bgBlur } from '../themesCss';
+import Searchbar from '../TopNav/searchbar';
+import LanguagePopover from '../TopNav/language-popover';
+import NotificationsPopover from '../TopNav/notifications-popover';
+import AccountPopover from '../TopNav/account-popover';
+import Stack from '@mui/material/Stack';
+
+
 
 
 // ----------------------------------------------------------------------
@@ -28,10 +36,15 @@ export default function Header({ onOpenNav }) {
         </IconButton>
       )}
 
-     
+      <Searchbar />
 
       <Box sx={{ flexGrow: 1 }} />
 
+      <Stack direction="row" alignItems="center" spacing={1}>
+        <LanguagePopover />
+        <NotificationsPopover />
+        <AccountPopover />
+      </Stack>
     </>
   );
 
@@ -41,6 +54,9 @@ export default function Header({ onOpenNav }) {
         boxShadow: 'none',
         height: HEADER.H_MOBILE,
         zIndex: theme.zIndex.appBar + 1,
+        ...bgBlur({
+          color: theme.palette.background.default,
+        }),
         transition: theme.transitions.create(['height'], {
           duration: theme.transitions.duration.shorter,
         }),
