@@ -1,0 +1,21 @@
+.shadow{
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.accordion-summary-text{
+    font-size: 16px;
+    font-weight: 600;
+    color: #620b37;
+    margin: 0;
+}
+.accordion-summary-text.hovered {
+    color: red;
+  }
+  

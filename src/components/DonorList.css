@@ -1,0 +1,24 @@
+.donor-list-header {
+    margin-top: -10px;
+    padding-left: 31%;
+  }
+
+  .list-item-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-left: 100px;
+  }
+  
+  .view-button {
+    width: 18%; /* Adjust as needed */
+  }
+
+  .search-box::placeholder {
+    text-align: center;
+  }
+
+  .spacer {
+    flex-grow: 1;
+  }

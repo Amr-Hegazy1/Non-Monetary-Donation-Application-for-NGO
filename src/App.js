@@ -1,3 +1,4 @@
+import React, { useEffect } from 'react';
 import './App.css';
 import NavBar from './components/NavBar';
 //import DetailsOfClothesToBeDonated from './components/DetailsOfClothesToBeDonated';
@@ -14,14 +15,25 @@ import DetailsOfToysToBeDonated from './components/DetailsOfToysToBeDonated';
 //import ViewDetailsOfFulfilledPosts from './components/ViewDetailsOfFulfilledPosts';
 //import ViewDonorDetailsForFulfilledPosts from './components/ViewDonorDetailsForFulfilledPosts';
 //import NotificationForDriverArrival from './components/NotificationForDriverArrival';
+import NavBar from './components/NavBar';
+ import ViewDonationRequests from './components/ViewDonationRequests';
+import ViewEstimatedArrival from './components/ViewEstimatedArrival';
+  import CreatePost from './components/CreatePost';
+//  import ViewRequestImage from './components/ViewRequestImage.jpg';
+ import React from 'react';
+  import {Button} from 'antd';
+  import  { useState} from 'react';
+//import FulfilledDonations from './components/FulfilledDonations';
+//import DetailsOfToysToBeDonated from './components/DetailsOfToysToBeDonated';
+
 
 function App() {
   return (
     <div className="App">
-      <NavBar />
-      <NotificationForChosenPosts/>
-    </div>
-  );
+    <NavBar />
+    
+  </div>
+);
 }
 
 export default App;
