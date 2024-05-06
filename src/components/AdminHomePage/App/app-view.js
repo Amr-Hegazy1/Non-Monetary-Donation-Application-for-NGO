@@ -27,7 +27,7 @@ import glassTickIcon from '../icons/ic-glass-tick.png';
 export default function AppView() {
   return (
     <Container maxWidth="xl">
-      <Typography variant="h4" sx={{ mb: 5 , color:'darkred'}}>
+      <Typography variant="h4" sx={{ mb: 5 , color:'#602b37'}}>
         Hi, Welcome back Marina 👋
       </Typography>
 

@@ -43,7 +43,7 @@ function AdminLogin() {
    < >
       <div className="text-center">
           <img src="logo.png" style={{ width: '185px' }} alt="logo" />
-          <h4 className="mt-1 mb-5 pb-1" style={{color: 'darkred', fontSize: '24px', fontWeight: 'bold', textShadow: '2px 2px 4px #aaa'}}>
+          <h4 className="mt-1 mb-5 pb-1" style={{color: '#602b37', fontSize: '24px', fontWeight: 'bold', textShadow: '2px 2px 4px #aaa'}}>
               Admin Login
           </h4>     
       </div>
@@ -72,7 +72,7 @@ function AdminLogin() {
               >
               <Iconify 
                 icon={showPassword ? 'eva:eye-fill' : 'eva:eye-off-fill'} 
-                style={{ color: 'darkred', fontSize: '40px' }}
+                style={{ color: '#602b37', fontSize: '40px' }}
               />        
             </IconButton>
             </InputAdornment>
@@ -91,7 +91,7 @@ function AdminLogin() {
           <Button variant="contained" onClick={handleLogin} 
           style={{
             width: '300px', 
-            backgroundColor: 'darkred', 
+            backgroundColor: '#602b37', 
             color: 'white', 
             border: 'none', 
             borderRadius: '4px', 

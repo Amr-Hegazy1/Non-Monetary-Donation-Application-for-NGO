@@ -46,7 +46,7 @@ export default function Nav({ openNav, onCloseNav }) {
         display: 'flex',
         borderRadius: 1.5,
         alignItems: 'center',
-        bgcolor: 'darkred',
+        bgcolor: '#602b37',
       }}
     >
       <Avatar src={Account.photoURL} alt="photoURL" />
@@ -64,7 +64,7 @@ export default function Nav({ openNav, onCloseNav }) {
   const renderMenu = (
     <Stack component="nav" spacing={0.5} sx={{ px: 2 }}>
       {NavConfig.map((item) => (
-        <NavItem key={item.title} item={item}  />
+        <NavItem key={item.title} item={item} color={item.color} icon={item.icon}/>
       ))}
     </Stack>
   );
@@ -78,6 +78,7 @@ export default function Nav({ openNav, onCloseNav }) {
           height: 1,
           display: 'flex',
           flexDirection: 'column',
+          color: '#602b37'
         },
       }}
     >

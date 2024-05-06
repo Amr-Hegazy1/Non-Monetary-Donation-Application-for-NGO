@@ -37,13 +37,16 @@ import { Suspense } from 'react';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <HelmetProvider>
+           {/* Your application components here */}
+      {/* This Link component will now have access to the router context */}
+      <HelmetProvider>
         <BrowserRouter>
           <Suspense>
             <App />
           </Suspense>
         </BrowserRouter>
       </HelmetProvider>
+
   </React.StrictMode>
 );    
 
