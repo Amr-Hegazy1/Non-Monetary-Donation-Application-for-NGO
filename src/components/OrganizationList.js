@@ -33,34 +33,11 @@ const OrganizationList = () => {
     }
   };
 
-  const handleDelete = (email) => {
-    Modal.confirm({
-    title: 'Are you sure you want to delete this item?',
-    okText: 'Yes',
-    cancelText: 'Cancel',
-    centered: true,
-    okButtonProps: { style: { backgroundColor: 'green', borderColor: 'green', color: 'white' } },
-    cancelButtonProps: { style: { backgroundColor: 'red', borderColor: 'red', color: 'white' } },
-      onOk() {
-        // Remove the item from the data array
-  
-        // Update the state
-        setData(data.filter(item => item.email !== email));
-  
-        // Display a confirmation message
-        message.success('Item deleted successfully');
-      },
-      onCancel() {
-        // Do nothing
-      },
-    });
-  };
-
   const filteredData = data.filter(item => item.name.last.toLowerCase().includes(searchTerm.toLowerCase()));
 
   return (
     <div className='OrganizationList'>
-      <h1 className='organization-list-header'>Registered Organizations</h1>
+      <h1 className='OrganizationList-header'>Organization Submissions</h1>
       <Row justify="center">
       <Col span={12}>
       <Input className='search-box' 
@@ -81,12 +58,13 @@ const OrganizationList = () => {
           {(item) => (
             <List.Item key={item.email}>
             <div className="list-item-container">
+              <div className="spacer"></div>
               <List.Item.Meta
                 title={item.name.last}
                 description={item.email}
               />
-              <Button className="delete-button" type="link" size="small" onClick={() => handleDelete(item.email)}>Delete</Button>
-            </div>
+              </div>
+              <Button className="view-button" type="link" size="small" >View Info</Button>
           </List.Item>
           )}
         </VirtualList>

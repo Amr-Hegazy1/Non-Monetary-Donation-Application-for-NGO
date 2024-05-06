@@ -16,12 +16,12 @@ const NavConfig = [
 
   },
   {
-    title: 'View Organizations',
-    path: '/user',
+    title: 'Organisation Submissions',
+    path: '/organizations',
     icon: icon('ic_user'),
   },
   {
-    title: 'View Donors',
+    title: 'Donor Submissions',
     path: '/donors',
     icon: icon('ic_cart'),
   },
@@ -34,27 +34,27 @@ const NavConfig = [
     title: 'Account Management',
     // Corrected the path to use a hyphen instead of space
     icon: icon('ic_lock'),
-    children: [ // Adding a children property to hold sub-items
+    subMenu: [
       {
-        title: 'Organisation',
-        path: 'donors', // Example path, adjust as necessary
-        icon: icon('ic_organisation'), // Assuming you have an icon for this, adjust as necessary
+        title: 'Registered Organizations',
+        path: '/registeredOrganizations',
+        icon: icon('ic_organization'),
       },
       {
-        title: 'Donor',
-        path: 'donors', // Example path, adjust as necessary
-        icon: icon('ic_donor'), // Assuming you have an icon for this, adjust as necessary
-      }
-    ]
+        title: 'Registered Donors',
+        path: '/registeredDonors',
+        icon: icon('ic_donor'),
+      },
+    ],
   },
   {
     title: 'Donation Requests',
-    path: '/requests',
+    path: '/donor requests',
     icon: icon('ic_disabled'),
   },
   {
-    title: 'Validate Donor Accounts',
-    path: '/user details',
+    title: 'Organization Requests',
+    path: '/organization requests',
     icon: icon('ic_disabled'),
   }
 ];

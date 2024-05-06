@@ -9,7 +9,6 @@ import Avatar from '@mui/material/Avatar';
 import { alpha } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import ListItemButton from '@mui/material/ListItemButton';
-
 import { UseResponsive, UseWidth } from '../use-responsive';
 
 
@@ -19,6 +18,9 @@ import Scrollbar from '../scrollbar';
 
 import { NAV } from './config-layout';
 import NavConfig from './config-navigation';
+import { useState } from 'react';
+import Collapse from '@mui/material/Collapse';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 
 // ----------------------------------------------------------------------
 
@@ -134,36 +136,56 @@ Nav.propTypes = {
 // ----------------------------------------------------------------------
 
 function NavItem({ item }) {
+  const [open, setOpen] = useState(false);
 
-
-  
+  const handleClick = (e) => {
+    if (item.subMenu) {
+      e.preventDefault();
+      setOpen(!open);
+    }
+  };
 
   return (
-    <ListItemButton
-      href={item.path}
-      sx={{
-        minHeight: 44,
-        borderRadius: 0.75,
-        typography: 'body2',
-        color: 'text.secondary',
-        textTransform: 'capitalize',
-        fontWeight: 'fontWeightMedium',
-        ...( {
-          color: 'primary.main',
-          fontWeight: 'fontWeightSemiBold',
-          bgcolor: (theme) => alpha(theme.palette.primary.main, 0.08),
-          '&:hover': {
-            bgcolor: (theme) => alpha(theme.palette.primary.main, 0.16),
-          },
-        }),
-      }}
-    >
-      <Box component="span" sx={{ width: 24, height: 24, mr: 2 }}>
-        {item.icon}
-      </Box>
-
-      <Box component="span">{item.title} </Box>
-    </ListItemButton>
+    <div>
+      <ListItemButton onClick={handleClick} href={item.path}>
+        <Box component="span" sx={{ width: 24, height: 24, mr: 2 }}>
+          {item.icon}
+        </Box>
+        <Box component="span">{item.title}</Box>
+        {item.subMenu && <ExpandMoreIcon />}
+      </ListItemButton>
+      {item.subMenu && (
+        <Collapse in={open} timeout="auto" unmountOnExit>
+          {item.subMenu.map((subItem, index) => (
+            <ListItemButton
+              key={index}
+              href={subItem.path}
+              sx={{
+                minHeight: 44,
+                borderRadius: 0.75,
+                typography: 'body2',
+                color: 'text.secondary',
+                textTransform: 'capitalize',
+                fontWeight: 'fontWeightMedium',
+                ...( {
+                  color: 'primary.main',
+                  fontWeight: 'fontWeightSemiBold',
+                  bgcolor: (theme) => alpha(theme.palette.primary.main, 0.08),
+                  '&:hover': {
+                    bgcolor: (theme) => alpha(theme.palette.primary.main, 0.16),
+                  },
+                }),
+              }}
+            >
+              <Box component="span" sx={{ width: 24, height: 24, mr: 2 }}>
+                {subItem.icon}
+              </Box>
+              <Box component="span">{subItem.title}</Box>
+            </ListItemButton>
+          ))}
+        </Collapse>
+      )}
+    </div>
   );
 }
 

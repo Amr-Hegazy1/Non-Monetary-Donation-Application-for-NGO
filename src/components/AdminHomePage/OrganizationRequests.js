@@ -2,14 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { List, Input, Button } from 'antd';
 import VirtualList from 'rc-virtual-list';
 import { Row, Col } from 'antd';
-import './DonorRequests.css';
 import { message } from 'antd';
+import { Modal } from 'antd';
+import './OrganizationRequests.css';
 
 const fakeDataUrl =
   'https://randomuser.me/api/?results=20&inc=name,gender,email,nat,picture&noinfo';
 const ContainerHeight = 400;
 
-const DonorRequests = () => {
+const OrganizationRequests = () => {
   const [data, setData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -31,20 +32,15 @@ const DonorRequests = () => {
     }
   };
 
-  const handleDelete = (email) => {
-    setData(data.filter(item => item.email !== email));
-    message.error('User deleted');
-  };
-
   const filteredData = data.filter(item => item.name.last.toLowerCase().includes(searchTerm.toLowerCase()));
 
   return (
-    <div className='DonorRequests'>
-      <h1 className='DonorRequests-header'>Donor Requests</h1>
+    <div className='OrganizationRequests'>
+      <h1 className='OrganizationRequests-header'>Organization Requests</h1>
       <Row justify="center">
       <Col span={12}>
       <Input className='search-box' 
-         placeholder="Search for a Donor Requester" 
+         placeholder="Search for an Organization Requester" 
          onChange={e => setSearchTerm(e.target.value)} 
          style={{ maxWidth: '500px', width: '100%' }}
         />
@@ -61,13 +57,13 @@ const DonorRequests = () => {
           {(item) => (
             <List.Item key={item.email}>
             <div className="list-item-container">
-            <div className="spacer"></div>
+              <div className="spacer"></div>
               <List.Item.Meta
                 title={item.name.last}
                 description={item.email}
               />
+              </div>
               <Button className="view-button" type="link" size="small" >View Info</Button>
-            </div>
           </List.Item>
           )}
         </VirtualList>
@@ -76,4 +72,4 @@ const DonorRequests = () => {
   );
 };
 
-export default DonorRequests;
+export default OrganizationRequests;

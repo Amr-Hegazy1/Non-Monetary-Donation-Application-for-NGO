@@ -2,6 +2,11 @@ import { lazy, Suspense } from 'react';
 import { Outlet, useRoutes } from 'react-router-dom';
 
 import DashboardLayout from '../Navigations/index';
+import OrganizationList from '../../OrganizationList';
+import RegisteredOrganizations from '../../RegisteredOrganizations';
+import RegisteredDonors from '../../RegisteredDonors';
+import DonorRequests from '../../DonorRequests';
+import OrganizationRequests from '../OrganizationRequests';
 
 export const IndexPage = lazy(() => import('../AppPage/appPage'));
 export const PasswordManagement = lazy(() => import('../../../PasswordManagement'));
@@ -27,12 +32,16 @@ export default function Router() {
       children: [
         { element: <IndexPage />, index: true },
         { path: 'donors', element: <DonorList /> },
+        { path: 'organizations', element: <OrganizationList /> },
         { path: 'change password', element: <PasswordManagement /> },
-        { path: 'account mangement', element: <Organizations /> },
+        { path: 'account mangement', element: <OrganizationList /> },
         { path : 'Validate Donor Accounts' , element : < Organizations/>},
         { path: 'donors submissions', element: <DonorSubmission />},
         { path : 'user details' , element : <UserDetails/>},
-        { path : 'requests', element : <Requests/>},
+        { path : 'donor requests', element : <DonorRequests/>},
+        { path : 'organization requests', element : <OrganizationRequests/>},
+        { path : 'registeredOrganizations', element : <RegisteredOrganizations/>},
+        { path : 'registeredDonors', element : <RegisteredDonors/>},
       ],
     },
    

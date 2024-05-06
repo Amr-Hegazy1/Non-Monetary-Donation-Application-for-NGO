@@ -1,0 +1,38 @@
+.RegisteredDonors-header {
+    margin-top: -10px;
+    margin-left: 305px;
+  }
+  
+  .delete-button:focus,
+  .view-button:focus {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+  
+  .delete-button {
+    display: inline-block; /* Add this line */
+    padding: 0 0px; /* Adjust as needed */
+    flex: 0 0 12%;
+  }
+
+  .view-button {
+    padding: 0 0px; /* Adjust as needed */
+    width: 12%; /* Adjust as needed */
+    margin-left: 20px;
+  }
+  
+  .list-item-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-left: 50px; /* Adjust as needed */
+  }
+  
+  .search-box::placeholder {
+    text-align: center;
+  }
+  
+  .spacer {
+    flex-grow: 1;
+  }

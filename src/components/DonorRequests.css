@@ -1,14 +1,6 @@
-.donor-list-header {
+.DonorRequests-header {
     margin-top: -10px;
-  }
-
-  .delete-button:focus {
-    outline: none !important;
-    box-shadow: none !important;
-  }
-
-  .delete-button {
-    padding: 0 0px; /* Adjust as needed */
+    padding-left: 322px;
   }
 
   .list-item-container {
@@ -19,8 +11,8 @@
     padding: 0px;
   }
   
-  .delete-button {
-    width: 25%; /* Adjust as needed */
+  .view-button {
+    width: 8%; /* Adjust as needed */
   }
 
   .search-box::placeholder {
