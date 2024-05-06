@@ -8,5 +8,7 @@ export const COLORS = {
     background: '#E7E3BE',
     yellow: '#E1D59B',
     textColor: '#000000',
+    primaryLightLessOpacity: 'rgba(234, 177, 160, 0.5)',
 
+ 
 };
