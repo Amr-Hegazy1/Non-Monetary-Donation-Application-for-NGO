@@ -1,3 +1,4 @@
+import React, { useEffect } from 'react';
 import './App.css';
 import NavBar from './components/NavBar';
  import ViewDonationRequests from './components/ViewDonationRequests';
@@ -12,21 +13,6 @@ import ViewEstimatedArrival from './components/ViewEstimatedArrival';
 
 
 function App() {
-//   const [buttonClicked, setButtonClicked] = useState(false);
-
-
-//   const [hovered, setHovered] = useState(false);
-
-//   const handleMouseEnter = () => {
-//       setHovered(true);
-//     };
-  
-//     const handleMouseLeave = () => {
-//       setHovered(false);
-//     };  
-//    const handleButtonClick = () => {
-//      setButtonClicked(true);
-//  }
   return (
   
 

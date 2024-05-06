@@ -1,0 +1,20 @@
+.DonorRequests-header {
+    margin-top: -10px;
+    padding-left: 322px;
+  }
+
+  .list-item-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0px;
+  }
+  
+  .view-button {
+    width: 8%; /* Adjust as needed */
+  }
+
+  .search-box::placeholder {
+    text-align: center;
+  }
