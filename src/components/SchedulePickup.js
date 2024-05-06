@@ -32,7 +32,7 @@ const SchedulePickup = () => {
     
 
     
-
+    const [vehicle, setVehicle] = useState('');
     
     
 
@@ -60,12 +60,12 @@ const SchedulePickup = () => {
                 labelId="demo-multiple-name-label"
                 id="demo-multiple-name"
                 multiple
-                value={[]}
+                value={vehicle}
                 input={<OutlinedInput label="Vehicle Type" />}
                 >
-                    <MenuItem>Truck</MenuItem>
-                    <MenuItem>Car</MenuItem>
-                    <MenuItem>Motorcycle</MenuItem>
+                    <MenuItem value="Truck">Truck</MenuItem>
+                    <MenuItem value="Car">Car</MenuItem>
+                    <MenuItem value="Motorcycle">Motorcycle</MenuItem>
                     
                 </Select>
             </FormControl>
