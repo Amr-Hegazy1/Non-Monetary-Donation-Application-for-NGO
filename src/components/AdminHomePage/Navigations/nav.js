@@ -44,15 +44,15 @@ export default function Nav({ openNav, onCloseNav }) {
         display: 'flex',
         borderRadius: 1.5,
         alignItems: 'center',
-        bgcolor: (theme) => alpha(theme.palette.grey[500], 0.12),
+        bgcolor: 'darkred',
       }}
     >
       <Avatar src={Account.photoURL} alt="photoURL" />
 
       <Box sx={{ ml: 2 }}>
-        <Typography variant="subtitle2">{Account.displayName}</Typography>
+        <Typography variant="subtitle2" sx={{color:'white'}}>{Account.displayName} </Typography>
 
-        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+        <Typography variant="body2" sx={{ color: 'white' }}>
           {Account.role}
         </Typography>
       </Box>
@@ -62,7 +62,7 @@ export default function Nav({ openNav, onCloseNav }) {
   const renderMenu = (
     <Stack component="nav" spacing={0.5} sx={{ px: 2 }}>
       {NavConfig.map((item) => (
-        <NavItem key={item.title} item={item} />
+        <NavItem key={item.title} item={item}  />
       ))}
     </Stack>
   );

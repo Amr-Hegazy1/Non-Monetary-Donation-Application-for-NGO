@@ -28,25 +28,17 @@ import Scrollbar from '../scrollbar';
 const NOTIFICATIONS = [
   {
     id: faker.string.uuid(),
-    title: 'Your order is placed',
-    description: 'waiting for shipping',
+    title: 'Complaint mail from Organisation B',
+    description: 'shipment #1 was not delivered on time',
     avatar: null,
     type: 'order_placed',
     createdAt: set(new Date(), { hours: 10, minutes: 30 }),
     isUnRead: true,
   },
+ 
   {
     id: faker.string.uuid(),
-    title: faker.person.fullName(),
-    description: 'answered to your comment on the Minimal',
-    avatar: '/assets/images/avatars/avatar_2.jpg',
-    type: 'friend_interactive',
-    createdAt: sub(new Date(), { hours: 3, minutes: 30 }),
-    isUnRead: true,
-  },
-  {
-    id: faker.string.uuid(),
-    title: 'You have new message',
+    title: 'You have new Request',
     description: '5 unread messages',
     avatar: null,
     type: 'chat_message',
@@ -65,7 +57,7 @@ const NOTIFICATIONS = [
   {
     id: faker.string.uuid(),
     title: 'Delivery processing',
-    description: 'Your order is being shipped',
+    description: 'Donation #99 has been compketed',
     avatar: null,
     type: 'order_shipped',
     createdAt: sub(new Date(), { days: 3, hours: 3, minutes: 30 }),
@@ -168,11 +160,7 @@ export default function NotificationsPopover() {
 
         <Divider sx={{ borderStyle: 'dashed' }} />
 
-        <Box sx={{ p: 1 }}>
-          <Button fullWidth disableRipple>
-            View All
-          </Button>
-        </Box>
+       
       </Popover>
     </>
   );

@@ -10,7 +10,7 @@ export const grey = {
   200: '#F4F6F8',
   300: '#DFE3E8',
   400: '#C4CDD5',
-  500: '#919EAB',
+  500: 'darkred',
   600: '#637381',
   700: '#454F5B',
   800: '#212B36',
@@ -18,9 +18,9 @@ export const grey = {
 };
 
 export const primary = {
-  lighter: '#D0ECFE',
+  lighter: '#971254',
   light: '#73BAFB',
-  main: '#1877F2',
+  main: '#620b37',
   dark: '#0C44AE',
   darker: '#042174',
   contrastText: '#FFFFFF',

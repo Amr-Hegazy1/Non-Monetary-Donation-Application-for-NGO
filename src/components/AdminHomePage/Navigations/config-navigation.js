@@ -1,3 +1,4 @@
+import { colors } from '@mui/material';
 import SvgColor from '../svg-color';
 
 // ----------------------------------------------------------------------
@@ -11,9 +12,11 @@ const NavConfig = [
     title: 'Admin Dashboard',
     path: '/',
     icon: icon('ic_analytics'),
+    color: 'darkred',
+
   },
   {
-    title: 'View Organisations',
+    title: 'View Organizations',
     path: '/user',
     icon: icon('ic_user'),
   },
@@ -23,14 +26,26 @@ const NavConfig = [
     icon: icon('ic_cart'),
   },
   {
-    title: 'Chnage Password',
+    title: 'Change Password',
     path: '/change password',
     icon: icon('ic_blog'),
   },
   {
     title: 'Account Management',
-    path: '/account mangement',
+    // Corrected the path to use a hyphen instead of space
     icon: icon('ic_lock'),
+    children: [ // Adding a children property to hold sub-items
+      {
+        title: 'Organisation',
+        path: 'donors', // Example path, adjust as necessary
+        icon: icon('ic_organisation'), // Assuming you have an icon for this, adjust as necessary
+      },
+      {
+        title: 'Donor',
+        path: 'donors', // Example path, adjust as necessary
+        icon: icon('ic_donor'), // Assuming you have an icon for this, adjust as necessary
+      }
+    ]
   },
   {
     title: 'Donation Requests',
