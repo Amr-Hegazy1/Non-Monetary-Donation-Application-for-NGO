@@ -26,6 +26,16 @@ function NavBar() {
                 Separated link
               </NavDropdown.Item>
             </NavDropdown>
+            <NavDropdown title="Donate now" id="collapsible-nav-dropdown">
+              <NavDropdown.Item href="#action/3.1">Clothes</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.2">
+                Medical Supplies
+              </NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">Toys</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">Books</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">Stationary Items</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">Food</NavDropdown.Item>              
+            </NavDropdown>
           </Nav>
          
         </Navbar.Collapse>
