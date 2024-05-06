@@ -13,17 +13,17 @@ const NavConfig = [
     icon: icon('ic_analytics'),
   },
   {
-    title: 'View Organisations',
-    path: '/user',
+    title: 'Organisation Submissions',
+    path: '/organizations',
     icon: icon('ic_user'),
   },
   {
-    title: 'View Donors',
+    title: 'Donor Submissions',
     path: '/donors',
     icon: icon('ic_cart'),
   },
   {
-    title: 'Chnage Password',
+    title: 'Change Password',
     path: '/change password',
     icon: icon('ic_blog'),
   },
@@ -31,15 +31,27 @@ const NavConfig = [
     title: 'Account Management',
     path: '/account mangement',
     icon: icon('ic_lock'),
+    subMenu: [
+      {
+        title: 'Registered Organizations',
+        path: '/registeredOrganizations',
+        icon: icon('ic_organization'),
+      },
+      {
+        title: 'Registered Donors',
+        path: '/registeredDonors',
+        icon: icon('ic_donor'),
+      },
+    ],
   },
   {
     title: 'Donation Requests',
-    path: '/requests',
+    path: '/donor requests',
     icon: icon('ic_disabled'),
   },
   {
-    title: 'Validate Donor Accounts',
-    path: '/user details',
+    title: 'Organization Requests',
+    path: '/organization requests',
     icon: icon('ic_disabled'),
   }
 ];

@@ -35,6 +35,7 @@ function PasswordManagement() {
             Change Password
           </h4>     
       </div>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
       <Stack spacing={3}>
       <TextField
             name="New Password"
@@ -97,6 +98,7 @@ function PasswordManagement() {
             Change Password
           </Button>
       </Stack>
+      </div>
     </>
   );
 }
