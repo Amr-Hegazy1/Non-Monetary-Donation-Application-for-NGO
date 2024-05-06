@@ -1,40 +1,40 @@
-.signup-btn {
-    display:  flex;
-    justify-content:  center;
-    align-items:  center;
-    font-size:  14px;
-    color:  #fff;
-    width:  80px;
-    height:  50px;
-    background:  #620b37;
-    text-transform:  capitalize;
-    margin-left:  30px;
-    border-radius: 3px;
-    -webkit-transition: 0.3s linear; 
-    -moz-transition: 0.3s linear; 
-    -ms-transition: 0.3s linear; 
-    -o-transition: 0.3s linear; 
-    transition: 0.3s linear;
+.navbar-signup-btn {
+    display:  flex !important;
+    justify-content:  center !important;
+    align-items:  center !important;
+    font-size:  14px !important;
+    color:  #fff !important;
+    width:  80px !important;
+    height:  50px !important;
+    background:  #620b37 !important;
+    text-transform:  capitalize !important;
+    margin-left:  30px !important;
+    border-radius: 3px !important;
+    -webkit-transition: 0.3s linear !important; 
+    -moz-transition: 0.3s linear !important;
+    -ms-transition: 0.3s linear !important;
+    -o-transition: 0.3s linear !important;
+    transition: 0.3s linear !important;
 }
-.signup-btn:hover{/*background: #fd4043;*/background: #971254;}
+.signup-btn:hover{/*background: #fd4043;*/background: #971254 !important;}
 
-.login-btn{
-    display:  flex;
-    justify-content:  center;
-    align-items:  center;
-    font-size:  14px;
-    color:  balck;
-    width:  80px;
-    height:  50px;
-    background: white;
-    text-transform:  capitalize;
-    margin-left:  10px;
+.navbar-login-btn{
+    display:  flex !important;
+    justify-content:  center !important;
+    align-items:  center !important;
+    font-size:  14px !important;
+    color:  black !important;
+    width:  80px !important;
+    height:  50px !important;
+    background: white !important;
+    text-transform:  capitalize !important;
+    margin-left:  10px !important;
     border-radius: 3px;
-    -webkit-transition: 0.3s linear; 
-    -moz-transition: 0.3s linear; 
-    -ms-transition: 0.3s linear; 
-    -o-transition: 0.3s linear; 
-    transition: 0.3s linear;
+    -webkit-transition: 0.3s linear !important;
+    -moz-transition: 0.3s linear !important;
+    -ms-transition: 0.3s linear !important;
+    -o-transition: 0.3s linear !important;
+    transition: 0.3s linear !important;
 }
 
 .navbar-link{

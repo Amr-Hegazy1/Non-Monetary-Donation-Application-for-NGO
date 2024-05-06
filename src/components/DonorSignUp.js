@@ -23,18 +23,17 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
-import { Upload, Divider } from 'antd';
+import { message, Upload, Divider } from 'antd';
 import "../styles/OrganizationSignUp.css";
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import { InboxOutlined } from '@ant-design/icons';
 import { useMapEvents } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
-import { Country, State, City }  from 'country-state-city';
 import TagsSelector from './TagsSelector';
 import 'animate.css';
-import { DisabledByDefault } from '@mui/icons-material';
 import AddressForm from './AddressForm';
+import { COLORS } from '../values/colors';
 
 const { Dragger } = Upload;
 
@@ -72,8 +71,52 @@ export default function DonorSignUp() {
   
   
 
-  const [position, setPosition] = React.useState([51.505, -0.09]);
+  const [position, setPosition] = React.useState([29.98693069424653, 31.44078789655661]);
   const [volenteerRole, setVolenteerRole] = React.useState('Regular Donor');
+  const [isFileUploaded, setIsFileUploaded] = React.useState(false);
+  
+  const props = {
+    name: 'file',
+    multiple: true,
+    beforeUpload: file => {
+      const reader = new FileReader();
+  
+      reader.onload = e => {
+          console.log(e.target.result);
+      };
+       
+      // save the file to public folder
+      reader.readAsDataURL(file);
+      
+      
+  
+      setIsFileUploaded(true);
+      
+  
+      // Prevent upload
+      return false;
+    },
+  
+    onChange(info) {
+  
+      const { status } = info.file;
+      if (status !== 'uploading') {
+        console.log(info.file, info.fileList);
+      }
+      if (status === 'done' || status === 'error') {
+        message.success(`${info.file.name} file uploaded successfully.`);
+      } 
+    },
+    onDrop(e) {
+      console.log('Dropped files', e.dataTransfer.files);
+    },
+    // customRequest({ file, onSuccess }) {
+    //   // console.log(file);
+    //   setTimeout(() => {
+    //     onSuccess("ok");
+    //   }, 0);
+    // },
+  };
   
 
 
@@ -108,7 +151,7 @@ export default function DonorSignUp() {
           }}
         >
           
-          <img src="logo.png" className="App-logo" alt="logo" />
+          <img src="logo.png" className="signup-app-logo" alt="logo" />
           
           <Typography component="h1" variant="h5">
             Sign Up
@@ -143,8 +186,8 @@ export default function DonorSignUp() {
                         aria-labelledby="demo-row-radio-buttons-group-label"
                         name="row-radio-buttons-group"
                     >
-                        <FormControlLabel value="female" control={<Radio />} label="Female" />
-                        <FormControlLabel value="male" control={<Radio />} label="Male" />
+                        <FormControlLabel value="female" control={<Radio style={{color: COLORS.primary}}/>} label="Female" />
+                        <FormControlLabel value="male" control={<Radio style={{color: COLORS.primary}}/>} label="Male" />
                     </RadioGroup>
                 </FormControl>
             <TextField
@@ -199,7 +242,7 @@ export default function DonorSignUp() {
                 <Divider>Doctor Details</Divider>
                 <FormControl fullWidth required>
                     <InputLabel id="demo-multiple-name-label">Clinic Location</InputLabel>
-                    <MapContainer center={position} zoom={13} scrollWheelZoom={false} style={{ height: '50vh', width: '100wh' }} >
+                    <MapContainer center={position} zoom={20} scrollWheelZoom={false} style={{ height: '50vh', width: '100wh' }} >
                     <TileLayer
                         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -262,7 +305,7 @@ export default function DonorSignUp() {
               type="submit"
               fullWidth
               variant="contained"
-              className="btn"
+              className="signup-btn"
               sx={{ mt: 3, mb: 2 }}
             >
               Sign Up

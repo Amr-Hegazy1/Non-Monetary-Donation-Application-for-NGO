@@ -21,9 +21,9 @@ function NavBar() {
           </Nav>
           <Nav>
             <Flex gap="small">
-              <Button className='signup-btn'>Signup</Button>
+              <Button className='navbar-signup-btn'>Signup</Button>
               
-              <Button className="login-btn">Login</Button>
+              <Button className="navbar-login-btn">Login</Button>
             </Flex>
           </Nav>
         </Navbar.Collapse>

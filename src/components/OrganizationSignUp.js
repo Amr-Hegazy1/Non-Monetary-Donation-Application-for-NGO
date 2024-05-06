@@ -1,13 +1,10 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -22,17 +19,24 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
-import { Upload, Divider } from 'antd';
+import { message, Upload, Divider } from 'antd';
 import "../styles/OrganizationSignUp.css";
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import { InboxOutlined } from '@ant-design/icons';
 import { useMapEvents } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
-import { Add } from '@mui/icons-material';
 import AddressForm from './AddressForm';
+import { COLORS } from '../values/colors';
+
 
 const { Dragger } = Upload;
+
+const saveFile = async (blob, filename) => {
+ 
+  
+};
+
 
 
 delete L.Icon.Default.prototype._getIconUrl;
@@ -64,12 +68,97 @@ const defaultTheme = createTheme();
 
 export default function OrganizationSignUp() {
 
-  const [position, setPosition] = React.useState([51.505, -0.09]);
+  const [position, setPosition] = React.useState([29.98693069424653, 31.44078789655661]);
+  const [organizationType, setOrganizationType] = React.useState('');
+  const [isFileUploaded, setIsFileUploaded] = React.useState(false);
+  
+  
+  
+
+
+
+  const props = {
+    name: 'file',
+    multiple: true,
+    beforeUpload: file => {
+      const reader = new FileReader();
+  
+      reader.onload = e => {
+          console.log(e.target.result);
+      };
+       
+      // save the file to public folder
+      reader.readAsDataURL(file);
+      
+      saveFile(file, file.name);
+  
+      setIsFileUploaded(true);
+      
+  
+      // Prevent upload
+      return false;
+    },
+  
+    onChange(info) {
+  
+      const { status } = info.file;
+      if (status !== 'uploading') {
+        console.log(info.file, info.fileList);
+      }
+      if (status === 'done' || status === 'error') {
+        message.success(`${info.file.name} file uploaded successfully.`);
+      } 
+    },
+    onDrop(e) {
+      console.log('Dropped files', e.dataTransfer.files);
+    },
+    // customRequest({ file, onSuccess }) {
+    //   // console.log(file);
+    //   setTimeout(() => {
+    //     onSuccess("ok");
+    //   }, 0);
+    // },
+  };
+  
+
+  
 
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    const data = new FormData(event.currentTarget);
+
+    // check each field and validate
     
+    for (let [name, value] of data) {
+      console.log(name, value);
+      if (value === '') {
+        
+        message.error(name + ' is required');
+        return;
+      }
+    }
+
+    // check if gender is in data
+    if (!data.has('gender')) {
+      
+      message.error("Gender is required");
+      return;
+    }
+
+    // check if confirm password is equal to password
+    if (data.get('password') !== data.get('confirmPassword')) {
+      
+      message.error("Passwords do not match");
+      return;
+    }
+
+    if (!isFileUploaded) {
+      message.error("Organization Certificates are required");
+      return;
+    }
+
+    message.success('Form submitted');
     
   };
 
@@ -96,32 +185,38 @@ export default function OrganizationSignUp() {
           }}
         >
           
-          <img src="logo.png" className="App-logo" alt="logo" />
+          <img src="logo.png" className="signup-app-logo" alt="logo" />
           
           <Typography component="h1" variant="h5">
             Sign Up
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={handleSubmit}  sx={{ mt: 1 }}>
           <Grid container spacing={2}>
             <Grid item xs>
-                <TextField
-                    margin="normal"
-                    required
-                    fullWidth
-                    
-                    label="First Name"
-                    autoFocus
-                    />
+              <FormControl fullWidth required>
+                  <TextField
+                      margin="normal"
+                      required
+                      fullWidth
+                      id="firstName"
+                      label="First Name"
+                      name="firstName"
+                      autoFocus
+                      />
+              </FormControl>
             </Grid>
             <Grid item>
+              <FormControl fullWidth required>
                     <TextField
                     margin="normal"
                     required
                     fullWidth
-                    
+                    id="lastName"
                     label="Last Name"
+                    name="lastName"
                     autoFocus
                     />
+                  </FormControl>
             </Grid>
             </Grid>
             <FormControl>
@@ -129,67 +224,93 @@ export default function OrganizationSignUp() {
                     <RadioGroup
                         row
                         aria-labelledby="demo-row-radio-buttons-group-label"
-                        name="row-radio-buttons-group"
+                        name="gender"
                     >
-                        <FormControlLabel value="female" control={<Radio />} label="Female" />
-                        <FormControlLabel value="male" control={<Radio />} label="Male" />
+                        <FormControlLabel value="female" control={<Radio style={{color: COLORS.primary}} />} label="Female" />
+                        <FormControlLabel value="male" control={<Radio style={{color: COLORS.primary}} />} label="Male" />
                     </RadioGroup>
                 </FormControl>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
-            <PhoneInput
-                defaultCountry="eg"
-                style={{width: '100%'}}
+                <FormControl fullWidth required>  
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                  autoFocus
+                />
+            </FormControl>
+            <FormControl fullWidth required>
+              <TextField
+                margin="normal"
                 required
-            />
-            <TextField
-            margin="normal"
-            required
-            fullWidth
-            label="Organization Name"
-            autoFocus
-            />
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+              />
+            </FormControl>
+            <FormControl fullWidth required>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="confirmPassword"
+                label="Confirm Password"
+                type="password"
+                id="confirmPassword"
+                autoComplete="current-password"
+              />
+            </FormControl>
+            <FormControl fullWidth required>
+              <PhoneInput
+                  defaultCountry="eg"
+                  style={{width: '100%'}}
+                  required
+                  id="phone"
+                  name="phone"
+              />
+            </FormControl>
+            <FormControl fullWidth required>
+              <TextField
+              margin="normal"
+              required
+              fullWidth
+              label="Organization Name"
+              id="organizationName"
+              name="organizationName"
+              autoFocus
+              />
+            </FormControl>
             
             <FormControl fullWidth required>
                 <InputLabel id="demo-multiple-name-label">Organization Type</InputLabel>
                 <Select
                 labelId="demo-multiple-name-label"
-                id="demo-multiple-name"
-                multiple
-                value={[]}
+                id="organizationType"
+                name="organizationType"
+                onChange={(e) => setOrganizationType(e.target.value)}
+                value={organizationType}
                 input={<OutlinedInput label="Organization Type" />}
                 >
-                    <MenuItem>School</MenuItem>
-                    <MenuItem>Hospital</MenuItem>
-                    <MenuItem>Church</MenuItem>
-                    <MenuItem>Mosque</MenuItem>
-                    <MenuItem>Non-Profit</MenuItem>
-                    <MenuItem>Orphanage</MenuItem>
+                    <MenuItem value="School">School</MenuItem>
+                    <MenuItem value="Hospital">Hospital</MenuItem>
+                    <MenuItem value="Church">Church</MenuItem>
+                    <MenuItem value="Mosque">Mosque</MenuItem>
+                    <MenuItem value="Orphanage">Orphanage</MenuItem>
+                    <MenuItem value="Non-Profit">Non-Profit</MenuItem>
+                    
                 </Select>
             </FormControl>
             <br/>
             <Divider>Organization Location</Divider>
             <AddressForm/>
             <FormControl fullWidth required>
-                <MapContainer center={position} zoom={13} scrollWheelZoom={false} style={{ height: '50vh', width: '100wh' }} >
+                <MapContainer center={position} zoom={20} scrollWheelZoom={false} style={{ height: '50vh', width: '100wh' }} >
                   <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -203,7 +324,7 @@ export default function OrganizationSignUp() {
               <Divider>Organization Certificates</Divider>
               <FormControl fullWidth required>
                 
-                <Dragger>
+                <Dragger {...props} id='organizationCertificates' name='organizationCertificates'>
                   <p className="ant-upload-drag-icon">
                     <InboxOutlined />
                   </p>
@@ -213,13 +334,14 @@ export default function OrganizationSignUp() {
                     banned files.
                   </p>
                 </Dragger>
-                </FormControl>
+              </FormControl>
            
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              className='signup-btn'
             >
               Sign Up
             </Button>

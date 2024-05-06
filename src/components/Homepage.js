@@ -89,9 +89,9 @@ export default function Homepage() {
                             <li>
                                 <div className="single-list-topics-content">
                                     <div className="single-list-topics-icon">
-                                        <i className="icon icon-non-profit"></i>
+                                        <i className="icon icon-orphanage"></i>
                                     </div>
-                                    <h2><a href="#">Non-Profits</a></h2>
+                                    <h2><a href="#">Orphanage</a></h2>
                                     <p>120 listings</p>
                                 </div>
                             </li>
@@ -100,10 +100,11 @@ export default function Homepage() {
                                     <div className="single-list-topics-icon">
                                         <i className="icon icon-non-profit"></i>
                                     </div>
-                                    <h2><a href="#">Orphanage</a></h2>
+                                    <h2><a href="#">Non-Profits</a></h2>
                                     <p>120 listings</p>
                                 </div>
                             </li>
+                            
                         </ul>
                     </div>
                 </div>

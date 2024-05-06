@@ -22,8 +22,10 @@ export default function AddressForm() {
         <FormControl fullWidth required margin="normal">
                 <InputLabel id="demo-multiple-name-label">Country</InputLabel>
                 <Select
+                disabled
                 labelId="demo-multiple-name-label"
-                id="demo-multiple-name"
+                id="country"
+                name="country"
                 value={selectedCountry}
                 onChange={(e) => setSelectedCountry(e.target.value)}
                 input={<OutlinedInput label="Country" />}
@@ -36,7 +38,8 @@ export default function AddressForm() {
                 <InputLabel id="demo-multiple-name-label">State</InputLabel>
                 <Select
                 labelId="demo-multiple-name-label"
-                id="demo-multiple-name"
+                id="state"
+                name='state'
                 value={selectedState}
                 onChange={(e) => setSelectedState(e.target.value)}
                 input={<OutlinedInput label="State" />}
@@ -49,9 +52,11 @@ export default function AddressForm() {
                 <InputLabel id="demo-multiple-name-label">City</InputLabel>
                 <Select
                 labelId="demo-multiple-name-label"
-                id="demo-multiple-name"
+                id="city"
+                name='city'
                 value={selectedCity}
                 onChange={(e) => setSelectedCity(e.target.value)}
+                
                 input={<OutlinedInput label="City" />}
                 >
                     {City.getCitiesOfState(selectedCountry, selectedState).map((city) => <MenuItem value={city.name}>{city.name}</MenuItem>)}
@@ -63,6 +68,8 @@ export default function AddressForm() {
                 required
                 fullWidth
                 label="Address"
+                id="address"
+                name="address"
                 autoFocus
                 />
             </FormControl>
@@ -74,6 +81,9 @@ export default function AddressForm() {
                 required
                 fullWidth
                 label="Zip Code"
+                id="zip"
+                name="zip"
+                type="number"
                 autoFocus
                 />
             </FormControl>

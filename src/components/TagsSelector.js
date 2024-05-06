@@ -43,11 +43,13 @@ export default function TagsSelector({suggestions, tagLabel}) {
       <p>Select the {tagLabel} you want to teach:</p>
       <ReactTags
         id="country-selector"
-        labelText="Select countries"
+        labelText="Select subjects"
         onAdd={onAdd}
         onDelete={onDelete}
+        onExpand={() => setTimeout(function(){debugger;},5000)}
         selected={selected}
         suggestions={suggestionsAnnotation}
+        
         {...options}
       />
       

@@ -50,13 +50,13 @@ body{
 }
 
 a,a:hover,a:active,a:focus {
-	display:inline-block;
-	text-decoration:none;
-	color: #343a3f;
-	font-size:16px;
-	padding:0;
-    font-weight: 500;
-    text-transform: capitalize;
+	display:inline-block !important;
+	text-decoration:none !important;
+	color: #343a3f !important;
+	font-size:16px !important;
+	padding:0 !important;
+    font-weight: 500 !important;
+    text-transform: capitalize !important;
 }
 h1,h2,h3,h4,h5,h6 { 
 	margin: 0;
@@ -249,6 +249,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #620b37;}
     text-align: center;
     height:800px;
     z-index: 1;
+    
 }
 .welcome-hero:before{
     position: absolute;
@@ -958,21 +959,21 @@ nav.navbar.bootsnav .navbar-toggle i{color: #620b37;}
 }
 
 .donate-btn{
-    border-radius: 100px;
-    background: #620b37;
-    margin-top: 20px;
-    padding-left: 50px;
-    padding-right: 50px;
-    font-size: 15px;
-    border-color: #4d0a2b;
+    border-radius: 100px !important;
+    background: #620b37 !important;
+    margin-top: 20px !important;
+    padding-left: 50px !important;
+    padding-right: 50px !important;
+    font-size: 15px !important;
+    border-color: #4d0a2b !important;
 }
 .donate-btn:hover{
-    background: #971254;
-    border-color: #620b37;
+    background: #971254 !important;
+    border-color: #620b37 !important;
 }
 
-.donate-btn::focus{
-    background: #971254;
+.donate-btn:focus{
+    background: #971254 !important;
 }
 
 /*========================Thank you=================*/
