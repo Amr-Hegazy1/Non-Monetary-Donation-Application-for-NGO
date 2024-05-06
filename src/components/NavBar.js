@@ -2,9 +2,12 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import {Image} from 'antd';
+import logo from './logo.png'; 
 function NavBar() { 
     return (
     <Navbar color='#0C4D42' collapseOnSelect expand="lg" className="bg-body-tertiary">
+      <Image width={200} src={logo} />
       <Container>
         <Navbar.Brand href="#home">Donation App</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />

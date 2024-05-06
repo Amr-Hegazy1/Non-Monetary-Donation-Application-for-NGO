@@ -72,7 +72,7 @@ const App = () => (
         >
           <List.Item.Meta
             avatar={<Avatar src={item.avatar} style={{ size: 800 }} />}
-            title={<a href={item.href} style={{ fontFamily: 'Arial, sans-serif', fontSize: '28px', color: '#EAB1A0', fontWeight: 'bold', textDecoration: 'none' }}>{item.title}</a>}
+            title={<a href={item.href} style={{ fontFamily: 'Arial, sans-serif', fontSize: '28px', color: '#620b37', fontWeight: 'bold', textDecoration: 'none' }}>{item.title}</a>}
             description={<span style={{ fontSize: '20px', fontFamily: 'Arial, sans-serif', color: '#666', fontStyle: 'italic' }}>{item.description}</span>} />
           <Divider />
           {<span style={{ fontSize: '24px', fontFamily: 'Times New Roman, sans-serif', color: '#333', lineHeight: '1.6' }}>{item.content}</span>}
@@ -83,7 +83,7 @@ const App = () => (
       <b>Status: Fulfilled</b>
     </div>
 </Flex>
-<Button type="primary" style={{ backgroundColor: '#EAB1A0', borderColor: '#EAB1A0', marginLeft: '50px', marginBottom: '10px' }}>View Donor Details</Button>
+<Button type="primary" style={{ backgroundColor: '#620b37', borderColor: '#620b37', marginLeft: '50px', marginBottom: '10px' }}>View Donor Details</Button>
 </>
 
       )}
