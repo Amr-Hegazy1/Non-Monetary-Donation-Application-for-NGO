@@ -1,20 +1,17 @@
-
+import React, { useEffect } from 'react';
 import './App.css';
 import NavBar from './components/NavBar';
 
-import FulfilledDonations from './components/FulfilledDonations';
-import SchedulePickup from './components/SchedulePickup';
-import OrganizationSignUp from './components/OrganizationSignUp';
-import DonorSignUp from './components/DonorSignUp';
-import Homepage from './components/Homepage.js';
-import {BrowserRouter,Route,Routes} from 'react-router-dom';
-
 function App() {
+  // useEffect(() => {
+  //   document.body.style.backgroundColor = "white";
+  // }, []);
+
   return (
     <div className="App">
       <NavBar />
       <header className="App-header">
-        <img src="logo.png" className="App-logo" alt="logo" />
+        <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
