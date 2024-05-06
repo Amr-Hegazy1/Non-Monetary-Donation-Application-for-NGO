@@ -1,10 +1,33 @@
 import React , {useState} from 'react';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import { Select, Space } from 'antd';
-import {COLORS} from '../values/colors';
-import { Button, message} from 'antd';
+// import Container from 'react-bootstrap/Container';
+// import Row from 'react-bootstrap/Row';
+// import Col from 'react-bootstrap/Col';
+// import { Select, Space } from 'antd';
+// import {COLORS} from '../values/colors';
+// import { Button, message} from 'antd';
+import Avatar from '@mui/material/Avatar';
+import { ReactTags } from 'react-tag-autocomplete'
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import { Image,message } from 'antd';
+import TextField from '@mui/material/TextField';
+import Checkbox from '@mui/material/Checkbox';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel'
+import { Upload, Divider } from 'antd';
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
+import 'animate.css';
 
 
 
@@ -53,61 +76,120 @@ function CreateRequestPost() {
       setHovered(false);
     };
 
+    function Copyright(props) {
+      return (
+        <Typography variant="body2" color="text.secondary" align="center" {...props}>
+          {'Copyright © '}
+          <Link color="inherit" href="/">
+            ZOMA
+          </Link>{' '}
+          {new Date().getFullYear()}
+          {'.'}
+        </Typography>
+      );
+    }
+
+    const defaultTheme = createTheme();
 
 
   return (
-    <>
-
-      <Container>
-        <Row>
-          <Col>
-            <div style={{ padding: '50px', border: `1px solid COLORS.primaryLight`,width: '100%', height: '10%',position:'absolute', top: 45, right: 100,left:0 }}> </div>
-            </Col>
-        </Row>
-      </Container>
-      <div  style={{ color:'#620B37', padding: '5px', border: COLORS.primaryLight, borderRadius: '5px', position: 'absolute', top: 80, left:420, width:'50%'}}>
-                        <h2 style={{ fontSize: 43, fontWeight:'bold' }}>CHOOSE CATEGORY</h2>
-                        </div>
-              <Space wrap>
-                <Select
-
-                defaultValue="Click Here to Choose"           
-
-                 style={{ padding: '5px', border: COLORS.primaryLight, width: 400,height:50, position: 'absolute', textAlign: 'center',top: 150, left:590, color:COLORS.yellow} }
+    <ThemeProvider theme={defaultTheme}>
+    <Typography component="h1" variant="h5" style={{position:'absolute', top:60, left:620}}>
+    Create Request Post
+  </Typography>
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <Box
+        sx={{
+          marginTop: 2,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        
+        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Grid item xs>
+              <TextField
+                  margin="normal"
+                  required
+                  fullWidth
                   
-                  onChange={handleChange}
-                  options={[
-                    { value: 'Food', label: 'Food' },
-                    { value: 'School Supplies', label: 'School Supplies' },
-                    { value: 'Clothes', label: 'Clothes' },
-                    { value: 'Toys', label: 'Toys' },
-                    { value: 'Medical Supplies', label: 'Medical Supplies' },
-                    { value: 'Blood Donations', label: 'Blood Donations' } ,
-                    { value: 'Teaching', label: 'Teaching' } , 
-                    { value: 'Medical Cases', label: 'Medical Cases' } 
-
-
-                  ]}
-                />
-              </Space>
-              <div style={{ backgroundColor:'rgba(98, 11, 55, 0.1)', padding: '5px', border: '1px solid #ccc', borderRadius: '5px', position: 'absolute', top: 240, right: 320,width:'50%' , height:'50%', color:'#620B37'}}>
-                <h2 style={{ fontSize: 30,  }}>Request Description</h2>
-                <textarea
-                  style={{ width: 500, height: 250, resize: 'none', border: '1px solid #ccc', borderRadius: '5px' }}
-                  onChange={handleTextChange}
-                  placeholder="Enter text here..."
-                ></textarea>
-
-                <>
-                  {contextHolder}
-
-                  <Button  onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={handleSubmit} style={{backgroundColor: hovered ? 'rgba(98, 11, 55, 0)' :'rgba(98, 11, 55, 0.6)', position: 'absolute', bottom: 10, right: 10, color:'black' }}>Create Post</Button>
-                </>
-              </div>
-
-            
- 
-    </>
+                  label="Type"
+                  autoFocus
+                  />
+          <Grid item>
+                  <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  
+                  label="Category"
+                  autoFocus
+                  />
+          </Grid>
+          </Grid>
+          <FormControl>
+              <FormLabel id="demo-row-radio-buttons-group-label">Gender</FormLabel>
+                  <RadioGroup
+                      row
+                      aria-labelledby="demo-row-radio-buttons-group-label"
+                      name="row-radio-buttons-group"
+                  >
+                      <FormControlLabel value="female" control={<Radio />} label="Female" />
+                      <FormControlLabel value="male" control={<Radio />} label="Male" />
+                  </RadioGroup>
+              </FormControl>
+         
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            name="Color"
+            label="Color"
+            autoFocus
+          />
+          <br/>
+              <FormControl fullWidth required>
+                  <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  label="Age"
+                  autoFocus
+                  type='number'
+                  
+                  />
+              </FormControl>
+              <FormControl fullWidth required>
+                  <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  label="Quantity"
+                  autoFocus
+                  type='number'
+                  
+                  />
+              </FormControl>
+              
+              
+              <br/>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            className="btn"
+            sx={{ mt: 3, mb: 2 }}
+            style={{ backgroundColor: '#620b37', borderColor: '#620b37' }}
+          >
+            Submit
+          </Button>
+        </Box>
+      </Box>
+      <Copyright sx={{ mt: 8, mb: 4 }} />
+    </Container>
+  </ThemeProvider>
   );
 }
 

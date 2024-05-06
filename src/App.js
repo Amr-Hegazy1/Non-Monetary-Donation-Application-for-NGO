@@ -1,12 +1,14 @@
 import './App.css';
 import NavBar from './components/NavBar';
-// import ViewDonationRequests from './components/ViewDonationRequests';
-//import ViewEstimatedArrival from './components/ViewEstimatedArrival';
+ import ViewDonationRequests from './components/ViewDonationRequests';
+import ViewEstimatedArrival from './components/ViewEstimatedArrival';
   import CreatePost from './components/CreatePost';
 //  import ViewRequestImage from './components/ViewRequestImage.jpg';
  import React from 'react';
-//  import {Button} from 'antd';
-//  import  { useState} from 'react';
+  import {Button} from 'antd';
+  import  { useState} from 'react';
+//import FulfilledDonations from './components/FulfilledDonations';
+//import DetailsOfToysToBeDonated from './components/DetailsOfToysToBeDonated';
 
 
 function App() {
@@ -30,8 +32,9 @@ function App() {
 
     <div className="App">
     <NavBar />
-    {/* <ViewEstimatedArrival/> */}
-    <CreatePost/> 
+    {/* <CreatePost/> */}
+    <CreatePost/>
+    {/* <ViewDonationRequests/>  */}
 
     {/* {!buttonClicked && (
       <Button
@@ -39,7 +42,7 @@ function App() {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onClick={handleButtonClick} 
-        style={{ backgroundColor: hovered ? 'rgba(230, 220, 211, 0.8)' : '#620B37', color: 'white', position: 'absolute', top: 140, left: 625, padding: '28px', display: 'flex', fontSize: 25, alignItems: 'center', justifyContent: 'center' }}>
+        style={{ backgroundColor: hovered ? 'rgba(98, 11, 55, 0.3)' : '#620B37', color: 'white', position: 'absolute', top: 140, left: 605, padding: '28px', display: 'flex', fontSize: 25, alignItems: 'center', justifyContent: 'center' }}>
         VIEW DONATION REQUESTS
       </Button>
     )}
