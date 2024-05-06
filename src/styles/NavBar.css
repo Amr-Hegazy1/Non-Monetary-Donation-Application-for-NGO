@@ -1,0 +1,79 @@
+.navbar-signup-btn {
+    display:  flex !important;
+    justify-content:  center !important;
+    align-items:  center !important;
+    font-size:  14px !important;
+    color:  #fff !important;
+    width:  80px !important;
+    height:  50px !important;
+    background:  #620b37 !important;
+    text-transform:  capitalize !important;
+    margin-left:  30px !important;
+    border-radius: 3px !important;
+    -webkit-transition: 0.3s linear !important; 
+    -moz-transition: 0.3s linear !important;
+    -ms-transition: 0.3s linear !important;
+    -o-transition: 0.3s linear !important;
+    transition: 0.3s linear !important;
+}
+.signup-btn:hover{/*background: #fd4043;*/background: #971254 !important;}
+
+.navbar-login-btn{
+    display:  flex !important;
+    justify-content:  center !important;
+    align-items:  center !important;
+    font-size:  14px !important;
+    color:  black !important;
+    width:  80px !important;
+    height:  50px !important;
+    background: white !important;
+    text-transform:  capitalize !important;
+    margin-left:  10px !important;
+    border-radius: 3px;
+    -webkit-transition: 0.3s linear !important;
+    -moz-transition: 0.3s linear !important;
+    -ms-transition: 0.3s linear !important;
+    -o-transition: 0.3s linear !important;
+    transition: 0.3s linear !important;
+}
+
+.navbar-link{
+    color:  #620b37;
+    font-size:  16px;
+    
+    margin-left:  5px;
+    margin-top:  5px;
+    margin-right: 5px;
+    -webkit-transition: 0.3s linear; 
+    -moz-transition: 0.3s linear; 
+    -ms-transition: 0.3s linear; 
+    -o-transition: 0.3s linear; 
+    transition: all 1s ease;
+    position: relative;
+    text-decoration: none;
+    
+}
+
+.navbar-link:hover::after, .navbar-link:focus::after {
+    color:  #971254;
+    opacity: 1;
+    transform: translateY(-2px);
+    
+
+    
+
+
+}
+
+.navbar-link::after {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: #971254;
+    content: '';
+    opacity: 0;
+    transition: opacity 0.2s, transform 0.2s;
+    transform: translateY(4px);
+}
