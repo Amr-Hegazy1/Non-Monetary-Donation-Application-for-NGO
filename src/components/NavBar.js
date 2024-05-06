@@ -27,7 +27,7 @@ function NavBar() {
               </NavDropdown.Item>
             </NavDropdown>
             <NavDropdown title="Donate now" id="collapsible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Clothes</NavDropdown.Item>
+              <NavDropdown.Item href="/donateClothes">Clothes</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
                 Medical Supplies
               </NavDropdown.Item>

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './components/AdminHomePage/app';
+import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Donors from './Donors';
@@ -18,10 +18,10 @@ import Requests from './Requests';
 import RequestInfo from './components/RequestInfo';
 import AdminLogin from './LoginAmin';
 import UserDetails from './components/UserDetails';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import NavConfig from './components/AdminHomePage/Navigations/config-navigation';
 import DashboardLayout from './components/AdminHomePage/Navigations/index';
-import { BrowserRouter } from 'react-router-dom';
+
 import { Link } from 'react-router-dom';
 import Chart from './components/AdminHomePage/charts/chart';
 import Main from './components/AdminHomePage/Navigations/main';
@@ -32,6 +32,7 @@ import AppView from './components/AdminHomePage/App/app-view';
 import ThemeProvider from '../src/components/AdminHomePage/theme';
 import { HelmetProvider } from 'react-helmet-async';
 import { Suspense } from 'react';
+import DetailsOfClothesToBeDonated from './components/DetailsOfClothesToBeDonated';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -42,7 +43,10 @@ root.render(
       <HelmetProvider>
         <BrowserRouter>
           <Suspense>
-            <App />
+            <Routes>
+              <Route path="/" element={<App/>} />
+              <Route path="/donateClothes" element={<DetailsOfClothesToBeDonated/>} />
+            </Routes>
           </Suspense>
         </BrowserRouter>
       </HelmetProvider>
