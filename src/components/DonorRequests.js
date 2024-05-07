@@ -66,7 +66,7 @@ const DonorRequests = () => {
                 title={item.name.last}
                 description={item.email}
               />
-              <Button className="view-button" type="link" size="small" >View Info</Button>
+              <Button className="view-button" type="link" size="small" href='/view-donor-request-info' >View Info</Button>
             </div>
           </List.Item>
           )}
