@@ -4,35 +4,20 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Donors from './Donors';
-import AdminDashboard from './DonorSubmission';
-import DonorList from './components/DonorList';
-import VerifyCodePage from './components/Verify';
-import AdminHome from './AdminHome';
-import DonorSubmission from './DonorSubmission';
-import Password from 'antd/es/input/Password';
+
 import PasswordManagement from './PasswordManagement';
-import OrganizationList from './components/OrganizationList';
-import Organizations from './Organizations';
-import Requests from './Requests';
+
 import RequestInfo from './components/RequestInfo';
 import AdminLogin from './LoginAmin';
-import UserDetails from './components/UserDetails';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import NavConfig from './components/AdminHomePage/Navigations/config-navigation';
-import DashboardLayout from './components/AdminHomePage/Navigations/index';
 
-import { Link } from 'react-router-dom';
-import Chart from './components/AdminHomePage/charts/chart';
-import Main from './components/AdminHomePage/Navigations/main';
-import UseChart from './components/AdminHomePage/charts/use-chart';
-import AppConversionRates from './components/AdminHomePage/Views/app-conversion-rates';
-import AppWebsiteVisits from './components/AdminHomePage/Views/app-website-visits';
-import AppView from './components/AdminHomePage/App/app-view';
-import ThemeProvider from '../src/components/AdminHomePage/theme';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
 import { HelmetProvider } from 'react-helmet-async';
 import { Suspense } from 'react';
 import DetailsOfClothesToBeDonated from './components/DetailsOfClothesToBeDonated';
+import AdminApp from './components/AdminHomePage/app';
+import VerifyCodePage from './components/Verify';
+
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -46,6 +31,11 @@ root.render(
             <Routes>
               <Route path="/" element={<App/>} />
               <Route path="/donateClothes" element={<DetailsOfClothesToBeDonated/>} />
+              <Route path="/view-donor-request-info" element={<RequestInfo/>} />
+              {/*<Route path="/AdminLogin" element={<AdminLogin/>} />*/}
+              <Route path="/AdminHome" element={<AdminApp/>} />
+              <Route path="/ChangePassword" element={<PasswordManagement/>} />
+              <Route path="/Verify" element={<VerifyCodePage/>} />   
             </Routes>
           </Suspense>
         </BrowserRouter>

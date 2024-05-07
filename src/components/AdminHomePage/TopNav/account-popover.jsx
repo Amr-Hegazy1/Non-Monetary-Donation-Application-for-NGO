@@ -107,6 +107,7 @@ export default function AccountPopover() {
           disableTouchRipple
           onClick={handleClose}
           sx={{ typography: 'body2', color: 'error.main', py: 1.5 }}
+          //href='/'
         >
           Logout
         </MenuItem>

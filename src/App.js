@@ -16,6 +16,9 @@ import DetailsOfToysToBeDonated from './components/DetailsOfToysToBeDonated';
 //import ViewDonorDetailsForFulfilledPosts from './components/ViewDonorDetailsForFulfilledPosts';
 //import NotificationForDriverArrival from './components/NotificationForDriverArrival';
 import NavBar from './components/NavBar';
+import AdminLogin from './LoginAmin';
+import AdminApp from './components/AdminHomePage/app';
+
 
 //import FulfilledDonations from './components/FulfilledDonations';
 //import DetailsOfToysToBeDonated from './components/DetailsOfToysToBeDonated';
@@ -24,7 +27,7 @@ import NavBar from './components/NavBar';
 function App() {
   return (
     <div className="App">
-    <NavBar />
+    <AdminLogin />
     
   </div>
 );
