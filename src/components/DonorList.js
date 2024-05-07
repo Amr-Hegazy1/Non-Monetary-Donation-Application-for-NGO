@@ -63,6 +63,7 @@ const DonorList = () => {
             <div className="list-item-container">
             <div className="spacer"></div>
               <List.Item.Meta
+                style={{marginLeft: '15px'}}
                 title={item.name.last}
                 description={item.email}
               />
