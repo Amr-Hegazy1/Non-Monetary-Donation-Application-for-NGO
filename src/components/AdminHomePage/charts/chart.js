@@ -12,9 +12,9 @@ const Chart = styled(ApexChart)(({ theme }) => ({
     // Tooltip
     '& .apexcharts-tooltip': {
       ...bgBlur({
-        color: theme.palette.background.default,
+        color: theme.palette.background.main,
       }),
-      color: theme.palette.text.primary,
+      color: 'white',
       boxShadow: theme.customShadows.dropdown,
       borderRadius: theme.shape.borderRadius * 1.25,
       '&.apexcharts-theme-light': {
@@ -29,7 +29,7 @@ const Chart = styled(ApexChart)(({ theme }) => ({
         color: theme.palette.background.default,
       }),
       borderColor: 'transparent',
-      color: theme.palette.text.primary,
+      color: 'white',
       boxShadow: theme.customShadows.dropdown,
       borderRadius: theme.shape.borderRadius * 1.25,
       '&:before': {
@@ -43,7 +43,7 @@ const Chart = styled(ApexChart)(({ theme }) => ({
       textAlign: 'center',
       fontWeight: theme.typography.fontWeightBold,
       backgroundColor: alpha(theme.palette.grey[500], 0.08),
-      color: theme.palette.text[theme.palette.mode === 'light' ? 'secondary' : 'primary'],
+      color: theme.palette.text[theme.palette.mode === '#602b37' ? '#971254' : 'darkred'],
     },
 
     // LEGEND

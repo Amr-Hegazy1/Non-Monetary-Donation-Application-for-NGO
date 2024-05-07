@@ -164,17 +164,13 @@ function NavItem({ item }) {
               sx={{
                 minHeight: 44,
                 borderRadius: 0.75,
-                typography: 'body2',
-                color: 'text.secondary',
+                color: '#602b37',
                 textTransform: 'capitalize',
                 fontWeight: 'fontWeightMedium',
+                marginX: 2,
                 ...( {
-                  color: 'primary.main',
-                  fontWeight: 'fontWeightSemiBold',
-                  bgcolor: (theme) => alpha(theme.palette.primary.main, 0.08),
-                  '&:hover': {
-                    bgcolor: (theme) => alpha(theme.palette.primary.main, 0.16),
-                  },
+                  color: '#602b37',
+                  fontWeight: 'fontWeightMedium',
                 }),
               }}
             >

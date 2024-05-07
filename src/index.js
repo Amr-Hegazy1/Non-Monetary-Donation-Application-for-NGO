@@ -31,8 +31,12 @@ root.render(
       <HelmetProvider>
         <BrowserRouter>
           <Suspense>
+              <AdminApp/>
+           {/* <Routes>
+=======
             <AdminApp /> 
             <Routes>
+
               <Route path="/" element={<App/>} />
               <Route path="/donateClothes" element={<DetailsOfClothesToBeDonated/>} />
               <Route path="/view-donor-request-info" element={<RequestInfo/>} />
@@ -41,6 +45,8 @@ root.render(
               <Route path="/AdminHome" element={<AdminApp/>} />
               <Route path="/ChangePassword" element={<PasswordManagement/>} />
               <Route path="/Verify" element={<VerifyCodePage/>} />   
+
+                </Routes> */}
                 </Routes>
              
           </Suspense>
