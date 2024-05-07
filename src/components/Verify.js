@@ -96,7 +96,6 @@ export default function VerifyCodePage() {
 
   useEffect(() => {
     if (status === "verified") {
-      history.push("/ChangePassword");
     }
   }, [status]);
   const [{ inputValues, focusedIndex, status }, dispatch] = useReducer(

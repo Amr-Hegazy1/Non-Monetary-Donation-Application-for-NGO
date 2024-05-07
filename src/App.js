@@ -17,7 +17,7 @@ import DetailsOfToysToBeDonated from './components/DetailsOfToysToBeDonated';
 //import NotificationForDriverArrival from './components/NotificationForDriverArrival';
 import NavBar from './components/NavBar';
 import AdminLogin from './LoginAmin';
-import AdminApp from './components/AdminHomePage/app';
+import AdminApp from './components/AdminHomePage/AdminApp';
 
 
 //import FulfilledDonations from './components/FulfilledDonations';

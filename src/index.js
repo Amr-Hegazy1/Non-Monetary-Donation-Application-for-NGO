@@ -4,6 +4,8 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ThemeProvider from '../src/components/AdminHomePage/theme';
+
 
 import PasswordManagement from './PasswordManagement';
 
@@ -15,7 +17,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { Suspense } from 'react';
 import DetailsOfClothesToBeDonated from './components/DetailsOfClothesToBeDonated';
-import AdminApp from './components/AdminHomePage/app';
+import AdminApp from './components/AdminHomePage/AdminApp';
 import VerifyCodePage from './components/Verify';
 
 
@@ -28,15 +30,17 @@ root.render(
       <HelmetProvider>
         <BrowserRouter>
           <Suspense>
-            <Routes>
+            <AdminApp /> 
+            {/* <Routes>
               <Route path="/" element={<App/>} />
               <Route path="/donateClothes" element={<DetailsOfClothesToBeDonated/>} />
               <Route path="/view-donor-request-info" element={<RequestInfo/>} />
-              {/*<Route path="/AdminLogin" element={<AdminLogin/>} />*/}
+              <Route path="/AdminLogin" element={<AdminLogin/>} />
               <Route path="/AdminHome" element={<AdminApp/>} />
               <Route path="/ChangePassword" element={<PasswordManagement/>} />
               <Route path="/Verify" element={<VerifyCodePage/>} />   
-            </Routes>
+                </Routes>*/}
+             
           </Suspense>
         </BrowserRouter>
       </HelmetProvider>
