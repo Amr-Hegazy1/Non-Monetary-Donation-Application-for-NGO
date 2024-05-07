@@ -19,6 +19,7 @@ import { Suspense } from 'react';
 import DetailsOfClothesToBeDonated from './components/DetailsOfClothesToBeDonated';
 import AdminApp from './components/AdminHomePage/AdminApp';
 import VerifyCodePage from './components/Verify';
+import OrganizationRequestInfo from './components/OrganizationRequestInfo';
 
 
 
@@ -32,14 +33,21 @@ root.render(
           <Suspense>
               <AdminApp/>
            {/* <Routes>
+=======
+            <AdminApp /> 
+            <Routes>
+
               <Route path="/" element={<App/>} />
               <Route path="/donateClothes" element={<DetailsOfClothesToBeDonated/>} />
               <Route path="/view-donor-request-info" element={<RequestInfo/>} />
+              <Route path="/view-org-request-info" element={<OrganizationRequestInfo/>} />
               <Route path="/AdminLogin" element={<AdminLogin/>} />
               <Route path="/AdminHome" element={<AdminApp/>} />
               <Route path="/ChangePassword" element={<PasswordManagement/>} />
               <Route path="/Verify" element={<VerifyCodePage/>} />   
+
                 </Routes> */}
+                </Routes>
              
           </Suspense>
         </BrowserRouter>

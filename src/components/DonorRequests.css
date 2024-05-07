@@ -11,8 +11,8 @@
     padding: 0px;
   }
   
-  .view-button {
-    width: 8%; /* Adjust as needed */
+  .views-button {
+    width: 10%; /* Adjust as needed */
   }
 
   .search-box::placeholder {

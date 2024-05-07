@@ -18,7 +18,7 @@ function PasswordManagement() {
 
     
 
-    if ( password === confirm) {
+    if ( password === confirm && password.length > 0 && confirm.length > 0) {
       message.success('Password changed successfully');
     
     } else {
