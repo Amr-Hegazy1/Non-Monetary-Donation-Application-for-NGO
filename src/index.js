@@ -33,7 +33,16 @@ import ThemeProvider from '../src/components/AdminHomePage/theme';
 import { HelmetProvider } from 'react-helmet-async';
 import { Suspense } from 'react';
 import DetailsOfClothesToBeDonated from './components/DetailsOfClothesToBeDonated';
-import Homepage from './components/Homepage';
+import RequestClothes from './components/RequestClothes';
+import RequestBooks from './components/RequestBooks.';
+import RequestFood from './components/RequestFood';
+import RequestMedicalSupplies from './components/RequestMedicalSup';
+import RequestStationary from './components/RequestStationary';
+import RequestToys from './components/RequestToys';
+import RequestBloodDonations from './components/RequestBloodDonations';
+import RequestTeaching from './components/RequestTeaching';
+import RequestMedicalCases from './components/RequestMedicalCases';
+import ViewDonationRequests from './components/ViewDonationRequests';import Homepage from './components/Homepage';
 import Signup from './components/Signup';
 import FulfilledDonations from './components/FulfilledDonations';
 import SchedulePickup from './components/SchedulePickup';
@@ -50,6 +59,23 @@ root.render(
             <Routes>
               <Route index element={<Homepage/>} />
               <Route path="/donateClothes" element={<DetailsOfClothesToBeDonated/>} />
+             <Route path = "/RequestClothes" element={<RequestClothes/>} />
+             <Route path = "/RequestBooks" element={<RequestBooks/>} />
+             <Route path = "/RequestFood" element={<RequestFood/>} />
+             <Route path = "/RequestMedicalSupplies" element={<RequestMedicalSupplies/>} />
+             <Route path = "/RequestStationary" element={<RequestStationary/>} />
+             <Route path = "/RequestToys" element={<RequestToys/>} />
+             <Route path = "/RequestBloodDonations" element={<RequestBloodDonations/>} />
+             <Route path = "/RequestTeaching" element={<RequestTeaching/>} />
+             <Route path = "/RequestMedicalCases" element={<RequestMedicalCases/>} />
+             <Route path = "/ViewDonationRequests" element={<ViewDonationRequests/>}/>
+              <Route path="/donateMedicalSupplies" element={<DetailsOfMedicalSuppToBeDonated/>} />
+              <Route path="/donateToys" element={<DetailsOfToysToBeDonated/>} />
+              <Route path="/donateBooks" element={<DetailsOfBooksToBeDonated/>} />
+              <Route path="/donateStationary" element={<DetailsOfStationaryToBeDonated/>} />
+              <Route path="/donateFood" element={<DetailsOfFoodToBeDonated/>} />
+              <Route path="/coordinatePickup" element={<OrgCoordinateDonationPickup/>} />
+              <Route path="/donorDetails" element={<ViewDonorDetailsForFulfilledPosts/>} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/fullfilledDonations" element={<FulfilledDonations />} />
               <Route path="/schedulePickup" element={<SchedulePickup />} />
