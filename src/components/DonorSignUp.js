@@ -144,18 +144,14 @@ export default function DonorSignUp() {
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: 2,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
           }}
         >
           
-          <img src="logo.png" className="signup-app-logo" alt="logo" />
           
-          <Typography component="h1" variant="h5">
-            Sign Up
-          </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <Grid container spacing={2}>
             <Grid item xs>
@@ -248,7 +244,11 @@ export default function DonorSignUp() {
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     />
                     <LocationFinderDummy />
-                    <Marker position={position}/>
+                    <Marker position={position}>
+                        <Popup style={{textAlign: 'center'}}>
+                        {position[0]}, {position[1]}
+                        </Popup>
+                    </Marker>
 
                     </MapContainer> 
                 </FormControl>
@@ -312,7 +312,7 @@ export default function DonorSignUp() {
             </Button>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
+        
       </Container>
     </ThemeProvider>
   );

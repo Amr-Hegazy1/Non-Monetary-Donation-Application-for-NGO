@@ -19,6 +19,7 @@ import NavBar from './components/NavBar';
 import AdminLogin from './LoginAmin';
 import AdminApp from './components/AdminHomePage/AdminApp';
 
+import ViewDonationRequest from './components/ViewDonationRequests';
 
 //import FulfilledDonations from './components/FulfilledDonations';
 //import DetailsOfToysToBeDonated from './components/DetailsOfToysToBeDonated';
@@ -27,7 +28,7 @@ import AdminApp from './components/AdminHomePage/AdminApp';
 function App() {
   return (
     <div className="App">
-    <AdminLogin />
+    <NavBar />
     
   </div>
 );

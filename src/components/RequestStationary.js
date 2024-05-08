@@ -4,7 +4,7 @@ import { ReactTags } from 'react-tag-autocomplete'
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import { Image,message } from 'antd';
-import toy from './toy.png'
+import stationary from './stationary.png'
 import TextField from '@mui/material/TextField';
 import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
@@ -20,9 +20,11 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel'
 import { Upload, Divider } from 'antd';
+import { InboxOutlined } from '@ant-design/icons';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import 'animate.css';
+import RequestStationaryImg from './RequestStationaryImg.png';
 
 
 
@@ -48,16 +50,36 @@ function Copyright(props) {
   );
 }
 
-// TODO remove, this demo shouldn't need to reset the theme.
-
 const defaultTheme = createTheme();
 
-export default function DetailsOfToysToBeDonated() {
+export default function RequestStationary() {
 
-  const handleSubmit = () => {
-    console.log('Form submitted');
-    message.success('Details submitted');
-  };
+    const [type, setType] = React.useState('');
+    const [quantity, setQuantity] = React.useState('');
+    const [area, setArea] = React.useState('');
+    const [governorate, setGovernorate] = React.useState('');
+
+
+
+
+    const success = () => {
+        message
+          .loading('Sending request to admin..', 1.5)
+          .then(() => message.success('Request sent to Admin, wait for approval :)', 2.5))
+      };
+      
+  
+    const handleSubmit = (event) => {
+      event.preventDefault();
+
+      
+      if (!type || !quantity|| !area || !governorate) {
+        message.error('Please fill in all fields.');
+      } else {
+       success();
+      }
+    };
+
 
 
 
@@ -73,8 +95,26 @@ export default function DetailsOfToysToBeDonated() {
             alignItems: 'center',
           }}
         >
+
+<Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              marginBottom: 2,
+              width: '100%', 
+            }}
+          >
+            <Box
+              sx={{
+                width: 500,
+                height: 250,
+                backgroundImage: `url(${RequestStationaryImg})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }}
+            />
+          </Box>
           
-          <Image width={380} src={toy} style={{ pointerEvents: 'none' }}/>          
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <Grid item xs>
                 <TextField
@@ -84,50 +124,11 @@ export default function DetailsOfToysToBeDonated() {
                     
                     label="Type"
                     autoFocus
+                    value={type}
+                    onChange={(event) =>setType(event.target.value)}
                     />
             <Grid item>
-                    <TextField
-                    margin="normal"
-                    required
-                    fullWidth
-                    
-                    label="Category"
-                    autoFocus
-                    />
-            </Grid>
-            </Grid>
-            <FormControl>
-                <FormLabel id="demo-row-radio-buttons-group-label">Gender</FormLabel>
-                    <RadioGroup
-                        row
-                        aria-labelledby="demo-row-radio-buttons-group-label"
-                        name="row-radio-buttons-group"
-                    >
-                        <FormControlLabel value="female" control={<Radio />} label="Female" />
-                        <FormControlLabel value="male" control={<Radio />} label="Male" />
-                    </RadioGroup>
-                </FormControl>
-           
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="Color"
-              label="Color"
-              autoFocus
-            />
             <br/>
-                <FormControl fullWidth required>
-                    <TextField
-                    margin="normal"
-                    required
-                    fullWidth
-                    label="Age"
-                    autoFocus
-                    type='number'
-                    
-                    />
-                </FormControl>
                 <FormControl fullWidth required>
                     <TextField
                     margin="normal"
@@ -136,12 +137,32 @@ export default function DetailsOfToysToBeDonated() {
                     label="Quantity"
                     autoFocus
                     type='number'
+                    value={quantity}
+                    onChange={(event)=>setQuantity(event.target.value)}
                     
                     />
                 </FormControl>
-                
-                
-                <br/>
+                <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="Area"
+              label="Area"
+              autoFocus
+              value={area}
+              onChange={(event)=>setArea(event.target.value)}
+            />
+
+        <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="Governorate"
+              label="Governorate"
+              autoFocus
+              value={governorate}
+              onChange={(event)=>setGovernorate(event.target.value)}
+            />    
             <Button
               type="submit"
               fullWidth
@@ -152,6 +173,8 @@ export default function DetailsOfToysToBeDonated() {
             >
               Submit
             </Button>
+            </Grid>
+            </Grid>
           </Box>
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />

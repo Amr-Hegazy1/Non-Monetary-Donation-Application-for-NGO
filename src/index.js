@@ -4,9 +4,13 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import ThemeProvider from '../src/components/AdminHomePage/theme';
-
-
+import Donors from './Donors';
+import AdminDashboard from './DonorSubmission';
+import DonorList from './components/DonorList';
+import VerifyCodePage from './components/Verify';
+import AdminHome from './AdminHome';
+import DonorSubmission from './DonorSubmission';
+import Password from 'antd/es/input/Password';
 import PasswordManagement from './PasswordManagement';
 
 import RequestInfo from './components/RequestInfo';
@@ -24,6 +28,19 @@ import OrganizationDetails from './components/OrganizationDetails';
 import UserDetails from './components/UserDetails';
 import OrganizationList from './components/OrganizationList';
 
+import RequestClothes from './components/RequestClothes';
+import RequestBooks from './components/RequestBooks.';
+import RequestFood from './components/RequestFood';
+import RequestMedicalSupplies from './components/RequestMedicalSup';
+import RequestStationary from './components/RequestStationary';
+import RequestToys from './components/RequestToys';
+import RequestBloodDonations from './components/RequestBloodDonations';
+import RequestTeaching from './components/RequestTeaching';
+import RequestMedicalCases from './components/RequestMedicalCases';
+import ViewDonationRequests from './components/ViewDonationRequests';import Homepage from './components/Homepage';
+import Signup from './components/Signup';
+import FulfilledDonations from './components/FulfilledDonations';
+import SchedulePickup from './components/SchedulePickup';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -34,9 +51,8 @@ root.render(
       <HelmetProvider>
         <BrowserRouter>
           <Suspense>
-            <AdminApp /> 
             <Routes>
-              <Route path="/" element={<App/>} />
+              <Route index element={<Homepage/>} />
               <Route path="/donateClothes" element={<DetailsOfClothesToBeDonated/>} />
               <Route path="/view-donor-request-info" element={<RequestInfo/>} />
               <Route path="/view-org-request-info" element={<OrganizationRequestInfo/>} />
@@ -48,6 +64,26 @@ root.render(
               <Route path="/AdminHome" element={<AdminApp/>} />
               <Route path="/ChangePassword" element={<PasswordManagement/>} />
               <Route path="/Verify" element={<VerifyCodePage/>} />   
+             <Route path = "/RequestClothes" element={<RequestClothes/>} />
+             <Route path = "/RequestBooks" element={<RequestBooks/>} />
+             <Route path = "/RequestFood" element={<RequestFood/>} />
+             <Route path = "/RequestMedicalSupplies" element={<RequestMedicalSupplies/>} />
+             <Route path = "/RequestStationary" element={<RequestStationary/>} />
+             <Route path = "/RequestToys" element={<RequestToys/>} />
+             <Route path = "/RequestBloodDonations" element={<RequestBloodDonations/>} />
+             <Route path = "/RequestTeaching" element={<RequestTeaching/>} />
+             <Route path = "/RequestMedicalCases" element={<RequestMedicalCases/>} />
+             <Route path = "/ViewDonationRequests" element={<ViewDonationRequests/>}/>
+              <Route path="/donateMedicalSupplies" element={<DetailsOfMedicalSuppToBeDonated/>} />
+              <Route path="/donateToys" element={<DetailsOfToysToBeDonated/>} />
+              <Route path="/donateBooks" element={<DetailsOfBooksToBeDonated/>} />
+              <Route path="/donateStationary" element={<DetailsOfStationaryToBeDonated/>} />
+              <Route path="/donateFood" element={<DetailsOfFoodToBeDonated/>} />
+              <Route path="/coordinatePickup" element={<OrgCoordinateDonationPickup/>} />
+              <Route path="/donorDetails" element={<ViewDonorDetailsForFulfilledPosts/>} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/fullfilledDonations" element={<FulfilledDonations />} />
+              <Route path="/schedulePickup" element={<SchedulePickup />} />
             </Routes>
           </Suspense>
         </BrowserRouter>

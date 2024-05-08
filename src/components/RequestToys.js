@@ -20,9 +20,11 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel'
 import { Upload, Divider } from 'antd';
+import { InboxOutlined } from '@ant-design/icons';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import 'animate.css';
+import RequestToysImg from './RequestToysImg.png'
 
 
 
@@ -49,15 +51,42 @@ function Copyright(props) {
 }
 
 // TODO remove, this demo shouldn't need to reset the theme.
-
+const { Dragger } = Upload;
 const defaultTheme = createTheme();
 
-export default function DetailsOfToysToBeDonated() {
+export default function RequestToys() {
 
-  const handleSubmit = () => {
-    console.log('Form submitted');
-    message.success('Details submitted');
-  };
+    const [type, setType] = React.useState('');
+    const [category, setCategory] = React.useState('');
+    const [gender, setGender] = React.useState('');
+    const [color, setColor] = React.useState('');
+    const [age, setAge] = React.useState('');
+    const [quantity, setQuantity] = React.useState('');
+    const [area, setArea] = React.useState('');
+    const [governorate, setGovernorate] = React.useState('');
+
+
+
+
+
+    const success = () => {
+        message
+          .loading('Sending request to admin..', 1.5)
+          .then(() => message.success('Request sent to Admin, wait for approval :)', 2.5))
+      };
+      
+  
+    const handleSubmit = (event) => {
+      event.preventDefault();
+
+      
+      if (!type || !category || !gender || !color || !age  || !quantity|| !area || !governorate) {
+        message.error('Please fill in all fields.');
+      } else {
+       success();
+      }
+    };
+
 
 
 
@@ -73,8 +102,25 @@ export default function DetailsOfToysToBeDonated() {
             alignItems: 'center',
           }}
         >
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              marginBottom: 2,
+              width: '100%', 
+            }}
+          >
+            <Box
+              sx={{
+                width: 400,
+                height: 225,
+                backgroundImage: `url(${RequestToysImg})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }}
+            />
+          </Box>
           
-          <Image width={380} src={toy} style={{ pointerEvents: 'none' }}/>          
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <Grid item xs>
                 <TextField
@@ -84,6 +130,8 @@ export default function DetailsOfToysToBeDonated() {
                     
                     label="Type"
                     autoFocus
+                    value={type}
+                    onChange={(event) =>setType(event.target.value)}
                     />
             <Grid item>
                     <TextField
@@ -93,6 +141,8 @@ export default function DetailsOfToysToBeDonated() {
                     
                     label="Category"
                     autoFocus
+                    value={category}
+                    onChange={(event) =>setCategory(event.target.value)}
                     />
             </Grid>
             </Grid>
@@ -102,10 +152,13 @@ export default function DetailsOfToysToBeDonated() {
                         row
                         aria-labelledby="demo-row-radio-buttons-group-label"
                         name="row-radio-buttons-group"
+                        value={gender}
+                        onChange={(event) => setGender(event.target.value)}
                     >
                         <FormControlLabel value="female" control={<Radio />} label="Female" />
                         <FormControlLabel value="male" control={<Radio />} label="Male" />
                     </RadioGroup>
+                   
                 </FormControl>
            
             <TextField
@@ -115,6 +168,8 @@ export default function DetailsOfToysToBeDonated() {
               name="Color"
               label="Color"
               autoFocus
+              value={color}
+              onChange={(event)=>setColor(event.target.value)}
             />
             <br/>
                 <FormControl fullWidth required>
@@ -125,6 +180,8 @@ export default function DetailsOfToysToBeDonated() {
                     label="Age"
                     autoFocus
                     type='number'
+                    value={age}
+                    onChange={(event)=>setAge(event.target.value)}
                     
                     />
                 </FormControl>
@@ -136,8 +193,40 @@ export default function DetailsOfToysToBeDonated() {
                     label="Quantity"
                     autoFocus
                     type='number'
-                    
+                    value={quantity}
+                    onChange={(event)=>setQuantity(event.target.value)}
                     />
+                       <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="Area"
+              label="Area"
+              autoFocus
+              value={area}
+              onChange={(event)=>setArea(event.target.value)}
+            />
+
+        <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="Governorate"
+              label="Governorate"
+              autoFocus
+              value={governorate}
+              onChange={(event)=>setGovernorate(event.target.value)}
+            />    
+                     <Dragger>
+                    <p className="ant-upload-drag-icon">
+                        <InboxOutlined />
+                    </p>
+                    <p className="ant-upload-text">Upload picture(s) of the toy(s)</p>
+                    <p className="ant-upload-hint">
+                        Support for a single or bulk upload. Strictly prohibited from uploading company data or other
+                        banned files.
+                    </p>
+                    </Dragger>
                 </FormControl>
                 
                 

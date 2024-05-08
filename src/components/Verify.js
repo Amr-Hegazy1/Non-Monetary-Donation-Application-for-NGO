@@ -136,6 +136,16 @@ export default function VerifyCodePage() {
       });
   }
 
+  // update the style of body to have display grid
+  useEffect(() => {
+    document.body.style.display = "grid";
+    
+    return () => {
+      document.body.style.display = "";
+      
+    };
+  }, []);
+
   return (
     <div className="text-center">
       <img src="logo.png" style={{ width: '185px' }} alt="logo" />

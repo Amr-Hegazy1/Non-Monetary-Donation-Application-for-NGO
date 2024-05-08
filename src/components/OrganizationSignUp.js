@@ -178,18 +178,14 @@ export default function OrganizationSignUp() {
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: 2,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
           }}
         >
           
-          <img src="logo.png" className="signup-app-logo" alt="logo" />
           
-          <Typography component="h1" variant="h5">
-            Sign Up
-          </Typography>
           <Box component="form" onSubmit={handleSubmit}  sx={{ mt: 1 }}>
           <Grid container spacing={2}>
             <Grid item xs>
@@ -310,13 +306,17 @@ export default function OrganizationSignUp() {
             <Divider>Organization Location</Divider>
             <AddressForm/>
             <FormControl fullWidth required>
-                <MapContainer center={position} zoom={20} scrollWheelZoom={false} style={{ height: '50vh', width: '100wh' }} >
+                <MapContainer center={position} zoom={15} scrollWheelZoom={false} style={{ height: '50vh', width: '100wh' }} >
                   <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                   />
                   <LocationFinderDummy />
-                  <Marker position={position}/>
+                  <Marker position={position}>
+                    <Popup style={{textAlign: 'center'}}>
+                    {position[0].toPrecision(4)}, {position[1].toPrecision(4)}
+                    </Popup>
+                  </Marker>
 
                 </MapContainer> 
               </FormControl>
@@ -347,7 +347,7 @@ export default function OrganizationSignUp() {
             </Button>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
+        
       </Container>
     </ThemeProvider>
   );
