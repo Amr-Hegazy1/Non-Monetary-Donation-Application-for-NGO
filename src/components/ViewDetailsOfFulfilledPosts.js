@@ -4,6 +4,7 @@ import { Avatar, List, Space } from 'antd';
 import { Flex } from 'antd';
 import { Divider } from 'antd';
 import { Button } from 'antd';
+import { Link } from 'react-router-dom';
 
 
 const data = Array.from({
@@ -83,8 +84,10 @@ const App = () => (
       <b>Status: Fulfilled</b>
     </div>
 </Flex>
-<Button type="primary" style={{ backgroundColor: '#620b37', borderColor: '#620b37', marginLeft: '50px', marginBottom: '10px' }}>View Donor Details</Button>
-</>
+
+<Link to="/donorDetails">
+      <Button type="primary" style={{ backgroundColor: '#620b37', borderColor: '#620b37', marginLeft: '50px', marginBottom: '10px' }}>View Donor Details</Button>
+    </Link></>
 
       )}
     />

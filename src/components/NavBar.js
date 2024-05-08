@@ -7,7 +7,7 @@ import logo from './logo.png';
 function NavBar() { 
     return (
     <Navbar color='#0C4D42' collapseOnSelect expand="lg" className="bg-body-tertiary">
-      <Image width={200} src={logo} />
+      <Image width={200} src={logo}  />
       <Container>
         <Navbar.Brand href="#home">Donation App</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -31,10 +31,10 @@ function NavBar() {
               <NavDropdown.Item href="/donateMedicalSupplies">
                 Medical Supplies
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Toys</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Books</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Stationary Items</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Food</NavDropdown.Item>              
+              <NavDropdown.Item href="/donateToys">Toys</NavDropdown.Item>
+              <NavDropdown.Item href="/donateBooks">Books</NavDropdown.Item>
+              <NavDropdown.Item href="/donateStationary">Stationary Items</NavDropdown.Item>
+              <NavDropdown.Item href="/donateFood">Food</NavDropdown.Item>              
             </NavDropdown>
 
             <NavDropdown title="Create Donation Request" id="collapsible-nav-dropdown">

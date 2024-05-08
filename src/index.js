@@ -65,6 +65,13 @@ root.render(
              <Route path = "/RequestTeaching" element={<RequestTeaching/>} />
              <Route path = "/RequestMedicalCases" element={<RequestMedicalCases/>} />
              <Route path = "/ViewDonationRequests" element={<ViewDonationRequests/>}/>
+              <Route path="/donateMedicalSupplies" element={<DetailsOfMedicalSuppToBeDonated/>} />
+              <Route path="/donateToys" element={<DetailsOfToysToBeDonated/>} />
+              <Route path="/donateBooks" element={<DetailsOfBooksToBeDonated/>} />
+              <Route path="/donateStationary" element={<DetailsOfStationaryToBeDonated/>} />
+              <Route path="/donateFood" element={<DetailsOfFoodToBeDonated/>} />
+              <Route path="/coordinatePickup" element={<OrgCoordinateDonationPickup/>} />
+              <Route path="/donorDetails" element={<ViewDonorDetailsForFulfilledPosts/>} />
             </Routes>
           </Suspense>
         </BrowserRouter>
