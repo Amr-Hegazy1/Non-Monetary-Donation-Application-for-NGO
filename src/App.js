@@ -16,7 +16,7 @@ import ViewDetailsOfFulfilledPosts from './components/ViewDetailsOfFulfilledPost
 //import ViewDonorDetailsForFulfilledPosts from './components/ViewDonorDetailsForFulfilledPosts';
 //import NotificationForDriverArrival from './components/NotificationForDriverArrival';
 import NavBar from './components/NavBar';
-import AdminHome from './AdminHome';
+import ViewDonationRequest from './components/ViewDonationRequests';
 
 //import FulfilledDonations from './components/FulfilledDonations';
 //import DetailsOfToysToBeDonated from './components/DetailsOfToysToBeDonated';

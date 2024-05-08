@@ -36,6 +36,25 @@ function NavBar() {
               <NavDropdown.Item href="/donateStationary">Stationary Items</NavDropdown.Item>
               <NavDropdown.Item href="/donateFood">Food</NavDropdown.Item>              
             </NavDropdown>
+
+            <NavDropdown title="Create Donation Request" id="collapsible-nav-dropdown">
+              <NavDropdown.Item href="/RequestClothes">Request Clothes</NavDropdown.Item>
+              <NavDropdown.Item href="/RequestMedicalSupplies">
+                Request Medical Supplies
+              </NavDropdown.Item>
+              <NavDropdown.Item href="/RequestToys">Request Toys</NavDropdown.Item>
+              <NavDropdown.Item href="/RequestBooks">Request Books</NavDropdown.Item>
+              <NavDropdown.Item href="/RequestStationary">Request Stationary Items</NavDropdown.Item>
+              <NavDropdown.Item href="/RequestFood">Request Food</NavDropdown.Item>
+              <NavDropdown.Item href="/RequestBloodDonations">Request Blood Donations</NavDropdown.Item>              
+              <NavDropdown.Item href="/RequestTeaching">Request Teacher</NavDropdown.Item> 
+              <NavDropdown.Item href="/RequestMedicalCases">Request Doctor</NavDropdown.Item>        
+
+            </NavDropdown>
+
+            <Nav.Link href="/ViewDonationRequests">View Donation Requests</Nav.Link>
+
+
           </Nav>
          
         </Navbar.Collapse>
