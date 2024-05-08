@@ -87,7 +87,7 @@ const RegisteredOrganizations = () => {
                 description={item.email}
               />
               </div>
-              <Button className="view-button" type="link" size="small" >View Info</Button>
+              <Button className="view-button" type="link" size="small" href='/view-org-registered-info' >View Info</Button>
               <Button className="delete-button" type="link" size="small" onClick={() => handleDelete(item.email)}>Delete</Button>
           </List.Item>
           )}
