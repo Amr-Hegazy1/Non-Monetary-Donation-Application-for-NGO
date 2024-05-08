@@ -136,6 +136,16 @@ export default function VerifyCodePage() {
       });
   }
 
+  // update the style of body to have display grid
+  useEffect(() => {
+    document.body.style.display = "grid";
+    
+    return () => {
+      document.body.style.display = "";
+      
+    };
+  }, []);
+
   return (
     <div className="verify-container">
     <h1 style={{ textAlign: 'center' , color:'#602b37 '}}>Please enter the verification code</h1>

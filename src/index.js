@@ -42,7 +42,11 @@ import RequestToys from './components/RequestToys';
 import RequestBloodDonations from './components/RequestBloodDonations';
 import RequestTeaching from './components/RequestTeaching';
 import RequestMedicalCases from './components/RequestMedicalCases';
-import ViewDonationRequests from './components/ViewDonationRequests';
+import ViewDonationRequests from './components/ViewDonationRequests';import Homepage from './components/Homepage';
+import Signup from './components/Signup';
+import FulfilledDonations from './components/FulfilledDonations';
+import SchedulePickup from './components/SchedulePickup';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -53,7 +57,7 @@ root.render(
         <BrowserRouter>
           <Suspense>
             <Routes>
-              <Route path="/" element={<App/>} />
+              <Route index element={<Homepage/>} />
               <Route path="/donateClothes" element={<DetailsOfClothesToBeDonated/>} />
              <Route path = "/RequestClothes" element={<RequestClothes/>} />
              <Route path = "/RequestBooks" element={<RequestBooks/>} />
@@ -72,6 +76,9 @@ root.render(
               <Route path="/donateFood" element={<DetailsOfFoodToBeDonated/>} />
               <Route path="/coordinatePickup" element={<OrgCoordinateDonationPickup/>} />
               <Route path="/donorDetails" element={<ViewDonorDetailsForFulfilledPosts/>} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/fullfilledDonations" element={<FulfilledDonations />} />
+              <Route path="/schedulePickup" element={<SchedulePickup />} />
             </Routes>
           </Suspense>
         </BrowserRouter>

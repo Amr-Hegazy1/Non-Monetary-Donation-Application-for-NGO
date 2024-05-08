@@ -966,6 +966,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #620b37;}
     padding-right: 50px !important;
     font-size: 15px !important;
     border-color: #4d0a2b !important;
+    width: auto !important;
 }
 .donate-btn:hover{
     background: #971254 !important;
