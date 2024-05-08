@@ -59,8 +59,10 @@ const FulfilledDonations = () => {
                         Occupation: Doctor
                         </AccordionDetails>
                         <AccordionActions>
+                        
                         <Button color='warning' onClick={() => showDeleteConfirm("Donation " + (i+1))}>Delete</Button>
                         <Button color='success'>Acknowledge</Button>
+                        <Button onClick={() => window.location.href = '/viewDonorDetailsForFulfilledPosts'}>View Details</Button>
                         </AccordionActions>
                 </Accordion>
                 );
@@ -118,6 +120,7 @@ const FulfilledDonations = () => {
                         <AccordionActions>
                         <Button color='warning' onClick={() => showDeleteConfirm("Donation " + (i+1))}>Delete</Button>
                         <Button color='success'>Acknowledge</Button>
+                        <Button onClick={() => window.location.href = '/viewDonorDetailsForFulfilledPosts'}>View Details</Button>
                         </AccordionActions>
                 </Accordion>
             );
@@ -140,7 +143,7 @@ const FulfilledDonations = () => {
     <>
         
         <NavBar/>
-        <Container component="main" maxWidth="md">
+        <Container component="main" maxWidth="md" disableGutters>
             <Box
             sx={{
                 marginTop: 8,

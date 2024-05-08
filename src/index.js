@@ -33,6 +33,10 @@ import ThemeProvider from '../src/components/AdminHomePage/theme';
 import { HelmetProvider } from 'react-helmet-async';
 import { Suspense } from 'react';
 import DetailsOfClothesToBeDonated from './components/DetailsOfClothesToBeDonated';
+import Homepage from './components/Homepage';
+import Signup from './components/Signup';
+import FulfilledDonations from './components/FulfilledDonations';
+import SchedulePickup from './components/SchedulePickup';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -44,8 +48,11 @@ root.render(
         <BrowserRouter>
           <Suspense>
             <Routes>
-              <Route path="/" element={<App/>} />
+              <Route index element={<Homepage/>} />
               <Route path="/donateClothes" element={<DetailsOfClothesToBeDonated/>} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/fullfilledDonations" element={<FulfilledDonations />} />
+              <Route path="/schedulePickup" element={<SchedulePickup />} />
             </Routes>
           </Suspense>
         </BrowserRouter>

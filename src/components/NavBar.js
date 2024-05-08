@@ -4,6 +4,8 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import {Image} from 'antd';
 import logo from './logo.png'; 
+import { Button, Flex } from 'antd';
+import '../styles/NavBar.css';
 function NavBar() { 
     return (
     <Navbar color='#0C4D42' collapseOnSelect expand="lg" className="bg-body-tertiary">
@@ -36,6 +38,13 @@ function NavBar() {
               <NavDropdown.Item href="#action/3.3">Stationary Items</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.3">Food</NavDropdown.Item>              
             </NavDropdown>
+          </Nav>
+          <Nav>
+            <Flex gap="small">
+              <Button className='navbar-signup-btn' onClick={() => window.location.href = '/signup'}>Sign Up</Button>
+              
+              <Button className="navbar-login-btn" onClick={() => window.location.href = '/login'}>Login</Button>
+            </Flex>
           </Nav>
          
         </Navbar.Collapse>
