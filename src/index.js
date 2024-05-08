@@ -20,6 +20,9 @@ import DetailsOfClothesToBeDonated from './components/DetailsOfClothesToBeDonate
 import AdminApp from './components/AdminHomePage/AdminApp';
 import VerifyCodePage from './components/Verify';
 import OrganizationRequestInfo from './components/OrganizationRequestInfo';
+import OrganizationDetails from './components/OrganizationDetails';
+import UserDetails from './components/UserDetails';
+import OrganizationList from './components/OrganizationList';
 
 
 
@@ -31,24 +34,21 @@ root.render(
       <HelmetProvider>
         <BrowserRouter>
           <Suspense>
-              <AdminApp/>
-           {/* <Routes>
-=======
             <AdminApp /> 
             <Routes>
-
               <Route path="/" element={<App/>} />
               <Route path="/donateClothes" element={<DetailsOfClothesToBeDonated/>} />
               <Route path="/view-donor-request-info" element={<RequestInfo/>} />
               <Route path="/view-org-request-info" element={<OrganizationRequestInfo/>} />
+              <Route path="/view-org-submission-info" element={<OrganizationDetails/>} />
+              <Route path="/view-donor-submission-info" element={<UserDetails/>} />
+              <Route path="/view-org-registered-info" element={<OrganizationDetails/>} />
+              <Route path="/view-donor-registered-info" element={<UserDetails/>} />
               <Route path="/AdminLogin" element={<AdminLogin/>} />
               <Route path="/AdminHome" element={<AdminApp/>} />
               <Route path="/ChangePassword" element={<PasswordManagement/>} />
               <Route path="/Verify" element={<VerifyCodePage/>} />   
-
-                </Routes> */}
-                </Routes>
-             
+            </Routes>
           </Suspense>
         </BrowserRouter>
       </HelmetProvider>
