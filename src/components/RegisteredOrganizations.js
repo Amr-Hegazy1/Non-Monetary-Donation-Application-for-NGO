@@ -82,11 +82,12 @@ const RegisteredOrganizations = () => {
             <div className="list-item-container">
               <div className="spacer"></div>
               <List.Item.Meta
+                style={{marginLeft: '150px'}}
                 title={item.name.last}
                 description={item.email}
               />
               </div>
-              <Button className="view-button" type="link" size="small" >View Info</Button>
+              <Button className="view-button" type="link" size="small" href='/view-org-registered-info' >View Info</Button>
               <Button className="delete-button" type="link" size="small" onClick={() => handleDelete(item.email)}>Delete</Button>
           </List.Item>
           )}

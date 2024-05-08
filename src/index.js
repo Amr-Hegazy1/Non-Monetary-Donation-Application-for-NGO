@@ -12,27 +12,22 @@ import AdminHome from './AdminHome';
 import DonorSubmission from './DonorSubmission';
 import Password from 'antd/es/input/Password';
 import PasswordManagement from './PasswordManagement';
-import OrganizationList from './components/OrganizationList';
-import Organizations from './Organizations';
-import Requests from './Requests';
+
 import RequestInfo from './components/RequestInfo';
 import AdminLogin from './LoginAmin';
-import UserDetails from './components/UserDetails';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import NavConfig from './components/AdminHomePage/Navigations/config-navigation';
-import DashboardLayout from './components/AdminHomePage/Navigations/index';
 
-import { Link } from 'react-router-dom';
-import Chart from './components/AdminHomePage/charts/chart';
-import Main from './components/AdminHomePage/Navigations/main';
-import UseChart from './components/AdminHomePage/charts/use-chart';
-import AppConversionRates from './components/AdminHomePage/Views/app-conversion-rates';
-import AppWebsiteVisits from './components/AdminHomePage/Views/app-website-visits';
-import AppView from './components/AdminHomePage/App/app-view';
-import ThemeProvider from '../src/components/AdminHomePage/theme';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
 import { HelmetProvider } from 'react-helmet-async';
 import { Suspense } from 'react';
 import DetailsOfClothesToBeDonated from './components/DetailsOfClothesToBeDonated';
+import AdminApp from './components/AdminHomePage/AdminApp';
+import VerifyCodePage from './components/Verify';
+import OrganizationRequestInfo from './components/OrganizationRequestInfo';
+import OrganizationDetails from './components/OrganizationDetails';
+import UserDetails from './components/UserDetails';
+import OrganizationList from './components/OrganizationList';
+
 import RequestClothes from './components/RequestClothes';
 import RequestBooks from './components/RequestBooks.';
 import RequestFood from './components/RequestFood';
@@ -59,6 +54,16 @@ root.render(
             <Routes>
               <Route index element={<Homepage/>} />
               <Route path="/donateClothes" element={<DetailsOfClothesToBeDonated/>} />
+              <Route path="/view-donor-request-info" element={<RequestInfo/>} />
+              <Route path="/view-org-request-info" element={<OrganizationRequestInfo/>} />
+              <Route path="/view-org-submission-info" element={<OrganizationDetails/>} />
+              <Route path="/view-donor-submission-info" element={<UserDetails/>} />
+              <Route path="/view-org-registered-info" element={<OrganizationDetails/>} />
+              <Route path="/view-donor-registered-info" element={<UserDetails/>} />
+              <Route path="/AdminLogin" element={<AdminLogin/>} />
+              <Route path="/AdminHome" element={<AdminApp/>} />
+              <Route path="/ChangePassword" element={<PasswordManagement/>} />
+              <Route path="/Verify" element={<VerifyCodePage/>} />   
              <Route path = "/RequestClothes" element={<RequestClothes/>} />
              <Route path = "/RequestBooks" element={<RequestBooks/>} />
              <Route path = "/RequestFood" element={<RequestFood/>} />

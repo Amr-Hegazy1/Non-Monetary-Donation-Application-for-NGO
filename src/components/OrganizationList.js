@@ -60,11 +60,12 @@ const OrganizationList = () => {
             <div className="list-item-container">
               <div className="spacer"></div>
               <List.Item.Meta
+                className="custom-meta"
                 title={item.name.last}
                 description={item.email}
               />
               </div>
-              <Button className="view-button" type="link" size="small" >View Info</Button>
+              <Button className="views-button" type="link" size="small" href='/view-org-submission-info'> View Info</Button>
           </List.Item>
           )}
         </VirtualList>
