@@ -2,6 +2,8 @@ import React from 'react';
 import { notification, Space } from 'antd';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { Button } from 'antd';
+import { Link } from 'react-router-dom';
+
 
 const close = () => {
   console.log(
@@ -16,6 +18,7 @@ const App = () => {
     const key = `open${Date.now()}`;
     const btn = (
       <Space>
+        <Link to="/coordinatePickup">
         <Button
           style={{ backgroundColor: '#620b37', borderColor: '#620b37' }}
           type="primary"
@@ -24,6 +27,7 @@ const App = () => {
         >
           Confirm
         </Button>
+        </Link>
         <Button
           style={{
             backgroundColor: '#620b37',

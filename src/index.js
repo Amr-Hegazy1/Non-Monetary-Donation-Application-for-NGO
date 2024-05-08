@@ -33,6 +33,14 @@ import ThemeProvider from '../src/components/AdminHomePage/theme';
 import { HelmetProvider } from 'react-helmet-async';
 import { Suspense } from 'react';
 import DetailsOfClothesToBeDonated from './components/DetailsOfClothesToBeDonated';
+import DetailsOfMedicalSuppToBeDonated from './components/DetailsOfMedicalSuppToBeDonated';
+import DetailsOfToysToBeDonated from './components/DetailsOfToysToBeDonated';
+import DetailsOfBooksToBeDonated from './components/DetailsOfBooksToBeDonated';
+import DetailsOfStationaryToBeDonated from './components/DetailsOfStationaryToBeDonated';
+import DetailsOfFoodToBeDonated from './components/DetailsOfFoodToBeDonated';
+import OrgCoordinateDonationPickup from './components/OrgCoordinateDonationPickup';
+import ViewDonorDetailsForFulfilledPosts from './components/ViewDonorDetailsForFulfilledPosts';
+
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -46,6 +54,13 @@ root.render(
             <Routes>
               <Route path="/" element={<App/>} />
               <Route path="/donateClothes" element={<DetailsOfClothesToBeDonated/>} />
+              <Route path="/donateMedicalSupplies" element={<DetailsOfMedicalSuppToBeDonated/>} />
+              <Route path="/donateToys" element={<DetailsOfToysToBeDonated/>} />
+              <Route path="/donateBooks" element={<DetailsOfBooksToBeDonated/>} />
+              <Route path="/donateStationary" element={<DetailsOfStationaryToBeDonated/>} />
+              <Route path="/donateFood" element={<DetailsOfFoodToBeDonated/>} />
+              <Route path="/coordinatePickup" element={<OrgCoordinateDonationPickup/>} />
+              <Route path="/donorDetails" element={<ViewDonorDetailsForFulfilledPosts/>} />
             </Routes>
           </Suspense>
         </BrowserRouter>

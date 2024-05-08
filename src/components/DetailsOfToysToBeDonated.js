@@ -74,7 +74,7 @@ export default function DetailsOfToysToBeDonated() {
           }}
         >
           
-          <Image width={350} src={toy} />          
+          <Image width={380} src={toy} style={{ pointerEvents: 'none' }}/>          
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <Grid item xs>
                 <TextField

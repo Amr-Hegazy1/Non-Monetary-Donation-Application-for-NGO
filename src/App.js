@@ -12,10 +12,11 @@ import NotificationForChosenPosts from './components/NotificationForChosenPosts'
 //import DetailsOfStationaryToBeDonated from './components/DetailsOfStationaryToBeDonated';
 import DetailsOfToysToBeDonated from './components/DetailsOfToysToBeDonated';
 //import OrgCoordinateDonationPickup from './components/OrgCoordinateDonationPickup';
-//import ViewDetailsOfFulfilledPosts from './components/ViewDetailsOfFulfilledPosts';
+import ViewDetailsOfFulfilledPosts from './components/ViewDetailsOfFulfilledPosts';
 //import ViewDonorDetailsForFulfilledPosts from './components/ViewDonorDetailsForFulfilledPosts';
 //import NotificationForDriverArrival from './components/NotificationForDriverArrival';
 import NavBar from './components/NavBar';
+import AdminHome from './AdminHome';
 
 //import FulfilledDonations from './components/FulfilledDonations';
 //import DetailsOfToysToBeDonated from './components/DetailsOfToysToBeDonated';
@@ -25,7 +26,9 @@ function App() {
   return (
     <div className="App">
     <NavBar />
-    
+    <NotificationForChosenPosts/>
+    <ViewDetailsOfFulfilledPosts/>
+  
   </div>
 );
 }
