@@ -6,13 +6,11 @@
   .list-item-container {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    width: 100%; /* Adjust as needed */
-    
+    width: 100%; /* Adjust as needed */   
 }
   
-  .view-button {
-    width: 50%; /* Adjust as needed */
+  .views-button {
+    width: 10%;
   }
 
   .search-box::placeholder {
@@ -22,3 +20,8 @@
   .spacer {
     flex-grow: 1;
   }
+
+  .custom-meta .ant-list-item-meta-content {
+    margin-left: 20px; /* Moves items 20 pixels to the left */
+  }
+

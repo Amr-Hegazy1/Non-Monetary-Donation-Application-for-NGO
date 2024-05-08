@@ -147,7 +147,8 @@ export default function VerifyCodePage() {
   }, []);
 
   return (
-    <div className="verify-container">
+    <div className="text-center">
+      <img src="logo.png" style={{ width: '185px' }} alt="logo" />
     <h1 style={{ textAlign: 'center' , color:'#602b37 '}}>Please enter the verification code</h1>
     <h2 style={{ textAlign: 'center' , color:'#602b37' }}>A code has been sent to your email *****@*mail.com</h2>
     <form onSubmit={handleSubmit}>
@@ -169,7 +170,7 @@ export default function VerifyCodePage() {
         })}
         {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
       </div>
-      <button style={{background:'#602b37'}}disabled={status === "pending"}>
+      <button href= '/ChangePassword' style={{background:'#602b37'}}disabled={status === "pending" }>
         {status === "pending" ? "Verifying..." : "Verify"}
       </button>
     </form>

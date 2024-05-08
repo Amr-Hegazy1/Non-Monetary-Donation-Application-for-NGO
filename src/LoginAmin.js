@@ -47,8 +47,9 @@ function AdminLogin() {
               Admin Login
           </h4>     
       </div>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
       <Stack spacing={3}>
-          <TextField
+          <TextField 
             name="email"
             label="Email"
             type="email"
@@ -83,12 +84,12 @@ function AdminLogin() {
       
       
           <div className="d-flex justify-content-between mb-4">
-            <a href="/password-management" className="text-decoration-none" style={{width: '300px', color: '#007bff'}}> {/* Change the link color */}
+            <a href="/Verify" className="text-decoration-none" style={{width: '300px', color: '#007bff'}}> {/* Change the link color */}
               Forgot password?
             </a>
           </div>
      
-          <Button variant="contained" onClick={handleLogin} 
+          <Button variant="contained" href ="/AdminHome" onClick={handleLogin} 
           style={{
             width: '300px', 
             backgroundColor: '#602b37', 
@@ -97,10 +98,12 @@ function AdminLogin() {
             borderRadius: '4px', 
             padding: '10px 20px',
             fontSize: '16px',
-            cursor: 'pointer'}}>
+            cursor: 'pointer'
+            }}>
             Login
           </Button>
       </Stack>
+      </div>
     </>
 
 

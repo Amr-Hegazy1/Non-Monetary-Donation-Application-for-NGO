@@ -14,11 +14,10 @@ const Field = ({ label, id, ...rest }) => (
 function OrganizationDetails() {
   const { form } = useForm({
     defaultValues: {
-      firstName: "Omar",
-      lastName: "Orensa",
+      firstName: "Kevin",
+      lastName: "Phillips",
       gender: "Male",
-      email: "omar.orensa@gmail.com",
-      password: "password123",
+      email: "ak.64@gmail.com",
       contactNumber: "+201234567890",
       organizationName: "My Organization",
       organizationType: "Educational",
@@ -54,7 +53,6 @@ function OrganizationDetails() {
         <Field label="Last Name" id="last-name" name="lastName" />
         <Field label="Gender" id="gender" name="gender" />
         <Field label="Email" id="email" name="email" />
-        <Field label="Password" id="password" name="password" />
         <Field label="Contact Number" id="contact-number" name="contactNumber" />
         <Field label="Organization Name" id="organization-name" name="organizationName" />
         <Field label="Organization Type" id="organization-type" name="organizationType" />

@@ -63,10 +63,11 @@ const DonorRequests = () => {
             <div className="list-item-container">
             <div className="spacer"></div>
               <List.Item.Meta
+                style={{marginLeft: '50px'}}
                 title={item.name.last}
                 description={item.email}
               />
-              <Button className="view-button" type="link" size="small" >View Info</Button>
+              <Button className="views-button" type="link" size="small" href='/view-donor-request-info' >View Info</Button>
             </div>
           </List.Item>
           )}

@@ -14,9 +14,9 @@ const Field = ({ label, id, ...rest }) => (
 function UserDetails() {
   const { form } = useForm({
     defaultValues: {
-      firstName: "Omar",
-      lastName: "Orensa",
-      email: "omar.orensa@gmail.com",
+      firstName: "Paul",
+      lastName: "Pogba",
+      email: "paul.pogba@gmail.com",
       gender: "Male",
       contactNumber: "+201234567890",
       address: "1234 Elm St",
