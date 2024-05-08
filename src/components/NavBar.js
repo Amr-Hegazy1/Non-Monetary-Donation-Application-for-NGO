@@ -6,7 +6,14 @@ import {Image} from 'antd';
 import logo from './logo.png'; 
 import { Button, Flex } from 'antd';
 import '../styles/NavBar.css';
+import { useCookies } from 'react-cookie';
+import Avatar from '@mui/material/Avatar';
+
 function NavBar() { 
+    const [cookies, setCookie] = useCookies(); // State for cookies
+
+    
+
     return (
     <Navbar color='#0C4D42' collapseOnSelect expand="lg" className="bg-body-tertiary">
       <Image width={200} src={logo}  />
@@ -59,11 +66,14 @@ function NavBar() {
 
           </Nav>
           <Nav>
-            <Flex gap="small">
-              <Button className='navbar-signup-btn' onClick={() => window.location.href = '/signup'}>Sign Up</Button>
-              
-              <Button className="navbar-login-btn" onClick={() => window.location.href = '/login'}>Login</Button>
-            </Flex>
+            {
+              (cookies.user_type === 'donor' || cookies.user_type === 'donation_receiver') ? (<Avatar src={'https://api.dicebear.com/7.x/miniavs/svg?seed=29'} />) : 
+              (<Flex gap="small">
+                <Button className='navbar-signup-btn' onClick={() => window.location.href = '/signup'}>Sign Up</Button>
+                
+                <Button className="navbar-login-btn" onClick={() => window.location.href = '/login'}>Login</Button>
+              </Flex>)
+          }
           </Nav>
          
         </Navbar.Collapse>

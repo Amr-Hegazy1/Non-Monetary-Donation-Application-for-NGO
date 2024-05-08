@@ -211,7 +211,7 @@ function Copyright(props) {
                 required
                 fullWidth
                 label="Quantity"
-                autoFocus
+                
                 type="number"
                 value={quantity}
                 onChange={(event) => setQuantity(event.target.value)}

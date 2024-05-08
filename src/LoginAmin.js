@@ -6,6 +6,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import Iconify from './components/iconify';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
+import { useCookies } from 'react-cookie';
 
 
 
@@ -15,8 +16,16 @@ function AdminLogin() {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false); // State for password visibility
 
+  const [cookies, setCookie] = useCookies(); // State for cookies
+
   useEffect(() => {
     document.body.style.backgroundColor = 'white'; // Set the background color of the document
+    if(cookies.user_type === 'admin') {
+      window.location.href = '/AdminHome';
+    }
+    if(cookies.user_type === 'donor' || cookies.user_type === 'donation_receiver'){
+      window.location.href = '/';
+    }
   }, []);
 
   const handleLogin = (e) => {
@@ -24,12 +33,29 @@ function AdminLogin() {
 
     // Replace with your actual authentication logic on the server-side
     // (e.g., sending hashed password for comparison)
-    const correctEmail = 'admin@gmail.com';
+    const correctAdminEmail = 'admin@gmail.com';
     const correctHashedPassword = 'password'; // Placeholder
 
-    if (email === correctEmail && password === correctHashedPassword) {
+    const correctDonorEmail = 'donor@gmail.com';
+
+    const correctDonationReceiverEmail = 'donation_reciever@gmail.com';
+
+    if (email === correctAdminEmail && password === correctHashedPassword) {
       // Login successful (redirect or show success message)
       message.success('Logged in successfully , redirecting ...');
+      setCookie("user_type", "admin");
+      // You can redirect to another page or perform other actions on success
+    }
+    else if (email === correctDonorEmail && password === correctHashedPassword) {
+      // Login successful (redirect or show success message)
+      message.success('Logged in successfully , redirecting ...');
+      setCookie("user_type", "donor");
+      // You can redirect to another page or perform other actions on success
+    }
+    else if (email === correctDonationReceiverEmail && password === correctHashedPassword) {
+      // Login successful (redirect or show success message)
+      message.success('Logged in successfully , redirecting ...');
+      setCookie("user_type", "donation_receiver");
       // You can redirect to another page or perform other actions on success
     } else {
       message.error('Invalid credentials');    
