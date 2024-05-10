@@ -7,11 +7,12 @@ import { message } from 'antd';
 
 const fakeDataUrl =
   'https://randomuser.me/api/?results=20&inc=name,gender,email,nat,picture&noinfo';
-const ContainerHeight = 400;
+const ContainerHeight = window.innerHeight - window.innerHeight * 0.16;
 
 const DonorRequests = () => {
   const [data, setData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  
 
   const appendData = () => {
     fetch(fakeDataUrl)
@@ -54,7 +55,7 @@ const DonorRequests = () => {
         <VirtualList
           data={filteredData}
           height={ContainerHeight}
-          itemHeight={47}
+          
           itemKey="email"
           onScroll={onScroll}
         >

@@ -30,7 +30,7 @@ export default function Header({ onOpenNav }) {
   const renderContent = (
     <>
       {!lgUp && (
-        <IconButton onClick={onOpenNav} sx={{ mr: 1 }}>
+        <IconButton onClick={onOpenNav} sx={{ mr: 10 }}>
           <Iconify icon="eva:menu-2-fill" />
         </IconButton>
       )}
@@ -62,6 +62,7 @@ export default function Header({ onOpenNav }) {
           width: `calc(100% - ${NAV.WIDTH + 1}px)`,
           height: HEADER.H_DESKTOP,
         }),
+        position: 'fixed',
       }}
     >
       <Toolbar

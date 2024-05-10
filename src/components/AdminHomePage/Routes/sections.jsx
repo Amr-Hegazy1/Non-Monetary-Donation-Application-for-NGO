@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react';
-import { Outlet, useRoutes } from 'react-router-dom';
+import { BrowserRouter, Outlet, useRoutes } from 'react-router-dom';
 
 import DashboardLayout from '../Navigations/index';
 import OrganizationList from '../../OrganizationList';
@@ -14,7 +14,7 @@ export const DonorList = lazy(() => import('../../DonorList'));
 export const Organizations = lazy(() => import('../../../Organizations'));
 export const DonorSubmission = lazy(() => import('../../../DonorSubmission'));
 export const UserDetails = lazy(() => import('../../UserDetails'));
-export const Requests = lazy(() => import('../../../Requests'));  
+export const Requests = lazy(() => import('../../../Requests'));
 
 
 // ----------------------------------------------------------------------
@@ -35,17 +35,24 @@ export default function Router() {
         { path: 'organizations', element: <OrganizationList /> },
         { path: 'change password', element: <PasswordManagement /> },
         { path: 'account mangement', element: <OrganizationList /> },
-        { path : 'Validate Donor Accounts' , element : < Organizations/>},
-        { path: 'donors submissions', element: <DonorSubmission />},
-        { path : 'user details' , element : <UserDetails/>},
-        { path : 'donor requests', element : <DonorRequests/>},
-        { path : 'organization requests', element : <OrganizationRequests/>},
-        { path : 'registeredOrganizations', element : <RegisteredOrganizations/>},
-        { path : 'registeredDonors', element : <RegisteredDonors/>},
+        { path: 'Validate Donor Accounts', element: < Organizations /> },
+        { path: 'donors submissions', element: <DonorSubmission /> },
+        { path: 'user details', element: <UserDetails /> },
+        { path: 'donor requests', element: <DonorRequests /> },
+        { path: 'organization requests', element: <OrganizationRequests /> },
+        { path: 'registeredOrganizations', element: <RegisteredOrganizations /> },
+        { path: 'registeredDonors', element: <RegisteredDonors /> },
       ],
     },
-   
+
   ]);
 
-  return routes;
+
+
+  return (<DashboardLayout>
+    <Suspense>
+      <Outlet />
+    </Suspense>
+  </DashboardLayout>
+  )
 }

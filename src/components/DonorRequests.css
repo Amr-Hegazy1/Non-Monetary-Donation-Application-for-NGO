@@ -1,13 +1,12 @@
 .DonorRequests-header {
-    margin-top: -10px;
-    padding-left: 322px;
-  }
+  text-align: center;
+}
 
   .list-item-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
+    width: 25%;
     padding: 0px;
   }
   

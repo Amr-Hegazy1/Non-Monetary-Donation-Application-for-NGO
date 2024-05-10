@@ -140,15 +140,19 @@ function NavItem({ item }) {
   const [open, setOpen] = useState(false);
 
   const handleClick = (e) => {
+    e.preventDefault();
     if (item.subMenu) {
-      e.preventDefault();
+      
       setOpen(!open);
+    }else{
+      window.location.href = item.path;
     }
+
   };
 
   return (
     <div>
-      <ListItemButton onClick={handleClick} href={item.path}>
+      <ListItemButton onClick={handleClick}>
         <Box component="span" sx={{ width: 24, height: 24, mr: 2 }}>
           {item.icon}
         </Box>
@@ -160,7 +164,7 @@ function NavItem({ item }) {
           {item.subMenu.map((subItem, index) => (
             <ListItemButton
               key={index}
-              href={subItem.path}
+              onClick={handleClick}
               sx={{
                 minHeight: 44,
                 borderRadius: 0.75,

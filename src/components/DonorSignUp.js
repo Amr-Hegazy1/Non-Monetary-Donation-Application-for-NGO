@@ -234,7 +234,7 @@ export default function DonorSignUp() {
 
 
             <br/>
-            <div className="animate__animated animate__fadeIn" hidden={volenteerRole !== 'Doctor'}>
+            {(volenteerRole !== 'Doctor') ? null : <div className="animate__animated animate__fadeIn">
                 <Divider>Doctor Details</Divider>
                 <FormControl fullWidth required>
                     <InputLabel id="demo-multiple-name-label">Clinic Location</InputLabel>
@@ -275,7 +275,7 @@ export default function DonorSignUp() {
                 
                 
                 <br/>
-            </div>
+            </div>}
             <div className="animate__animated animate__fadeIn" hidden={volenteerRole !== 'Teacher'}>
                 <Divider>Teacher Details</Divider>
                 <FormControl fullWidth required>

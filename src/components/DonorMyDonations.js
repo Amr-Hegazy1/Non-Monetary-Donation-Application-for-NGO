@@ -17,15 +17,7 @@ import { ExclamationCircleFilled } from '@ant-design/icons';
 const { confirm } = Modal;
 
 
-
-
-
-
-const FulfilledDonations = () => {
-  
-
-    
-    
+export default function DonorMyDonations() {
 
     const [donations, setDonations] = useState(15);
 
@@ -52,17 +44,13 @@ const FulfilledDonations = () => {
                         Donation {i+1}
                         </AccordionSummary>
                         <AccordionDetails>
-                        Name: John Doe <br/>
-                        Email: mail@example.com <br/>
-                        Phone: 123-456-7890 <br/>
-                        Address: 1234 Elm Street <br/>
-                        Occupation: Doctor
+                        Number of donated items: 5 <br/>
+                        Donation Type: School Supplies <br/>
+                        Organization: GUC <br/>
+                        Status: {i % 2 === 0 ? "Pending" : "Fulfilled"}
                         </AccordionDetails>
                         <AccordionActions>
-                        
-                        <Button color='warning' onClick={() => showDeleteConfirm("Donation " + (i+1))}>Delete</Button>
-                        <Button color='success'>Acknowledge</Button>
-                        <Button onClick={() => window.location.href = '/donorDetails'}>View Details</Button>
+                            <Button onClick={() => window.location.href = '/donorMyDonationDetails?fulfilled=' + (i % 2 === 0 ? "false" : "true")}>View Details</Button>
                         </AccordionActions>
                 </Accordion>
                 );
@@ -111,16 +99,13 @@ const FulfilledDonations = () => {
                         Donation {i+1}
                         </AccordionSummary>
                         <AccordionDetails>
-                        Name: John Doe <br/>
-                        Email: mail@example.com <br/>
-                        Phone: 123-456-7890 <br/>
-                        Address: 1234 Elm Street <br/>
-                        Occupation: Doctor
+                        Donation Type: School Supplies <br/>
+                        Organization: GUC <br/>
+                        Status: {i % 2 === 0 ? "Pending" : "Fulfilled"}
+                        Number of donated items: 5 <br/>
                         </AccordionDetails>
                         <AccordionActions>
-                        <Button color='warning' onClick={() => showDeleteConfirm("Donation " + (i+1))}>Delete</Button>
-                        <Button color='success'>Acknowledge</Button>
-                        <Button onClick={() => window.location.href = '/donorDetails'}>View Details</Button>
+                            <Button onClick={() => window.location.href = '/donorMyDonationDetails?fulfilled=' + (i % 2 === 0 ? "false" : "true")}>View Details</Button>
                         </AccordionActions>
                 </Accordion>
             );
@@ -153,7 +138,7 @@ const FulfilledDonations = () => {
             }}
             >   
                 <Typography className="center" component="h1" variant="h4">
-                    Fulfilled Donations
+                    My Donations
                 </Typography>
                 
                 <InfiniteScroll
@@ -174,5 +159,6 @@ const FulfilledDonations = () => {
       </Container>
     </>
     );
-};
-export default FulfilledDonations;
+
+
+}
