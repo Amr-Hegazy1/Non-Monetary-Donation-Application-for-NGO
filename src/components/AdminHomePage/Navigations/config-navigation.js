@@ -9,6 +9,8 @@ import OrganizationRequests from '../OrganizationRequests';
 import PasswordManagement from '../../../PasswordManagement';
 import DonorList from '../../DonorList';
 import { act } from 'react';
+import RegisteredDoctors from '../../RegisteredDoctors';
+import RegisteredTeachers from '../../RegisteredTeachers';
 
 
 // ----------------------------------------------------------------------
@@ -91,6 +93,7 @@ const NavConfig = [
             path: '/AdminHome/registeredDoctors',
             icon: icon('ic_donors.svg'),
             color: '#602b37',
+            element: <RegisteredDoctors/>,
             active: false
           },
           {
@@ -99,6 +102,7 @@ const NavConfig = [
             path: '/AdminHome/registeredTeachers',
             icon: icon('ic_donors.svg'),
             color: '#602b37',
+            element: <RegisteredTeachers />,
             active: false
           },
         ],
