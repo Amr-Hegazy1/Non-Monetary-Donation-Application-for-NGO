@@ -1,27 +1,31 @@
-.OrganizationList-header {
-    margin-top: -10px;
-    margin-left: 242px;
-  }
-
-  .list-item-container {
-    display: flex;
-    justify-content: space-between;
-    width: 100%; /* Adjust as needed */   
+.OrganizationList {
+  text-align: center;
 }
-  
-  .views-button {
-    width: 10%;
-  }
 
-  .search-box::placeholder {
-    text-align: center;
-  }
+.OrganizationList-header {
+  padding-bottom: 1%;
+}
 
-  .spacer {
-    flex-grow: 1;
-  }
+.list-item-container {
+  display: flex;
+  justify-content: space-between;
+  width: 25%;
+  /* Adjust as needed */
+}
 
-  .custom-meta .ant-list-item-meta-content {
-    margin-left: 20px; /* Moves items 20 pixels to the left */
-  }
+.views-button {
+  width: 10%;
+}
 
+.search-box::placeholder {
+  text-align: center;
+}
+
+.spacer {
+  flex-grow: 1;
+}
+
+.custom-meta .ant-list-item-meta-content {
+  margin-left: 20px;
+  /* Moves items 20 pixels to the left */
+}

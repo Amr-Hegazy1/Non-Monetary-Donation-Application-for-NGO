@@ -53,6 +53,7 @@ export default function AccountPopover() {
             background: (theme) =>
               `linear-gradient(135deg, ${theme.palette.primary.light} 0%, ${theme.palette.primary.main} 100%)`,
           }),
+          
         }}
       >
         <Avatar
@@ -62,7 +63,9 @@ export default function AccountPopover() {
             width: 36,
             height: 36,
             border: (theme) => `solid 2px ${theme.palette.background.default}`,
+            
           }}
+          
         >
           {Account.displayName.charAt(0).toUpperCase()}
         </Avatar>
@@ -80,6 +83,7 @@ export default function AccountPopover() {
             mt: 1,
             ml: 0.75,
             width: 200,
+           
           },
         }}
       >
@@ -108,6 +112,7 @@ export default function AccountPopover() {
           onClick={handleClose}
           sx={{ typography: 'body2', color: 'error.main', py: 1.5 }}
           //href='/'
+          
         >
           Logout
         </MenuItem>

@@ -12,6 +12,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { COLORS } from '../values/colors';
 import ViewRequestedDonationImg from './ViewRequestedDonationImg.jpg';
 import { Sort } from '@mui/icons-material';
+import { useSearchParams } from 'react-router-dom';
 
 const donationRequests =[
     { RequestNo: 1, OrganizationName: "Sunshine Foundation", Category: "Food", Item: "Fresh meals", name: "Chicken and rice", Area: "Smooha", Governorate:"Alexandria" },
@@ -126,8 +127,14 @@ function ViewDonationRequest() {
     const [ToysAgeHovered, setToysAgeHovered] = useState(false);
     const [BloodTypeHovered, setBloodTypeHovered] = useState(false);
     const [UrgencyHovered, setUrgencyHovered] = useState(false);
+    const [searchParams, setSearchParams] = useSearchParams();
     
-
+    useEffect(() => {
+      if (searchParams.has('category')) {
+        let category = searchParams.get('category').replace("_", " ");
+        setCategoryFilter(category);
+      }
+    }, [searchParams]);
 
 
     const handleCategoryMouseEnter = () => {

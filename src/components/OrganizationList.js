@@ -9,7 +9,7 @@ import './OrganizationList.css';
 
 const fakeDataUrl =
   'https://randomuser.me/api/?results=20&inc=name,gender,email,nat,picture&noinfo';
-const ContainerHeight = 400;
+const ContainerHeight = window.innerHeight - window.innerHeight * 0.16;
 
 const OrganizationList = () => {
   const [data, setData] = useState([]);
@@ -47,13 +47,16 @@ const OrganizationList = () => {
         />
         </Col>
         </Row>
-      <List>
+      <List
+        
+      >
         <VirtualList
           data={filteredData}
           height={ContainerHeight}
           itemHeight={47}
           itemKey="email"
           onScroll={onScroll}
+          
         >
           {(item) => (
             <List.Item key={item.email}>

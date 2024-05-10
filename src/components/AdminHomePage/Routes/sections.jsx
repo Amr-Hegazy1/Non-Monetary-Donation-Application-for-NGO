@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react';
-import { Outlet, useRoutes } from 'react-router-dom';
+import { BrowserRouter, Outlet, useRoutes } from 'react-router-dom';
 
 import DashboardLayout from '../Navigations/index';
 import OrganizationList from '../../OrganizationList';
@@ -15,7 +15,7 @@ export const DonorList = lazy(() => import('../../DonorList'));
 export const Organizations = lazy(() => import('../../../Organizations'));
 export const DonorSubmission = lazy(() => import('../../../DonorSubmission'));
 export const UserDetails = lazy(() => import('../../UserDetails'));
-export const Requests = lazy(() => import('../../../Requests'));  
+export const Requests = lazy(() => import('../../../Requests'));
 
 
 // ----------------------------------------------------------------------
@@ -46,8 +46,15 @@ export default function Router() {
         { path : 'registeredTeachers', element : <RegisteredTeachers/>},
       ],
     },
-   
+
   ]);
 
-  return routes;
+
+
+  return (<DashboardLayout>
+    <Suspense>
+      <Outlet />
+    </Suspense>
+  </DashboardLayout>
+  )
 }

@@ -140,12 +140,15 @@ function NavItem({ item }) {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
 
-  const handleClick = () => {
+  const handleClick = (e) => {
+    e.preventDefault();
     if (item.subMenu) {
+      
       setOpen(!open);
     } else {
       navigate(item.path);
     }
+
   };
 
   return (
