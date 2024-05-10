@@ -47,19 +47,7 @@ import DetailsOfStationaryToBeDonated from './components/DetailsOfStationaryToBe
 import DetailsOfFoodToBeDonated from './components/DetailsOfFoodToBeDonated';
 import ViewDonorDetailsForFulfilledPosts from './components/ViewDonorDetailsForFulfilledPosts';
 import { CookiesProvider } from 'react-cookie';
-import DonorMyDonations from './components/DonorMyDonations';
-import DonorMyDonationDetails from './components/DonorMyDonationDetails';
-import { IndexPage, Organizations } from './components/AdminHomePage/Routes/sections';
-import RegisteredDonors from './components/RegisteredDonors';
-import RegisteredOrganizations from './components/RegisteredOrganizations';
-import OrganizationRequests from './components/AdminHomePage/OrganizationRequests';
-import DonorRequests from './components/DonorRequests';
-import Dashboard from './components/DeliveryPerson/Dashboard';
-
-
-
-
-
+import ViewEstimatedTime from './components/ViewEstimatedArrival';
 
 
 
@@ -71,47 +59,35 @@ root.render(
         <BrowserRouter>
           <Suspense>
             <Routes>
-              <Route index element={<Homepage />} />
-              <Route path="/donateClothes" element={<DetailsOfClothesToBeDonated />} />
-              <Route path="/view-donor-request-info" element={<RequestInfo />} />
-              <Route path="/view-org-request-info" element={<OrganizationRequestInfo />} />
-              <Route path="/view-org-submission-info" element={<OrganizationDetails />} />
-              <Route path="/view-donor-submission-info" element={<UserDetails />} />
-              <Route path="/view-org-registered-info" element={<OrganizationDetails />} />
-              <Route path="/view-donor-registered-info" element={<UserDetails />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="AdminHome" element={<AdminHome />}>
-                <Route index element={<IndexPage />} />
-                <Route path="donors" element={<DonorList />} />
-                <Route path="organizations" element={<OrganizationList />} />
-                <Route path="change password" element={<PasswordManagement />} />
-                <Route path="account management" element={<OrganizationList />} />
-                <Route path="Validate Donor Accounts" element={<Organizations />} />
-                <Route path="donors submissions" element={<DonorSubmission />} />
-                <Route path="donor requests" element={<DonorRequests />} />
-                <Route path="organization requests" element={<OrganizationRequests />} />
-                <Route path="registeredOrganizations" element={<RegisteredOrganizations />} />
-                <Route path="registeredDonors" element={<RegisteredDonors />} />
-              </Route>
-              <Route path="/ChangePassword" element={<PasswordManagement />} />
-              <Route path="/Verify" element={<VerifyCodePage />} />
-              <Route path="/RequestClothes" element={<RequestClothes />} />
-              <Route path="/RequestBooks" element={<RequestBooks />} />
-              <Route path="/RequestFood" element={<RequestFood />} />
-              <Route path="/RequestMedicalSupplies" element={<RequestMedicalSupplies />} />
-              <Route path="/RequestStationary" element={<RequestStationary />} />
-              <Route path="/RequestToys" element={<RequestToys />} />
-              <Route path="/RequestBloodDonations" element={<RequestBloodDonations />} />
-              <Route path="/RequestTeaching" element={<RequestTeaching />} />
-              <Route path="/RequestMedicalCases" element={<RequestMedicalCases />} />
-              <Route path="/ViewDonationRequests" element={<ViewDonationRequests />} />
-              <Route path="/donateMedicalSupplies" element={<DetailsOfMedicalSuppToBeDonated />} />
-              <Route path="/donateToys" element={<DetailsOfToysToBeDonated />} />
-              <Route path="/donateBooks" element={<DetailsOfBooksToBeDonated />} />
-              <Route path="/donateStationary" element={<DetailsOfStationaryToBeDonated />} />
-              <Route path="/donateFood" element={<DetailsOfFoodToBeDonated />} />
-              <Route path="/coordinatePickup" element={<OrgCoordinateDonationPickup />} />
-              <Route path="/donorDetails" element={<ViewDonorDetailsForFulfilledPosts />} />
+              <Route index element={<Homepage/>} />
+              <Route path="/donateClothes" element={<DetailsOfClothesToBeDonated/>} />
+              <Route path="/view-donor-request-info" element={<RequestInfo/>} />
+              <Route path="/view-org-request-info" element={<OrganizationRequestInfo/>} />
+              <Route path="/view-org-submission-info" element={<OrganizationDetails/>} />
+              <Route path="/view-donor-submission-info" element={<UserDetails/>} />
+              <Route path="/view-org-registered-info" element={<OrganizationDetails/>} />
+              <Route path="/view-donor-registered-info" element={<UserDetails/>} />
+              <Route path="/login" element={<AdminLogin/>} />
+              <Route path="/AdminHome" element={<AdminApp/>} />
+              <Route path="/ChangePassword" element={<PasswordManagement/>} />
+              <Route path="/Verify" element={<VerifyCodePage/>} />   
+             <Route path = "/RequestClothes" element={<RequestClothes/>} />
+             <Route path = "/RequestBooks" element={<RequestBooks/>} />
+             <Route path = "/RequestFood" element={<RequestFood/>} />
+             <Route path = "/RequestMedicalSupplies" element={<RequestMedicalSupplies/>} />
+             <Route path = "/RequestStationary" element={<RequestStationary/>} />
+             <Route path = "/RequestToys" element={<RequestToys/>} />
+             <Route path = "/RequestBloodDonations" element={<RequestBloodDonations/>} />
+             <Route path = "/RequestTeaching" element={<RequestTeaching/>} />
+             <Route path = "/RequestMedicalCases" element={<RequestMedicalCases/>} />
+             <Route path = "/ViewDonationRequests" element={<ViewDonationRequests/>}/>
+              <Route path="/donateMedicalSupplies" element={<DetailsOfMedicalSuppToBeDonated/>} />
+              <Route path="/donateToys" element={<DetailsOfToysToBeDonated/>} />
+              <Route path="/donateBooks" element={<DetailsOfBooksToBeDonated/>} />
+              <Route path="/donateStationary" element={<DetailsOfStationaryToBeDonated/>} />
+              <Route path="/donateFood" element={<DetailsOfFoodToBeDonated/>} />
+              <Route path="/coordinatePickup" element={<OrgCoordinateDonationPickup/>} />
+              <Route path="/donorDetails" element={<ViewDonorDetailsForFulfilledPosts/>} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/fullfilledDonations" element={<FulfilledDonations />} />
               <Route path="/schedulePickup" element={<SchedulePickup />} />

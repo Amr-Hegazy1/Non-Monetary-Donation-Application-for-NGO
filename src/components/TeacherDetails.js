@@ -5,24 +5,24 @@ import { useState } from 'react';
 import "./styles.scss";
 
 const Field = ({ label, id, ...rest }) => (
-  <div className="div">
-    <label htmlFor={id} className="label">{label}</label>
-    <input id={id} {...rest} readOnly disabled className="input" />
+  <div>
+    <label htmlFor={id}>{label}</label>
+    <input id={id} {...rest} readOnly disabled/>
   </div>
 );
 
-function UserDetails() {
+function TeacherDetails() {
   const { form } = useForm({
     defaultValues: {
-      firstName: "Paul",
-      lastName: "Pogba",
-      email: "paul.pogba@gmail.com",
+      firstName: "Kevin",
+      lastName: "De Bruyne",
+      email: "Kevin.debruyne@gmail.com",
       gender: "Male",
       contactNumber: "+201234567890",
-      address: "1234 Elm St",
+      address: "4321 Elm St",
       area: "Springfield",
       governorate: "IL",
-      role: "Doctor",
+      role: "Teacher",
     },
     onSubmit: (values) => alert(JSON.stringify(values, undefined, 2)),
   });
@@ -31,12 +31,12 @@ function UserDetails() {
 
   const handleAccept = () => {
     // Confirm accept action
-    message.success('Doctor accepted');
+    message.success('Teacher accepted');
   };
 
   const handleReject = () => {
     // Confirm reject action
-    message.error('Doctor rejected');
+    message.error('Teacher rejected');
   };
 
   const handleDownload = () => {
@@ -47,7 +47,7 @@ function UserDetails() {
   return (
     <div>
       <h1 style={{ textAlign: 'center' }}>Donor Details</h1>
-      <form ref={form} className="form">
+      <form ref={form}>
         <Field label="First Name" id="first-name" name="firstName" />
         <Field label="Last Name" id="last-name" name="lastName" />
         <Field label="Email" id="email" name="email" />
@@ -57,7 +57,7 @@ function UserDetails() {
         <Field label="Area" id="area" name="area" />
         <Field label="Governorate" id="governorate" name="governorate" />
         <Field label="Role" id="role" name="role" />
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '10px' , marginTop: '20px'}} className="div">
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '10px' , marginTop: '20px'}}>
           <Button type="primary" onClick={handleAccept}>Accept</Button>
           <Button type="primary" onClick={handleReject}>Reject</Button>
           <Button type="primary" onClick={handleDownload}>Download</Button>
@@ -66,4 +66,4 @@ function UserDetails() {
     </div>
   );
 }
-export default UserDetails;
+export default TeacherDetails;
