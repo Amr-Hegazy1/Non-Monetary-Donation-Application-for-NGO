@@ -48,6 +48,7 @@ import DetailsOfFoodToBeDonated from './components/DetailsOfFoodToBeDonated';
 import ViewDonorDetailsForFulfilledPosts from './components/ViewDonorDetailsForFulfilledPosts';
 import { CookiesProvider } from 'react-cookie';
 import ViewEstimatedTime from './components/ViewEstimatedArrival';
+import TeacherDetails from './components/TeacherDetails';
 
 
 
@@ -61,14 +62,15 @@ root.render(
         <BrowserRouter>
           <Suspense>
             <Routes>
-              <Route index element={<Homepage/>} />
+              <Route index element={<AdminApp/>} />
               <Route path="/donateClothes" element={<DetailsOfClothesToBeDonated/>} />
               <Route path="/view-donor-request-info" element={<RequestInfo/>} />
               <Route path="/view-org-request-info" element={<OrganizationRequestInfo/>} />
               <Route path="/view-org-submission-info" element={<OrganizationDetails/>} />
               <Route path="/view-donor-submission-info" element={<UserDetails/>} />
               <Route path="/view-org-registered-info" element={<OrganizationDetails/>} />
-              <Route path="/view-donor-registered-info" element={<UserDetails/>} />
+              <Route path="/view-doctor-registered-info" element={<UserDetails/>} />
+              <Route path="/view-teacher-registered-info" element={<TeacherDetails/>} />
               <Route path="/login" element={<AdminLogin/>} />
               <Route path="/AdminHome" element={<AdminApp/>} />
               <Route path="/ChangePassword" element={<PasswordManagement/>} />

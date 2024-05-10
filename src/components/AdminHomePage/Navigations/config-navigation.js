@@ -47,9 +47,22 @@ const NavConfig = [
       },
       {
         title: 'Manage Donors',
-        path: '/registeredDonors',
         icon: icon('ic_donors.svg'),
         color: '#602b37',
+        subMenu: [
+          {
+            title: 'Registered Doctors',
+            path: '/registeredDoctors',
+            icon: icon('ic_donors.svg'),
+            color: '#602b37',
+          },
+          {
+            title: 'Registered Teachers',
+            path: '/registeredTeachers',
+            icon: icon('ic_donors.svg'),
+            color: '#602b37',
+          },
+        ],
       },
     ],
   },

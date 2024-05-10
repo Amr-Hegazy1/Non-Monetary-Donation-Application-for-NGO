@@ -11,18 +11,18 @@ const Field = ({ label, id, ...rest }) => (
   </div>
 );
 
-function UserDetails() {
+function TeacherDetails() {
   const { form } = useForm({
     defaultValues: {
-      firstName: "Paul",
-      lastName: "Pogba",
-      email: "paul.pogba@gmail.com",
+      firstName: "Kevin",
+      lastName: "De Bruyne",
+      email: "Kevin.debruyne@gmail.com",
       gender: "Male",
       contactNumber: "+201234567890",
-      address: "1234 Elm St",
+      address: "4321 Elm St",
       area: "Springfield",
       governorate: "IL",
-      role: "Doctor",
+      role: "Teacher",
     },
     onSubmit: (values) => alert(JSON.stringify(values, undefined, 2)),
   });
@@ -31,12 +31,12 @@ function UserDetails() {
 
   const handleAccept = () => {
     // Confirm accept action
-    message.success('Doctor accepted');
+    message.success('Teacher accepted');
   };
 
   const handleReject = () => {
     // Confirm reject action
-    message.error('Doctor rejected');
+    message.error('Teacher rejected');
   };
 
   const handleDownload = () => {
@@ -66,4 +66,4 @@ function UserDetails() {
     </div>
   );
 }
-export default UserDetails;
+export default TeacherDetails;
