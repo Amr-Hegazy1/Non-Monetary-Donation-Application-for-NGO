@@ -143,15 +143,22 @@ export default function AdminSideNav() {
 
 }
 
-function NavItem({ item , changeItem }) {
-    const [open, setOpen] = useState(false);
+function NavItem({ item, changeItem }) {
+    const [acoountOpen, setAcoountOpen] = useState(false);
+    const [donorOpen, setDonorOpen] = useState(false);
 
-    const handleClick = (e) => {
-        
+    const handleClick = (e, submenu) => {
+
         if (item.subMenu) {
+            console.log("submenu", submenu, "e", e);
             e.preventDefault();
-            setOpen(!open);
-        } 
+            if (submenu === "Donor") {
+                setDonorOpen(!donorOpen);
+            }else {
+                setAcoountOpen(!acoountOpen);
+            }
+            
+        }
 
     };
 
@@ -165,9 +172,41 @@ function NavItem({ item , changeItem }) {
                 {item.subMenu && <ExpandMoreIcon />}
             </ListItemButton>
             {item.subMenu && (
-                <Collapse in={open} timeout="auto" unmountOnExit>
+                <Collapse in={acoountOpen} timeout="auto" unmountOnExit>
                     {item.subMenu.map((subItem, index) => (
-                        <a href={subItem.path} onClick={(e) => changeItem(e, subItem)}>
+                        (subItem.subMenu) ? (<>{item.subMenu && <><ListItemButton onClick={(e) => {handleClick(e, "Donor")}} >
+                            <Box component="span" sx={{ width: 24, height: 24, mr: 2 }}>
+                                {item.icon}
+                            </Box>
+                            <Box component="span">{subItem.title}</Box>
+                            {subItem.subMenu && <ExpandMoreIcon />}
+                        </ListItemButton></>}<Collapse in={donorOpen} timeout="auto" unmountOnExit>
+                                {subItem.subMenu.map((subSubItem, index) => (
+                                    <a href={subSubItem.path} onClick={(e) => changeItem(e, subSubItem)}>
+                                        <ListItemButton
+                                            key={index}
+                                            onClick={handleClick}
+                                            sx={{
+                                                minHeight: 44,
+                                                borderRadius: 0.75,
+                                                color: '#602b37',
+                                                textTransform: 'capitalize',
+                                                fontWeight: 'fontWeightMedium',
+                                                marginX: 2,
+                                                ...({
+                                                    color: '#602b37',
+                                                    fontWeight: 'fontWeightMedium',
+                                                }),
+                                            }}
+                                        >
+                                            <Box component="span" sx={{ width: 24, height: 24, mr: 2 }}>
+                                                {subSubItem.icon}
+                                            </Box>
+                                            <Box component="span">{subSubItem.title}</Box>
+                                        </ListItemButton>
+                                    </a>
+                                ))}
+                            </Collapse></>) : <a href={subItem.path} onClick={(e) => changeItem(e, subItem)}>
                             <ListItemButton
                                 key={index}
                                 onClick={handleClick}

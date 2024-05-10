@@ -3,7 +3,6 @@ import SvgColor from '../svg-color';
 import IndexPage from '../AppPage/appPage';
 import OrganizationList from '../../OrganizationList';
 import RegisteredOrganizations from '../../RegisteredOrganizations';
-import RegisteredDonors from '../../RegisteredDonors';
 import DonorRequests from '../../DonorRequests';
 import OrganizationRequests from '../OrganizationRequests';
 import PasswordManagement from '../../../PasswordManagement';

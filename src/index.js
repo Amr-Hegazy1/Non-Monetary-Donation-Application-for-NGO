@@ -47,7 +47,10 @@ import DetailsOfStationaryToBeDonated from './components/DetailsOfStationaryToBe
 import DetailsOfFoodToBeDonated from './components/DetailsOfFoodToBeDonated';
 import ViewDonorDetailsForFulfilledPosts from './components/ViewDonorDetailsForFulfilledPosts';
 import { CookiesProvider } from 'react-cookie';
-import ViewEstimatedTime from './components/ViewEstimatedArrival';
+import DonorMyDonations from './components/DonorMyDonations';
+import DonorMyDonationDetails from './components/DonorMyDonationDetails';
+import Dashboard from './components/DeliveryPerson/Dashboard';
+
 
 
 
@@ -67,8 +70,8 @@ root.render(
               <Route path="/view-donor-submission-info" element={<UserDetails/>} />
               <Route path="/view-org-registered-info" element={<OrganizationDetails/>} />
               <Route path="/view-donor-registered-info" element={<UserDetails/>} />
-              <Route path="/login" element={<AdminLogin/>} />
-              <Route path="/AdminHome" element={<AdminApp/>} />
+              <Route path="/login" element={<Login/>} />
+              <Route path="/AdminHome" element={<AdminHome/>} />
               <Route path="/ChangePassword" element={<PasswordManagement/>} />
               <Route path="/Verify" element={<VerifyCodePage/>} />   
              <Route path = "/RequestClothes" element={<RequestClothes/>} />
