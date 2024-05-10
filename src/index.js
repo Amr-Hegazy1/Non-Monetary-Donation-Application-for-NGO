@@ -54,6 +54,7 @@ import RegisteredDonors from './components/RegisteredDonors';
 import RegisteredOrganizations from './components/RegisteredOrganizations';
 import OrganizationRequests from './components/AdminHomePage/OrganizationRequests';
 import DonorRequests from './components/DonorRequests';
+import Dashboard from './components/DeliveryPerson/Dashboard';
 
 
 
@@ -116,6 +117,7 @@ root.render(
               <Route path="/schedulePickup" element={<SchedulePickup />} />
               <Route path="/donorViewAllDonations" element={<DonorMyDonations />} />
               <Route path="/donorMyDonationDetails" element={<DonorMyDonationDetails />} />
+              <Route path="/delieveyPersonDashboard" element={<Dashboard />} />
 
 
             </Routes>

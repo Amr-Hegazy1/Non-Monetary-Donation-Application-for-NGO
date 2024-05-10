@@ -97,7 +97,7 @@ export default function DonorMyDonationDetails() {
                             <List.Item.Meta
 
                                 title={<a href={item.href} style={{ fontFamily: 'Arial, sans-serif', fontSize: '28px', color: '#620b37', fontWeight: 'bold', textDecoration: 'none' }}>{item.title}</a>}
-                                description={<span style={{ fontSize: '20px', fontFamily: 'Arial, sans-serif', color: '#666', fontStyle: 'italic', marginLeft: "4%" }}>{<><ViewEstimatedTime /><br/>{item.description}</>}</span>} />
+                                description={<span style={{ fontSize: '20px', fontFamily: 'Arial, sans-serif', color: '#666', fontStyle: 'italic', marginLeft: "4%" }}>{<>{(fulfilled === 'false') ?  <ViewEstimatedTime /> : null}<br/>{item.description}</>}</span>} />
 
                             {<span style={{ fontSize: '20px', fontFamily: 'Times New Roman, sans-serif', color: '#333', lineHeight: '1.6' }}>{item.content}</span>}
                         </List.Item>
