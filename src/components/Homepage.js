@@ -34,7 +34,7 @@ export default function Homepage() {
             <section id="home" className="welcome-hero">
                 <div className="container">
                     <div className="welcome-hero-txt">
-                        <h2>best place to find and explore <br/> that all you need </h2>
+                        <h2 className="homepage-headers">best place to find and explore <br/> that all you need </h2>
                         <p>
                             Find Best Place, Restaurant, Hotel, Real State and many more think in just One click
                         </p>
@@ -50,60 +50,72 @@ export default function Homepage() {
                 <div className="container">
                     <div className="list-topics-content">
                         <ul className="center">
-                            <li>
-                                <div className="single-list-topics-content">
-                                    <div className="single-list-topics-icon">
-                                        <i className="icon icon-hospital"></i>
+                            <a className="homepage-anchors" href="/ViewDonationRequests?category=Medical_Cases">
+                                <li>
+                                    <div className="single-list-topics-content">
+                                        <div className="single-list-topics-icon">
+                                            <i className="icon icon-hospital"></i>
+                                        </div>
+                                        <h2 className="homepage-headers"><a className="homepage-anchors" href="#">Hospitals</a></h2>
+                                        <p>200 listings</p>
                                     </div>
-                                    <h2><a href="#">Hospitals</a></h2>
-                                    <p>200 listings</p>
-                                </div>
-                            </li>
-                            <li>
-                                <div className="single-list-topics-content">
-                                    <div className="single-list-topics-icon">
-                                        <i className="icon icon-school"></i>
+                                </li>
+                            </a>
+                            <a className="homepage-anchors" href="/ViewDonationRequests?category=School_Supplies">
+                                <li>
+                                    <div className="single-list-topics-content">
+                                        <div className="single-list-topics-icon">
+                                            <i className="icon icon-school"></i>
+                                        </div>
+                                        <h2 className="homepage-headers"><a className="homepage-anchors" href="#">Schools</a></h2>
+                                        <p>150 listings</p>
                                     </div>
-                                    <h2><a href="#">Schools</a></h2>
-                                    <p>150 listings</p>
-                                </div>
-                            </li>
-                            <li>
-                                <div className="single-list-topics-content">
-                                    <div className="single-list-topics-icon">
-                                        <i className="icon icon-mosque"></i>
+                                </li>
+                            </a>
+                            <a className="homepage-anchors" href="/ViewDonationRequests?category=Mosques">
+                                <li>
+                                    <div className="single-list-topics-content">
+                                        <div className="single-list-topics-icon">
+                                            <i className="icon icon-mosque"></i>
+                                        </div>
+                                        <h2 className="homepage-headers"><a className="homepage-anchors" href="#">Mosques</a></h2>
+                                        <p>214 listings</p>
                                     </div>
-                                    <h2><a href="#">Mosques</a></h2>
-                                    <p>214 listings</p>
-                                </div>
-                            </li>
-                            <li>
-                                <div className="single-list-topics-content">
-                                    <div className="single-list-topics-icon">
-                                        <i className="icon icon-church"></i>
+                                </li>
+                            </a>
+                            <a className="homepage-anchors" href="/ViewDonationRequests?category=Churches">
+                                <li>
+                                    <div className="single-list-topics-content">
+                                        <div className="single-list-topics-icon">
+                                            <i className="icon icon-church"></i>
+                                        </div>
+                                        <h2 className="homepage-headers"><a className="homepage-anchors" href="#">Churches</a></h2>
+                                        <p>185 listings</p>
                                     </div>
-                                    <h2><a href="#">Churches</a></h2>
-                                    <p>185 listings</p>
-                                </div>
-                            </li>
-                            <li>
-                                <div className="single-list-topics-content">
-                                    <div className="single-list-topics-icon">
-                                        <i className="icon icon-orphanage"></i>
+                                </li>
+                            </a>
+                            <a className="homepage-anchors" href="/ViewDonationRequests?category=Orphanages">
+                                <li>
+                                    <div className="single-list-topics-content">
+                                        <div className="single-list-topics-icon">
+                                            <i className="icon icon-orphanage"></i>
+                                        </div>
+                                        <h2 className="homepage-headers"><a className="homepage-anchors" href="#">Orphanage</a></h2>
+                                        <p>120 listings</p>
                                     </div>
-                                    <h2><a href="#">Orphanage</a></h2>
-                                    <p>120 listings</p>
-                                </div>
-                            </li>
-                            <li>
-                                <div className="single-list-topics-content">
-                                    <div className="single-list-topics-icon">
-                                        <i className="icon icon-non-profit"></i>
+                                </li>
+                            </a>
+                            <a  href="/ViewDonationRequests?category=">
+                                <li>
+                                    <div className="single-list-topics-content">
+                                        <div className="single-list-topics-icon">
+                                            <i className="icon icon-non-profit"></i>
+                                        </div>
+                                        <h2 className="homepage-headers"><a href="#">Non-Profits</a></h2>
+                                        <p>120 listings</p>
                                     </div>
-                                    <h2><a href="#">Non-Profits</a></h2>
-                                    <p>120 listings</p>
-                                </div>
-                            </li>
+                                </li>
+                            </a>
                             
                         </ul>
                     </div>
@@ -116,7 +128,7 @@ export default function Homepage() {
             <section id="works" className="works">
                 <div className="container">
                     <div className="section-header">
-                        <h2>how it works</h2>
+                        <h2 className="homepage-headers">how it works</h2>
                         <p>Learn More about how our website works</p>
                     </div>
                     <div className="works-content">
@@ -126,7 +138,7 @@ export default function Homepage() {
                                     <div className="single-how-works-icon">
                                         <i className="flaticon-lightbulb-idea"></i>
                                     </div>
-                                    <h2><a href="#">choose <span> what to</span> do</a></h2>
+                                    <h2 className="homepage-headers"><a href="#">choose <span> what to</span> do</a></h2>
                                     <p>
                                         Lorem ipsum dolor sit amet, consecte adipisicing elit, sed do eiusmod tempor incididunt ut laboremagna aliqua.
                                     </p>
@@ -140,7 +152,7 @@ export default function Homepage() {
                                     <div className="single-how-works-icon">
                                         <i className="flaticon-networking"></i>
                                     </div>
-                                    <h2><a href="#">find <span> what you want</span></a></h2>
+                                    <h2 className="homepage-headers"><a href="#">find <span> what you want</span></a></h2>
                                     <p>
                                         Lorem ipsum dolor sit amet, consecte adipisicing elit, sed do eiusmod tempor incididunt ut laboremagna aliqua.
                                     </p>
@@ -154,7 +166,7 @@ export default function Homepage() {
                                     <div className="single-how-works-icon">
                                         <i className="flaticon-location-on-road"></i>
                                     </div>
-                                    <h2><a href="#">explore <span> amazing</span> place</a></h2>
+                                    <h2 className="homepage-headers"><a href="#">explore <span> amazing</span> place</a></h2>
                                     <p>
                                         Lorem ipsum dolor sit amet, consecte adipisicing elit, sed do eiusmod tempor incididunt ut laboremagna aliqua.
                                     </p>
@@ -174,7 +186,7 @@ export default function Homepage() {
             <section id="explore" className="explore">
                 <div className="container">
                     <div className="section-header">
-                        <h2>explore</h2>
+                        <h2 className="homepage-headers">explore</h2>
                         <p>Explore New place, food, culture around the world and many more</p>
                     </div>
                     <div className="explore-content">
@@ -202,7 +214,7 @@ export default function Homepage() {
                                             </div>
                                     </div>
                                     <div className="single-explore-txt bg-theme-1">
-                                        <h2><a href="#">tommy helfinger bar</a></h2>
+                                        <h2 className="homepage-headers"><a href="#">tommy helfinger bar</a></h2>
                                         <p className="explore-rating-price">
                                             <span className="explore-rating">5.0</span>
                                             <a href="#"> 10 ratings</a>
@@ -268,7 +280,7 @@ export default function Homepage() {
                                             </div>
                                     </div>
                                     <div className="single-explore-txt bg-theme-2">
-                                        <h2><a href="#">swim and dine resort</a></h2>
+                                        <h2 className="homepage-headers"><a href="#">swim and dine resort</a></h2>
                                         <p className="explore-rating-price">
                                             <span className="explore-rating">4.5</span>
                                             <a href="#"> 8 ratings</a>
@@ -334,7 +346,7 @@ export default function Homepage() {
                                             </div>
                                     </div>
                                     <div className="single-explore-txt bg-theme-3">
-                                        <h2><a href="#">europe tour</a></h2>
+                                        <h2 className="homepage-headers"><a href="#">europe tour</a></h2>
                                         <p className="explore-rating-price">
                                             <span className="explore-rating">5.0</span>
                                             <a href="#"> 15 ratings</a>
@@ -400,7 +412,7 @@ export default function Homepage() {
                                             </div>
                                     </div>
                                     <div className="single-explore-txt bg-theme-4">
-                                        <h2><a href="#">banglow with swiming pool</a></h2>
+                                        <h2 className="homepage-headers"><a href="#">banglow with swiming pool</a></h2>
                                         <p className="explore-rating-price">
                                             <span className="explore-rating">5.0</span>
                                             <a href="#"> 10 ratings</a>
@@ -466,7 +478,7 @@ export default function Homepage() {
                                             </div>
                                     </div>
                                     <div className="single-explore-txt bg-theme-2">
-                                        <h2><a href="#">vintage car expo</a></h2>
+                                        <h2 className="homepage-headers"><a href="#">vintage car expo</a></h2>
                                         <p className="explore-rating-price">
                                             <span className="explore-rating">4.2</span>
                                             <a href="#"> 8 ratings</a>
@@ -532,7 +544,7 @@ export default function Homepage() {
                                             </div>
                                     </div>
                                     <div className="single-explore-txt bg-theme-5">
-                                        <h2><a href="#">thailand tour</a></h2>
+                                        <h2 className="homepage-headers"><a href="#">thailand tour</a></h2>
                                         <p className="explore-rating-price">
                                             <span className="explore-rating">5.0</span>
                                             <a href="#"> 15 ratings</a>
@@ -585,7 +597,7 @@ export default function Homepage() {
             
             <section id="reviews" className="reviews">
                 <div className="section-header">
-                    <h2>clients reviews</h2>
+                    <h2 className="homepage-headers">clients reviews</h2>
                     <p>What our client say about us</p>
                 </div>
                 <div className="reviews-content">
@@ -597,8 +609,8 @@ export default function Homepage() {
                                         <img src="assets/images/clients/c1.png" alt="clients" />
                                     </div>
                                     <div className="testimonial-person">
-                                        <h2>Tom Leakar</h2>
-                                        <h4>london, UK</h4>
+                                        <h2 className="homepage-headers">Tom Leakar</h2>
+                                        <h4 className="homepage-headers">london, UK</h4>
                                         <div className="testimonial-person-star">
                                             <i className="fa fa-star"></i>
                                             <i className="fa fa-star"></i>
@@ -622,8 +634,8 @@ export default function Homepage() {
                                         <img src="assets/images/clients/c2.png" alt="clients" />
                                     </div>
                                     <div className="testimonial-person">
-                                        <h2>monirul islam</h2>
-                                        <h4>london, UK</h4>
+                                        <h2 className="homepage-headers">monirul islam</h2>
+                                        <h4 className="homepage-headers">london, UK</h4>
                                         <div className="testimonial-person-star">
                                             <i className="fa fa-star"></i>
                                             <i className="fa fa-star"></i>
@@ -647,8 +659,8 @@ export default function Homepage() {
                                         <img src="assets/images/clients/c3.png" alt="clients" />
                                     </div>
                                     <div className="testimonial-person">
-                                        <h2>Shohrab Hossain</h2>
-                                        <h4>london, UK</h4>
+                                        <h2 className="homepage-headers">Shohrab Hossain</h2>
+                                        <h4 className="homepage-headers">london, UK</h4>
                                         <div className="testimonial-person-star">
                                             <i className="fa fa-star"></i>
                                             <i className="fa fa-star"></i>
@@ -672,8 +684,8 @@ export default function Homepage() {
                                         <img src="assets/images/clients/c4.png" alt="clients" />
                                     </div>
                                     <div className="testimonial-person">
-                                        <h2>Tom Leakar</h2>
-                                        <h4>london, UK</h4>
+                                        <h2 className="homepage-headers">Tom Leakar</h2>
+                                        <h4 className="homepage-headers">london, UK</h4>
                                         <div className="testimonial-person-star">
                                             <i className="fa fa-star"></i>
                                             <i className="fa fa-star"></i>
@@ -697,8 +709,8 @@ export default function Homepage() {
                                         <img src="assets/images/clients/c1.png" alt="clients" />
                                     </div>
                                     <div className="testimonial-person">
-                                        <h2>Tom Leakar</h2>
-                                        <h4>london, UK</h4>
+                                        <h2 className="homepage-headers">Tom Leakar</h2>
+                                        <h4 className="homepage-headers">london, UK</h4>
                                         <div className="testimonial-person-star">
                                             <i className="fa fa-star"></i>
                                             <i className="fa fa-star"></i>
@@ -722,8 +734,8 @@ export default function Homepage() {
                                         <img src="assets/images/clients/c2.png" alt="clients" />
                                     </div>
                                     <div className="testimonial-person">
-                                        <h2>monirul islam</h2>
-                                        <h4>london, UK</h4>
+                                        <h2 className="homepage-headers">monirul islam</h2>
+                                        <h4 className="homepage-headers">london, UK</h4>
                                         <div className="testimonial-person-star">
                                             <i className="fa fa-star"></i>
                                             <i className="fa fa-star"></i>
@@ -747,8 +759,8 @@ export default function Homepage() {
                                         <img src="assets/images/clients/c3.png" alt="clients"/>
                                     </div>
                                     <div className="testimonial-person">
-                                        <h2>Shohrab Hossain</h2>
-                                        <h4>london, UK</h4>
+                                        <h2 className="homepage-headers">Shohrab Hossain</h2>
+                                        <h4 className="homepage-headers">london, UK</h4>
                                         <div className="testimonial-person-star">
                                             <i className="fa fa-star"></i>
                                             <i className="fa fa-star"></i>
@@ -772,8 +784,8 @@ export default function Homepage() {
                                         <img src="assets/images/clients/c4.png" alt="clients"/>
                                     </div>
                                     <div className="testimonial-person">
-                                        <h2>Tom Leakar</h2>
-                                        <h4>london, UK</h4>
+                                        <h2 className="homepage-headers">Tom Leakar</h2>
+                                        <h4 className="homepage-headers">london, UK</h4>
                                         <div className="testimonial-person-star">
                                             <i className="fa fa-star"></i>
                                             <i className="fa fa-star"></i>
@@ -805,7 +817,7 @@ export default function Homepage() {
                                 <div className="statistics-content">
                                     <div className="counter">90 </div> <span>K+</span>
                                 </div>
-                                <h3>listings</h3>
+                                <h3 className="homepage-headers">listings</h3>
                             </div>
                         </div>
                         <div className="col-md-3 col-sm-6">
@@ -813,7 +825,7 @@ export default function Homepage() {
                                 <div className="statistics-content">
                                     <div className="counter">40</div> <span>k+</span>
                                 </div>
-                                <h3>listing categories</h3>
+                                <h3 className="homepage-headers">listing categories</h3>
                             </div>
                         </div>
                         <div className="col-md-3 col-sm-6">
@@ -821,7 +833,7 @@ export default function Homepage() {
                                 <div className="statistics-content">
                                     <div className="counter">65</div> <span>k+</span>
                                 </div>
-                                <h3>visitors</h3>
+                                <h3 className="homepage-headers">visitors</h3>
                             </div>
                         </div>
                         <div className="col-md-3 col-sm-6">
@@ -829,7 +841,7 @@ export default function Homepage() {
                                 <div className="statistics-content">
                                     <div className="counter">50</div> <span>k+</span>
                                 </div>
-                                <h3>happy clients</h3>
+                                <h3 className="homepage-headers">happy clients</h3>
                             </div>
                         </div>
                     </div>
@@ -841,7 +853,7 @@ export default function Homepage() {
             <section id="blog" className="blog" >
                 <div className="container">
                     <div className="section-header">
-                        <h2>news and articles</h2>
+                        <h2 className="homepage-headers">news and articles</h2>
                         <p>Always upto date with our latest News and Articles </p>
                     </div>
                     <div className="blog-content">
@@ -852,8 +864,8 @@ export default function Homepage() {
                                         <img src="assets/images/blog/b1.jpg" alt="blog image"/>
                                     </div>
                                     <div className="single-blog-item-txt">
-                                        <h2><a href="#">How to find your Desired Place more quickly</a></h2>
-                                        <h4>posted <span>by</span> <a href="#">admin</a> march 2018</h4>
+                                        <h2 className="homepage-headers"><a href="#">How to find your Desired Place more quickly</a></h2>
+                                        <h4 className="homepage-headers">posted <span>by</span> <a href="#">admin</a> march 2018</h4>
                                         <p>
                                             Lorem ipsum dolor sit amet, consectetur de adipisicing elit, sed do eiusmod tempore incididunt ut labore et dolore magna.
                                         </p>
@@ -866,8 +878,8 @@ export default function Homepage() {
                                         <img src="assets/images/blog/b2.jpg" alt="blog image"/>
                                     </div>
                                     <div className="single-blog-item-txt">
-                                        <h2><a href="#">How to find your Desired Place more quickly</a></h2>
-                                        <h4>posted <span>by</span> <a href="#">admin</a> march 2018</h4>
+                                        <h2 className="homepage-headers"><a href="#">How to find your Desired Place more quickly</a></h2>
+                                        <h4 className="homepage-headers">posted <span>by</span> <a href="#">admin</a> march 2018</h4>
                                         <p>
                                             Lorem ipsum dolor sit amet, consectetur de adipisicing elit, sed do eiusmod tempore incididunt ut labore et dolore magna.
                                         </p>
@@ -880,8 +892,8 @@ export default function Homepage() {
                                         <img src="assets/images/blog/b3.jpg" alt="blog image" />
                                     </div>
                                     <div className="single-blog-item-txt">
-                                        <h2><a href="#">How to find your Desired Place more quickly</a></h2>
-                                        <h4>posted <span>by</span> <a href="#">admin</a> march 2018</h4>
+                                        <h2 className="homepage-headers"><a href="#">How to find your Desired Place more quickly</a></h2>
+                                        <h4 className="homepage-headers">posted <span>by</span> <a href="#">admin</a> march 2018</h4>
                                         <p>
                                             Lorem ipsum dolor sit amet, consectetur de adipisicing elit, sed do eiusmod tempore incididunt ut labore et dolore magna.
                                         </p>
@@ -898,7 +910,7 @@ export default function Homepage() {
             <section id="contact" className="subscription">
                 <div className="container">
                     <div className="subscribe-title text-center">
-                        <h2>
+                        <h2 className="homepage-headers">
                             do you want to add your business listing with us?
                         </h2>
                         <p>

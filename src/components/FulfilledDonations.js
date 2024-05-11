@@ -120,7 +120,7 @@ const FulfilledDonations = () => {
                         <AccordionActions>
                         <Button color='warning' onClick={() => showDeleteConfirm("Donation " + (i+1))}>Delete</Button>
                         <Button color='success'>Acknowledge</Button>
-                        <Button onClick={() => window.location.href = '/viewDonorDetailsForFulfilledPosts'}>View Details</Button>
+                        <Button onClick={() => window.location.href = '/donorDetails'}>View Details</Button>
                         </AccordionActions>
                 </Accordion>
             );

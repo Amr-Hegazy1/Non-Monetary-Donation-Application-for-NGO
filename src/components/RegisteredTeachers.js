@@ -4,13 +4,13 @@ import VirtualList from 'rc-virtual-list';
 import { Row, Col } from 'antd';
 import { message } from 'antd';
 import { Modal } from 'antd';
-import './RegisteredDonors.css';
+import './RegisteredTeachers.css';
 
 const fakeDataUrl =
   'https://randomuser.me/api/?results=20&inc=name,gender,email,nat,picture&noinfo';
 const ContainerHeight = 400;
 
-const RegisteredDonors = () => {
+const RegisteredTeachers = () => {
   const [data, setData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -58,12 +58,12 @@ const RegisteredDonors = () => {
   const filteredData = data.filter(item => item.name.last.toLowerCase().includes(searchTerm.toLowerCase()));
 
   return (
-    <div className='RegisteredDonors'>
-      <h1 className='RegisteredDonors-header'>Registered Donors</h1>
+    <div className='RegisteredTeachers'>
+      <h1 className='RegisteredTeachers-header'>Registered Teachers</h1>
       <Row justify="center">
       <Col span={12}>
       <Input className='search-box' 
-         placeholder="Search for a Donor" 
+         placeholder="Search for a Teacher" 
          onChange={e => setSearchTerm(e.target.value)} 
          style={{ maxWidth: '500px', width: '100%' }}
         />
@@ -87,7 +87,7 @@ const RegisteredDonors = () => {
                 description={item.email}
               />
               </div>
-              <Button className="view-button" type="link" size="small" href='/view-donor-registered-info' >View Info</Button>
+              <Button className="view-button" type="link" size="small" href='/view-teacher-registered-info' >View Info</Button>
               <Button className="delete-button" type="link" size="small" onClick={() => handleDelete(item.email)}>Delete</Button>
           </List.Item>
           )}
@@ -97,4 +97,4 @@ const RegisteredDonors = () => {
   );
 };
 
-export default RegisteredDonors;
+export default RegisteredTeachers;

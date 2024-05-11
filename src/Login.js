@@ -11,7 +11,7 @@ import { useCookies } from 'react-cookie';
 
 
 
-function AdminLogin() {
+function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false); // State for password visibility
@@ -70,7 +70,7 @@ function AdminLogin() {
       <div className="text-center">
           <img src="logo.png" style={{ width: '185px' }} alt="logo" />
           <h4 className="mt-1 mb-5 pb-1" style={{color: '#602b37', fontSize: '24px', fontWeight: 'bold', textShadow: '2px 2px 4px #aaa'}}>
-              Admin Login
+            Login
           </h4>     
       </div>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -115,7 +115,7 @@ function AdminLogin() {
             </a>
           </div>
      
-          <Button variant="contained" href ="/AdminHome" onClick={handleLogin} 
+          <Button variant="contained" onClick={handleLogin} 
           style={{
             width: '300px', 
             backgroundColor: '#602b37', 
@@ -136,4 +136,4 @@ function AdminLogin() {
   );
 }
 
-export default AdminLogin;
+export default Login;

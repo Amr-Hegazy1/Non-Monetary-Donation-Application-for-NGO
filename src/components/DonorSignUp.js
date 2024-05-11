@@ -68,44 +68,44 @@ const defaultTheme = createTheme();
 export default function DonorSignUp() {
 
   const subjects = ["Math", "Science", "English", "History", "Art", "Music", "Physical Education", "Computer Science", "Biology", "Chemistry", "Physics", "Geography", "Economics", "Government", "Psychology", "Sociology", "Anthropology", "Philosophy", "Theology", "Engineering", "Business", "Marketing", "Accounting", "Finance", "Management", "Human Resources", "Operations", "Supply Chain", "Logistics", "Information Technology", "Data Science", "Machine Learning", "Artificial Intelligence", "Cybersecurity", "Networks", "Databases", "Web Development", "Mobile Development", "Game Development", "Software Development", "Hardware Development", "Robotics", "Automation", "Internet of Things", "Cloud Computing", "Big Data", "Blockchain", "Cryptocurrency", "Digital Marketing", "Social Media", "Search Engine Optimization", "Content Marketing", "Email Marketing", "Affiliate Marketing", "Influencer Marketing", "Public Relations", "Advertising", "Sales", "Customer Service", "Customer Success", "Customer Experience", "User Experience", "User Interface", "Product Management", "Project Management", "Quality Assurance", "Quality Control", "Compliance", "Regulatory Affairs", "Legal", "Risk Management", "Audit", "Tax", "Insurance", "Real Estate", "Construction", "Architecture", "Interior Design", "Urban Planning", "Landscape Architecture", "Civil Engineering", "Mechanical Engineering", "Electrical Engineering", "Chemical Engineering", "Aerospace Engineering", "Biomedical Engineering", "Environmental Engineering", "Materials Science", "Nanotechnology", "Physics", "Chemistry", "Biology", "Geology", "Meteorology", "Oceanography", "Astronomy", "Astrophysics", "Cosmology", "Theoretical Physics", "Particle Physics", "Quantum Physics", "Nuclear Physics", "Atomic Physics", "Molecular Physics", "Solid State Physics", "Fluid Dynamics", "Thermodynamics", "Electromagnetism", "Optics", "Acoustics", "Quantum Mechanics", "General Relativity", "Special Relativity", "String Theory", "M-Theory", "Loop Quantum Gravity", "Quantum Field Theory", "Quantum Chromodynamics", "Quantum Electrodynamics", "Quantum Gravity"];
-  
-  
+
+
 
   const [position, setPosition] = React.useState([29.98693069424653, 31.44078789655661]);
   const [volenteerRole, setVolenteerRole] = React.useState('Regular Donor');
   const [isFileUploaded, setIsFileUploaded] = React.useState(false);
-  
+
   const props = {
     name: 'file',
     multiple: true,
     beforeUpload: file => {
       const reader = new FileReader();
-  
+
       reader.onload = e => {
-          console.log(e.target.result);
+        console.log(e.target.result);
       };
-       
+
       // save the file to public folder
       reader.readAsDataURL(file);
-      
-      
-  
+
+
+
       setIsFileUploaded(true);
-      
-  
+
+
       // Prevent upload
       return false;
     },
-  
+
     onChange(info) {
-  
+
       const { status } = info.file;
       if (status !== 'uploading') {
         console.log(info.file, info.fileList);
       }
       if (status === 'done' || status === 'error') {
         message.success(`${info.file.name} file uploaded successfully.`);
-      } 
+      }
     },
     onDrop(e) {
       console.log('Dropped files', e.dataTransfer.files);
@@ -117,23 +117,23 @@ export default function DonorSignUp() {
     //   }, 0);
     // },
   };
-  
+
 
 
 
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    
-    
+
+
   };
 
   const LocationFinderDummy = () => {
     const map = useMapEvents({
-        click(e) {
-            console.log(e.latlng);
-            setPosition([e.latlng.lat, e.latlng.lng]);
-        },
+      click(e) {
+        console.log(e.latlng);
+        setPosition([e.latlng.lat, e.latlng.lng]);
+      },
     });
     return null;
   };
@@ -150,42 +150,42 @@ export default function DonorSignUp() {
             alignItems: 'center',
           }}
         >
-          
-          
+
+
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-          <Grid container spacing={2}>
-            <Grid item xs>
+            <Grid container spacing={2}>
+              <Grid item xs>
                 <TextField
-                    margin="normal"
-                    required
-                    fullWidth
-                    
-                    label="First Name"
-                    autoFocus
-                    />
-            </Grid>
-            <Grid item>
-                    <TextField
-                    margin="normal"
-                    required
-                    fullWidth
-                    
-                    label="Last Name"
-                    autoFocus
-                    />
-            </Grid>
+                  margin="normal"
+                  required
+                  fullWidth
+
+                  label="First Name"
+                  autoFocus
+                />
+              </Grid>
+              <Grid item>
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+
+                  label="Last Name"
+                  autoFocus
+                />
+              </Grid>
             </Grid>
             <FormControl>
-                <FormLabel id="demo-row-radio-buttons-group-label">Gender</FormLabel>
-                    <RadioGroup
-                        row
-                        aria-labelledby="demo-row-radio-buttons-group-label"
-                        name="row-radio-buttons-group"
-                    >
-                        <FormControlLabel value="female" control={<Radio style={{color: COLORS.primary}}/>} label="Female" />
-                        <FormControlLabel value="male" control={<Radio style={{color: COLORS.primary}}/>} label="Male" />
-                    </RadioGroup>
-                </FormControl>
+              <FormLabel id="demo-row-radio-buttons-group-label">Gender</FormLabel>
+              <RadioGroup
+                row
+                aria-labelledby="demo-row-radio-buttons-group-label"
+                name="row-radio-buttons-group"
+              >
+                <FormControlLabel value="female" control={<Radio style={{ color: COLORS.primary }} />} label="Female" />
+                <FormControlLabel value="male" control={<Radio style={{ color: COLORS.primary }} />} label="Male" />
+              </RadioGroup>
+            </FormControl>
             <TextField
               margin="normal"
               required
@@ -207,97 +207,97 @@ export default function DonorSignUp() {
               autoComplete="current-password"
             />
             <PhoneInput
-                defaultCountry="eg"
-                style={{width: '100%'}}
-                required
+              defaultCountry="eg"
+              style={{ width: '100%' }}
+              required
             />
-            <br/>
-            
+            <br />
+
             <FormControl fullWidth required>
-                <InputLabel id="demo-multiple-name-label">Volenteer Role</InputLabel>
-                <Select
+              <InputLabel id="demo-multiple-name-label">Volenteer Role</InputLabel>
+              <Select
                 labelId="demo-multiple-name-label"
                 id="demo-multiple-name"
                 value={volenteerRole}
                 input={<OutlinedInput label="Volenteer Role" />}
                 onChange={(e) => setVolenteerRole(e.target.value)}
-                >
-                    <MenuItem value="Regular Donor">Regular Donor</MenuItem>
-                    <MenuItem value="Doctor">Doctor</MenuItem>
-                    <MenuItem value="Teacher">Teacher</MenuItem>
-                    
-                </Select>
+              >
+                <MenuItem value="Regular Donor">Regular Donor</MenuItem>
+                <MenuItem value="Doctor">Doctor</MenuItem>
+                <MenuItem value="Teacher">Teacher</MenuItem>
+
+              </Select>
             </FormControl>
 
-            
-            
 
 
-            <br/>
-            <div className="animate__animated animate__fadeIn" hidden={volenteerRole !== 'Doctor'}>
-                <Divider>Doctor Details</Divider>
-                <FormControl fullWidth required>
-                    <InputLabel id="demo-multiple-name-label">Clinic Location</InputLabel>
-                    <MapContainer center={position} zoom={20} scrollWheelZoom={false} style={{ height: '50vh', width: '100wh' }} >
-                    <TileLayer
-                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                    />
-                    <LocationFinderDummy />
-                    <Marker position={position}>
-                        <Popup style={{textAlign: 'center'}}>
-                        {position[0]}, {position[1]}
-                        </Popup>
-                    </Marker>
 
-                    </MapContainer> 
-                </FormControl>
-                <FormControl fullWidth required>
-                    <TextField
-                    margin="normal"
-                    required
-                    fullWidth
-                    label="Specialization"
-                    autoFocus
-                    />
-                </FormControl>
-                <FormControl fullWidth required>
-                    <TextField
-                    margin="normal"
-                    required
-                    fullWidth
-                    label="Available Pro-Bono Cases"
-                    autoFocus
-                    type='number'
-                    
-                    />
-                </FormControl>
-                
-                
-                <br/>
-            </div>
+
+            <br />
+            {(volenteerRole !== 'Doctor') ? null : <div className="animate__animated animate__fadeIn">
+              <Divider>Doctor Details</Divider>
+              <FormControl fullWidth required>
+                <InputLabel id="demo-multiple-name-label">Clinic Location</InputLabel>
+                <MapContainer center={position} zoom={20} scrollWheelZoom={false} style={{ height: '50vh', width: '100wh' }} >
+                  <TileLayer
+                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                  />
+                  <LocationFinderDummy />
+                  <Marker position={position}>
+                    <Popup style={{ textAlign: 'center' }}>
+                      {position[0]}, {position[1]}
+                    </Popup>
+                  </Marker>
+
+                </MapContainer>
+              </FormControl>
+              <FormControl fullWidth required>
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  label="Specialization"
+                  autoFocus
+                />
+              </FormControl>
+              <FormControl fullWidth required>
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  label="Available Pro-Bono Cases"
+                  autoFocus
+                  type='number'
+
+                />
+              </FormControl>
+
+
+              <br />
+            </div>}
             <div className="animate__animated animate__fadeIn" hidden={volenteerRole !== 'Teacher'}>
-                <Divider>Teacher Details</Divider>
-                <FormControl fullWidth required>
-                    <TagsSelector suggestions={subjects} tagLabel="subjects" />
-                </FormControl>
+              <Divider>Teacher Details</Divider>
+              <FormControl fullWidth required>
+                <TagsSelector suggestions={subjects} tagLabel="subjects" />
+              </FormControl>
             </div>
             <div className="animate__animated animate__fadeIn" hidden={volenteerRole === 'Regular Donor'}>
-                
-                <Divider>{volenteerRole} Certificates</Divider>
-                <FormControl fullWidth required>
-                    
-                    <Dragger>
-                    <p className="ant-upload-drag-icon">
-                        <InboxOutlined />
-                    </p>
-                    <p className="ant-upload-text">Click or drag file to this area to upload</p>
-                    <p className="ant-upload-hint">
-                        Support for a single or bulk upload. Strictly prohibited from uploading company data or other
-                        banned files.
-                    </p>
-                    </Dragger>
-                    </FormControl>
+
+              <Divider>{volenteerRole} Certificates</Divider>
+              <FormControl fullWidth required>
+
+                <Dragger>
+                  <p className="ant-upload-drag-icon">
+                    <InboxOutlined />
+                  </p>
+                  <p className="ant-upload-text">Click or drag file to this area to upload</p>
+                  <p className="ant-upload-hint">
+                    Support for a single or bulk upload. Strictly prohibited from uploading company data or other
+                    banned files.
+                  </p>
+                </Dragger>
+              </FormControl>
             </div>
             <Divider>Address Details</Divider>
             <AddressForm />
@@ -312,7 +312,7 @@ export default function DonorSignUp() {
             </Button>
           </Box>
         </Box>
-        
+
       </Container>
     </ThemeProvider>
   );
