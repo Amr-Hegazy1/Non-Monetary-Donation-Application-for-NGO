@@ -5,9 +5,9 @@ import { useState } from 'react';
 import "./styles.scss";
 
 const Field = ({ label, id, ...rest }) => (
-  <div>
-    <label htmlFor={id}>{label}</label>
-    <input id={id} {...rest} readOnly disabled/>
+  <div className="div">
+    <label htmlFor={id} className="label">{label}</label>
+    <input id={id} {...rest} readOnly disabled className="input"/>
   </div>
 );
 
@@ -47,7 +47,7 @@ function TeacherDetails() {
   return (
     <div>
       <h1 style={{ textAlign: 'center' }}>Donor Details</h1>
-      <form ref={form}>
+      <form ref={form} className="form">
         <Field label="First Name" id="first-name" name="firstName" />
         <Field label="Last Name" id="last-name" name="lastName" />
         <Field label="Email" id="email" name="email" />
@@ -57,7 +57,7 @@ function TeacherDetails() {
         <Field label="Area" id="area" name="area" />
         <Field label="Governorate" id="governorate" name="governorate" />
         <Field label="Role" id="role" name="role" />
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '10px' , marginTop: '20px'}}>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '10px' , marginTop: '20px'}} className="div">
           <Button type="primary" onClick={handleAccept}>Accept</Button>
           <Button type="primary" onClick={handleReject}>Reject</Button>
           <Button type="primary" onClick={handleDownload}>Download</Button>

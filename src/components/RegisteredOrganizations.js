@@ -82,6 +82,7 @@ const RegisteredOrganizations = () => {
             <div className="list-item-container">
               <div className="spacer"></div>
               <List.Item.Meta
+                avatar={<img src={item.picture.thumbnail} alt={item.name.last} />}
                 style={{marginLeft: '150px'}}
                 title={item.name.last}
                 description={item.email}

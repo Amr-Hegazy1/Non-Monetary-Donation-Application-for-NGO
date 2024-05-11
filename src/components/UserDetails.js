@@ -2,6 +2,7 @@ import { useForm } from "react-cool-form";
 import { Button, message } from 'antd';
 import { saveAs } from 'file-saver';
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import "./styles.scss";
 
 const Field = ({ label, id, ...rest }) => (

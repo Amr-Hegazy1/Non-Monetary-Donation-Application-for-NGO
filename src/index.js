@@ -50,6 +50,9 @@ import { CookiesProvider } from 'react-cookie';
 import DonorMyDonations from './components/DonorMyDonations';
 import DonorMyDonationDetails from './components/DonorMyDonationDetails';
 import Dashboard from './components/DeliveryPerson/Dashboard';
+import RegisteredDoctors from './components/RegisteredDoctors';
+import RegisteredTeachers from './components/RegisteredTeachers';
+import TeacherDetails from './components/TeacherDetails';
 
 
 
@@ -97,7 +100,8 @@ root.render(
               <Route path="/donorViewAllDonations" element={<DonorMyDonations />} />
               <Route path="/donorMyDonationDetails" element={<DonorMyDonationDetails />} />
               <Route path="/delieveyPersonDashboard" element={<Dashboard />} />
-
+              <Route path="/view-doctor-registered-info" element={<UserDetails />}/>
+              <Route path="/view-teacher-registered-info" element={<TeacherDetails />}/>
 
             </Routes>
           </Suspense>

@@ -65,7 +65,7 @@ const RegisteredDoctors = () => {
       <Input className='search-box' 
          placeholder="Search for a Doctor" 
          onChange={e => setSearchTerm(e.target.value)} 
-         style={{ maxWidth: '500px', width: '100%' }}
+         style={{  width: '100%' }}
         />
         </Col>
         </Row>
@@ -82,9 +82,9 @@ const RegisteredDoctors = () => {
             <div className="list-item-container">
               <div className="spacer"></div>
               <List.Item.Meta
-                style={{marginLeft: '150px'}}
                 title={item.name.last}
                 description={item.email}
+                avatar={<img src={item.picture.thumbnail} alt="avatar" />}
               />
               </div>
               <Button className="view-button" type="link" size="small" href='/view-doctor-registered-info' >View Info</Button>

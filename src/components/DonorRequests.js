@@ -40,14 +40,14 @@ const DonorRequests = () => {
   const filteredData = data.filter(item => item.name.last.toLowerCase().includes(searchTerm.toLowerCase()));
 
   return (
-    <div className='DonorRequests'>
+    <div >
       <h1 className='DonorRequests-header'>Donor Requests</h1>
       <Row justify="center">
       <Col span={12}>
       <Input className='search-box' 
          placeholder="Search for a Donor Requester" 
          onChange={e => setSearchTerm(e.target.value)} 
-         style={{ maxWidth: '500px', width: '100%' }}
+         style={{  width: '100%' }}
         />
         </Col>
         </Row>
@@ -64,6 +64,7 @@ const DonorRequests = () => {
             <div className="list-item-container">
             <div className="spacer"></div>
               <List.Item.Meta
+                avatar={<img src={item.picture.thumbnail} alt={item.name.last} />}
                 style={{marginLeft: '50px'}}
                 title={item.name.last}
                 description={item.email}

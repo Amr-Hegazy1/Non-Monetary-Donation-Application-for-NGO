@@ -1,6 +1,5 @@
 .RegisteredOrganizations-header {
-  margin-top: -10px;
-  margin-left: 250px; /* Adjust as needed */
+ text-align: center;
 }
   .delete-button:focus,
   .view-button:focus {

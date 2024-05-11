@@ -65,7 +65,7 @@ const RegisteredTeachers = () => {
       <Input className='search-box' 
          placeholder="Search for a Teacher" 
          onChange={e => setSearchTerm(e.target.value)} 
-         style={{ maxWidth: '500px', width: '100%' }}
+         style={{ width: '100%' }}
         />
         </Col>
         </Row>
@@ -82,7 +82,7 @@ const RegisteredTeachers = () => {
             <div className="list-item-container">
               <div className="spacer"></div>
               <List.Item.Meta
-                style={{marginLeft: '150px'}}
+                avatar={<img src={item.picture.thumbnail} alt={item.name.last} />}
                 title={item.name.last}
                 description={item.email}
               />

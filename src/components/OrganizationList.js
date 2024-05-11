@@ -43,7 +43,7 @@ const OrganizationList = () => {
       <Input className='search-box' 
          placeholder="Search for an Organization" 
          onChange={e => setSearchTerm(e.target.value)} 
-         style={{ maxWidth: '500px', width: '100%' }}
+         style={{  width: '100%' }}
         />
         </Col>
         </Row>
@@ -64,6 +64,7 @@ const OrganizationList = () => {
               <div className="spacer"></div>
               <List.Item.Meta
                 className="custom-meta"
+                avatar={<img src={item.picture.thumbnail} alt="avatar" />}
                 title={item.name.last}
                 description={item.email}
               />

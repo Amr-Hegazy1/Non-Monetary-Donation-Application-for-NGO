@@ -40,9 +40,10 @@ const OrganizationRequests = () => {
       <Row justify="center">
       <Col span={12}>
       <Input className='search-box' 
+        
          placeholder="Search for an Organization Requester" 
          onChange={e => setSearchTerm(e.target.value)} 
-         style={{ maxWidth: '500px', width: '100%' }}
+         style={{ width: '100%' }}
         />
         </Col>
         </Row>
@@ -59,7 +60,7 @@ const OrganizationRequests = () => {
             <div className="list-item-container">
               <div className="spacer"></div>
               <List.Item.Meta
-                style={{marginLeft: '40px'}}
+                avatar={<img src={item.picture.thumbnail} alt="avatar" />}
                 title={item.name.last}
                 description={item.email}
               />

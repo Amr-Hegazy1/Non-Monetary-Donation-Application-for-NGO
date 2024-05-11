@@ -50,11 +50,31 @@ const NavConfig = [
   {
     index: 2,
     title: 'Donor Submissions',
-    path: '/AdminHome/donors',
+    //path: '/AdminHome/donors',
     icon: icon('ic_donors.svg'),
     color: '#602b37',
-    element: <DonorList />,
-    active: false
+   // element: <DonorList />,
+    active: false,
+      subMenu: [
+      {
+        index: 0,
+        title: 'Doctors Submissions',
+        path: '/AdminHome/registeredDoctors',
+        icon: icon('ic_donors.svg'),
+        color: '#602b37',
+        element: <RegisteredDoctors/>,
+        active: false
+      },
+      {
+        index: 1,
+        title: 'Teachers Submissions',
+        path: '/AdminHome/registeredTeachers',
+        icon: icon('ic_donors.svg'),
+        color: '#602b37',
+        element: <RegisteredTeachers />,
+        active: false
+      },
+    ],
   },
   {
     index: 3,
