@@ -5,6 +5,7 @@ import { Row, Col } from 'antd';
 import { message } from 'antd';
 import { Modal } from 'antd';
 import './RegisteredTeachers.css';
+import Container from '@mui/material/Container';
 
 const fakeDataUrl =
   'https://randomuser.me/api/?results=20&inc=name,gender,email,nat,picture&noinfo';
@@ -69,6 +70,7 @@ const RegisteredTeachers = () => {
         />
         </Col>
         </Row>
+        <Container component="main" maxWidth="md">
       <List>
         <VirtualList
           data={filteredData}
@@ -79,10 +81,11 @@ const RegisteredTeachers = () => {
         >
           {(item) => (
             <List.Item key={item.email}>
-            <div className="list-item-container">
+            <div >
               <div className="spacer"></div>
               <List.Item.Meta
-                avatar={<img src={item.picture.thumbnail} alt={item.name.last} />}
+                avatar={<img src={item.picture.thumbnail} alt="avatar" style={{ borderRadius: '50%', border: '2px solid #000',
+                padding: '5px' }} />}
                 title={item.name.last}
                 description={item.email}
               />
@@ -93,6 +96,7 @@ const RegisteredTeachers = () => {
           )}
         </VirtualList>
       </List>
+    </Container>
     </div>
   );
 };

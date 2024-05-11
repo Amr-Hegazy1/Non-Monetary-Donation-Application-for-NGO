@@ -5,6 +5,7 @@ import { Row, Col } from 'antd';
 import { message } from 'antd';
 import { Modal } from 'antd';
 import './RegisteredOrganizations.css';
+import Container from '@mui/material/Container';
 
 const fakeDataUrl =
   'https://randomuser.me/api/?results=20&inc=name,gender,email,nat,picture&noinfo';
@@ -65,10 +66,11 @@ const RegisteredOrganizations = () => {
       <Input className='search-box' 
          placeholder="Search for an Organization" 
          onChange={e => setSearchTerm(e.target.value)} 
-         style={{ maxWidth: '500px', width: '100%' }}
+         style={{ width: '100%' }}
         />
         </Col>
         </Row>
+        <Container component="main" maxWidth="md">
       <List>
         <VirtualList
           data={filteredData}
@@ -79,11 +81,11 @@ const RegisteredOrganizations = () => {
         >
           {(item) => (
             <List.Item key={item.email}>
-            <div className="list-item-container">
+            <div >
               <div className="spacer"></div>
               <List.Item.Meta
-                avatar={<img src={item.picture.thumbnail} alt={item.name.last} />}
-                style={{marginLeft: '150px'}}
+                avatar={<img src={item.picture.thumbnail} alt="avatar" style={{ borderRadius: '50%', border: '2px solid #000',
+                padding: '5px' }} />}
                 title={item.name.last}
                 description={item.email}
               />
@@ -94,7 +96,8 @@ const RegisteredOrganizations = () => {
           )}
         </VirtualList>
       </List>
-    </div>
+    </Container>
+        </div>
   );
 };
 

@@ -4,6 +4,7 @@ import VirtualList from 'rc-virtual-list';
 import { Row, Col } from 'antd';
 import { message } from 'antd';
 import { Modal } from 'antd';
+import Container from '@mui/material/Container';
 
 import './OrganizationList.css';
 
@@ -47,9 +48,12 @@ const OrganizationList = () => {
         />
         </Col>
         </Row>
+      <Container component="main" maxWidth="md">
+
       <List
         
       >
+
         <VirtualList
           data={filteredData}
           height={ContainerHeight}
@@ -60,11 +64,12 @@ const OrganizationList = () => {
         >
           {(item) => (
             <List.Item key={item.email}>
-            <div className="list-item-container">
+            <div>
               <div className="spacer"></div>
               <List.Item.Meta
-                className="custom-meta"
-                avatar={<img src={item.picture.thumbnail} alt="avatar" />}
+          
+                avatar={<img src={item.picture.thumbnail} alt="avatar" style={{ borderRadius: '50%', border: '2px solid #000',
+                padding: '5px' }} />}
                 title={item.name.last}
                 description={item.email}
               />
@@ -74,6 +79,7 @@ const OrganizationList = () => {
           )}
         </VirtualList>
       </List>
+      </Container>
     </div>
   );
 };

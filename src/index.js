@@ -13,7 +13,7 @@ import DonorSubmission from './DonorSubmission';
 import Password from 'antd/es/input/Password';
 import PasswordManagement from './PasswordManagement';
 
-import RequestInfo from './components/RequestInfo';
+import RequestInfoTeacher from './components/RequestInfoTeacher';
 import Login from './Login';
 
 import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom';
@@ -50,6 +50,8 @@ import { CookiesProvider } from 'react-cookie';
 import DonorMyDonations from './components/DonorMyDonations';
 import DonorMyDonationDetails from './components/DonorMyDonationDetails';
 import Dashboard from './components/DeliveryPerson/Dashboard';
+import RequestInfoDoctor from './components/RequestInfoDoctor';
+
 import RegisteredDoctors from './components/RegisteredDoctors';
 import RegisteredTeachers from './components/RegisteredTeachers';
 import TeacherDetails from './components/TeacherDetails';
@@ -67,7 +69,7 @@ root.render(
             <Routes>
               <Route index element={<Homepage/>} />
               <Route path="/donateClothes" element={<DetailsOfClothesToBeDonated/>} />
-              <Route path="/view-donor-request-info" element={<RequestInfo/>} />
+              <Route path="/view-teacher-request-info" element={<RequestInfoTeacher/>} />
               <Route path="/view-org-request-info" element={<OrganizationRequestInfo/>} />
               <Route path="/view-org-submission-info" element={<OrganizationDetails/>} />
               <Route path="/view-donor-submission-info" element={<UserDetails/>} />
@@ -100,8 +102,9 @@ root.render(
               <Route path="/donorViewAllDonations" element={<DonorMyDonations />} />
               <Route path="/donorMyDonationDetails" element={<DonorMyDonationDetails />} />
               <Route path="/delieveyPersonDashboard" element={<Dashboard />} />
-              <Route path="/view-doctor-registered-info" element={<UserDetails />}/>
-              <Route path="/view-teacher-registered-info" element={<TeacherDetails />}/>
+              <Route path="/view-doctor-registered-info" element={<RequestInfoDoctor />}/>
+              <Route path='/view-doctor-request-info' element={<RequestInfoDoctor />} />
+              <Route path='/view-teacher-request-info' element={<RequestInfoTeacher />} />
 
             </Routes>
           </Suspense>

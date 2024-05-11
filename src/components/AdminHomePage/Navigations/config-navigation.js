@@ -3,13 +3,15 @@ import SvgColor from '../svg-color';
 import IndexPage from '../AppPage/appPage';
 import OrganizationList from '../../OrganizationList';
 import RegisteredOrganizations from '../../RegisteredOrganizations';
-import DonorRequests from '../../DonorRequests';
+import DonorRequests from '../../DonorTeacherRequests';
 import OrganizationRequests from '../OrganizationRequests';
 import PasswordManagement from '../../../PasswordManagement';
 import DonorList from '../../DonorList';
 import { act } from 'react';
 import RegisteredDoctors from '../../RegisteredDoctors';
 import RegisteredTeachers from '../../RegisteredTeachers';
+import DonorDoctorRequests from '../DonorDoctorRequests';
+import DonorTeacherRequests from '../../DonorTeacherRequests';
 
 
 // ----------------------------------------------------------------------
@@ -131,11 +133,29 @@ const NavConfig = [
   {
     index: 5,
     title: 'Donation Requests',
-    path: '/AdminHome/donor requests',
     icon: icon('request.png'),
     color: '#602b37',
-    element: <DonorRequests />,
-    acive: false
+    acive: false,
+    subMenu: [
+      {
+        index: 0,
+        title: 'Requests by Doctors',
+        path: '/AdminHome/DonorDoctorsRequests',
+        icon: icon('ic_donors.svg'),
+        color: '#602b37',
+        element: <DonorDoctorRequests/>,
+        active: false
+      },
+      {
+        index: 1,
+        title: 'Requests by Teachers',
+        path: '/AdminHome/DonorTeachersRequests',
+        icon: icon('ic_donors.svg'),
+        color: '#602b37',
+        element: <DonorTeacherRequests />,
+        active: false
+      },
+    ],
   },
   {
     index: 6,

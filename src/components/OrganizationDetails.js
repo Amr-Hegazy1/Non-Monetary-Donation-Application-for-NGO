@@ -13,7 +13,7 @@ const Field = ({ label, id, ...rest }) => (
 
 function OrganizationDetails() {
   const { form } = useForm({
-    defaultValues: {
+      defaultValues: {
       firstName: "Kevin",
       lastName: "Phillips",
       gender: "Male",

@@ -2,17 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { List, Input, Button } from 'antd';
 import VirtualList from 'rc-virtual-list';
 import { Row, Col } from 'antd';
-import './DonorRequests.css';
 import { message } from 'antd';
-
+import { Modal } from 'antd';
+import '../OrganizationList.css';
+import Container from '@mui/material/Container';
 const fakeDataUrl =
   'https://randomuser.me/api/?results=20&inc=name,gender,email,nat,picture&noinfo';
 const ContainerHeight = window.innerHeight - window.innerHeight * 0.16;
 
-const DonorRequests = () => {
+const DonorDoctorRequests = () => {
   const [data, setData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  
 
   const appendData = () => {
     fetch(fakeDataUrl)
@@ -32,51 +32,50 @@ const DonorRequests = () => {
     }
   };
 
-  const handleDelete = (email) => {
-    setData(data.filter(item => item.email !== email));
-    message.error('User deleted');
-  };
-
   const filteredData = data.filter(item => item.name.last.toLowerCase().includes(searchTerm.toLowerCase()));
 
   return (
-    <div >
-      <h1 className='DonorRequests-header'>Donor Requests</h1>
+    <div className='OrganizationRequests'>
+      <h1 className='OrganizationRequests-header'>Doctors Donation Requests</h1>
       <Row justify="center">
       <Col span={12}>
       <Input className='search-box' 
-         placeholder="Search for a Donor Requester" 
+        
+         placeholder="Search for an Organization Requester" 
          onChange={e => setSearchTerm(e.target.value)} 
-         style={{  width: '100%' }}
+         style={{ width: '100%' }}
         />
         </Col>
         </Row>
+    <Container component="main" maxWidth="md">
+
       <List>
         <VirtualList
           data={filteredData}
           height={ContainerHeight}
-          
+          itemHeight={47}
           itemKey="email"
           onScroll={onScroll}
         >
           {(item) => (
             <List.Item key={item.email}>
-            <div className="list-item-container">
-            <div className="spacer"></div>
+            <div >
+              <div className="spacer"></div>
               <List.Item.Meta
-                avatar={<img src={item.picture.thumbnail} alt={item.name.last} />}
-                style={{marginLeft: '50px'}}
+                avatar={<img src={item.picture.thumbnail} alt="avatar" style={{ borderRadius: '50%', border: '2px solid #000',
+                padding: '5px' }} />}
                 title={item.name.last}
                 description={item.email}
               />
-              <Button className="views-button" type="link" size="small" href='/view-donor-request-info' >View Info</Button>
-            </div>
+              </div>
+              <Button className="view-button" type="link" size="small" href='/view-doctor-request-info' >View Info</Button>
           </List.Item>
           )}
         </VirtualList>
       </List>
+    </Container>
     </div>
   );
 };
-
-export default DonorRequests;
+           
+export default DonorDoctorRequests;
