@@ -16,7 +16,7 @@ export const PasswordManagement = lazy(() => import('../../../PasswordManagement
 export const DonorList = lazy(() => import('../../DonorList'));
 export const Organizations = lazy(() => import('../../../Organizations'));
 export const DonorSubmission = lazy(() => import('../../../DonorSubmission'));
-export const UserDetails = lazy(() => import('../../UserDetails'));
+export const UserDetails = lazy(() => import('../../DoctorDetails'));
 export const Requests = lazy(() => import('../../../Requests'));
 
 

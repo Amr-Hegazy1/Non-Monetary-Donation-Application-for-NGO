@@ -12,6 +12,8 @@ import RegisteredDoctors from '../../RegisteredDoctors';
 import RegisteredTeachers from '../../RegisteredTeachers';
 import DonorDoctorRequests from '../DonorDoctorRequests';
 import DonorTeacherRequests from '../../DonorTeacherRequests';
+import DoctorSubmissions from '../../../DoctorSubmissions';
+import TeacherSubmissions from '../../../TeacherSubmissions';
 
 
 // ----------------------------------------------------------------------
@@ -61,19 +63,19 @@ const NavConfig = [
       {
         index: 0,
         title: 'Doctors Submissions',
-        path: '/AdminHome/registeredDoctors',
+        path: '/AdminHome/DoctorSubmissions',
         icon: icon('ic_donors.svg'),
         color: '#602b37',
-        element: <RegisteredDoctors/>,
+        element: <DoctorSubmissions/>,
         active: false
       },
       {
         index: 1,
         title: 'Teachers Submissions',
-        path: '/AdminHome/registeredTeachers',
+        path: '/AdminHome/TecherSubmissions',
         icon: icon('ic_donors.svg'),
         color: '#602b37',
-        element: <RegisteredTeachers />,
+        element: <TeacherSubmissions />,
         active: false
       },
     ],

@@ -24,7 +24,7 @@ import DetailsOfClothesToBeDonated from './components/DetailsOfClothesToBeDonate
 import AdminApp from './components/AdminHomePage/AdminApp';
 import OrganizationRequestInfo from './components/OrganizationRequestInfo';
 import OrganizationDetails from './components/OrganizationDetails';
-import UserDetails from './components/UserDetails';
+import UserDetails from './components/DoctorDetails';
 import OrganizationList from './components/OrganizationList';
 import OrgCoordinateDonationPickup from './components/OrgCoordinateDonationPickup';
 import RequestClothes from './components/RequestClothes';
@@ -72,7 +72,8 @@ root.render(
               <Route path="/view-teacher-request-info" element={<RequestInfoTeacher/>} />
               <Route path="/view-org-request-info" element={<OrganizationRequestInfo/>} />
               <Route path="/view-org-submission-info" element={<OrganizationDetails/>} />
-              <Route path="/view-donor-submission-info" element={<UserDetails/>} />
+              <Route path="/view-doctor-submission-info" element={<UserDetails/>} />
+              <Route path="/view-teacher-submission-info" element={<TeacherDetails/>} />
               <Route path="/view-org-registered-info" element={<OrganizationDetails/>} />
               <Route path="/view-donor-registered-info" element={<UserDetails/>} />
               <Route path="/login" element={<Login/>} />
