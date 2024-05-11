@@ -7,6 +7,7 @@ import Iconify from './components/iconify';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import { useCookies } from 'react-cookie';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -26,6 +27,10 @@ function Login() {
     if(cookies.user_type === 'donor' || cookies.user_type === 'donation_receiver'){
       window.location.href = '/';
     }
+    if(cookies.user_type === 'delevery_person'){
+      window.location.href = '/delieveyPersonDashboard';
+    }
+    
   }, []);
 
   const handleLogin = (e) => {
@@ -40,24 +45,36 @@ function Login() {
 
     const correctDonationReceiverEmail = 'donation_reciever@gmail.com';
 
+    const correctDeliveryPersonEmail = 'delivery_pearson@gmail.com';
+
     if (email === correctAdminEmail && password === correctHashedPassword) {
       // Login successful (redirect or show success message)
+      window.location.href = '/AdminHome';
       message.success('Logged in successfully , redirecting ...');
       setCookie("user_type", "admin");
+
       // You can redirect to another page or perform other actions on success
     }
     else if (email === correctDonorEmail && password === correctHashedPassword) {
       // Login successful (redirect or show success message)
+      window.location.href = '/';
       message.success('Logged in successfully , redirecting ...');
       setCookie("user_type", "donor");
       // You can redirect to another page or perform other actions on success
     }
     else if (email === correctDonationReceiverEmail && password === correctHashedPassword) {
       // Login successful (redirect or show success message)
+      window.location.href = '/';
       message.success('Logged in successfully , redirecting ...');
       setCookie("user_type", "donation_receiver");
       // You can redirect to another page or perform other actions on success
-    } else {
+    } else if (email === correctDeliveryPersonEmail && password === correctHashedPassword) {
+      // Login successful (redirect or show success message)
+      window.location.href = '/delieveyPersonDashboard';
+      message.success('Logged in successfully , redirecting ...');
+      setCookie("user_type", "delivery_person");
+      // You can redirect to another page or perform other actions on success
+    }else {
       message.error('Invalid credentials');    
     }
   };

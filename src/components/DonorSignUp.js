@@ -73,7 +73,25 @@ export default function DonorSignUp() {
 
   const [position, setPosition] = React.useState([29.98693069424653, 31.44078789655661]);
   const [volenteerRole, setVolenteerRole] = React.useState('Regular Donor');
-  const [isFileUploaded, setIsFileUploaded] = React.useState(false);
+  const [errorStates, setErrorStates] = React.useState({
+    firstName: false,
+    lastName: false,
+    gender: false,
+    email: false,
+    password: false,
+    phone: false,
+    specialization: false,
+    availableCases: false,
+    subjects: false,
+    certificates: false,
+    address: false,
+    city: false,
+    country: false,
+    postalCode: false,
+    street: false,
+    building: false,
+
+  })
 
   const props = {
     name: 'file',
@@ -90,7 +108,7 @@ export default function DonorSignUp() {
 
 
 
-      setIsFileUploaded(true);
+
 
 
       // Prevent upload
@@ -125,8 +143,57 @@ export default function DonorSignUp() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
+    const data = new FormData(event.currentTarget);
+
+    // check each field and validate
+
+    for (let [name, value] of data) {
+      console.log(name, value);
+      if (value === '') {
+        setErrorStates({ ...errorStates, [name]: true });
+        message.error(name + ' is required');
+        return;
+      }
+      if (name === 'email') {
+        if (!value.includes('@')) {
+          setErrorStates({ ...errorStates, [name]: true })
+          message.error('Invalid email');
+          return;
+        }
+      }
+
+      if (name === 'phone') {
+        if (value.length < 10) {
+          setErrorStates({ ...errorStates, [name]: true })
+          message.error('Invalid phone number');
+          return;
+        }
+      }
+
+      setErrorStates({ ...errorStates, [name]: false });
+    }
+
+
+
+    // check if gender is in data
+    if (!data.has('gender')) {
+      setErrorStates({ ...errorStates, ["gender"]: true });
+      message.error("Gender is required");
+      return;
+    }
+
+
+
+
+
+    message.success('Form submitted');
+
+    window.location.href = '/login';
+
 
   };
+
+  React.useEffect(() => { window.scrollTo(0, 0); }, [errorStates]);
 
   const LocationFinderDummy = () => {
     const map = useMapEvents({
@@ -139,181 +206,182 @@ export default function DonorSignUp() {
   };
 
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 2,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
+
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <Box
+        sx={{
+          marginTop: 2,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
 
 
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-            <Grid container spacing={2}>
-              <Grid item xs>
-                <TextField
-                  margin="normal"
-                  required
-                  fullWidth
-
-                  label="First Name"
-                  autoFocus
-                />
-              </Grid>
-              <Grid item>
-                <TextField
-                  margin="normal"
-                  required
-                  fullWidth
-
-                  label="Last Name"
-                  autoFocus
-                />
-              </Grid>
+        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Grid container spacing={2}>
+            <Grid item xs>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="firstName"
+                label="First Name"
+                error={errorStates.firstName}
+              />
             </Grid>
-            <FormControl>
-              <FormLabel id="demo-row-radio-buttons-group-label">Gender</FormLabel>
-              <RadioGroup
-                row
-                aria-labelledby="demo-row-radio-buttons-group-label"
-                name="row-radio-buttons-group"
-              >
-                <FormControlLabel value="female" control={<Radio style={{ color: COLORS.primary }} />} label="Female" />
-                <FormControlLabel value="male" control={<Radio style={{ color: COLORS.primary }} />} label="Male" />
-              </RadioGroup>
-            </FormControl>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
-            <PhoneInput
-              defaultCountry="eg"
-              style={{ width: '100%' }}
-              required
-            />
-            <br />
+            <Grid item>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
 
-            <FormControl fullWidth required>
-              <InputLabel id="demo-multiple-name-label">Volenteer Role</InputLabel>
-              <Select
-                labelId="demo-multiple-name-label"
-                id="demo-multiple-name"
-                value={volenteerRole}
-                input={<OutlinedInput label="Volenteer Role" />}
-                onChange={(e) => setVolenteerRole(e.target.value)}
-              >
-                <MenuItem value="Regular Donor">Regular Donor</MenuItem>
-                <MenuItem value="Doctor">Doctor</MenuItem>
-                <MenuItem value="Teacher">Teacher</MenuItem>
-
-              </Select>
-            </FormControl>
-
-
-
-
-
-            <br />
-            {(volenteerRole !== 'Doctor') ? null : <div className="animate__animated animate__fadeIn">
-              <Divider>Doctor Details</Divider>
-              <FormControl fullWidth required>
-                <InputLabel id="demo-multiple-name-label">Clinic Location</InputLabel>
-                <MapContainer center={position} zoom={20} scrollWheelZoom={false} style={{ height: '50vh', width: '100wh' }} >
-                  <TileLayer
-                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                  />
-                  <LocationFinderDummy />
-                  <Marker position={position}>
-                    <Popup style={{ textAlign: 'center' }}>
-                      {position[0]}, {position[1]}
-                    </Popup>
-                  </Marker>
-
-                </MapContainer>
-              </FormControl>
-              <FormControl fullWidth required>
-                <TextField
-                  margin="normal"
-                  required
-                  fullWidth
-                  label="Specialization"
-                  autoFocus
-                />
-              </FormControl>
-              <FormControl fullWidth required>
-                <TextField
-                  margin="normal"
-                  required
-                  fullWidth
-                  label="Available Pro-Bono Cases"
-                  autoFocus
-                  type='number'
-
-                />
-              </FormControl>
-
-
-              <br />
-            </div>}
-            <div className="animate__animated animate__fadeIn" hidden={volenteerRole !== 'Teacher'}>
-              <Divider>Teacher Details</Divider>
-              <FormControl fullWidth required>
-                <TagsSelector suggestions={subjects} tagLabel="subjects" />
-              </FormControl>
-            </div>
-            <div className="animate__animated animate__fadeIn" hidden={volenteerRole === 'Regular Donor'}>
-
-              <Divider>{volenteerRole} Certificates</Divider>
-              <FormControl fullWidth required>
-
-                <Dragger>
-                  <p className="ant-upload-drag-icon">
-                    <InboxOutlined />
-                  </p>
-                  <p className="ant-upload-text">Click or drag file to this area to upload</p>
-                  <p className="ant-upload-hint">
-                    Support for a single or bulk upload. Strictly prohibited from uploading company data or other
-                    banned files.
-                  </p>
-                </Dragger>
-              </FormControl>
-            </div>
-            <Divider>Address Details</Divider>
-            <AddressForm />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              className="signup-btn"
-              sx={{ mt: 3, mb: 2 }}
+                label="Last Name"
+                error={errorStates.lastName}
+              />
+            </Grid>
+          </Grid>
+          <FormControl error={errorStates.gender}>
+            <FormLabel id="demo-row-radio-buttons-group-label">Gender</FormLabel>
+            <RadioGroup
+              row
+              aria-labelledby="demo-row-radio-buttons-group-label"
+              name="row-radio-buttons-group"
             >
-              Sign Up
-            </Button>
-          </Box>
-        </Box>
+              <FormControlLabel value="female" control={<Radio style={{ color: COLORS.primary }} />} label="Female" />
+              <FormControlLabel value="male" control={<Radio style={{ color: COLORS.primary }} />} label="Male" />
+            </RadioGroup>
+          </FormControl>
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="email"
+            label="Email Address"
+            name="email"
+            autoComplete="email"
+            error={errorStates.email}
+          />
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            name="password"
+            label="Password"
+            type="password"
+            id="password"
+            autoComplete="current-password"
+            error={errorStates.password}
+          />
+          <PhoneInput
+            defaultCountry="eg"
+            style={{ width: '100%' }}
+            required
+          />
+          <br />
 
-      </Container>
-    </ThemeProvider>
+          <FormControl fullWidth required error={errorStates.volenteerRole}>
+            <InputLabel id="demo-multiple-name-label">Volenteer Role</InputLabel>
+            <Select
+              labelId="demo-multiple-name-label"
+              id="demo-multiple-name"
+              value={volenteerRole}
+              input={<OutlinedInput label="Volenteer Role" />}
+              onChange={(e) => setVolenteerRole(e.target.value)}
+            >
+              <MenuItem value="Regular Donor">Regular Donor</MenuItem>
+              <MenuItem value="Doctor">Doctor</MenuItem>
+              <MenuItem value="Teacher">Teacher</MenuItem>
+
+            </Select>
+          </FormControl>
+
+
+
+
+
+          <br />
+          {(volenteerRole !== 'Doctor') ? null : <div className="animate__animated animate__fadeIn">
+            <Divider>Doctor Details</Divider>
+            <FormControl fullWidth required>
+              <InputLabel id="demo-multiple-name-label">Clinic Location</InputLabel>
+              <MapContainer center={position} zoom={20} scrollWheelZoom={false} style={{ height: '50vh', width: '100wh' }} >
+                <TileLayer
+                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+                <LocationFinderDummy />
+                <Marker position={position}>
+                  <Popup style={{ textAlign: 'center' }}>
+                    {position[0]}, {position[1]}
+                  </Popup>
+                </Marker>
+
+              </MapContainer>
+            </FormControl>
+            <FormControl fullWidth required>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                label="Specialization"
+                error={errorStates.specialization}
+              />
+            </FormControl>
+            <FormControl fullWidth required>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                label="Available Pro-Bono Cases"
+                type='number'
+                error={errorStates.availableCases}
+
+              />
+            </FormControl>
+
+
+            <br />
+          </div>}
+          <div className="animate__animated animate__fadeIn" hidden={volenteerRole !== 'Teacher'}>
+            <Divider>Teacher Details</Divider>
+            <FormControl fullWidth required error={errorStates.subjects}>
+              <TagsSelector suggestions={subjects} tagLabel="subjects" />
+            </FormControl>
+          </div>
+          <div className="animate__animated animate__fadeIn" hidden={volenteerRole === 'Regular Donor'}>
+
+            <Divider>{volenteerRole} Certificates</Divider>
+            <FormControl fullWidth required error={errorStates.certificates}>
+
+              <Dragger>
+                <p className="ant-upload-drag-icon">
+                  <InboxOutlined />
+                </p>
+                <p className="ant-upload-text">Click or drag file to this area to upload</p>
+                <p className="ant-upload-hint">
+                  Support for a single or bulk upload. Strictly prohibited from uploading company data or other
+                  banned files.
+                </p>
+              </Dragger>
+            </FormControl>
+          </div>
+          <Divider>Address Details</Divider>
+          <AddressForm />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            className="signup-btn"
+            sx={{ mt: 3, mb: 2 }}
+          >
+            Sign Up
+          </Button>
+        </Box>
+      </Box>
+
+    </Container>
+
   );
 }

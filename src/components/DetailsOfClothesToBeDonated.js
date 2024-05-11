@@ -62,7 +62,7 @@ export default function DetailsOfClothesToBeDonated() {
 
 
   return (
-    <ThemeProvider theme={defaultTheme}>
+    
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -166,6 +166,6 @@ export default function DetailsOfClothesToBeDonated() {
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
-    </ThemeProvider>
+    
   );
 }

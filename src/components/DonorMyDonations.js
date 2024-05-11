@@ -89,7 +89,7 @@ export default function DonorMyDonations() {
                         alignItems: 'center',
                     }}
                 >
-                    <Typography className="center" component="h1" variant="h4">
+                    <Typography className="center h" component="h1" variant="h4">
                         My Donations
                     </Typography>
                     <Row wrap={false} style={{ justifyContent: 'center', margin: "2%" }}>
