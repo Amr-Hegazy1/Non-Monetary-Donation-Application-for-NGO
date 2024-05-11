@@ -34,7 +34,7 @@ export default function Homepage() {
             <section id="home" className="welcome-hero">
                 <div className="container">
                     <div className="welcome-hero-txt">
-                        <h2 className="homepage-headers">best place to find and explore <br/> that all you need </h2>
+                        <h2 className="homepage-headers">Here To Unite</h2>
                         <p>
                             Find Best Place, Restaurant, Hotel, Real State and many more think in just One click
                         </p>

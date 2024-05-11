@@ -152,7 +152,7 @@ const FulfilledDonations = () => {
                 alignItems: 'center',
             }}
             >   
-                <Typography className="center" component="h1" variant="h4">
+                <Typography className="center h" component="h1" variant="h4">
                     Fulfilled Donations
                 </Typography>
                 

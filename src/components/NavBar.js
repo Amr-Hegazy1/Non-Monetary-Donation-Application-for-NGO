@@ -16,12 +16,15 @@ function NavBar() {
 
     return (
     <Navbar color='#0C4D42' collapseOnSelect expand="lg" className="bg-body-tertiary">
-      <Image width={200} src={logo}  />
+      <Image width={200} src={logo}  preview="false"/>
       <Container>
         
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
+            <Nav.Link href="/">Contact Us</Nav.Link>
+            <Nav.Link href="/">About Us</Nav.Link>
+            {(cookies['user_type'] === "donor") ? <><Nav.Link href="/ViewDonationRequests">View Donation Requests</Nav.Link>
             <NavDropdown title="Donate now" id="collapsible-nav-dropdown">
               <NavDropdown.Item href="/donateClothes">Clothes</NavDropdown.Item>
               <NavDropdown.Item href="/donateMedicalSupplies">
@@ -31,9 +34,9 @@ function NavBar() {
               <NavDropdown.Item href="/donateBooks">Books</NavDropdown.Item>
               <NavDropdown.Item href="/donateStationary">Stationary Items</NavDropdown.Item>
               <NavDropdown.Item href="/donateFood">Food</NavDropdown.Item>              
-            </NavDropdown>
+            </NavDropdown></> : null}
 
-            <NavDropdown title="Create Donation Request" id="collapsible-nav-dropdown">
+            {(cookies['user_type'] === "donation_receiver") ? <NavDropdown title="Create Donation Request" id="collapsible-nav-dropdown">
               <NavDropdown.Item href="/RequestClothes">Request Clothes</NavDropdown.Item>
               <NavDropdown.Item href="/RequestMedicalSupplies">
                 Request Medical Supplies
@@ -46,9 +49,9 @@ function NavBar() {
               <NavDropdown.Item href="/RequestTeaching">Request Teacher</NavDropdown.Item> 
               <NavDropdown.Item href="/RequestMedicalCases">Request Doctor</NavDropdown.Item>        
 
-            </NavDropdown>
+            </NavDropdown> : null}
 
-            <Nav.Link href="/ViewDonationRequests">View Donation Requests</Nav.Link>
+            
 
 
           </Nav>

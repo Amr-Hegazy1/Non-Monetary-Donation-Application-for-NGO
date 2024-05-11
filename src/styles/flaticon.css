@@ -65,9 +65,10 @@
 }
 
 .icon-church{
-  background: url("../../public/church.png");
+  background: url("../../public/church.svg");
   
 }
+
 
 .icon-orphanage{
   background: url("../../public/orphanage.png");

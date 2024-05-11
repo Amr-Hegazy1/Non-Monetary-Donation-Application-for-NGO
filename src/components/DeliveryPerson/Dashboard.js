@@ -19,6 +19,8 @@ import glassUsersIcon from './icons/ic_glass_users.png';
 import glassMessageIcon from './icons/ic_glass_message.png';
 import glassBuyIcon from './icons/ic_glass_buy.png';
 import glassTickIcon from './icons/ic-glass-tick.png';
+import glassStarIcon from './icons/icons8-star.png';
+import glassProgressIcon from './icons/icons8-progress-48.png'
 import { Card, CardHeader, Box, Toolbar } from '@mui/material';
 
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
@@ -26,7 +28,9 @@ import { InboxOutlined } from '@ant-design/icons';
 import { useMapEvents } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
-import Header from '../AdminHomePage/Navigations/header';
+import { List } from 'antd';
+import DeliveryDonations from './Views/deliveryDonations';
+
 
 delete L.Icon.Default.prototype._getIconUrl;
 
@@ -38,11 +42,11 @@ L.Icon.Default.mergeOptions({
 
 
 // ----------------------------------------------------------------------
-
+const locations = ["AUC", "Cairo Festival City", "Rehab", "Waterway", "Mivida"];
 export default function Dashboard() {
     return (
         <ThemeProvider>
-            
+
             <Container maxWidth="xl">
                 <Typography variant="h4" sx={{ mb: 5, color: '#602b37' }}>
                     Hi, Amr 👋
@@ -54,23 +58,23 @@ export default function Dashboard() {
                             title="Avg. Rating"
                             total={4.6}
                             color="success"
-                            icon={<img alt="icon" src={glassTickIcon} />} />
+                            icon={<img alt="icon" src={glassStarIcon} />} />
                     </Grid>
 
                     <Grid xs={12} sm={6} md={3}>
                         <AppWidgetSummary
                             title="Total Donations Delivered"
-                            total={135255}
+                            total={133}
                             color="info"
                             icon={<img alt="icon" src={glassUsersIcon} />} />
                     </Grid>
 
                     <Grid xs={12} sm={6} md={3}>
                         <AppWidgetSummary
-                            title="Donation Requests"
-                            total={1724}
+                            title="Delivery Target Achieved"
+                            total={"50%"}
                             color="warning"
-                            icon={<img alt="icon" src={glassBuyIcon} />}
+                            icon={<img alt="icon" src={glassProgressIcon} />}
                         />
                     </Grid>
 
@@ -101,7 +105,7 @@ export default function Dashboard() {
 
                                 </MapContainer>
                             </Box>
-                            <br/>
+                            <br />
 
                         </Card>
 
@@ -109,86 +113,36 @@ export default function Dashboard() {
 
                     </Grid>
                     <Grid xs={12} md={6} lg={4}>
-                        <AppTasks
-                            title="Tasks"
-                            list={[
-                                { id: '1', name: 'View Bug reports' },
-                                { id: '2', name: 'Meeting with Organisation A' },
-                                { id: '3', name: 'View reported users' },
-                                { id: '4', name: 'Meeting with developers' },
-                                { id: '5', name: 'Accept/reject Requests' },
-                            ]}
-                        />
-                    </Grid>
-
-                    <Grid xs={12} md={8} lg={8}>
-                        <AppConversionRates
-                            title="New Users per Country"
-                            subheader="(+43%) than last year"
-                            chart={{
-                                series: [
-                                    { label: 'Italy', value: 400 },
-                                    { label: 'Japan', value: 430 },
-                                    { label: 'China', value: 448 },
-                                    { label: 'Canada', value: 470 },
-                                    { label: 'France', value: 540 },
-                                    { label: 'Germany', value: 580 },
-                                    { label: 'South Korea', value: 690 },
-                                    { label: 'Netherlands', value: 1100 },
-                                    { label: 'United States', value: 1200 },
-                                    { label: 'United Kingdom', value: 1380 },
-                                ],
-                            }}
-                        />
-                    </Grid>
-
-                    <Grid xs={12} md={6} lg={4}>
-                        <AppCurrentSubject
-                            title="Current Targets Achieved"
-                            chart={{
-                                categories: ['Clothes', 'Books', 'Medical Supplies', 'Blood donations', 'Teaching'],
-                                series: [
-                                    { name: 'Organization 1', data: [80, 50, 30, 40, 100, 20] },
-                                    { name: 'Organization 2', data: [20, 30, 40, 80, 20, 80] },
-                                    { name: 'Organization 3', data: [44, 76, 78, 13, 43, 10] },
-                                ],
-                            }}
-                        />
+                        <DeliveryDonations />
                     </Grid>
 
 
 
-                    <Grid xs={12} md={6} lg={8}>
+                    
+
+                    <Grid xs={20} md={13} lg={15}>
+                        
                         <AppOrderTimeline
-                            title="Requests Timeline"
+                            title="Route Plans"
                             list={[...Array(5)].map((_, index) => ({
                                 id: faker.string.uuid(),
                                 title: [
-                                    '1983, Requests, books',
-                                    '12 requested  by Organisation A',
-                                    'Reuest #37745 from September',
-                                    'New Request placed #XF-2356',
-                                    'New Request placed #XF-2346',
+                                    "Ali Ahmed",
+                                    "Ahmed Mohamed",
+                                    "Mohamed Ahmed",
+                                    "Ali Ahmed",
+                                    "Amr Hegazy"
                                 ][index],
                                 type: `request${index + 1}`,
-                                time: faker.date.past(),
+                                time: `@${locations[index]} by ${index + 3}:00 PM`,
                             }))}
                         />
+                        
+                        
                     </Grid>
 
 
-                    <Grid xs={12} md={6} lg={4}>
-                        <AppTasks
-                            title="Tasks"
-                            list={[
-                                { id: '1', name: 'View Bug reports' },
-                                { id: '2', name: 'Meeting with Organisation A' },
-                                { id: '3', name: 'View reported users' },
-                                { id: '4', name: 'Meeting with developers' },
-                                { id: '5', name: 'Accept/reject Requests' },
-                            ]}
-                        />
-                    </Grid>
+
                 </Grid>
             </Container>
         </ThemeProvider>

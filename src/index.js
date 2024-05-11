@@ -50,6 +50,9 @@ import { CookiesProvider } from 'react-cookie';
 import DonorMyDonations from './components/DonorMyDonations';
 import DonorMyDonationDetails from './components/DonorMyDonationDetails';
 import Dashboard from './components/DeliveryPerson/Dashboard';
+import DeliveryDonationDetails from './components/DeliveryPerson/DeliveryDonationDetails';
+import { ConfigProvider } from 'antd';
+import { createTheme, ThemeProvider } from '@mui/material';
 import RequestInfoDoctor from './components/RequestInfoDoctor';
 
 import RegisteredDoctors from './components/RegisteredDoctors';
@@ -60,8 +63,31 @@ import TeacherDetails from './components/TeacherDetails';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#620b37',
+    },
+    secondary: {
+      main: '#620b37',
+    },
+  },
+});
 root.render(
   <React.StrictMode>
+    <ThemeProvider theme={theme}>
+    <ConfigProvider
+    theme={{
+      token: {
+        // Seed Token
+        colorPrimary: '#620b37',
+        borderRadius: 2,
+
+        // Alias Token
+        colorBgContainer: '#ffffff',
+      },
+    }}
+  >
     <HelmetProvider>
       <CookiesProvider>
         <BrowserRouter>
@@ -105,14 +131,16 @@ root.render(
               <Route path="/delieveyPersonDashboard" element={<Dashboard />} />
               <Route path="/view-doctor-registered-info" element={<RequestInfoDoctor />}/>
               <Route path='/view-doctor-request-info' element={<RequestInfoDoctor />} />
-              <Route path='/view-teacher-request-info' element={<RequestInfoTeacher />} />
+              <Route path='/view-teacher-request-info' element={<RequestInfoTeacher />} />              <Route path="/deliveryDonationDetails" element={<DeliveryDonationDetails />} />
+
 
             </Routes>
           </Suspense>
         </BrowserRouter>
       </CookiesProvider>
     </HelmetProvider>
-
+    </ConfigProvider>
+    </ThemeProvider>
 
   </React.StrictMode>
 );
