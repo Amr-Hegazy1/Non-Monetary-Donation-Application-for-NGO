@@ -9,24 +9,27 @@ const timeFormat = 'HH:mm';
 
 
 const App = () => {
-  const [selectedDateTime, setSelectedDateTime] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedTime, setSelectedTime] = useState(null);
 
-  const onChange = (date, dateString) => {
-    console.log(date, dateString);
-    setSelectedDateTime(date);
-  };
-
-  const [error, setError] = useState(null);
-  const handleSubmit = () => {
-    if (!error) {
-      console.log('Submitted:', selectedDateTime.format(`${dateFormat} ${timeFormat}`));
-      message.success('Details submitted');
-    
-      // Add your submission logic here
-    } else {
-      console.log('Please select a date and time before submitting.');
-      message.error('Please enter Date/Time');
-    }
+    const success = () => {
+      message
+        .loading('Sending date and time to admin..', 1.5)
+        .then(() => message.success('Submitted!', 2.5))
+    };
+    const handleSubmit = (event) => {
+      event.preventDefault();
+  
+      if(!selectedDate){
+        message.error('Please enter Date.');
+      }
+      else if (!selectedTime ) {
+        message.error('Please enter Time.');
+      }
+      else {
+       success();
+      }
+  
   };
 
   return (
@@ -38,12 +41,13 @@ const App = () => {
       <Row justify="center">
         <Col>
           <Space direction="vertical" align="center">
-            <DatePicker style={{ width: '400px' }} onChange={onChange} />
+            <DatePicker style={{ width: '400px' }} value={selectedDate} onChange={(event) =>setSelectedDate(event.target.value)} />
             <p></p>
          
-            <TimePicker style={{ width: '400px' }} format={timeFormat} onChange={onChange} />
+            <TimePicker style={{ width: '400px' }} format={timeFormat}
+            value={selectedTime} onChange={(event) =>setSelectedTime(event.target.value)}/>
             <p></p>
-            <Link to="/HomePage">
+            <Link to="/Homepage">
               <Button type="primary" style={{ backgroundColor: '#620b37', borderColor: '#620b37' }} onClick={handleSubmit}>Submit</Button>
             </Link>
           </Space>
