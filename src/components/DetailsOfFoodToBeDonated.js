@@ -54,8 +54,15 @@ const defaultTheme = createTheme();
 export default function DetailsOfFoodToBeDonated() {
 
   const handleSubmit = () => {
-    console.log('Form submitted');
-    message.success('Details submitted');
+    if (selectedDateTime) {
+      console.log('Submitted');
+      message.success('Details submitted');
+
+      // Add your submission logic here
+    } else {
+      console.log('Not submitted');
+      message.error('Please complete your submission');
+    }
   };
 
 

@@ -17,6 +17,8 @@ import ViewDetailsOfFulfilledPosts from './components/ViewDetailsOfFulfilledPost
 //import NotificationForDriverArrival from './components/NotificationForDriverArrival';
 import NavBar from './components/NavBar';
 import AdminHome from './AdminHome';
+import NotificationsOrg from './components/AdminHomePage/TopNav/NotificationsOrg';
+import DeliveryPersonSignUp from './components/DeliveryPersonSignUp';
 
 //import FulfilledDonations from './components/FulfilledDonations';
 //import DetailsOfToysToBeDonated from './components/DetailsOfToysToBeDonated';
@@ -25,9 +27,11 @@ import AdminHome from './AdminHome';
 function App() {
   return (
     <div className="App">
+     <NotificationsOrg/>
+
     <NavBar />
-    <NotificationForChosenPosts/>
-    <ViewDetailsOfFulfilledPosts/>
+    <DeliveryPersonSignUp/>
+ 
   
   </div>
 );
