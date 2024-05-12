@@ -33,15 +33,16 @@ import ThemeProvider from '../src/components/AdminHomePage/theme';
 import { HelmetProvider } from 'react-helmet-async';
 import { Suspense } from 'react';
 import DetailsOfClothesToBeDonated from './components/DetailsOfClothesToBeDonated';
-import DetailsOfMedicalSuppToBeDonated from './components/DetailsOfMedicalSuppToBeDonated';
-import DetailsOfToysToBeDonated from './components/DetailsOfToysToBeDonated';
-import DetailsOfBooksToBeDonated from './components/DetailsOfBooksToBeDonated';
-import DetailsOfStationaryToBeDonated from './components/DetailsOfStationaryToBeDonated';
-import DetailsOfFoodToBeDonated from './components/DetailsOfFoodToBeDonated';
-import OrgCoordinateDonationPickup from './components/OrgCoordinateDonationPickup';
-import ViewDonorDetailsForFulfilledPosts from './components/ViewDonorDetailsForFulfilledPosts';
-
-
+import RequestClothes from './components/RequestClothes';
+import RequestBooks from './components/RequestBooks.';
+import RequestFood from './components/RequestFood';
+import RequestMedicalSupplies from './components/RequestMedicalSup';
+import RequestStationary from './components/RequestStationary';
+import RequestToys from './components/RequestToys';
+import RequestBloodDonations from './components/RequestBloodDonations';
+import RequestTeaching from './components/RequestTeaching';
+import RequestMedicalCases from './components/RequestMedicalCases';
+import ViewDonationRequests from './components/ViewDonationRequests';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -54,6 +55,16 @@ root.render(
             <Routes>
               <Route path="/" element={<App/>} />
               <Route path="/donateClothes" element={<DetailsOfClothesToBeDonated/>} />
+             <Route path = "/RequestClothes" element={<RequestClothes/>} />
+             <Route path = "/RequestBooks" element={<RequestBooks/>} />
+             <Route path = "/RequestFood" element={<RequestFood/>} />
+             <Route path = "/RequestMedicalSupplies" element={<RequestMedicalSupplies/>} />
+             <Route path = "/RequestStationary" element={<RequestStationary/>} />
+             <Route path = "/RequestToys" element={<RequestToys/>} />
+             <Route path = "/RequestBloodDonations" element={<RequestBloodDonations/>} />
+             <Route path = "/RequestTeaching" element={<RequestTeaching/>} />
+             <Route path = "/RequestMedicalCases" element={<RequestMedicalCases/>} />
+             <Route path = "/ViewDonationRequests" element={<ViewDonationRequests/>}/>
               <Route path="/donateMedicalSupplies" element={<DetailsOfMedicalSuppToBeDonated/>} />
               <Route path="/donateToys" element={<DetailsOfToysToBeDonated/>} />
               <Route path="/donateBooks" element={<DetailsOfBooksToBeDonated/>} />
