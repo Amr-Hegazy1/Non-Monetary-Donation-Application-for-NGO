@@ -81,9 +81,6 @@ function DonorProfile(){
         setTooltipTextAddress('');
     };
 
-    // const handleMouseEnterCases = () => {
-    //     setTooltipTextCases('Click to change Available Pro-Bono Cases');
-    // };
 
     const handleMouseLeaveCases = () => {
         setTooltipTextCases('');
@@ -95,10 +92,7 @@ function DonorProfile(){
     const handleChangeName = (e) => {
         setName(e.target.value);
     };
-    // const handleChangeCases = (e) => {
-    //     setCases(e.target.value);
-    // };
-    
+
     const LocationFinderDummy = () => {
         const map = useMapEvents({
             click(e) {
@@ -244,38 +238,7 @@ function DonorProfile(){
                 />
         </Grid>
         <Divider/>
-            {/* <Grid item xs>
-            <Text variant="h6" style={{ marginBottom: 20, fontSize:25, position:'absolute', top:1015,left:540,  color:'#620B37'}}>Available Pro-Bono Teaching:</Text>
-
-                    <TextField
-                    margin="normal"
-                    fullWidth
-                    onChange={handleChangeCases}
-                    value={cases}
-                    type="number"
-                    style={{ marginTop: 40 }}
-                    InputProps={{
-                        style: {
-                            opacity: 10, // Ensure text is fully visible
-                            position: 'relative' // Ensure position is relative for absolute positioning of tooltip,
-                            
-                        },
-                        onMouseEnter: () => handleMouseEnterCases(),
-                        onMouseLeave: handleMouseLeaveCases,
-                 
-                      
-                    }}
-                   
-                    
-                />
-                {tooltipTextCases && (
-                    <div style={{ position: 'absolute', top: '155%', left: '36%', backgroundColor: 'white', padding: '5px', border: 'transparent', borderRadius: '5px' }}>
-                        {tooltipTextCases}
-                    </div>
-                )}
-                    
-                </Grid>
-            <Divider/> */}
+           
             <Grid item xs fullWidth required>
 
                     <InputLabel id="demo-multiple-name-label">Admin Location, click on map to change it</InputLabel>

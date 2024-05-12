@@ -3,7 +3,7 @@ import Avatar from '@mui/material/Avatar';
 import { ReactTags } from 'react-tag-autocomplete'
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
-import { Image,message } from 'antd';
+import { Image, message } from 'antd';
 import food from './food.png'
 import TextField from '@mui/material/TextField';
 import Checkbox from '@mui/material/Checkbox';
@@ -52,51 +52,51 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
- function RequestFood() {
+function RequestFood() {
 
-    const [itemName, setItemName] = React.useState('');
-    const [quantity, setQuantity] = React.useState('');
-    const [area, setArea] = React.useState('');
-    const [governorate, setGovernorate] = React.useState('');
-    
-
+  const [itemName, setItemName] = React.useState('');
+  const [quantity, setQuantity] = React.useState('');
+  const [area, setArea] = React.useState('');
+  const [governorate, setGovernorate] = React.useState('');
 
 
 
 
-    const success = () => {
-        message
-          .loading('Sending request to admin..', 1.5)
-          .then(() => message.success('Request sent to Admin, wait for approval :)', 2.5))
-      };
-      
-  
-    const handleSubmit = (event) => {
-      event.preventDefault();
 
-      
-      if (!itemName) {
-        message.error('Please specify item name.');
-      } else if(!quantity) {
-        message.error('Please specify quantity.');
-      }
-      else if(!area) {
-        message.error('Please specify area.');
-      }
-      else if(!governorate) {
-        message.error('Please specify governorate.');
-      }
-      else {
-       success();
-      }
 
-    };
+  const success = () => {
+    message
+      .loading('Sending request to admin..', 1.5)
+      .then(() => message.success('Request sent to Admin, wait for approval :)', 2.5))
+  };
+
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+
+    if (!itemName) {
+      message.error('Please specify item name.');
+    } else if (!quantity) {
+      message.error('Please specify quantity.');
+    }
+    else if (!area) {
+      message.error('Please specify area.');
+    }
+    else if (!governorate) {
+      message.error('Please specify governorate.');
+    }
+    else {
+      success();
+    }
+
+  };
 
 
 
   return (
     <>
-    <NavBar/>
+      <NavBar />
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -112,7 +112,7 @@ const defaultTheme = createTheme();
               display: 'flex',
               justifyContent: 'center',
               marginBottom: 2,
-              width: '100%', 
+              width: '100%',
             }}
           >
             <Box
@@ -127,61 +127,61 @@ const defaultTheme = createTheme();
           </Box>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <Grid item xs>
-                <TextField
-                    margin="normal"
-                    required
-                    fullWidth
-                    
-                    label="Item Name"
-                    autoFocus
-                    value={itemName}
-                    onChange={(event) =>setItemName(event.target.value)}
-                    />
-            <Grid item>
-            <br/>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+
+                label="Item Name"
+                autoFocus
+                value={itemName}
+                onChange={(event) => setItemName(event.target.value)}
+              />
+              <Grid item>
+                
                 <FormControl fullWidth required>
-                    <TextField
+                  <TextField
                     margin="normal"
                     required
                     fullWidth
                     label="Quantity(in KGs for fruit & vegetable)"
-                
+
                     type='number'
                     value={quantity}
                     onChange={(event) => setQuantity(event.target.value)}
-                    
-                    />
+
+                  />
                 </FormControl>
                 <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="Area"
-              label="Area"
-              value={area}
-              onChange={(event)=>setArea(event.target.value)}
-            />
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="Area"
+                  label="Area"
+                  value={area}
+                  onChange={(event) => setArea(event.target.value)}
+                />
 
-        <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="Governorate"
-              label="Governorate"
-              value={governorate}
-              onChange={(event)=>setGovernorate(event.target.value)}
-            />    
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              className="btn"
-              sx={{ mt: 3, mb: 2 }}
-              style={{ backgroundColor: '#620b37', borderColor: '#620b37' }}
-            >
-              Submit
-            </Button>
-            </Grid>
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="Governorate"
+                  label="Governorate"
+                  value={governorate}
+                  onChange={(event) => setGovernorate(event.target.value)}
+                />
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  className="btn"
+                  sx={{ mt: 3, mb: 2 }}
+                  style={{ backgroundColor: '#620b37', borderColor: '#620b37' }}
+                >
+                  Submit
+                </Button>
+              </Grid>
             </Grid>
           </Box>
         </Box>

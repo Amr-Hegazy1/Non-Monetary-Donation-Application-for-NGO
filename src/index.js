@@ -20,8 +20,6 @@ import DetailsOfStationaryToBeDonated from './components/DetailsOfStationaryToBe
 import DetailsOfFoodToBeDonated from './components/DetailsOfFoodToBeDonated';
 import ViewDonorDetailsForFulfilledPosts from './components/ViewDonorDetailsForFulfilledPosts';
 import { CookiesProvider } from 'react-cookie';
-import ViewEstimatedTime from './components/ViewEstimatedArrival';
-import RequestInfo from './components/RequestInfo';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import { HelmetProvider } from 'react-helmet-async';
@@ -60,10 +58,12 @@ import TeacherDetails from './components/TeacherDetails';
 import DoctorDetails from './components/DoctorDetails';
 
 
-import AdminLogin from './LoginAmin';
+import Login from './Login';
+import RequestInfoTeacher from './components/RequestInfoTeacher';
 import DonorProfile from './components/DonorProfile';
 import OrganizationProfile from './components/OrganizationProfile';
 import AdminProfile from './components/AdminProfile';
+import DeliveryPersonProfile from './components/DeliveryPersonProfile';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const theme = createTheme({
   palette: {
@@ -78,12 +78,12 @@ const theme = createTheme({
 root.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-    <ConfigProvider
-    theme={{
-      token: {
-        // Seed Token
-        colorPrimary: '#620b37',
-        borderRadius: 2,
+      <ConfigProvider
+        theme={{
+          token: {
+            // Seed Token
+            colorPrimary: '#620b37',
+            borderRadius: 2,
 
         // Alias Token
         colorBgContainer: '#ffffff',
@@ -131,6 +131,7 @@ root.render(
               <Route path="/DonorProfile" element={<DonorProfile />} />
               <Route path = "/OrganizationProfile" element={<OrganizationProfile />} />
               <Route path = "/AdminProfile" element={<AdminProfile />} />
+              <Route path = "/DeliveryPersonProfile" element={<DeliveryPersonProfile />} />
               <Route path="/donorViewAllDonations" element={<DonorMyDonations />} />
               <Route path="/donorMyDonationDetails" element={<DonorMyDonationDetails />} />
               <Route path="/delieveyPersonDashboard" element={<Dashboard />} />
@@ -140,15 +141,15 @@ root.render(
              <Route path="/deliveryDonationDetails" element={<DeliveryDonationDetails />} />
              <Route path= '/homePage' element={<Homepage />} />
 
-         
 
 
-            </Routes>
-          </Suspense>
-        </BrowserRouter>
-      </CookiesProvider>
-    </HelmetProvider>
-    </ConfigProvider>
+
+                </Routes>
+              </Suspense>
+            </BrowserRouter>
+          </CookiesProvider>
+        </HelmetProvider>
+      </ConfigProvider>
     </ThemeProvider>
 
   </React.StrictMode>

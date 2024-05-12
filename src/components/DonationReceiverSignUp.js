@@ -65,7 +65,7 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
-export default function DonorSignUp() {
+export default function DonationReceiverSignUp() {
 
   const subjects = ["Math", "Science", "English", "History", "Art", "Music", "Physical Education", "Computer Science", "Biology", "Chemistry", "Physics", "Geography", "Economics", "Government", "Psychology", "Sociology", "Anthropology", "Philosophy", "Theology", "Engineering", "Business", "Marketing", "Accounting", "Finance", "Management", "Human Resources", "Operations", "Supply Chain", "Logistics", "Information Technology", "Data Science", "Machine Learning", "Artificial Intelligence", "Cybersecurity", "Networks", "Databases", "Web Development", "Mobile Development", "Game Development", "Software Development", "Hardware Development", "Robotics", "Automation", "Internet of Things", "Cloud Computing", "Big Data", "Blockchain", "Cryptocurrency", "Digital Marketing", "Social Media", "Search Engine Optimization", "Content Marketing", "Email Marketing", "Affiliate Marketing", "Influencer Marketing", "Public Relations", "Advertising", "Sales", "Customer Service", "Customer Success", "Customer Experience", "User Experience", "User Interface", "Product Management", "Project Management", "Quality Assurance", "Quality Control", "Compliance", "Regulatory Affairs", "Legal", "Risk Management", "Audit", "Tax", "Insurance", "Real Estate", "Construction", "Architecture", "Interior Design", "Urban Planning", "Landscape Architecture", "Civil Engineering", "Mechanical Engineering", "Electrical Engineering", "Chemical Engineering", "Aerospace Engineering", "Biomedical Engineering", "Environmental Engineering", "Materials Science", "Nanotechnology", "Physics", "Chemistry", "Biology", "Geology", "Meteorology", "Oceanography", "Astronomy", "Astrophysics", "Cosmology", "Theoretical Physics", "Particle Physics", "Quantum Physics", "Nuclear Physics", "Atomic Physics", "Molecular Physics", "Solid State Physics", "Fluid Dynamics", "Thermodynamics", "Electromagnetism", "Optics", "Acoustics", "Quantum Mechanics", "General Relativity", "Special Relativity", "String Theory", "M-Theory", "Loop Quantum Gravity", "Quantum Field Theory", "Quantum Chromodynamics", "Quantum Electrodynamics", "Quantum Gravity"];
 
@@ -207,7 +207,7 @@ export default function DonorSignUp() {
 
   return (
 
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="sm">
       <CssBaseline />
       <Box
         sx={{
@@ -283,50 +283,30 @@ export default function DonorSignUp() {
                   </Popup>
                 </Marker>
 
-              </MapContainer>
-            </FormControl>
-            <FormControl fullWidth required>
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                label="Organization Type"
-                error={errorStates.specialization}
-              />
-            </FormControl>
-
-
-            <br />
-      
-            <Divider>{volenteerRole} Organization Logo</Divider>
-            <FormControl fullWidth required error={errorStates.certificates}>
-
-              <Dragger>
-                <p className="ant-upload-drag-icon">
-                  <InboxOutlined />
-                </p>
-                <p className="ant-upload-text">Click or drag file to this area to upload</p>
-                <p className="ant-upload-hint">
-                  Support for a single or bulk upload. Strictly prohibited from uploading company data or other
-                  banned files.
-                </p>
-              </Dragger>
-            </FormControl>
-          <Divider>Address Details</Divider>
-          <AddressForm />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            className="signup-btn"
-            sx={{ mt: 3, mb: 2 }}
-          >
-            Sign Up
-          </Button>
+                    </MapContainer> 
+                </FormControl>
+             
+                
+                
+                <br/>
+           
+                
+                
+            <Divider>Address Details</Divider>
+            <AddressForm />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              className="signup-btn"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Sign Up
+            </Button>
+          </Box>
         </Box>
-      </Box>
-
-    </Container>
-
+        <Copyright sx={{ mt: 8, mb: 4 }} />
+      </Container>
+    
   );
 }

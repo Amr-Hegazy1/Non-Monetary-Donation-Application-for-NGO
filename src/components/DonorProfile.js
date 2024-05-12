@@ -194,7 +194,7 @@ function DonorProfile(){
 
     <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
 
-        <Text variant="h6" style={{ marginBottom: 20, fontSize:25, position:'absolute', top:390,left:540, color:'#620B37'}}>Name:</Text>
+        <Text variant="h6" style={{ marginBottom: 20, fontSize:25, position:'absolute', top:"54%",left:"36.6%", color:'#620B37'}}>Name:</Text>
 
 
 
@@ -218,7 +218,7 @@ function DonorProfile(){
                 style={{ marginTop: 200 }}
             />
             {tooltipTextName && (
-                <div style={{ position: 'absolute', top: '100%', left: 0, backgroundColor: 'white', padding: '5px', border: 'transparent', borderRadius: '5px' }}>
+                <div style={{ position: 'absolute', top: '97%', left: 0, backgroundColor: 'white', padding: '0px', border: 'transparent', borderRadius: '5px' }}>
                     {tooltipTextName}
                 </div>
             )}
@@ -226,7 +226,7 @@ function DonorProfile(){
             </Grid>
             <Divider/>
          <Grid item xs>
-            <Text variant="h6" style={{ marginBottom: 20, fontSize:25, position:'absolute', top:545,left:540,  color:'#620B37'}}>Email:</Text>
+            <Text variant="h6" style={{ marginBottom: 20, fontSize:25, position:'absolute', top:"73%",left:"36.6%",  color:'#620B37'}}>Email:</Text>
             <div style={{ position:'relative'}}>
             <TextField
               margin="normal"
@@ -251,7 +251,7 @@ function DonorProfile(){
         />
 
         {tooltipTextAddress && (
-            <div style={{ position: 'absolute', top: '93%', left: 0, backgroundColor: 'white', padding: '5px', border: 'transparent', borderRadius: '5px' }}>
+            <div style={{ position: 'absolute', top: '91%', left: 0, backgroundColor: 'white', padding: '0px', border: 'transparent', borderRadius: '5px' }}>
                 {tooltipTextAddress}
             </div>
         )}
@@ -260,7 +260,7 @@ function DonorProfile(){
         <Divider/>
         <Grid item xs>
 
-            <Text variant="h6" style={{ marginBottom: 20, fontSize:25, position:'absolute', top:715,left:540, color:'#620B37'}}>Phone Number:</Text>
+            <Text variant="h6" style={{ marginBottom: 20, fontSize:25, position:'absolute', top:"92%",left:"36.6%", color:'#620B37'}}>Phone Number:</Text>
               <PhoneInput
                   defaultCountry="eg"
                   style={{width: '100%', marginTop: 62}}
@@ -278,7 +278,7 @@ function DonorProfile(){
   
 
             <Grid item xs>
-            <Text variant="h6" style={{ marginBottom: 20, fontSize:25, position:'absolute', top:850,left:540,  color:'#620B37'}}>Profession:</Text>
+            <Text variant="h6" style={{ marginBottom: 20, fontSize:25, position:'absolute', top:"110%",left:"36.6%",  color:'#620B37'}}>Profession:</Text>
 
             <TextField
                     margin="normal"
@@ -298,7 +298,7 @@ function DonorProfile(){
         </Grid>
         <Divider/>
             <Grid item xs>
-            <Text variant="h6" style={{ marginBottom: 20, fontSize:25, position:'absolute', top:1015,left:540,  color:'#620B37'}}>Available Pro-Bono Cases:</Text>
+            <Text variant="h6" style={{ marginBottom: 20, fontSize:25, position:'absolute', top:"130",left:"36.6%",  color:'#620B37'}}>Available Pro-Bono Cases:</Text>
 
                     <TextField
                     margin="normal"
@@ -322,13 +322,13 @@ function DonorProfile(){
                     
                 />
                 {tooltipTextCases && (
-                    <div style={{ position: 'absolute', top: '155%', left: '36%', backgroundColor: 'white', padding: '5px', border: 'transparent', borderRadius: '5px' }}>
+                    <div style={{ position: 'absolute', top: '144%', left: '36.5%', backgroundColor: 'white', padding: '0px', border: 'transparent', borderRadius: '5px' }}>
                         {tooltipTextCases}
                     </div>
                 )}
                     
                 </Grid>
-            <Divider/>
+            
             <Divider style={{fontSize:25, color:'#620B37'}}>Address Details </Divider>
             <FormControl fullWidth required style={{ marginBottom: '40px'}}>
                 <InputLabel id="demo-multiple-name-label">Country</InputLabel>
@@ -400,7 +400,7 @@ function DonorProfile(){
                 }}
                 />
                      {tooltipTextAddress1 && (
-            <div style={{ position: 'absolute', top: '67%', left: 0, backgroundColor: 'white', padding: '5px', border: 'transparent', borderRadius: '5px' }}>
+            <div style={{ position: 'absolute', top: '60%', left: 0, backgroundColor: 'white', padding: '5px', border: 'transparent', borderRadius: '5px' }}>
                 {tooltipTextAddress1}
                 </div>
                      )}
@@ -431,7 +431,7 @@ function DonorProfile(){
                 }}
                 />
                  {tooltipTextZipCode && (
-            <div style={{ position: 'absolute', top: '71%', left: 0, backgroundColor: 'white', padding: '5px', border: 'transparent', borderRadius: '5px' }}>
+            <div style={{ position: 'absolute', top: '56%', left: 0, backgroundColor: 'white', padding: '0px', border: 'transparent', borderRadius: '5px' }}>
                 {tooltipTextZipCode}
             </div>
         )}

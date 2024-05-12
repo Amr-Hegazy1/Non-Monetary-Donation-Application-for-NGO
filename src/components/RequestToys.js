@@ -149,7 +149,7 @@ export default function RequestToys() {
                     fullWidth
                     
                     label="Type"
-                    autoFocus
+                    
                     value={type}
                     onChange={(event) =>setType(event.target.value)}
                     /> */}
@@ -187,7 +187,7 @@ export default function RequestToys() {
               fullWidth
               name="Color"
               label="Color"
-              autoFocus
+              
               value={color}
               onChange={(event)=>setColor(event.target.value)}
             />
@@ -198,7 +198,7 @@ export default function RequestToys() {
                     required
                     fullWidth
                     label="Age"
-                    autoFocus
+                    
                     type='number'
                     value={age}
                     onChange={(event)=>setAge(event.target.value)}
@@ -211,7 +211,7 @@ export default function RequestToys() {
                     required
                     fullWidth
                     label="Quantity"
-                    autoFocus
+                    
                     type='number'
                     value={quantity}
                     onChange={(event)=>setQuantity(event.target.value)}
@@ -222,7 +222,7 @@ export default function RequestToys() {
               fullWidth
               name="Area"
               label="Area"
-              autoFocus
+              
               value={area}
               onChange={(event)=>setArea(event.target.value)}
             />
@@ -233,7 +233,7 @@ export default function RequestToys() {
               fullWidth
               name="Governorate"
               label="Governorate"
-              autoFocus
+              
               value={governorate}
               onChange={(event)=>setGovernorate(event.target.value)}
             />    

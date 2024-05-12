@@ -563,7 +563,7 @@ function ViewDonationRequest() {
   return (
     <>
       <NavBar />
-      <AppBar position="static" sx={{ backgroundColor: '#620b37', height: '100%', width: '100%'}}>
+      <AppBar position="static" sx={{ backgroundColor: '#620b37', height: '100%', width: '100%' }}>
 
 
         <Box sx={{ flexGrow: 1 }}>
@@ -717,16 +717,38 @@ function ViewDonationRequest() {
                 )}
 
                 {categoryFilter === 'Medical Supplies' && (
-                  <Select defaultValue="All Medical Types" onChange={(value) => setMedicalTypeFilter(value)} onMouseEnter={handleMedicalTypeMouseEnter} onMouseLeave={handleMedicalTypeMouseLeave} style={{ color: MedicalTypeHovered ? COLORS.white : COLORS.black, backgroundColor: MedicalTypeHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
-                    {[
-                      { value: '', label: 'All Types' },
-                      { value: 'Medical Device', label: 'Medical Device' },
-                      { value: 'Medical Equipment', label: 'Medical Equipment' },
-                      { value: 'Medication', label: 'Medication' }
-                    ].map(option => (
-                      <option value={option.value}>{option.label}</option>
-                    ))}
-                  </Select>
+                  <>
+                    <Select defaultValue="All Medical Types" onChange={(value) => setMedicalTypeFilter(value)} onMouseEnter={handleMedicalTypeMouseEnter} onMouseLeave={handleMedicalTypeMouseLeave} style={{ color: MedicalTypeHovered ? COLORS.white : COLORS.black, backgroundColor: MedicalTypeHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold', width: "100%" }}>
+                      {[
+                        { value: '', label: 'All Types' },
+                        { value: 'Medical Device', label: 'Medical Device' },
+                        { value: 'Medical Equipment', label: 'Medical Equipment' },
+                        { value: 'Medication', label: 'Medication' }
+                      ].map(option => (
+                        <option value={option.value}>{option.label}</option>
+                      ))}
+                    </Select>
+                    {(medicalTypeFilter === 'Medication') && (
+                      <Select
+                        
+                        value={medicalUseFilter}
+                        onChange={(value) => setMedicalUseFilter(value)}
+                        onMouseEnter={handleMedicalUseMouseEnter}
+                        onMouseLeave={handleMedicalUseMouseLeave}
+                        style={{
+                          color: MedicalUseHovered ? COLORS.white : COLORS.black,
+                          backgroundColor: MedicalUseHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white,
+                          fontWeight: 'bold',
+                          
+                        }}
+                      >
+                        <option value="">All Medical Uses</option>
+                        <option value="Headache">Headache</option>
+                        <option value="Fever">Fever</option>
+                        
+                      </Select>
+                    )}
+                  </>
                 )}
 
 

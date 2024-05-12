@@ -65,7 +65,7 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
-export default function DonorSignUp() {
+export default function DeliveryPersonSignUp() {
 
   const subjects = ["Math", "Science", "English", "History", "Art", "Music", "Physical Education", "Computer Science", "Biology", "Chemistry", "Physics", "Geography", "Economics", "Government", "Psychology", "Sociology", "Anthropology", "Philosophy", "Theology", "Engineering", "Business", "Marketing", "Accounting", "Finance", "Management", "Human Resources", "Operations", "Supply Chain", "Logistics", "Information Technology", "Data Science", "Machine Learning", "Artificial Intelligence", "Cybersecurity", "Networks", "Databases", "Web Development", "Mobile Development", "Game Development", "Software Development", "Hardware Development", "Robotics", "Automation", "Internet of Things", "Cloud Computing", "Big Data", "Blockchain", "Cryptocurrency", "Digital Marketing", "Social Media", "Search Engine Optimization", "Content Marketing", "Email Marketing", "Affiliate Marketing", "Influencer Marketing", "Public Relations", "Advertising", "Sales", "Customer Service", "Customer Success", "Customer Experience", "User Experience", "User Interface", "Product Management", "Project Management", "Quality Assurance", "Quality Control", "Compliance", "Regulatory Affairs", "Legal", "Risk Management", "Audit", "Tax", "Insurance", "Real Estate", "Construction", "Architecture", "Interior Design", "Urban Planning", "Landscape Architecture", "Civil Engineering", "Mechanical Engineering", "Electrical Engineering", "Chemical Engineering", "Aerospace Engineering", "Biomedical Engineering", "Environmental Engineering", "Materials Science", "Nanotechnology", "Physics", "Chemistry", "Biology", "Geology", "Meteorology", "Oceanography", "Astronomy", "Astrophysics", "Cosmology", "Theoretical Physics", "Particle Physics", "Quantum Physics", "Nuclear Physics", "Atomic Physics", "Molecular Physics", "Solid State Physics", "Fluid Dynamics", "Thermodynamics", "Electromagnetism", "Optics", "Acoustics", "Quantum Mechanics", "General Relativity", "Special Relativity", "String Theory", "M-Theory", "Loop Quantum Gravity", "Quantum Field Theory", "Quantum Chromodynamics", "Quantum Electrodynamics", "Quantum Gravity"];
 
@@ -207,7 +207,7 @@ export default function DonorSignUp() {
 
   return (
 
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="sm">
       <CssBaseline />
       <Box
         sx={{
