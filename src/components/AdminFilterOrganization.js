@@ -15,6 +15,7 @@ import { AccordionActions } from '@mui/material';
 import ViewRequestedDonationImg from './ViewRequestedDonationImg.jpg';
 import { Sort } from '@mui/icons-material';
 import { set } from 'react-cool-form';
+import { Popconfirm } from 'antd';
 
 
 const StyledAccordion = styled(Accordion)(({ theme }) => ({
@@ -251,25 +252,27 @@ function AdminFilterOrganization() {
               ))}
             </ul>
           </StyledAccordionDetails>
-          <AccordionActions>
+  <AccordionActions style={{display: "flex",justifyContent: "center"}}>
   <Button 
-    variant="contained" 
-    color="primary"
+    color="warning"
     size="small" 
-    style={{ margin: '0 auto', display: 'flex' , background:'#602b37', width: '120px' }} 
+    style={{ width: "20%", marginLeft: 'auto', marginRight: '30%', margin:7}}
     onClick={() => window.location.href = "/view-org-registered-info"}
   >
     View All Details
   </Button>
-  <Button 
-  variant="contained" 
-  color="secondary"
-  size="small" 
-  style={{ margin: '0 auto', display: 'flex' , background:'#602b37', marginLeft: '10px', width: '80px' }} 
-  onClick={() => handleDelete(index)}
->
-  Delete
-</Button>
+  <Popconfirm
+    title="Delete the account?"
+    description="Are you sure to delete this account?"
+    onConfirm={() => handleDelete(index)}
+    okText="Yes"
+    cancelText="No"
+    okButtonProps={{ style: { width: "auto" } }}
+    cancelButtonProps={{ style: { width: "auto" } }}
+    style={{ width: "20%", marginLeft: 'auto', marginRight: '30%', margin:7}}
+  >
+    <Button style={{ width: "20%"}} color='warning'>Delete</Button>
+  </Popconfirm>
 </AccordionActions>
         </StyledAccordion>
       ))}

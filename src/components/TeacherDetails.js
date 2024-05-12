@@ -33,11 +33,18 @@ const TeacherDetails = () => {
 
   const handleAccept = () => {
     // Confirm accept action
-    message.success('User accepted');
+    message.success('Teacher accepted');
+    setTimeout(() => {
+      window.location.href = '/AdminHome?path=%2FAdminHome%2FTecherSubmissions';
+    }, 1000); // Delay of 1 seconds
   };
+  
   const handleReject = () => {
     // Confirm reject action
-    message.error('User rejected');
+    message.error('Teacher rejected');
+    setTimeout(() => {
+      window.location.href = '/AdminHome?path=%2FAdminHome%2FTecherSubmissions';
+    }, 1000); // Delay of 1 seconds
   };
   const handleDownload = () => {
     // Trigger file download when the button is clicked

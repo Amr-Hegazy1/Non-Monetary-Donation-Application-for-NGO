@@ -1,5 +1,4 @@
 import { useState } from 'react';
-
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import Divider from '@mui/material/Divider';
@@ -8,8 +7,8 @@ import { alpha } from '@mui/material/styles';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
-
 import  {Account}  from '../account';
+import { useCookies } from 'react-cookie';
 
 // ----------------------------------------------------------------------
 
@@ -19,11 +18,7 @@ const MENU_OPTIONS = [
     icon: 'eva:home-fill',
   },
   {
-    label: 'Profile',
-    icon: 'eva:person-fill',
-  },
-  {
-    label: 'Settings',
+    label: 'Password Settings',
     icon: 'eva:settings-2-fill',
   },
 ];
@@ -32,9 +27,10 @@ const MENU_OPTIONS = [
 
 export default function AccountPopover() {
   const [open, setOpen] = useState(null);
-  
+  const [cookies, setCookie] = useCookies();
   const handleLogout = () => {
-    window.location.href = "/homePage"; // Replace with your URL
+    window.location.href = "/homePage";
+    setCookie("user_type", "");
   };
 
   const handleOpen = (event) => {
@@ -43,6 +39,15 @@ export default function AccountPopover() {
 
   const handleClose = () => {
     setOpen(null);
+  };
+
+  const handleMenuClick = (label) => {
+    if (label === 'Home') {
+      window.location.href = "/homePage";
+    }
+    else if (label === 'Password Settings') {
+      window.location.href = "/ChangePassword";
+    }
   };
 
   return (
@@ -103,8 +108,8 @@ export default function AccountPopover() {
         <Divider sx={{ borderStyle: 'dashed' }} />
 
         {MENU_OPTIONS.map((option) => (
-          <MenuItem key={option.label} onClick={handleClose}>
-            {option.label}
+          <MenuItem key={option.label} onClick={() => handleMenuClick(option.label)}>
+          {option.label}
           </MenuItem>
         ))}
 

@@ -35,14 +35,21 @@ const DoctorDetails = () => {
   const handleAccept = () => {
     // Confirm accept action
     message.success('User accepted');
+    setTimeout(() => {
+      window.location.href = '/AdminHome?path=%2FAdminHome%2FDoctorSubmissions';
+    }, 1000); // Delay of 1 seconds
   };
+  
   const handleReject = () => {
     // Confirm reject action
     message.error('User rejected');
+    setTimeout(() => {
+      window.location.href = '/AdminHome?path=%2FAdminHome%2FDoctorSubmissions';
+    }, 1000); // Delay of 1 seconds
   };
   const handleDownload = () => {
     // Trigger file download when the button is clicked
-    saveAs(pdfUrl, 'Donor_document.pdf');
+    saveAs(pdfUrl, 'doctor_document.pdf');
   };
 
   return (

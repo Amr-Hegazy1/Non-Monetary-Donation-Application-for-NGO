@@ -31,15 +31,6 @@ const data = [
 
 const DoctorRegisteredInfo = () => {
   const [pdfUrl, setPdfUrl] = useState(process.env.PUBLIC_URL + '/dummy.pdf'); // Example PDF URL
-
-  const handleAccept = () => {
-    // Confirm accept action
-    message.success('User accepted');
-  };
-  const handleReject = () => {
-    // Confirm reject action
-    message.error('User rejected');
-  };
   const handleDownload = () => {
     // Trigger file download when the button is clicked
     saveAs(pdfUrl, 'Donor_document.pdf');

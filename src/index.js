@@ -139,11 +139,6 @@ root.render(
              <Route path="/deliveryDonationDetails" element={<DeliveryDonationDetails />} />
              <Route path= '/homePage' element={<Homepage />} />
              <Route path= '/registeredOrganizations' element={<AdminFilterOrganization />} />
-
-
-         
-
-
             </Routes>
           </Suspense>
         </BrowserRouter>
