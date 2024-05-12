@@ -69,7 +69,12 @@ export default function DetailsOfToysToBeDonated() {
   const success = () => {
       message
         .loading('Sending details to admin..', 1.5)
-        .then(() => message.success('Details sent to Admin!', 2.5))
+        .then(() => {
+          message.success('Details sent to Admin!', 2.5).then(() => {
+            window.location.href = '/';
+          }
+          );
+        })
     };
     
 
@@ -92,12 +97,6 @@ export default function DetailsOfToysToBeDonated() {
     }
     else if( !quantity ){
       message.error('Please specify quantity.');
-    }
-    else if( !area ){
-      message.error('Please specify area.');
-    }
-    else if( !governorate ){
-      message.error('Please specify governorate.');
     }
     else {
      success();

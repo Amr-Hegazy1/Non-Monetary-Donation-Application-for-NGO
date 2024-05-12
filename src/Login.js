@@ -35,11 +35,13 @@ function Login() {
 
   const handleLogin = (e) => {
     e.preventDefault(); // Prevent default form submission behavior
-
+    console.log(email);
     // Replace with your actual authentication logic on the server-side
     // (e.g., sending hashed password for comparison)
     const correctAdminEmail = 'admin@gmail.com';
     const correctHashedPassword = 'password'; // Placeholder
+
+    const correctDonorEmail = 'donor@gmail.com';
 
     const correctDonorDoctorEmail = 'doctor@gmail.com';
 
@@ -58,6 +60,13 @@ function Login() {
       message.success('Logged in successfully , redirecting ...');
       setCookie("user_type", "admin");
 
+      // You can redirect to another page or perform other actions on success
+    }
+    else if (email === correctDonorEmail && password === correctHashedPassword) {
+      // Login successful (redirect or show success message)
+      window.location.href = '/';
+      message.success('Logged in successfully , redirecting ...');
+      setCookie("user_type", "donor");
       // You can redirect to another page or perform other actions on success
     }
     else if (email === correctDonorDoctorEmail && password === correctHashedPassword) {
@@ -123,6 +132,7 @@ function Login() {
       
           <TextField
             name="password"
+            onKeyDown={(e) => { if (e.key === 'Enter') handleLogin(e); }} // Handle Enter key press
             label="Password"
             type={showPassword ? 'text' : 'password'} // Toggle password visibility
             value={password}
@@ -153,7 +163,7 @@ function Login() {
             </a>
           </div>
      
-          <Button variant="contained" onClick={handleLogin} 
+          <Button variant="contained" onClick={handleLogin}
           style={{
             width: '300px', 
             backgroundColor: '#602b37', 

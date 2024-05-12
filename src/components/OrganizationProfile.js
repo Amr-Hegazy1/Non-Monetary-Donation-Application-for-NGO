@@ -186,7 +186,7 @@ function OrganizationProfile() {
                             borderRadius: '50%',
                             padding: '2px',
                             position: 'absolute',
-                            top: 300,
+                            top: "43%",
                             right: '40%',
                             transform: 'translate(-50%, -50%)',
                             width: 150,

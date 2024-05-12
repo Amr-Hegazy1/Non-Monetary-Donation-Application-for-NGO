@@ -64,7 +64,11 @@ export default function DetailsOfFoodToBeDonated() {
       const success = () => {
           message
             .loading('Sending details to admin..', 1.5)
-            .then(() => message.success('Details sent to Admin!', 2.5))
+            .then(() => {
+              message.success('Details sent to Admin!', 1.5).then(() => {
+                window.location.href = '/';
+              });
+            })
         };
         
     
@@ -76,12 +80,6 @@ export default function DetailsOfFoodToBeDonated() {
           message.error('Please specify item name.');
         } else if(!quantity) {
           message.error('Please specify quantity.');
-        }
-        else if(!area) {
-          message.error('Please specify area.');
-        }
-        else if(!governorate) {
-          message.error('Please specify governorate.');
         }
         else {
          success();
@@ -117,7 +115,7 @@ export default function DetailsOfFoodToBeDonated() {
                     autoFocus
                     />
             <Grid item>
-            <br/>
+            
                 <FormControl fullWidth required>
                     <TextField
                     margin="normal"

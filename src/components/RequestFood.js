@@ -67,7 +67,11 @@ function RequestFood() {
   const success = () => {
     message
       .loading('Sending request to admin..', 1.5)
-      .then(() => message.success('Request sent to Admin, wait for approval :)', 2.5))
+      .then(() => {
+        message.success('Request sent to Admin, wait for approval :)', 1.5).then(() => {
+          window.location.href = '/';
+        });
+      })
   };
 
 

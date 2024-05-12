@@ -14,6 +14,8 @@ import { Popover } from 'antd';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
+import NotificationsOrg from './AdminHomePage/TopNav/NotificationsOrg';
+import NotificationsDonor from './AdminHomePage/TopNav/NotificationsDonor';
 
 
 function NavBar() {
@@ -57,6 +59,8 @@ function NavBar() {
           <Nav className="me-auto">
             <Nav.Link href="/">Contact Us</Nav.Link>
             <Nav.Link href="/">About Us</Nav.Link>
+            {(cookies['user_type'] === "organization") ? <Nav.Link href="/fullfilledDonations">View Fulfilled Donations</Nav.Link> : null}
+            {(cookies['user_type'] === "donor") ? <Nav.Link href="/donorViewAllDonations">View My Donations</Nav.Link> : null}
             {(cookies['user_type'] === "donor") ? <><Nav.Link href="/ViewDonationRequests">View Donation Requests</Nav.Link>
               <NavDropdown title="Donate now" id="collapsible-nav-dropdown">
                 <NavDropdown.Item href="/donateClothes">Clothes</NavDropdown.Item>
@@ -69,7 +73,7 @@ function NavBar() {
                 <NavDropdown.Item href="/donateFood">Food</NavDropdown.Item>
               </NavDropdown></> : null}
 
-            {(cookies['user_type'] === "donation_receiver") ? <NavDropdown title="Create Donation Request" id="collapsible-nav-dropdown">
+            {(cookies['user_type'] === "donation_receiver" || cookies['user_type'] === "organization") ? <NavDropdown title="Create Donation Request" id="collapsible-nav-dropdown">
               <NavDropdown.Item href="/RequestClothes">Request Clothes</NavDropdown.Item>
               <NavDropdown.Item href="/RequestMedicalSupplies">
                 Request Medical Supplies
@@ -89,6 +93,10 @@ function NavBar() {
 
           </Nav>
           <Nav>
+            {(cookies['user_type'] === "organization") ? <NotificationsOrg /> : (cookies['user_type'] == 'donor') ? <NotificationsDonor /> : null}
+          </Nav>
+          <Nav>
+
             {
               (cookies.user_type === 'donor' || cookies.user_type === 'donation_receiver' || cookies.user_type === 'organization') ? (<div
                 
@@ -101,10 +109,7 @@ function NavBar() {
                   content={
                     <Box>
                       <a href="/editProfile" onClick={(handleAvatarClick)}><Typography>Edit Profile</Typography></a>
-                      <br/>
                       <Divider />
-                      {(cookies.user_type === 'organization') ? <a href="/fullfilledDonations"><Typography>View Fulfilled Donations</Typography><Divider /></a>: null}
-                      <br/>
                       <a href="/logout" onClick={handleLogout}><Typography  color={"red"}>Logout</Typography></a>
                     </Box>
                   }

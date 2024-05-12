@@ -65,14 +65,53 @@ export default function RequestToys() {
     const [area, setArea] = React.useState('');
     const [governorate, setGovernorate] = React.useState('');
 
-
+    const props = {
+      name: 'file',
+      multiple: true,
+      beforeUpload: file => {
+        const reader = new FileReader();
+  
+        reader.onload = e => {
+          console.log(e.target.result);
+        };
+  
+        // save the file to public folder
+        reader.readAsDataURL(file);
+  
+        
+  
+  
+        // Prevent upload
+        return false;
+      },
+  
+      onChange(info) {
+  
+        const { status } = info.file;
+        if (status !== 'uploading') {
+          console.log(info.file, info.fileList);
+        }
+        if (status === 'done' || status === 'error') {
+          message.success(`${info.file.name} file uploaded successfully.`);
+        }
+      },
+      onDrop(e) {
+        console.log('Dropped files', e.dataTransfer.files);
+      },
+      
+    };
 
 
 
     const success = () => {
         message
           .loading('Sending request to admin..', 1.5)
-          .then(() => message.success('Request sent to Admin, wait for approval :)', 2.5))
+          .then(() => {
+            message.success('Request sent to Admin, wait for approval :)', 1.5).then(() => {
+              window.location.href = '/';
+            
+            });
+          })
       };
       
   
@@ -237,7 +276,7 @@ export default function RequestToys() {
               value={governorate}
               onChange={(event)=>setGovernorate(event.target.value)}
             />    
-                     <Dragger>
+                     <Dragger {...props}>
                     <p className="ant-upload-drag-icon">
                         <InboxOutlined />
                     </p>

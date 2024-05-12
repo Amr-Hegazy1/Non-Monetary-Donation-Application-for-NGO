@@ -2,6 +2,8 @@ import React from 'react';
 import { Avatar, List, } from 'antd';
 import { Flex } from 'antd';
 import { Divider } from 'antd';
+import Container from '@mui/material/Container';
+import NavBar from './NavBar';
 
 const data = Array.from({
   length: 1,
@@ -35,6 +37,8 @@ const data = Array.from({
 
 const App = () => (
   <>
+  <NavBar />
+  <Container component="main" maxWidth="md">
     <List
       itemLayout="vertical"
       size="large"
@@ -76,6 +80,7 @@ const App = () => (
         </>
       )}
     />
+  </Container>
   </>
 );
 

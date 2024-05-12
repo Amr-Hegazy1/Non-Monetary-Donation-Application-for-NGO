@@ -51,11 +51,9 @@ import DeliveryDonationDetails from './components/DeliveryPerson/DeliveryDonatio
 import { ConfigProvider } from 'antd';
 import { createTheme, ThemeProvider } from '@mui/material';
 import RequestInfoDoctor from './components/RequestInfoDoctor';
-
-import RegisteredDoctors from './components/RegisteredDoctors';
-import RegisteredTeachers from './components/RegisteredTeachers';
 import TeacherDetails from './components/TeacherDetails';
 import DoctorDetails from './components/DoctorDetails';
+import ViewDetailsOfFulfilledPosts from './components/ViewDetailsOfFulfilledPosts';
 
 
 import Login from './Login';
@@ -64,6 +62,10 @@ import DonorProfile from './components/DonorProfile';
 import OrganizationProfile from './components/OrganizationProfile';
 import AdminProfile from './components/AdminProfile';
 import DeliveryPersonProfile from './components/DeliveryPersonProfile';
+
+
+
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const theme = createTheme({
   palette: {
@@ -140,6 +142,7 @@ root.render(
               <Route path='/view-teacher-request-info' element={<RequestInfoTeacher />} />             
              <Route path="/deliveryDonationDetails" element={<DeliveryDonationDetails />} />
              <Route path= '/homePage' element={<Homepage />} />
+             <Route path="/fulfilledPostDetails" element={<ViewDetailsOfFulfilledPosts />} />
 
 
 

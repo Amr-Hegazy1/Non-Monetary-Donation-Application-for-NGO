@@ -66,13 +66,54 @@ export default function DetailsOfBooksToBeDonated() {
   const [governorate, setGovernorate] = React.useState('');
 
 
+  const props = {
+    name: 'file',
+    multiple: true,
+    beforeUpload: file => {
+      const reader = new FileReader();
 
+      reader.onload = e => {
+        console.log(e.target.result);
+      };
+
+      // save the file to public folder
+      reader.readAsDataURL(file);
+
+      
+
+
+      // Prevent upload
+      return false;
+    },
+
+    onChange(info) {
+
+      const { status } = info.file;
+      if (status !== 'uploading') {
+        console.log(info.file, info.fileList);
+      }
+      if (status === 'done' || status === 'error') {
+        message.success(`${info.file.name} file uploaded successfully.`);
+      }
+    },
+    onDrop(e) {
+      console.log('Dropped files', e.dataTransfer.files);
+    },
+    
+  };
 
 
   const success = () => {
       message
         .loading('Sending details to admin..', 1.5)
-        .then(() => message.success('Details sent to admin!', 2.5))
+        .then(() => {
+          message.success('Details sent to admin!', 2.5).then(() => {
+            window.location.href = '/';
+          }
+          );
+
+        
+        })
     };
     
 
@@ -96,12 +137,6 @@ export default function DetailsOfBooksToBeDonated() {
     }
     else if(!quantity){
       message.error('Please specify book quantity.');
-    }
-    else if(!area){
-      message.error('Please specify book area.');
-    }
-    else if(!governorate){
-      message.error('Please specify book governorate.');
     }
     else {
      success();
@@ -193,7 +228,7 @@ export default function DetailsOfBooksToBeDonated() {
                 </FormControl>
                 <FormControl fullWidth required>
                     
-                    <Dragger>
+                    <Dragger {...props}>
                     <p className="ant-upload-drag-icon">
                         <InboxOutlined />
                     </p>

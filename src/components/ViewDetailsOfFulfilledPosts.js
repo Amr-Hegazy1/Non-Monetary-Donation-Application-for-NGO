@@ -5,6 +5,8 @@ import { Flex } from 'antd';
 import { Divider } from 'antd';
 import { Button } from 'antd';
 import { Link } from 'react-router-dom';
+import NavBar from './NavBar';
+import Container from '@mui/material/Container';
 
 
 const data = Array.from({
@@ -35,7 +37,8 @@ const IconText = ({ icon, text }) => (
 
 const App = () => (
   <>
-
+    <NavBar />
+    <Container component="main" maxWidth="md">
     <List
       itemLayout="vertical"
       size="large"
@@ -91,6 +94,7 @@ const App = () => (
 
       )}
     />
+    </Container>
   </>
 );
 

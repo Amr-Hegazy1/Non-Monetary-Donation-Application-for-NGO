@@ -65,7 +65,11 @@ export default function DetailsOfStationaryToBeDonated() {
     const success = () => {
         message
           .loading('Sending details to admin..', 1.5)
-          .then(() => message.success('Details sent to Admin!', 2.5))
+          .then(() => {
+            message.success('Details sent to Admin!', 1.5).then(() => {
+                window.location.href = '/';
+            });
+          })
       };
       
   
@@ -77,12 +81,6 @@ export default function DetailsOfStationaryToBeDonated() {
         message.error('Please specify item.');
       } else if(!quantity) {
         message.error('Please enter quantity.');
-      }
-      else if(!area) {
-        message.error('Please enter area.');
-      }
-      else if(!governorate) {
-        message.error('Please enter governorate.');
       }
       else{
        success();
@@ -117,7 +115,7 @@ export default function DetailsOfStationaryToBeDonated() {
                     autoFocus
                     />
             <Grid item>
-            <br/>
+            
                 <FormControl fullWidth required>
                     <TextField
                     margin="normal"

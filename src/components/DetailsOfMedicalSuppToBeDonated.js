@@ -58,8 +58,7 @@ export default function DetailsOfMedicalSuppToBeDonated() {
   const [deviceType, setDeviceType] = React.useState('');
   const [usage, setUsage] = React.useState('');
   const [quantity, setQuantity] = React.useState('');
-  const [area, setArea] = React.useState('');
-  const [governorate, setGovernorate] = React.useState('');
+ 
   const [upload, setUpload] = React.useState('');
 
 
@@ -68,7 +67,13 @@ export default function DetailsOfMedicalSuppToBeDonated() {
   const success = () => {
       message
         .loading('Sending details to admin..', 1.5)
-        .then(() => message.success('Details sent to Admin', 2.5))
+        .then(() => {
+          message.success('Details sent to Admin', 2.5).then(() => {
+            window.location.href = '/';
+          }
+          );
+
+        })
     };
     
 
@@ -84,20 +89,49 @@ export default function DetailsOfMedicalSuppToBeDonated() {
     else if(!quantity) {
       message.error('Please enter quantity.');
     }
-    else if(!area) {
-      message.error('Please enter area.');
-    }
-    else if(!governorate) {
-      message.error('Please enter governorate.');
-    }
-    else if(!upload){
-      message.error('Please  upload picture');
+    else if(!upload) {
+      message.error('Please upload picture(s) of the device(s).');
     }
     else {
      success();
     }
   };
 
+  const props = {
+    name: 'file',
+    multiple: true,
+    beforeUpload: file => {
+      const reader = new FileReader();
+
+      reader.onload = e => {
+        console.log(e.target.result);
+      };
+
+      // save the file to public folder
+      reader.readAsDataURL(file);
+
+      setUpload(file);
+
+
+      // Prevent upload
+      return false;
+    },
+
+    onChange(info) {
+
+      const { status } = info.file;
+      if (status !== 'uploading') {
+        console.log(info.file, info.fileList);
+      }
+      if (status === 'done' || status === 'error') {
+        message.success(`${info.file.name} file uploaded successfully.`);
+      }
+    },
+    onDrop(e) {
+      console.log('Dropped files', e.dataTransfer.files);
+    },
+    
+  };
 
 
   return (
@@ -153,7 +187,7 @@ export default function DetailsOfMedicalSuppToBeDonated() {
                 </FormControl>
                 <FormControl fullWidth required>
                     
-                    <Dragger>
+                    <Dragger {...props}>
                     <p className="ant-upload-drag-icon">
                         <InboxOutlined />
                     </p>

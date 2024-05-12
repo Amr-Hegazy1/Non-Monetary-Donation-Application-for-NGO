@@ -188,7 +188,7 @@ export default function DonationReceiverSignUp() {
 
     message.success('Form submitted');
 
-    window.location.href = '/login';
+    window.location.href = '/';
 
 
   };
@@ -236,12 +236,23 @@ export default function DonationReceiverSignUp() {
                 margin="normal"
                 required
                 fullWidth
-
+                name='lastName'
                 label="Last Name"
                 error={errorStates.lastName}
               />
             </Grid>
           </Grid>
+          <FormControl error={errorStates.gender}>
+            <FormLabel id="demo-row-radio-buttons-group-label">Gender</FormLabel>
+            <RadioGroup
+              row
+              aria-labelledby="demo-row-radio-buttons-group-label"
+              name="gender"
+            >
+              <FormControlLabel value="female" control={<Radio style={{ color: COLORS.primary }} />} label="Female" />
+              <FormControlLabel value="male" control={<Radio style={{ color: COLORS.primary }} />} label="Male" />
+            </RadioGroup>
+          </FormControl>
           <TextField
             margin="normal"
             required
