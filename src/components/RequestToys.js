@@ -25,7 +25,7 @@ import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import 'animate.css';
 import RequestToysImg from './RequestToysImg.png'
-
+import NavBar from './NavBar';
 
 
 delete L.Icon.Default.prototype._getIconUrl;
@@ -56,7 +56,7 @@ const defaultTheme = createTheme();
 
 export default function RequestToys() {
 
-    const [type, setType] = React.useState('');
+    //const [type, setType] = React.useState('');
     const [category, setCategory] = React.useState('');
     const [gender, setGender] = React.useState('');
     const [color, setColor] = React.useState('');
@@ -80,18 +80,38 @@ export default function RequestToys() {
       event.preventDefault();
 
       
-      if (!type || !category || !gender || !color || !age  || !quantity|| !area || !governorate) {
-        message.error('Please fill in all fields.');
-      } else {
+      if (!category ) {
+        message.error('Please enter category.');
+      } else if(  !gender ){
+        message.error('Please specify gender.');
+      }
+      else if( !color ){
+        message.error('Please specify color.');
+      }
+      else if( !age ){
+        message.error('Please specify age.');
+      }
+      else if( !quantity ){
+        message.error('Please specify quantity.');
+      }
+      else if( !area ){
+        message.error('Please specify area.');
+      }
+      else if( !governorate ){
+        message.error('Please specify governorate.');
+      }
+      else {
        success();
       }
+
     };
 
 
 
 
   return (
-    <ThemeProvider theme={defaultTheme}>
+    <>
+    <NavBar/>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -122,7 +142,7 @@ export default function RequestToys() {
           </Box>
           
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-            <Grid item xs>
+            {/* <Grid item xs>
                 <TextField
                     margin="normal"
                     required
@@ -132,7 +152,7 @@ export default function RequestToys() {
                     autoFocus
                     value={type}
                     onChange={(event) =>setType(event.target.value)}
-                    />
+                    /> */}
             <Grid item>
                     <TextField
                     margin="normal"
@@ -145,7 +165,7 @@ export default function RequestToys() {
                     onChange={(event) =>setCategory(event.target.value)}
                     />
             </Grid>
-            </Grid>
+            {/* </Grid> */}
             <FormControl>
                 <FormLabel id="demo-row-radio-buttons-group-label">Gender</FormLabel>
                     <RadioGroup
@@ -245,6 +265,7 @@ export default function RequestToys() {
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
-    </ThemeProvider>
+      </>
+    
   );
 }

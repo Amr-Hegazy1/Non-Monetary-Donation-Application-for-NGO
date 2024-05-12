@@ -6,17 +6,31 @@ import InputAdornment from '@mui/material/InputAdornment';
 import Iconify from './components/iconify';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
+import { useCookies } from 'react-cookie';
+import { useNavigate } from 'react-router-dom';
 
 
 
 
-function AdminLogin() {
+function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false); // State for password visibility
 
+  const [cookies, setCookie] = useCookies(); // State for cookies
+
   useEffect(() => {
     document.body.style.backgroundColor = 'white'; // Set the background color of the document
+    if(cookies.user_type === 'admin') {
+      window.location.href = '/AdminHome';
+    }
+    if(cookies.user_type === 'donor' || cookies.user_type === 'donation_receiver'){
+      window.location.href = '/';
+    }
+    if(cookies.user_type === 'delevery_person'){
+      window.location.href = '/delieveyPersonDashboard';
+    }
+    
   }, []);
 
   const handleLogin = (e) => {
@@ -24,14 +38,43 @@ function AdminLogin() {
 
     // Replace with your actual authentication logic on the server-side
     // (e.g., sending hashed password for comparison)
-    const correctEmail = 'admin@gmail.com';
+    const correctAdminEmail = 'admin@gmail.com';
     const correctHashedPassword = 'password'; // Placeholder
 
-    if (email === correctEmail && password === correctHashedPassword) {
+    const correctDonorEmail = 'donor@gmail.com';
+
+    const correctDonationReceiverEmail = 'donation_reciever@gmail.com';
+
+    const correctDeliveryPersonEmail = 'delivery_pearson@gmail.com';
+
+    if (email === correctAdminEmail && password === correctHashedPassword) {
       // Login successful (redirect or show success message)
+      window.location.href = '/AdminHome';
       message.success('Logged in successfully , redirecting ...');
+      setCookie("user_type", "admin");
+
       // You can redirect to another page or perform other actions on success
-    } else {
+    }
+    else if (email === correctDonorEmail && password === correctHashedPassword) {
+      // Login successful (redirect or show success message)
+      window.location.href = '/';
+      message.success('Logged in successfully , redirecting ...');
+      setCookie("user_type", "donor");
+      // You can redirect to another page or perform other actions on success
+    }
+    else if (email === correctDonationReceiverEmail && password === correctHashedPassword) {
+      // Login successful (redirect or show success message)
+      window.location.href = '/';
+      message.success('Logged in successfully , redirecting ...');
+      setCookie("user_type", "donation_receiver");
+      // You can redirect to another page or perform other actions on success
+    } else if (email === correctDeliveryPersonEmail && password === correctHashedPassword) {
+      // Login successful (redirect or show success message)
+      window.location.href = '/delieveyPersonDashboard';
+      message.success('Logged in successfully , redirecting ...');
+      setCookie("user_type", "delivery_person");
+      // You can redirect to another page or perform other actions on success
+    }else {
       message.error('Invalid credentials');    
     }
   };
@@ -44,11 +87,12 @@ function AdminLogin() {
       <div className="text-center">
           <img src="logo.png" style={{ width: '185px' }} alt="logo" />
           <h4 className="mt-1 mb-5 pb-1" style={{color: '#602b37', fontSize: '24px', fontWeight: 'bold', textShadow: '2px 2px 4px #aaa'}}>
-              Admin Login
+            Login
           </h4>     
       </div>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
       <Stack spacing={3}>
-          <TextField
+          <TextField 
             name="email"
             label="Email"
             type="email"
@@ -83,7 +127,7 @@ function AdminLogin() {
       
       
           <div className="d-flex justify-content-between mb-4">
-            <a href="/password-management" className="text-decoration-none" style={{width: '300px', color: '#007bff'}}> {/* Change the link color */}
+            <a href="/Verify" className="text-decoration-none" style={{width: '300px', color: '#007bff'}}> {/* Change the link color */}
               Forgot password?
             </a>
           </div>
@@ -97,14 +141,16 @@ function AdminLogin() {
             borderRadius: '4px', 
             padding: '10px 20px',
             fontSize: '16px',
-            cursor: 'pointer'}}>
+            cursor: 'pointer'
+            }}>
             Login
           </Button>
       </Stack>
+      </div>
     </>
 
 
   );
 }
 
-export default AdminLogin;
+export default Login;

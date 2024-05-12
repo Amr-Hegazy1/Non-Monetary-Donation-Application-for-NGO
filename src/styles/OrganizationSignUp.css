@@ -2,7 +2,7 @@
     width: 100%;
 }
 .signup-app-logo{
-    width: 60%;
+    width: 60% !important;
     height: auto;
     margin: 0 auto;
     display: block;
@@ -31,4 +31,7 @@
     background: #971254 !important;
 }
 
+.react-international-phone-country-selector-dropdown{
+    z-index: 9999 !important;
+}
 

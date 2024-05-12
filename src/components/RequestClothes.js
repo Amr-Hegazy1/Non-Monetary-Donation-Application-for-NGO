@@ -24,7 +24,7 @@ import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import 'animate.css';
 import RequestClothes from './RequestClothes.png';
-
+import NavBar from './NavBar';
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -70,8 +70,31 @@ function Copyright(props) {
   
     const handleSubmit = (event) => {
       event.preventDefault();
-      if (!clothingItem || !season || !gender || !material || !color || !age || !quantity|| !area || !governorate) {
-        message.error('Please fill in all fields.');
+      if (!clothingItem) {
+        message.error('Please specify clothing item.');
+      } else  if(!season) {
+        message.error('Please specify season.');
+      }
+      else if(!gender) {
+        message.error('Please specify gender.');
+      }
+      else if(!material) {
+        message.error('Please specify material.');
+      }
+      else if(!color) {
+        message.error('Please specify color.');
+      }
+      else if(!age) {
+        message.error('Please specify age.');
+      }
+      else if(!quantity) {
+        message.error('Please specify quantity.');
+      }
+      else if(!area) {
+        message.error('Please specify area.');
+      }
+      else if(!governorate) {
+        message.error('Please specify governorate.');
       } else {
        success();
       }
@@ -81,8 +104,9 @@ function Copyright(props) {
 
       return(
                  
-
-        <ThemeProvider theme={defaultTheme}>
+        <>
+        <NavBar/>
+        
         <Container component="main" maxWidth="xs">
           <CssBaseline />
           <Box
@@ -132,7 +156,6 @@ function Copyright(props) {
                   required
                   fullWidth
                   label="Season"
-                  autoFocus
                   value={season}
                   onChange={(event) => setSeason(event.target.value)}
                 />
@@ -157,7 +180,6 @@ function Copyright(props) {
               fullWidth
               id="email"
               label="Material"
-              autoFocus
               value={material}
               onChange={(event) => setMaterial(event.target.value)}
             />
@@ -167,7 +189,6 @@ function Copyright(props) {
               fullWidth
               name="Color"
               label="Color"
-              autoFocus
               value={color}
               onChange={(event) => setColor(event.target.value)}
             />
@@ -177,7 +198,6 @@ function Copyright(props) {
               fullWidth
               name="Area"
               label="Area"
-              autoFocus
               value={area}
               onChange={(event)=>setArea(event.target.value)}
             />
@@ -188,7 +208,6 @@ function Copyright(props) {
               fullWidth
               name="Governorate"
               label="Governorate"
-              autoFocus
               value={governorate}
               onChange={(event)=>setGovernorate(event.target.value)}
             />    
@@ -199,7 +218,6 @@ function Copyright(props) {
                 required
                 fullWidth
                 label="Age"
-                autoFocus
                 type="number"
                 value={age}
                 onChange={(event) => setAge(event.target.value)}
@@ -211,7 +229,7 @@ function Copyright(props) {
                 required
                 fullWidth
                 label="Quantity"
-                autoFocus
+                
                 type="number"
                 value={quantity}
                 onChange={(event) => setQuantity(event.target.value)}
@@ -232,7 +250,7 @@ function Copyright(props) {
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
-    </ThemeProvider>
+    </>
   );
 }
 

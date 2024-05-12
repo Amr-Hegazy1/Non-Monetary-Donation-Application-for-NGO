@@ -1,14 +1,16 @@
+
+
 .donor-list-header {
-    margin-top: -10px;
-    padding-left: 31%;
+  padding-bottom: 1%;
+  text-align: center;
   }
 
   .list-item-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
-    padding-left: 100px;
+    width: 25%;
+    
   }
   
   .view-button {
@@ -22,3 +24,5 @@
   .spacer {
     flex-grow: 1;
   }
+
+
