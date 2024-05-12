@@ -4,28 +4,39 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import {Image} from 'antd';
 import logo from './logo.png'; 
+import { Button, Flex } from 'antd';
+import '../styles/NavBar.css';
+import { useCookies } from 'react-cookie';
+import Avatar from '@mui/material/Avatar';
+import'../styles/AvatarBorder.css';
+import {useState} from 'react';
 function NavBar() { 
+    const [cookies, setCookie] = useCookies();
+    const handleAvatarClick = () => {
+      // You can perform any actions you want here
+      // For example, you can navigate to a different page
+      if(cookies.user_type === 'donor') {
+        window.location.href ='/DonorProfile';
+      }
+      else if(cookies.user_type === 'donation_receiver') {
+        window.location.href ='/OrganizationProfile';
+      }
+      else if(cookies.user_type === 'admin') {
+        window.location.href ='/AdminProfile';
+      }
+    };
+    
     return (
     <Navbar color='#0C4D42' collapseOnSelect expand="lg" className="bg-body-tertiary">
-      <Image width={200} src={logo}  />
+      <Image width={200} src={logo}  preview="false"/>
       <Container>
-        <Navbar.Brand href="#home">Donation App</Navbar.Brand>
+        
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#features">Features</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
-            <NavDropdown title="Dropdown" id="collapsible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown>
+            <Nav.Link href="/">Contact Us</Nav.Link>
+            <Nav.Link href="/">About Us</Nav.Link>
+            {(cookies['user_type'] === "donor") ? <><Nav.Link href="/ViewDonationRequests">View Donation Requests</Nav.Link>
             <NavDropdown title="Donate now" id="collapsible-nav-dropdown">
               <NavDropdown.Item href="/donateClothes">Clothes</NavDropdown.Item>
               <NavDropdown.Item href="/donateMedicalSupplies">
@@ -35,9 +46,9 @@ function NavBar() {
               <NavDropdown.Item href="/donateBooks">Books</NavDropdown.Item>
               <NavDropdown.Item href="/donateStationary">Stationary Items</NavDropdown.Item>
               <NavDropdown.Item href="/donateFood">Food</NavDropdown.Item>              
-            </NavDropdown>
+            </NavDropdown></> : null}
 
-            <NavDropdown title="Create Donation Request" id="collapsible-nav-dropdown">
+            {(cookies['user_type'] === "donation_receiver") ? <NavDropdown title="Create Donation Request" id="collapsible-nav-dropdown">
               <NavDropdown.Item href="/RequestClothes">Request Clothes</NavDropdown.Item>
               <NavDropdown.Item href="/RequestMedicalSupplies">
                 Request Medical Supplies
@@ -50,11 +61,29 @@ function NavBar() {
               <NavDropdown.Item href="/RequestTeaching">Request Teacher</NavDropdown.Item> 
               <NavDropdown.Item href="/RequestMedicalCases">Request Doctor</NavDropdown.Item>        
 
-            </NavDropdown>
+            </NavDropdown> : null}
 
-            <Nav.Link href="/ViewDonationRequests">View Donation Requests</Nav.Link>
+            
 
 
+          </Nav>
+          <Nav>
+            {
+              (cookies.user_type === 'donor' || cookies.user_type === 'donation_receiver') ? (<div
+                onClick={() => handleAvatarClick()}
+                style={{ border: '1px solid transparent', borderRadius: '50%', padding: '2px', transition: 'border-color 0.3s ease-in-out' , cursor: 'pointer' }}
+                onMouseEnter={(e) => { e.target.style.borderColor = 'blue'; }}
+                onMouseLeave={(e) => { e.target.style.borderColor = 'transparent'; e.target.style.borderWidth = '1px'; }} 
+              >
+
+              <Avatar src={'https://api.dicebear.com/7.x/miniavs/svg?seed=29'} />
+            </div>) : 
+              (<Flex gap="small">
+                <Button className='navbar-signup-btn' onClick={() => window.location.href = '/signup'}>Sign Up</Button>
+
+                <Button className="navbar-login-btn" onClick={() => window.location.href = '/login'}>Login</Button>
+              </Flex>)
+          }
           </Nav>
          
         </Navbar.Collapse>

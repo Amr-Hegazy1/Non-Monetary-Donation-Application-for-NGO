@@ -5,10 +5,11 @@ import { Row, Col } from 'antd';
 import { message } from 'antd';
 import { Modal } from 'antd';
 import './RegisteredOrganizations.css';
+import Container from '@mui/material/Container';
 
 const fakeDataUrl =
   'https://randomuser.me/api/?results=20&inc=name,gender,email,nat,picture&noinfo';
-const ContainerHeight = 400;
+const ContainerHeight = window.innerHeight - window.innerHeight * 0.16;
 
 const RegisteredOrganizations = () => {
   const [data, setData] = useState([]);
@@ -65,10 +66,11 @@ const RegisteredOrganizations = () => {
       <Input className='search-box' 
          placeholder="Search for an Organization" 
          onChange={e => setSearchTerm(e.target.value)} 
-         style={{ maxWidth: '500px', width: '100%' }}
+         style={{ width: '100%' }}
         />
         </Col>
         </Row>
+        <Container component="main" maxWidth="md">
       <List>
         <VirtualList
           data={filteredData}
@@ -79,20 +81,23 @@ const RegisteredOrganizations = () => {
         >
           {(item) => (
             <List.Item key={item.email}>
-            <div className="list-item-container">
+            <div >
               <div className="spacer"></div>
               <List.Item.Meta
+                avatar={<img src={item.picture.thumbnail} alt="avatar" style={{ borderRadius: '50%', border: '2px solid #000',
+                padding: '5px' }} />}
                 title={item.name.last}
                 description={item.email}
               />
               </div>
-              <Button className="view-button" type="link" size="small" >View Info</Button>
+              <Button className="view-button" type="link" size="small" href='/view-org-registered-info' >View Info</Button>
               <Button className="delete-button" type="link" size="small" onClick={() => handleDelete(item.email)}>Delete</Button>
           </List.Item>
           )}
         </VirtualList>
       </List>
-    </div>
+    </Container>
+        </div>
   );
 };
 

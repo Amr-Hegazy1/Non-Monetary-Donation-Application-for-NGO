@@ -2,6 +2,7 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { set, sub } from 'date-fns';
 import { faker } from '@faker-js/faker';
+import { alpha } from '@mui/material/styles';
 
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
@@ -22,6 +23,7 @@ import { fToNow } from '../Numbers/format-time';
 
 import Iconify from '../../iconify';
 import Scrollbar from '../scrollbar';
+import { grey } from '@mui/material/colors';
 
 // ----------------------------------------------------------------------
 
@@ -91,7 +93,12 @@ export default function NotificationsPopover() {
 
   return (
     <>
-      <IconButton color={open ? 'primary' : 'default'} onClick={handleOpen}>
+      <IconButton color={open ? 'primary' : 'default'} onClick={handleOpen} sx={{
+    width: 40,
+    height: 40,
+    margin: 5, 
+    
+  }}>
         <Badge badgeContent={totalUnRead} color="error">
           <Iconify width={24} icon="solar:bell-bing-bold-duotone" />
         </Badge>
@@ -121,7 +128,11 @@ export default function NotificationsPopover() {
 
           {totalUnRead > 0 && (
             <Tooltip title=" Mark all as read">
-              <IconButton color="primary" onClick={handleMarkAllAsRead}>
+              <IconButton color="primary" onClick={handleMarkAllAsRead}  sx={{
+                width: 40,
+                height: 40,
+                margin: 5, 
+              }}>
                 <Iconify icon="eva:done-all-fill" />
               </IconButton>
             </Tooltip>
@@ -232,25 +243,25 @@ function renderContent(notification) {
 
   if (notification.type === 'order_placed') {
     return {
-      avatar: <img alt={notification.title} src="/assets/icons/ic_notification_package.svg" />,
+      avatar: <img alt={notification.title} src="avatar_3.png" />,
       title,
     };
   }
   if (notification.type === 'order_shipped') {
     return {
-      avatar: <img alt={notification.title} src="/assets/icons/ic_notification_shipping.svg" />,
+      avatar: <img alt={notification.title} src="avatar_15.jpg" />,
       title,
     };
   }
   if (notification.type === 'mail') {
     return {
-      avatar: <img alt={notification.title} src="/assets/icons/ic_notification_mail.svg" />,
+      avatar: <img alt={notification.title} src="avatar_1.png" />,
       title,
     };
   }
   if (notification.type === 'chat_message') {
     return {
-      avatar: <img alt={notification.title} src="/assets/icons/ic_notification_chat.svg" />,
+      avatar: <img alt={notification.title} src="avatar_2.png" />,
       title,
     };
   }

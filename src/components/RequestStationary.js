@@ -25,7 +25,7 @@ import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import 'animate.css';
 import RequestStationaryImg from './RequestStationaryImg.png';
-
+import NavBar from './NavBar';
 
 
 delete L.Icon.Default.prototype._getIconUrl;
@@ -73,9 +73,18 @@ export default function RequestStationary() {
       event.preventDefault();
 
       
-      if (!type || !quantity|| !area || !governorate) {
-        message.error('Please fill in all fields.');
-      } else {
+      if (!type ) {
+        message.error('Please specify item.');
+      } else if(!quantity) {
+        message.error('Please enter quantity.');
+      }
+      else if(!area) {
+        message.error('Please enter area.');
+      }
+      else if(!governorate) {
+        message.error('Please enter governorate.');
+      }
+      else{
        success();
       }
     };
@@ -84,7 +93,8 @@ export default function RequestStationary() {
 
 
   return (
-    <ThemeProvider theme={defaultTheme}>
+    <>        
+       <NavBar/>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -121,9 +131,8 @@ export default function RequestStationary() {
                     margin="normal"
                     required
                     fullWidth
-                    
-                    label="Type"
                     autoFocus
+                    label="Item Name"
                     value={type}
                     onChange={(event) =>setType(event.target.value)}
                     />
@@ -135,7 +144,6 @@ export default function RequestStationary() {
                     required
                     fullWidth
                     label="Quantity"
-                    autoFocus
                     type='number'
                     value={quantity}
                     onChange={(event)=>setQuantity(event.target.value)}
@@ -148,7 +156,6 @@ export default function RequestStationary() {
               fullWidth
               name="Area"
               label="Area"
-              autoFocus
               value={area}
               onChange={(event)=>setArea(event.target.value)}
             />
@@ -159,7 +166,6 @@ export default function RequestStationary() {
               fullWidth
               name="Governorate"
               label="Governorate"
-              autoFocus
               value={governorate}
               onChange={(event)=>setGovernorate(event.target.value)}
             />    
@@ -179,6 +185,6 @@ export default function RequestStationary() {
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
-    </ThemeProvider>
+    </>
   );
 }

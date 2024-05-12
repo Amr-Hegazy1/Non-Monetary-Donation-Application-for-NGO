@@ -22,7 +22,7 @@ import Stack from '@mui/material/Stack';
 
 // ----------------------------------------------------------------------
 
-export default function Header({ onOpenNav }) {
+export default function Header({ onOpenNav, width }) {
   const theme = useTheme();
 
   const lgUp = UseResponsive('up', 'lg');
@@ -30,7 +30,7 @@ export default function Header({ onOpenNav }) {
   const renderContent = (
     <>
       {!lgUp && (
-        <IconButton onClick={onOpenNav} sx={{ mr: 1 }}>
+        <IconButton onClick={onOpenNav} sx={{ mr: 10 }}>
           <Iconify icon="eva:menu-2-fill" />
         </IconButton>
       )}
@@ -59,9 +59,10 @@ export default function Header({ onOpenNav }) {
           duration: theme.transitions.duration.shorter,
         }),
         ...(lgUp && {
-          width: `calc(100% - ${NAV.WIDTH + 1}px)`,
+          width: (width) ? width : `calc(100% - ${NAV.WIDTH + 1}px)`,
           height: HEADER.H_DESKTOP,
         }),
+        position: 'fixed',
       }}
     >
       <Toolbar

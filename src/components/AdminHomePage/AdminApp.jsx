@@ -8,7 +8,7 @@ import ThemeProvider from './theme/index';
 
 // ----------------------------------------------------------------------
 
-export default function App() {
+export default function AdminApp() {
   useScrollToTop();
 
   return (

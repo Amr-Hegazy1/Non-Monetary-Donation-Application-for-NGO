@@ -25,7 +25,7 @@ import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import 'animate.css';
 import RequestFoodImg from './RequestFoodImg.png'
-
+import NavBar from './NavBar';
 
 
 delete L.Icon.Default.prototype._getIconUrl;
@@ -75,17 +75,28 @@ const defaultTheme = createTheme();
       event.preventDefault();
 
       
-      if (!itemName || !quantity || !area || !governorate) {
-        message.error('Please fill in all fields.');
-      } else {
+      if (!itemName) {
+        message.error('Please specify item name.');
+      } else if(!quantity) {
+        message.error('Please specify quantity.');
+      }
+      else if(!area) {
+        message.error('Please specify area.');
+      }
+      else if(!governorate) {
+        message.error('Please specify governorate.');
+      }
+      else {
        success();
       }
+
     };
 
 
 
   return (
-    <ThemeProvider theme={defaultTheme}>
+    <>
+    <NavBar/>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -135,7 +146,6 @@ const defaultTheme = createTheme();
                     fullWidth
                     label="Quantity(in KGs for fruit & vegetable)"
                 
-                    autoFocus
                     type='number'
                     value={quantity}
                     onChange={(event) => setQuantity(event.target.value)}
@@ -148,7 +158,6 @@ const defaultTheme = createTheme();
               fullWidth
               name="Area"
               label="Area"
-              autoFocus
               value={area}
               onChange={(event)=>setArea(event.target.value)}
             />
@@ -159,7 +168,6 @@ const defaultTheme = createTheme();
               fullWidth
               name="Governorate"
               label="Governorate"
-              autoFocus
               value={governorate}
               onChange={(event)=>setGovernorate(event.target.value)}
             />    
@@ -179,7 +187,7 @@ const defaultTheme = createTheme();
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
-    </ThemeProvider>
+    </>
   );
 }
 
