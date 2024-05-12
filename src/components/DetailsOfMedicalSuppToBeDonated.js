@@ -55,17 +55,46 @@ const defaultTheme = createTheme();
 
 export default function DetailsOfMedicalSuppToBeDonated() {
 
-  const [error, setError] = useState(null);
+  const [deviceType, setDeviceType] = React.useState('');
+  const [usage, setUsage] = React.useState('');
+  const [quantity, setQuantity] = React.useState('');
+  const [area, setArea] = React.useState('');
+  const [governorate, setGovernorate] = React.useState('');
+  const [upload, setUpload] = React.useState('');
 
-  const handleSubmit = () => {
-    if (!error) {
-      console.log('Submitted');
-      message.success('Details submitted');
 
-      // Add your submission logic here
-    } else {
-      console.log('Not submitted');
-      message.error('Please complete your submission');
+
+
+  const success = () => {
+      message
+        .loading('Sending details to admin..', 1.5)
+        .then(() => message.success('Details sent to Admin', 2.5))
+    };
+    
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    
+    if (! deviceType ) {
+      message.error('Please enter device type.');
+    } else if(!usage) {
+      message.error('Please enter usage.');
+    }
+    else if(!quantity) {
+      message.error('Please enter quantity.');
+    }
+    else if(!area) {
+      message.error('Please enter area.');
+    }
+    else if(!governorate) {
+      message.error('Please enter governorate.');
+    }
+    else if(!upload){
+      message.error('Please  upload picture');
+    }
+    else {
+     success();
     }
   };
 
@@ -92,7 +121,8 @@ export default function DetailsOfMedicalSuppToBeDonated() {
                     margin="normal"
                     required
                     fullWidth
-                    
+                    value={deviceType}
+                    onChange = {(event)=>setDeviceType(event.target.value)} 
                     label="Device Type"
                     autoFocus
                     />
@@ -102,7 +132,8 @@ export default function DetailsOfMedicalSuppToBeDonated() {
                     margin="normal"
                     required
                     fullWidth
-                    
+                    value={usage}
+                    onChange={(event)=>setUsage(event.target.value)}
                     label="Usage"
                     autoFocus
                     />
@@ -116,7 +147,8 @@ export default function DetailsOfMedicalSuppToBeDonated() {
                     label="Quantity"
                     autoFocus
                     type='number'
-                    
+                    value={quantity}
+                    onChange={(event)=>setQuantity(event.target.value)}
                     />
                 </FormControl>
                 <FormControl fullWidth required>

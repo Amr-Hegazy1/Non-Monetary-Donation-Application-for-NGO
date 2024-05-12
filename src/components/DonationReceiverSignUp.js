@@ -34,7 +34,7 @@ import TagsSelector from './TagsSelector';
 import 'animate.css';
 import AddressForm from './AddressForm';
 import { COLORS } from '../values/colors';
-import { useState } from 'react'; 
+
 const { Dragger } = Upload;
 
 
@@ -65,43 +65,65 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
-export default function DonationReceiverSignUp() {
+export default function DonorSignUp() {
+
+  const subjects = ["Math", "Science", "English", "History", "Art", "Music", "Physical Education", "Computer Science", "Biology", "Chemistry", "Physics", "Geography", "Economics", "Government", "Psychology", "Sociology", "Anthropology", "Philosophy", "Theology", "Engineering", "Business", "Marketing", "Accounting", "Finance", "Management", "Human Resources", "Operations", "Supply Chain", "Logistics", "Information Technology", "Data Science", "Machine Learning", "Artificial Intelligence", "Cybersecurity", "Networks", "Databases", "Web Development", "Mobile Development", "Game Development", "Software Development", "Hardware Development", "Robotics", "Automation", "Internet of Things", "Cloud Computing", "Big Data", "Blockchain", "Cryptocurrency", "Digital Marketing", "Social Media", "Search Engine Optimization", "Content Marketing", "Email Marketing", "Affiliate Marketing", "Influencer Marketing", "Public Relations", "Advertising", "Sales", "Customer Service", "Customer Success", "Customer Experience", "User Experience", "User Interface", "Product Management", "Project Management", "Quality Assurance", "Quality Control", "Compliance", "Regulatory Affairs", "Legal", "Risk Management", "Audit", "Tax", "Insurance", "Real Estate", "Construction", "Architecture", "Interior Design", "Urban Planning", "Landscape Architecture", "Civil Engineering", "Mechanical Engineering", "Electrical Engineering", "Chemical Engineering", "Aerospace Engineering", "Biomedical Engineering", "Environmental Engineering", "Materials Science", "Nanotechnology", "Physics", "Chemistry", "Biology", "Geology", "Meteorology", "Oceanography", "Astronomy", "Astrophysics", "Cosmology", "Theoretical Physics", "Particle Physics", "Quantum Physics", "Nuclear Physics", "Atomic Physics", "Molecular Physics", "Solid State Physics", "Fluid Dynamics", "Thermodynamics", "Electromagnetism", "Optics", "Acoustics", "Quantum Mechanics", "General Relativity", "Special Relativity", "String Theory", "M-Theory", "Loop Quantum Gravity", "Quantum Field Theory", "Quantum Chromodynamics", "Quantum Electrodynamics", "Quantum Gravity"];
+
 
 
   const [position, setPosition] = React.useState([29.98693069424653, 31.44078789655661]);
-  const [isFileUploaded, setIsFileUploaded] = React.useState(false);
-  
+  const [volenteerRole, setVolenteerRole] = React.useState('Regular Donor');
+  const [errorStates, setErrorStates] = React.useState({
+    firstName: false,
+    lastName: false,
+    gender: false,
+    email: false,
+    password: false,
+    phone: false,
+    specialization: false,
+    availableCases: false,
+    subjects: false,
+    certificates: false,
+    address: false,
+    city: false,
+    country: false,
+    postalCode: false,
+    street: false,
+    building: false,
+
+  })
+
   const props = {
     name: 'file',
     multiple: true,
     beforeUpload: file => {
       const reader = new FileReader();
-  
+
       reader.onload = e => {
-          console.log(e.target.result);
+        console.log(e.target.result);
       };
-       
+
       // save the file to public folder
       reader.readAsDataURL(file);
-      
-      
-  
-      setIsFileUploaded(true);
-      
-  
+
+
+
+
+
+
       // Prevent upload
       return false;
     },
-  
+
     onChange(info) {
-  
+
       const { status } = info.file;
       if (status !== 'uploading') {
         console.log(info.file, info.fileList);
       }
       if (status === 'done' || status === 'error') {
         message.success(`${info.file.name} file uploaded successfully.`);
-      } 
+      }
     },
     onDrop(e) {
       console.log('Dropped files', e.dataTransfer.files);
@@ -113,164 +135,198 @@ export default function DonationReceiverSignUp() {
     //   }, 0);
     // },
   };
-  
 
 
 
 
-  const [error, setError] = useState(null);
-  const handleSubmit = () => {
-    if (!error) {
-      console.log('Submitted');
-      message.success('Submitted');
 
-      // Add your submission logic here
-    } else {
-      console.log('Not submitted');
-      message.error('Please complete your submission');
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const data = new FormData(event.currentTarget);
+
+    // check each field and validate
+
+    for (let [name, value] of data) {
+      console.log(name, value);
+      if (value === '') {
+        setErrorStates({ ...errorStates, [name]: true });
+        message.error(name + ' is required');
+        return;
+      }
+      if (name === 'email') {
+        if (!value.includes('@')) {
+          setErrorStates({ ...errorStates, [name]: true })
+          message.error('Invalid email');
+          return;
+        }
+      }
+
+      if (name === 'phone') {
+        if (value.length < 10) {
+          setErrorStates({ ...errorStates, [name]: true })
+          message.error('Invalid phone number');
+          return;
+        }
+      }
+
+      setErrorStates({ ...errorStates, [name]: false });
     }
+
+
+
+    // check if gender is in data
+    if (!data.has('gender')) {
+      setErrorStates({ ...errorStates, ["gender"]: true });
+      message.error("Gender is required");
+      return;
+    }
+
+
+
+
+
+    message.success('Form submitted');
+
+    window.location.href = '/login';
+
+
   };
 
+  React.useEffect(() => { window.scrollTo(0, 0); }, [errorStates]);
 
   const LocationFinderDummy = () => {
     const map = useMapEvents({
-        click(e) {
-            console.log(e.latlng);
-            setPosition([e.latlng.lat, e.latlng.lng]);
-        },
+      click(e) {
+        console.log(e.latlng);
+        setPosition([e.latlng.lat, e.latlng.lng]);
+      },
     });
     return null;
   };
 
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-          
-          <img src="logo.png" className="signup-app-logo" alt="logo" />
-          
-          <Typography component="h1" variant="h5">
-            Sign Up
-          </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <Box
+        sx={{
+          marginTop: 2,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+
+
+        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <Grid container spacing={2}>
             <Grid item xs>
-                <TextField
-                    margin="normal"
-                    required
-                    fullWidth
-                    
-                    label="First Name"
-                    autoFocus
-                    />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="firstName"
+                label="First Name"
+                error={errorStates.firstName}
+              />
             </Grid>
             <Grid item>
-                    <TextField
-                    margin="normal"
-                    required
-                    fullWidth
-                    
-                    label="Last Name"
-                    autoFocus
-                    />
-            </Grid>
-            </Grid>
-            <FormControl>
-                <FormLabel id="demo-row-radio-buttons-group-label">Gender</FormLabel>
-                    <RadioGroup
-                        row
-                        aria-labelledby="demo-row-radio-buttons-group-label"
-                        name="row-radio-buttons-group"
-                    >
-                        <FormControlLabel value="female" control={<Radio style={{color: COLORS.primary}}/>} label="Female" />
-                        <FormControlLabel value="male" control={<Radio style={{color: COLORS.primary}}/>} label="Male" />
-                    </RadioGroup>
-                </FormControl>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
-            <PhoneInput
-                defaultCountry="eg"
-                style={{width: '100%'}}
+              <TextField
+                margin="normal"
                 required
-            />
-            <br/>
-            
-      
-            <br/>
-                <Divider>Location</Divider>
-                <FormControl fullWidth required>
-                    <InputLabel id="demo-multiple-name-label">Location</InputLabel>
-                    <MapContainer center={position} zoom={20} scrollWheelZoom={false} style={{ height: '50vh', width: '100wh' }} >
-                    <TileLayer
-                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                    />
-                    <LocationFinderDummy />
-                    <Marker position={position}/>
+                fullWidth
 
-                    </MapContainer> 
-                </FormControl>
-             
-                
-                
-                <br/>
-           
-                
-                <Divider> Organization Logo</Divider>
-                <FormControl fullWidth required>
-                    
-                    <Dragger>
-                    <p className="ant-upload-drag-icon">
-                        <InboxOutlined />
-                    </p>
-                    <p className="ant-upload-text">Click or drag file to this area to upload</p>
-                    <p className="ant-upload-hint">
-                        Support for a single or bulk upload. Strictly prohibited from uploading company data or other
-                        banned files.
-                    </p>
-                    </Dragger>
-                    </FormControl>
-            <Divider>Address Details</Divider>
-            <AddressForm />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              className="signup-btn"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Sign Up
-            </Button>
-          </Box>
+                label="Last Name"
+                error={errorStates.lastName}
+              />
+            </Grid>
+          </Grid>
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="email"
+            label="Email Address"
+            name="email"
+            autoComplete="email"
+            error={errorStates.email}
+          />
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            name="password"
+            label="Password"
+            type="password"
+            id="password"
+            autoComplete="current-password"
+            error={errorStates.password}
+          />
+          <PhoneInput
+            defaultCountry="eg"
+            style={{ width: '100%' }}
+            required
+          />
+          <br />         
+            <FormControl fullWidth required>
+              <InputLabel id="demo-multiple-name-label">Location</InputLabel>
+              <MapContainer center={position} zoom={20} scrollWheelZoom={false} style={{ height: '50vh', width: '100wh' }} >
+                <TileLayer
+                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+                <LocationFinderDummy />
+                <Marker position={position}>
+                  <Popup style={{ textAlign: 'center' }}>
+                    {position[0]}, {position[1]}
+                  </Popup>
+                </Marker>
+
+              </MapContainer>
+            </FormControl>
+            <FormControl fullWidth required>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                label="Organization Type"
+                error={errorStates.specialization}
+              />
+            </FormControl>
+
+
+            <br />
+      
+            <Divider>{volenteerRole} Organization Logo</Divider>
+            <FormControl fullWidth required error={errorStates.certificates}>
+
+              <Dragger>
+                <p className="ant-upload-drag-icon">
+                  <InboxOutlined />
+                </p>
+                <p className="ant-upload-text">Click or drag file to this area to upload</p>
+                <p className="ant-upload-hint">
+                  Support for a single or bulk upload. Strictly prohibited from uploading company data or other
+                  banned files.
+                </p>
+              </Dragger>
+            </FormControl>
+          <Divider>Address Details</Divider>
+          <AddressForm />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            className="signup-btn"
+            sx={{ mt: 3, mb: 2 }}
+          >
+            Sign Up
+          </Button>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
-      </Container>
-    </ThemeProvider>
+      </Box>
+
+    </Container>
+
   );
 }

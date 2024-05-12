@@ -56,17 +56,55 @@ const defaultTheme = createTheme();
 
 export default function DetailsOfBooksToBeDonated() {
 
-  const [error, setError] = useState(null);
+  const [name, setName] = React.useState('');
+  const [author, setAuthor] = React.useState('');
+  const [language, setLanguage] = React.useState('');
+  const [edition, setEdition] = React.useState('');
+  const [bookSummary, setBookSummary] = React.useState('');
+  const [quantity, setQuantity] = React.useState('');
+  const [area, setArea] = React.useState('');
+  const [governorate, setGovernorate] = React.useState('');
 
-  const handleSubmit = () => {
-    if (!error) {
-      console.log('Submitted');
-      message.success('Details submitted');
 
-      // Add your submission logic here
-    } else {
-      console.log('Not submitted');
-      message.error('Please complete your submission');
+
+
+
+  const success = () => {
+      message
+        .loading('Sending details to admin..', 1.5)
+        .then(() => message.success('Details sent to admin!', 2.5))
+    };
+    
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    
+    if (!name ) {
+      message.error('Please specify book name.');
+    } else if(!author){
+      message.error('Please specify book author.');
+    }
+    else if(!language){
+      message.error('Please specify book language.');
+    }
+    else if(!edition){
+      message.error('Please specify book edition.');
+    }
+    else if(!bookSummary){
+      message.error('Please specify book summary.');
+    }
+    else if(!quantity){
+      message.error('Please specify book quantity.');
+    }
+    else if(!area){
+      message.error('Please specify book area.');
+    }
+    else if(!governorate){
+      message.error('Please specify book governorate.');
+    }
+    else {
+     success();
     }
   };
 
@@ -93,7 +131,8 @@ export default function DetailsOfBooksToBeDonated() {
                     margin="normal"
                     required
                     fullWidth
-                    
+                    value={name}
+                    onChange={(event)=>setName(event.target.value)}
                     label="Name"
                     autoFocus
                     />
@@ -103,7 +142,8 @@ export default function DetailsOfBooksToBeDonated() {
                     margin="normal"
                     required
                     fullWidth
-                    
+                    value={author}
+                    onChange={(event)=>setAuthor(event.target.value)}
                     label="Author"
                     autoFocus
                     />
@@ -114,7 +154,8 @@ export default function DetailsOfBooksToBeDonated() {
               required
               fullWidth
               label="Language"
-            
+              value={language}
+              onChange={(event)=>setLanguage(event.target.value)}
               autoFocus
             />
             <TextField
@@ -123,6 +164,8 @@ export default function DetailsOfBooksToBeDonated() {
               fullWidth
               name="Edition"
               label="Edition"
+              value={edition}
+              onChange={(event)=>setEdition(event.target.value)}
               autoFocus
             />
                <TextField
@@ -131,6 +174,8 @@ export default function DetailsOfBooksToBeDonated() {
               fullWidth
               name="Book Summary"
               label="Book Summary"
+              value={bookSummary}
+              onChange={(event)=>setBookSummary(event.target.value)}
               autoFocus
             />
             <br/>
@@ -142,7 +187,8 @@ export default function DetailsOfBooksToBeDonated() {
                     label="Quantity"
                     autoFocus
                     type='number'
-                    
+                    value={quantity}
+                    onChange={(event)=>setQuantity(event.target.value)}
                     />
                 </FormControl>
                 <FormControl fullWidth required>
