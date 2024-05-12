@@ -53,19 +53,56 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function DetailsOfToysToBeDonated() {
+  const [type, setType] = React.useState('');
+  const [category, setCategory] = React.useState('');
+  const [gender, setGender] = React.useState('');
+  const [color, setColor] = React.useState('');
+  const [age, setAge] = React.useState('');
+  const [quantity, setQuantity] = React.useState('');
+  const [area, setArea] = React.useState('');
+  const [governorate, setGovernorate] = React.useState('');
 
-  const [error, setError] = useState(null);
 
-  const handleSubmit = () => {
-    if (!error) {
-      console.log('Submitted');
-      message.success('Details submitted');
 
-      // Add your submission logic here
-    } else {
-      console.log('Not submitted');
-      message.error('Please complete your submission');
+
+
+  const success = () => {
+      message
+        .loading('Sending details to admin..', 1.5)
+        .then(() => message.success('Details sent to Admin!', 2.5))
+    };
+    
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    if(!type){
+      message.error('Please enter type.');
     }
+    if (!category ) {
+      message.error('Please enter category.');
+    } else if(  !gender ){
+      message.error('Please specify gender.');
+    }
+    else if( !color ){
+      message.error('Please specify color.');
+    }
+    else if( !age ){
+      message.error('Please specify age.');
+    }
+    else if( !quantity ){
+      message.error('Please specify quantity.');
+    }
+    else if( !area ){
+      message.error('Please specify area.');
+    }
+    else if( !governorate ){
+      message.error('Please specify governorate.');
+    }
+    else {
+     success();
+    }
+
   };
 
 
@@ -90,7 +127,8 @@ export default function DetailsOfToysToBeDonated() {
                     margin="normal"
                     required
                     fullWidth
-                    
+                    value={type}
+                    onChange={(event) =>setType(event.target.value)}
                     label="Type"
                     autoFocus
                     />
@@ -99,7 +137,8 @@ export default function DetailsOfToysToBeDonated() {
                     margin="normal"
                     required
                     fullWidth
-                    
+                    value={category}
+                    onChange={(event) =>setCategory(event.target.value)}
                     label="Category"
                     autoFocus
                     />
@@ -111,6 +150,8 @@ export default function DetailsOfToysToBeDonated() {
                         row
                         aria-labelledby="demo-row-radio-buttons-group-label"
                         name="row-radio-buttons-group"
+                        value={gender}
+                        onChange={(event) => setGender(event.target.value)}
                     >
                         <FormControlLabel value="female" control={<Radio />} label="Female" />
                         <FormControlLabel value="male" control={<Radio />} label="Male" />
@@ -123,6 +164,8 @@ export default function DetailsOfToysToBeDonated() {
               fullWidth
               name="Color"
               label="Color"
+              value={color}
+              onChange={(event)=>setColor(event.target.value)}
               autoFocus
             />
             <br/>
@@ -133,6 +176,8 @@ export default function DetailsOfToysToBeDonated() {
                     fullWidth
                     label="Age"
                     autoFocus
+                    value={age}
+                    onChange={(event)=>setAge(event.target.value)}
                     type='number'
                     
                     />
@@ -145,7 +190,8 @@ export default function DetailsOfToysToBeDonated() {
                     label="Quantity"
                     autoFocus
                     type='number'
-                    
+                    value={quantity}
+                    onChange={(event)=>setQuantity(event.target.value)}
                     />
                 </FormControl>
                 

@@ -54,18 +54,39 @@ const defaultTheme = createTheme();
 
 export default function DetailsOfStationaryToBeDonated() {
 
-  const [error, setError] = useState(null);
+  const [type, setType] = React.useState('');
+    const [quantity, setQuantity] = React.useState('');
+    const [area, setArea] = React.useState('');
+    const [governorate, setGovernorate] = React.useState('');
 
-  const handleSubmit = () => {
-    if (!error) {
-      console.log('Submitted');
-      message.success('Details submitted');
 
-      // Add your submission logic here
-    } else {
-      console.log('Not submitted');
-      message.error('Please complete your submission');
-    }
+
+
+    const success = () => {
+        message
+          .loading('Sending details to admin..', 1.5)
+          .then(() => message.success('Details sent to Admin!', 2.5))
+      };
+      
+  
+    const handleSubmit = (event) => {
+      event.preventDefault();
+
+      
+      if (!type ) {
+        message.error('Please specify item.');
+      } else if(!quantity) {
+        message.error('Please enter quantity.');
+      }
+      else if(!area) {
+        message.error('Please enter area.');
+      }
+      else if(!governorate) {
+        message.error('Please enter governorate.');
+      }
+      else{
+       success();
+      }
   };
 
 
@@ -90,7 +111,8 @@ export default function DetailsOfStationaryToBeDonated() {
                     margin="normal"
                     required
                     fullWidth
-                    
+                    value={type}
+                    onChange={(event) =>setType(event.target.value)}
                     label="Type"
                     autoFocus
                     />
@@ -104,6 +126,9 @@ export default function DetailsOfStationaryToBeDonated() {
                     label="Quantity"
                     autoFocus
                     type='number'
+                    value={quantity}
+                    onChange={(event)=>setQuantity(event.target.value)}
+                    
                     
                     />
                 </FormControl>
