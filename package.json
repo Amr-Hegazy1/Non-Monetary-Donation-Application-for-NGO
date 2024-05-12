@@ -10,6 +10,7 @@
     "@emotion/unitless": "^0.8.1",
     "@faker-js/faker": "^8.4.1",
     "@iconify/react": "^4.1.1",
+    "@mapbox/polyline": "^1.2.1",
     "@mui/icons-material": "^5.15.15",
     "@mui/lab": "^5.0.0-alpha.170",
     "@mui/material": "^5.15.15",

@@ -79,11 +79,11 @@ function Copyright(props) {
       };
 
       return(
-              <>
-              <NavBar/> 
+        <>        
+        <NavBar/>
         
-        <ThemeProvider theme={defaultTheme}>
-        <Container component="main" maxWidth="xs">
+        
+      <Container component="main" maxWidth="xs">
           <CssBaseline />
           <Box
             sx={{
@@ -173,7 +173,6 @@ function Copyright(props) {
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
-    </ThemeProvider>
     </>
   );
 }

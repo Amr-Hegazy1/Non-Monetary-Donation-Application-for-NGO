@@ -31,5 +31,7 @@
     background: #971254 !important;
 }
 
-
+.react-international-phone-country-selector-dropdown{
+    z-index: 9999 !important;
+}
 

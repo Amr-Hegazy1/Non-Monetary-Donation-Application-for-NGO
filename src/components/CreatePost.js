@@ -93,7 +93,7 @@ function CreateRequestPost() {
 
 
   return (
-    <ThemeProvider theme={defaultTheme}>
+    
     <Typography component="h1" variant="h5" style={{position:'absolute', top:60, left:620}}>
     Create Request Post
   </Typography>
@@ -189,7 +189,7 @@ function CreateRequestPost() {
       </Box>
       <Copyright sx={{ mt: 8, mb: 4 }} />
     </Container>
-  </ThemeProvider>
+  
   );
 }
 
