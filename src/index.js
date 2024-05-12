@@ -59,6 +59,7 @@ import RegisteredDoctors from './components/RegisteredDoctors';
 import RegisteredTeachers from './components/RegisteredTeachers';
 import TeacherDetails from './components/TeacherDetails';
 import DoctorDetails from './components/DoctorDetails';
+import AdminFilterOrganization from './components/AdminFilterOrganization';
 
 
 
@@ -135,6 +136,8 @@ root.render(
               <Route path='/view-teacher-request-info' element={<RequestInfoTeacher />} />             
              <Route path="/deliveryDonationDetails" element={<DeliveryDonationDetails />} />
              <Route path= '/homePage' element={<Homepage />} />
+             <Route path= '/registeredOrganizations' element={<AdminFilterOrganization />} />
+
 
          
 

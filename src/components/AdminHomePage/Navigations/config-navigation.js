@@ -14,6 +14,7 @@ import DonorDoctorRequests from '../DonorDoctorRequests';
 import DonorTeacherRequests from '../../DonorTeacherRequests';
 import DoctorSubmissions from '../../../DoctorSubmissions';
 import TeacherSubmissions from '../../../TeacherSubmissions';
+import AdminFilterOrganization from '../../AdminFilterOrganization';
 
 
 // ----------------------------------------------------------------------
@@ -97,11 +98,11 @@ const NavConfig = [
     subMenu: [
       {
         index: 0,
-        title: 'Manage Organizations',
+        title: 'Registered Organizations',
         path: '/AdminHome/registeredOrganizations',
         icon: icon('organization.png'),
         color: '#602b37',
-        element: <RegisteredOrganizations />,
+        element: <AdminFilterOrganization />,
         active: false
       },
       {

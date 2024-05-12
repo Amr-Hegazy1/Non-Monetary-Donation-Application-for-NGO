@@ -10,6 +10,7 @@ import RegisteredDoctors from '../../RegisteredDoctors';
 import RegisteredTeachers from '../../RegisteredTeachers';
 import DonorTeacherRequests from '../../DonorTeacherRequests';
 import DonorDoctorRequests from '../DonorDoctorRequests';
+import AdminFilterOrganization from '../../AdminFilterOrganization';
 
 export const IndexPage = lazy(() => import('../AppPage/appPage'));
 export const PasswordManagement = lazy(() => import('../../../PasswordManagement'));
@@ -43,7 +44,7 @@ export default function Router() {
         { path : 'user details' , element : <UserDetails/>},
         { path : 'donor requests', element : <DonorRequests/>},
         { path : 'organization requests', element : <OrganizationRequests/>},
-        { path : 'registeredOrganizations', element : <RegisteredOrganizations/>},
+        { path : 'registeredOrganizations', element : <AdminFilterOrganization/>},
         { path : 'registeredDoctors', element : <RegisteredDoctors/>},
         { path : 'registeredTeachers', element : <RegisteredTeachers/>},
         { path :'DonorTeachersRequests', element : <DonorTeacherRequests/>},

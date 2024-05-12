@@ -10,6 +10,8 @@ import Toolbar from '@mui/material/Toolbar';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import { COLORS } from '../values/colors';
+import { Button } from '@mui/material';
+import { AccordionActions } from '@mui/material';
 import ViewRequestedDonationImg from './ViewRequestedDonationImg.jpg';
 import { Sort } from '@mui/icons-material';
 import { set } from 'react-cool-form';
@@ -23,11 +25,11 @@ const OrganizationsList = [
     {Name: 'Organization4', Area: 'Dokki', Governorate: 'Giza', Type: 'Hospital'},
     {Name: 'Organization5', Area: 'Zamalek', Governorate: 'Giza', Type: 'Orphange'},
     {Name: 'Organization6', Area: 'semooha', Governorate: 'Alex', Type: 'Hospital'},
-    {Name: 'Organization7', Area: 'NasrCity', Governorate: 'Cairo', Type: 'Hospital'},
+    {Name: 'Organization7', Area: 'Maadi', Governorate: 'Cairo', Type: 'Orphange'},
     {Name: 'Organization8', Area: 'Maadi', Governorate: 'Cairo', Type: 'Hospital'},
     {Name: 'Organization9', Area: 'Heliopolis', Governorate: 'Cairo', Type: 'Orphange'},
-    {Name: 'Organization10', Area: 'Dokki', Governorate: 'Giza', Type: 'Hospital'},
-    {Name: 'Organization11', Area: 'Zamalek', Governorate: 'Giza', Type: 'Orphange'},
+    {Name: 'Organization10', Area: 'Dokki', Governorate: 'Giza', Type: 'Orphange'},
+    {Name: 'Organization11', Area: 'Zamalek', Governorate: 'Giza', Type: 'Hospital'},
 
 ];
 
@@ -248,6 +250,9 @@ function AdminFilterOrganization() {
               ))}
             </ul>
           </StyledAccordionDetails>
+          <AccordionActions>
+            <Button variant="contained" color="primary"size="small" style={{ margin: '0 auto', display: 'flex' , background:'#602b37' }} onClick={() => window.location.href = "/view-org-registered-info"}>View All Details</Button>
+          </AccordionActions>
         </StyledAccordion>
       ))}
     </Box>
