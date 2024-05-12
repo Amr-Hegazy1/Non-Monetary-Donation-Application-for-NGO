@@ -4,13 +4,10 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Donors from './Donors';
-import AdminDashboard from './DonorSubmission';
-import DonorList from './components/DonorList';
+
 import VerifyCodePage from './components/Verify';
 import AdminHome from './components/AdminHomePage/AdminHome';
-import DonorSubmission from './DonorSubmission';
-import Password from 'antd/es/input/Password';
+
 import PasswordManagement from './PasswordManagement';
 import OrgCoordinateDonationPickup from './components/OrgCoordinateDonationPickup';
 import DetailsOfMedicalSuppToBeDonated from './components/DetailsOfMedicalSuppToBeDonated';
@@ -25,11 +22,10 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { Suspense } from 'react';
 import DetailsOfClothesToBeDonated from './components/DetailsOfClothesToBeDonated';
-import AdminApp from './components/AdminHomePage/AdminApp';
+
 import OrganizationRequestInfo from './components/OrganizationRequestInfo';
 import OrganizationDetails from './components/OrganizationDetails';
-import UserDetails from './components/DoctorDetails';
-import OrganizationList from './components/OrganizationList';
+
 import RequestClothes from './components/RequestClothes';
 import RequestBooks from './components/RequestBooks.';
 import RequestFood from './components/RequestFood';
