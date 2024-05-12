@@ -23,8 +23,8 @@ export default function RequestInfo() {
 
     return (
     <div className="request-info-container"> 
-    <h1 className="request-info-title">Request Information</h1>
-<h3 className="donor-type-header">Donor Type: Teacher</h3>
+    <h1 className="request-info-title" style={{ fontFamily: 'Arial, sans-serif', fontSize: '40px', color: '#620b37', fontWeight: 'bold', textAlign: 'center'}}>Teacher Request Information</h1>
+<h3 className="donor-type-header" style={{ fontFamily: 'Arial, sans-serif', fontSize: '22px', color: '#620b37', fontWeight: 'bold', textAlign: 'center'}}>Donor Type: Teacher</h3>
       <label>
         Request Notes:
         <textarea

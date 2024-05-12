@@ -1,6 +1,8 @@
-.RegisteredDonors-header {
-    margin-top: -10px;
-    margin-left: 305px;
+.RegisteredDoctors-header {
+    text-align: center;
+    color: #602b37;
+    font-weight: bold;
+    text-shadow: '2px 2px 4px #aaa';
   }
   
   .delete-button:focus,
@@ -15,10 +17,20 @@
     flex: 0 0 12%;
   }
 
+  .delete-button:hover {
+    background-color: #76120b;
+    color: rgb(101, 8, 8);
+  }
+
   .view-button {
     padding: 0 0px; /* Adjust as needed */
     width: 12%; /* Adjust as needed */
     margin-left: 20px;
+  }
+
+  .view-button:hover {
+    background-color: #76120b;
+    color:white;
   }
   
   .list-item-container {

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
-
+import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Drawer from '@mui/material/Drawer';
@@ -10,7 +10,7 @@ import { alpha } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import ListItemButton from '@mui/material/ListItemButton';
 import { UseResponsive, UseWidth } from '../use-responsive';
-
+import List from '@mui/material/List';
 
 import { Account } from '../account';
 import Logo from '../logo';
@@ -21,6 +21,7 @@ import NavConfig from './config-navigation';
 import { useState } from 'react';
 import Collapse from '@mui/material/Collapse';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 
 // ----------------------------------------------------------------------
 
@@ -135,54 +136,40 @@ Nav.propTypes = {
 };
 
 // ----------------------------------------------------------------------
-
 function NavItem({ item }) {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
 
   const handleClick = (e) => {
+    e.preventDefault();
     if (item.subMenu) {
-      e.preventDefault();
+      
       setOpen(!open);
+    } else {
+      navigate(item.path);
     }
+
   };
 
   return (
-    <div>
-      <ListItemButton onClick={handleClick} href={item.path}>
+    <List>
+      <ListItemButton onClick={handleClick}>
         <Box component="span" sx={{ width: 24, height: 24, mr: 2 }}>
           {item.icon}
         </Box>
         <Box component="span">{item.title}</Box>
-        {item.subMenu && <ExpandMoreIcon />}
+        {item.subMenu && (open ? <ExpandMoreIcon /> : <NavigateNextIcon />)}
       </ListItemButton>
       {item.subMenu && (
         <Collapse in={open} timeout="auto" unmountOnExit>
-          {item.subMenu.map((subItem, index) => (
-            <ListItemButton
-              key={index}
-              href={subItem.path}
-              sx={{
-                minHeight: 44,
-                borderRadius: 0.75,
-                color: '#602b37',
-                textTransform: 'capitalize',
-                fontWeight: 'fontWeightMedium',
-                marginX: 2,
-                ...( {
-                  color: '#602b37',
-                  fontWeight: 'fontWeightMedium',
-                }),
-              }}
-            >
-              <Box component="span" sx={{ width: 24, height: 24, mr: 2 }}>
-                {subItem.icon}
-              </Box>
-              <Box component="span">{subItem.title}</Box>
-            </ListItemButton>
-          ))}
+          <List component="div" disablePadding>
+            {item.subMenu.map((subItem, index) => (
+              <NavItem key={index} item={subItem} />
+            ))}
+          </List>
         </Collapse>
       )}
-    </div>
+    </List>
   );
 }
 

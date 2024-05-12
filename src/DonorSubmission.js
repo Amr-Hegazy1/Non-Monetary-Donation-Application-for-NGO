@@ -1,4 +1,4 @@
-import UserDetails from './components/UserDetails';
+import UserDetails from './components/DoctorDetails';
 import React, { useEffect } from 'react';
 
 const DonorSubmission = () => {

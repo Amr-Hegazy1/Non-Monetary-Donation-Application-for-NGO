@@ -12,7 +12,7 @@ import Typography from '@mui/material/Typography';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import "../styles/FulfilledDonation.css";
 import { Modal, Space } from 'antd';
-import { ExclamationCircleFilled } from '@ant-design/icons';
+import { Popconfirm } from 'antd';
 
 const { confirm } = Modal;
 
@@ -52,17 +52,28 @@ const FulfilledDonations = () => {
                         Donation {i+1}
                         </AccordionSummary>
                         <AccordionDetails>
-                        Name: John Doe <br/>
-                        Email: mail@example.com <br/>
+                        Name: Selena Adams <br/>
+                        Email: selena.adams@gmail.com <br/>
                         Phone: 123-456-7890 <br/>
                         Address: 1234 Elm Street <br/>
-                        Occupation: Doctor
+                        Occupation: Teacher
                         </AccordionDetails>
                         <AccordionActions>
                         
-                        <Button color='warning' onClick={() => showDeleteConfirm("Donation " + (i+1))}>Delete</Button>
-                        <Button color='success'>Acknowledge</Button>
-                        <Button onClick={() => window.location.href = '/donorDetails'}>View Details</Button>                        </AccordionActions>
+                        <Popconfirm
+                            title="Delete the donation"
+                            description="Are you sure to delete this donation?"
+                            onConfirm={() => deleteDonation("Donation " + (i+1)) }
+                            okText="Yes"
+                            cancelText="No"
+                            okButtonProps={{ style: {width: "auto"}}}
+                            cancelButtonProps={{ style: {width: "auto"}}}
+                        >
+                            <Button style={{width: "100%"}} color='warning'>Delete</Button>
+                        </Popconfirm>
+                        <Button style={{width: "100%"}} color='success'>Acknowledge</Button>
+                        <Button style={{width: "100%"}} onClick={() => window.location.href = '/donorDetails'}>View Details</Button>
+                        </AccordionActions>
                 </Accordion>
                 );
             }
@@ -75,22 +86,7 @@ const FulfilledDonations = () => {
 
     }
 
-    const showDeleteConfirm = (title) => {
-        confirm({
-          title: 'Are you sure delete this donation?',
-          icon: <ExclamationCircleFilled />,
-          content: '',
-          okText: 'Yes',
-          okType: 'danger',
-          cancelText: 'No',
-          onOk() {
-            deleteDonation(title);
-          },
-          onCancel() {
-            console.log('Cancel');
-          },
-        });
-      };
+    
 
     
     useEffect(() => {
@@ -110,16 +106,26 @@ const FulfilledDonations = () => {
                         Donation {i+1}
                         </AccordionSummary>
                         <AccordionDetails>
-                        Name: John Doe <br/>
-                        Email: mail@example.com <br/>
+                        Name: Selena Adams <br/>
+                        Email: selena.adams@gmail.com <br/>
                         Phone: 123-456-7890 <br/>
                         Address: 1234 Elm Street <br/>
-                        Occupation: Doctor
+                        Occupation: Teacher
                         </AccordionDetails>
                         <AccordionActions>
-                        <Button color='warning' onClick={() => showDeleteConfirm("Donation " + (i+1))}>Delete</Button>
-                        <Button color='success'>Acknowledge</Button>
-                        <Button onClick={() => window.location.href = '/viewDonorDetailsForFulfilledPosts'}>View Details</Button>
+                        <Popconfirm
+                            title="Delete the donation"
+                            description="Are you sure to delete this donation?"
+                            onConfirm={() => deleteDonation("Donation " + (i+1)) }
+                            okText="Yes"
+                            cancelText="No"
+                            okButtonProps={{ style: {width: "auto"}}}
+                            cancelButtonProps={{ style: {width: "auto"}}}
+                        >
+                            <Button style={{width: "100%"}} color='warning'>Delete</Button>
+                        </Popconfirm>
+                        <Button style={{width: "100%"}} color='success'>Acknowledge</Button>
+                        <Button style={{width: "100%"}} onClick={() => window.location.href = '/donorDetails'}>View Details</Button>
                         </AccordionActions>
                 </Accordion>
             );
@@ -151,7 +157,7 @@ const FulfilledDonations = () => {
                 alignItems: 'center',
             }}
             >   
-                <Typography className="center" component="h1" variant="h4">
+                <Typography className="center h" component="h1" variant="h4">
                     Fulfilled Donations
                 </Typography>
                 
