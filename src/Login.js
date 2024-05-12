@@ -49,7 +49,7 @@ function Login() {
 
     const correctDonationReceiverEmail = 'donation_reciever@gmail.com';
 
-    const correctDeliveryPersonEmail = 'delivery_pearson@gmail.com';
+    const correctDeliveryPersonEmail = 'delivery_person@gmail.com';
 
     const correctOrganizationEmail = 'organization@gmail.com';
 

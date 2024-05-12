@@ -21,6 +21,7 @@ import glassBuyIcon from './icons/ic_glass_buy.png';
 import glassTickIcon from './icons/ic-glass-tick.png';
 import glassStarIcon from './icons/icons8-star.png';
 import glassProgressIcon from './icons/icons8-progress-48.png'
+import glassDeliveryIcon from './icons/icons8-delivery-50.png'
 import { Card, CardHeader, Box, Toolbar } from '@mui/material';
 
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
@@ -30,6 +31,7 @@ import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import { List } from 'antd';
 import DeliveryDonations from './Views/deliveryDonations';
+import Header from '../AdminHomePage/Navigations/header';
 
 
 delete L.Icon.Default.prototype._getIconUrl;
@@ -46,8 +48,8 @@ const locations = ["AUC", "Cairo Festival City", "Rehab", "Waterway", "Mivida"];
 export default function Dashboard() {
     return (
         <ThemeProvider>
-
-            <Container maxWidth="xl">
+            <Header width="100%"/>
+            <Container maxWidth="xl" style={{marginTop:"5%"}}>
                 <Typography variant="h4" sx={{ mb: 5, color: '#602b37' }}>
                     Hi, Amr 👋
                 </Typography>
@@ -80,10 +82,10 @@ export default function Dashboard() {
 
                     <Grid xs={12} sm={6} md={3}>
                         <AppWidgetSummary
-                            title="Bug Reports"
-                            total={234}
+                            title="Donations Remaining"
+                            total={5}
                             color="error"
-                            icon={<img alt="icon" src={glassMessageIcon} />}
+                            icon={<img alt="icon" src={glassDeliveryIcon} />}
                         />
                     </Grid>
 

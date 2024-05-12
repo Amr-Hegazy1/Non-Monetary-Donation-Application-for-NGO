@@ -36,10 +36,10 @@ export default function Homepage() {
                     <div className="welcome-hero-txt">
                         <h2 className="homepage-headers">Here To Unite</h2>
                         <p>
-                            Find Best Place, Restaurant, Hotel, Real State and many more think in just One click
+                            Connecting donors with organizations & people in need
                         </p>
                     </div>
-                    <Button className="donate-btn">Donate Now</Button>
+                    <Button className="donate-btn" onClick={() => {window.location.href="/ViewDonationRequests"}}>Donate Now</Button>
                 </div>
 
             </section>
@@ -115,61 +115,7 @@ export default function Homepage() {
             
 
             
-            <section id="works" className="works">
-                <div className="container">
-                    <div className="section-header">
-                        <h2 className="homepage-headers">how it works</h2>
-                        <p>Learn More about how our website works</p>
-                    </div>
-                    <div className="works-content">
-                        <div className="row">
-                            <div className="col-md-4 col-sm-6">
-                                <div className="single-how-works">
-                                    <div className="single-how-works-icon">
-                                        <i className="flaticon-lightbulb-idea"></i>
-                                    </div>
-                                    <h2 className="homepage-headers"><a href="#">choose <span> what to</span> do</a></h2>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consecte adipisicing elit, sed do eiusmod tempor incididunt ut laboremagna aliqua.
-                                    </p>
-                                    <button className="welcome-hero-btn how-work-btn" onclick="window.location.href='#'">
-                                        read more
-                                    </button>
-                                </div>
-                            </div>
-                            <div className="col-md-4 col-sm-6">
-                                <div className="single-how-works">
-                                    <div className="single-how-works-icon">
-                                        <i className="flaticon-networking"></i>
-                                    </div>
-                                    <h2 className="homepage-headers"><a href="#">find <span> what you want</span></a></h2>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consecte adipisicing elit, sed do eiusmod tempor incididunt ut laboremagna aliqua.
-                                    </p>
-                                    <button className="welcome-hero-btn how-work-btn" onclick="window.location.href='#'">
-                                        read more
-                                    </button>
-                                </div>
-                            </div>
-                            <div className="col-md-4 col-sm-6">
-                                <div className="single-how-works">
-                                    <div className="single-how-works-icon">
-                                        <i className="flaticon-location-on-road"></i>
-                                    </div>
-                                    <h2 className="homepage-headers"><a href="#">explore <span> amazing</span> place</a></h2>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consecte adipisicing elit, sed do eiusmod tempor incididunt ut laboremagna aliqua.
-                                    </p>
-                                    <button className="welcome-hero-btn how-work-btn" onclick="window.location.href='#'">
-                                        read more
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </section>
+            
             
 
             

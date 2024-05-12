@@ -59,6 +59,7 @@ function NavBar() {
           <Nav className="me-auto">
             <Nav.Link href="/">Contact Us</Nav.Link>
             <Nav.Link href="/">About Us</Nav.Link>
+            {(cookies['user_type'] === "delivery_person") ? <Nav.Link href="/delieveyPersonDashboard">My Dashboard</Nav.Link> : null}
             {(cookies['user_type'] === "organization") ? <Nav.Link href="/fullfilledDonations">View Fulfilled Donations</Nav.Link> : null}
             {(cookies['user_type'] === "donor") ? <Nav.Link href="/donorViewAllDonations">View My Donations</Nav.Link> : null}
             {(cookies['user_type'] === "donor") ? <><Nav.Link href="/ViewDonationRequests">View Donation Requests</Nav.Link>
