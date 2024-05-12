@@ -42,7 +42,7 @@ export default function AppView() {
 
         <Grid xs={12} sm={6} md={3}>
           <AppWidgetSummary
-            title="New Users"
+            title="Registered Users"
             total={135255}
             color="info"
             icon={<img alt="icon" src={glassUsersIcon} />}            />

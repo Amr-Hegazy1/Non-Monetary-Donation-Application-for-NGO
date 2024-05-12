@@ -11,7 +11,8 @@ import Stack from '@mui/material/Stack';
 function PasswordManagement() {
   const [password, setPassword] = useState('');
   const [confirm, setconfirm] = useState('');
-  const [showPassword, setShowPassword] = useState(false); // State for password visibility
+  const [showPassword, setShowPassword] = useState(false);
+  const [confirmShowPassword, setConfirmShowPassword] = useState(false);
 
   const handleChange = (e) => {
     e.preventDefault(); // Prevent default form submission behavior
@@ -68,7 +69,7 @@ function PasswordManagement() {
           <TextField
             name="Confirm Password"
             label="Confirm Password"
-            type={showPassword ? 'text' : 'password'} // Toggle password visibility
+            type={confirmShowPassword ? 'text' : 'password'} // Toggle password visibility
             value={confirm}
             height="50"
             width="20"
@@ -77,10 +78,10 @@ function PasswordManagement() {
               endAdornment: (
                 <InputAdornment position="end">
                   <IconButton
-                    onClick={() => setShowPassword(!showPassword)} edge="end"
+                    onClick={() => setConfirmShowPassword(!confirmShowPassword)} edge="end"
                   >
                     <Iconify
-                      icon={showPassword ? 'eva:eye-fill' : 'eva:eye-off-fill'}
+                      icon={confirmShowPassword ? 'eva:eye-fill' : 'eva:eye-off-fill'}
                       style={{ color: '#602b37', fontSize: '40px' }}
                     />
                   </IconButton>

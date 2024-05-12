@@ -12,14 +12,20 @@ export default function RequestInfo() {
         a.click();
     };
     const handleAccept = () => {
-        // Confirm accept action
-        message.success('Request accepted');
-      };
+      // Confirm accept action
+      message.success('Request accepted');
+      setTimeout(() => {
+        window.location.href = '/AdminHome?path=%2FAdminHome%2FDonorTeachersRequests';
+      }, 1000); // Delay of 1 seconds
+    };
     
-      const handleReject = () => {
-        // Confirm reject action
-        message.error('Request rejected');
-      };
+    const handleReject = () => {
+      // Confirm reject action
+      message.error('Request rejected');
+      setTimeout(() => {
+        window.location.href = '/AdminHome?path=%2FAdminHome%2FDonorTeachersRequests';
+      }, 1000); // Delay of 1 seconds
+    };
 
     return (
     <div className="request-info-container"> 

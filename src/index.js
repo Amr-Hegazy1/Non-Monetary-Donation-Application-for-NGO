@@ -4,13 +4,10 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Donors from './Donors';
-import AdminDashboard from './DonorSubmission';
-import DonorList from './components/DonorList';
+
 import VerifyCodePage from './components/Verify';
 import AdminHome from './components/AdminHomePage/AdminHome';
-import DonorSubmission from './DonorSubmission';
-import Password from 'antd/es/input/Password';
+
 import PasswordManagement from './PasswordManagement';
 import OrgCoordinateDonationPickup from './components/OrgCoordinateDonationPickup';
 import DetailsOfMedicalSuppToBeDonated from './components/DetailsOfMedicalSuppToBeDonated';
@@ -25,11 +22,10 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { Suspense } from 'react';
 import DetailsOfClothesToBeDonated from './components/DetailsOfClothesToBeDonated';
-import AdminApp from './components/AdminHomePage/AdminApp';
+
 import OrganizationRequestInfo from './components/OrganizationRequestInfo';
 import OrganizationDetails from './components/OrganizationDetails';
-import UserDetails from './components/DoctorDetails';
-import OrganizationList from './components/OrganizationList';
+
 import RequestClothes from './components/RequestClothes';
 import RequestBooks from './components/RequestBooks.';
 import RequestFood from './components/RequestFood';
@@ -62,6 +58,10 @@ import DonorProfile from './components/DonorProfile';
 import OrganizationProfile from './components/OrganizationProfile';
 import AdminProfile from './components/AdminProfile';
 import DeliveryPersonProfile from './components/DeliveryPersonProfile';
+import AdminFilterOrganization from './components/AdminFilterOrganization';
+import OrganizationRegisteredDetails from './components/OrganizationRegisteredDetails';
+import DoctorRegisteredInfo from './components/DoctorRegisteredInfo';
+import TeacherRegisteredInfo from './components/TeacherRegisteredInfo';
 
 
 
@@ -99,13 +99,13 @@ root.render(
             <Routes>
               <Route index element={<Homepage/>} />
               <Route path="/donateClothes" element={<DetailsOfClothesToBeDonated/>} />
-              <Route path="/view-teacher-registered-info" element={<TeacherDetails/>} />
               <Route path="/view-org-request-info" element={<OrganizationRequestInfo/>} />
               <Route path="/view-org-submission-info" element={<OrganizationDetails/>} />
               <Route path="/view-doctor-submission-info" element={<DoctorDetails/>} />
               <Route path='/view-teacher-submission-info' element={<TeacherDetails/>} />
-              <Route path="/view-org-registered-info" element={<OrganizationDetails/>} />
-              <Route path='view-doctor-registered-info' element={<DoctorDetails/>} />
+              <Route path="/view-org-registered-info" element={<OrganizationRegisteredDetails/>} />
+              <Route path='view-doctor-registered-info' element={<DoctorRegisteredInfo/>} />
+              <Route path="/view-teacher-registered-info" element={<TeacherRegisteredInfo/>} />
               <Route path="/login" element={<Login/>} />
               <Route path="/AdminHome" element={<AdminHome/>} />
               <Route path="/ChangePassword" element={<PasswordManagement/>} />
@@ -137,16 +137,12 @@ root.render(
               <Route path="/donorViewAllDonations" element={<DonorMyDonations />} />
               <Route path="/donorMyDonationDetails" element={<DonorMyDonationDetails />} />
               <Route path="/delieveyPersonDashboard" element={<Dashboard />} />
-              <Route path="/view-doctor-registered-info" element={<RequestInfoDoctor />}/>
               <Route path='/view-doctor-request-info' element={<RequestInfoDoctor />} />
               <Route path='/view-teacher-request-info' element={<RequestInfoTeacher />} />             
              <Route path="/deliveryDonationDetails" element={<DeliveryDonationDetails />} />
              <Route path= '/homePage' element={<Homepage />} />
              <Route path="/fulfilledPostDetails" element={<ViewDetailsOfFulfilledPosts />} />
-
-
-
-
+    <Route path= '/registeredOrganizations' element={<AdminFilterOrganization />} />
                 </Routes>
               </Suspense>
             </BrowserRouter>

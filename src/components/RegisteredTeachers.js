@@ -6,6 +6,7 @@ import { message } from 'antd';
 import { Modal } from 'antd';
 import './RegisteredTeachers.css';
 import Container from '@mui/material/Container';
+import { Popconfirm } from 'antd';
 
 const fakeDataUrl =
   'https://randomuser.me/api/?results=20&inc=name,gender,email,nat,picture&noinfo';
@@ -34,26 +35,8 @@ const RegisteredTeachers = () => {
   };
 
   const handleDelete = (email) => {
-    Modal.confirm({
-    title: 'Are you sure you want to delete this item?',
-    okText: 'Yes',
-    cancelText: 'Cancel',
-    centered: true,
-    okButtonProps: { style: { backgroundColor: 'green', borderColor: 'green', color: 'white' } },
-    cancelButtonProps: { style: { backgroundColor: 'red', borderColor: 'red', color: 'white' } },
-      onOk() {
-        // Remove the item from the data array
-  
-        // Update the state
-        setData(data.filter(item => item.email !== email));
-  
-        // Display a confirmation message
-        message.success('Item deleted successfully');
-      },
-      onCancel() {
-        // Do nothing
-      },
-    });
+    setData(data.filter(item => item.email !== email));
+    message.success('Account deleted successfully');
   };
 
   const filteredData = data.filter(item => item.name.last.toLowerCase().includes(searchTerm.toLowerCase()));
@@ -91,7 +74,18 @@ const RegisteredTeachers = () => {
               />
               </div>
               <Button className="view-button" type="link" size="small" href='/view-teacher-registered-info' >View Info</Button>
-              <Button className="delete-button" type="link" size="small" onClick={() => handleDelete(item.email)}>Delete</Button>
+              <Popconfirm
+                  title="Delete account?"
+                  description="Are you sure to delete this account?"
+                  onConfirm={() => handleDelete(item.email)}
+                  okText="Yes"
+                  cancelText="No"
+                  okButtonProps={{ style: { width: "auto" } }}
+                  cancelButtonProps={{ style: { width: "auto" } }}
+                  style={{ width: "20%", marginLeft: 'auto', marginRight: '30%', margin: 7 }}
+                >
+                  <Button style={{ width: "20%" }}>Delete</Button>
+                </Popconfirm>
           </List.Item>
           )}
         </VirtualList>

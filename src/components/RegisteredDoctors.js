@@ -6,6 +6,8 @@ import { message } from 'antd';
 import { Modal } from 'antd';
 import './RegisteredDoctors.css';
 import Container from '@mui/material/Container';
+import { Popconfirm } from 'antd';
+
 
 const fakeDataUrl =
   'https://randomuser.me/api/?results=20&inc=name,gender,email,nat,picture&noinfo';
@@ -34,26 +36,8 @@ const RegisteredDoctors = () => {
   };
 
   const handleDelete = (email) => {
-    Modal.confirm({
-    title: 'Are you sure you want to delete this item?',
-    okText: 'Yes',
-    cancelText: 'Cancel',
-    centered: true,
-    okButtonProps: { style: { backgroundColor: 'green', borderColor: 'green', color: 'white' } },
-    cancelButtonProps: { style: { backgroundColor: 'red', borderColor: 'red', color: 'white' } },
-      onOk() {
-        // Remove the item from the data array
-  
-        // Update the state
-        setData(data.filter(item => item.email !== email));
-  
-        // Display a confirmation message
-        message.success('Item deleted successfully');
-      },
-      onCancel() {
-        // Do nothing
-      },
-    });
+    setData(data.filter(item => item.email !== email));
+    message.success('Account deleted successfully');
   };
 
   const filteredData = data.filter(item => item.name.last.toLowerCase().includes(searchTerm.toLowerCase()));
@@ -62,41 +46,54 @@ const RegisteredDoctors = () => {
     <div className='RegisteredDoctors'>
       <h1 className='RegisteredDoctors-header'>Registered Doctors</h1>
       <Row justify="center">
-      <Col span={12}>
-      <Input className='search-box' 
-         placeholder="Search for a Doctor" 
-         onChange={e => setSearchTerm(e.target.value)} 
-         style={{  width: '100%' }}
-        />
+        <Col span={12}>
+          <Input className='search-box'
+            placeholder="Search for a Doctor"
+            onChange={e => setSearchTerm(e.target.value)}
+            style={{ width: '100%' }}
+          />
         </Col>
-        </Row>
-        <Container component="main" maxWidth="md">
-      <List>
-        <VirtualList
-          data={filteredData}
-          height={ContainerHeight}
-          itemHeight={47}
-          itemKey="email"
-          onScroll={onScroll}
-        >
-          {(item) => (
-            <List.Item key={item.email}>
-            <div >
-              <div className="spacer"></div>
-              <List.Item.Meta
-              avatar={<img src={item.picture.thumbnail} alt="avatar" style={{ borderRadius: '50%', border: '2px solid #000',
-              padding: '5px' }} />}
-                title={item.name.last}
-                description={item.email}
-              />
-              </div>
-              <Button className="view-button" type="link" size="small" href='/view-doctor-registered-info' >View Info</Button>
-              <Button className="delete-button" type="link" size="small" onClick={() => handleDelete(item.email)}>Delete</Button>
-          </List.Item>
-          )}
-        </VirtualList>
-      </List>
-    </Container>
+      </Row>
+      <Container component="main" maxWidth="md">
+        <List>
+          <VirtualList
+            data={filteredData}
+            height={ContainerHeight}
+            itemHeight={47}
+            itemKey="email"
+            onScroll={onScroll}
+          >
+            {(item) => (
+              <List.Item key={item.email}>
+                <div >
+                  <div className="spacer"></div>
+                  <List.Item.Meta
+                    avatar={<img src={item.picture.thumbnail} alt="avatar" style={{
+                      borderRadius: '50%', border: '2px solid #000',
+                      padding: '5px'
+                    }} />}
+                    title={item.name.last}
+                    description={item.email}
+                  />
+                </div>
+                <Button className="view-button" type="link" size="small" href='/view-doctor-registered-info' >View Info</Button>
+                <Popconfirm
+                  title="Delete account?"
+                  description="Are you sure to delete this account?"
+                  onConfirm={() => handleDelete(item.email)}
+                  okText="Yes"
+                  cancelText="No"
+                  okButtonProps={{ style: { width: "auto" } }}
+                  cancelButtonProps={{ style: { width: "auto" } }}
+                  style={{ width: "20%", marginLeft: 'auto', marginRight: '30%', margin: 7 }}
+                >
+                  <Button style={{ width: "20%" }}>Delete</Button>
+                </Popconfirm>
+              </List.Item>
+            )}
+          </VirtualList>
+        </List>
+      </Container>
     </div>
   );
 };

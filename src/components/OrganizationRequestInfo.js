@@ -1,4 +1,4 @@
-import './OrganizationRequestInfo.css';
+import './RequestInfo.css';
 import { Button } from 'antd';
 import { useState } from 'react';
 import { message } from 'antd';
@@ -12,19 +12,25 @@ export default function OrganizationRequestInfo() {
         a.click();
     };
     const handleAccept = () => {
-        // Confirm accept action
-        message.success('Request accepted');
-      };
+      // Confirm accept action
+      message.success('Request accepted');
+      setTimeout(() => {
+        window.location.href = '/AdminHome?path=%2FAdminHome%2Forganization+requests';
+      }, 1000); // Delay of 1 seconds
+    };
     
-      const handleReject = () => {
-        // Confirm reject action
-        message.error('Request rejected');
-      };
+    const handleReject = () => {
+      // Confirm reject action
+      message.error('Request rejected');
+      setTimeout(() => {
+        window.location.href = '/AdminHome?path=%2FAdminHome%2Forganization+requests';
+      }, 1000); // Delay of 1 seconds
+    };
 
     return (
     <div className="request-info-container"> 
-    <h1 className="request-info-title">Request Information</h1>
-    <h3 className="donor-type-header">Organization Type: Educational</h3>
+    <h1 className="request-info-title" style={{ fontFamily: 'Arial, sans-serif', fontSize: '40px', color: '#620b37', fontWeight: 'bold', textAlign: 'center'}}>Request Information</h1>
+    <h3 className="donor-type-header" style={{ fontFamily: 'Arial, sans-serif', fontSize: '22px', color: '#620b37', fontWeight: 'bold', textAlign: 'center'}}>Organization Type: Educational</h3>
       <label>
         Request Notes:
         <textarea

@@ -10,9 +10,9 @@ import RegisteredDoctors from '../../RegisteredDoctors';
 import RegisteredTeachers from '../../RegisteredTeachers';
 import DonorTeacherRequests from '../../DonorTeacherRequests';
 import DonorDoctorRequests from '../DonorDoctorRequests';
+import AdminFilterOrganization from '../../AdminFilterOrganization';
 
 export const IndexPage = lazy(() => import('../AppPage/appPage'));
-export const PasswordManagement = lazy(() => import('../../../PasswordManagement'));
 export const DonorList = lazy(() => import('../../DonorList'));
 export const Organizations = lazy(() => import('../../../Organizations'));
 export const DonorSubmission = lazy(() => import('../../../DonorSubmission'));
@@ -36,14 +36,13 @@ export default function Router() {
         { element: <IndexPage />, index: true },
         { path: 'donors', element: <DonorList /> },
         { path: 'organizations', element: <OrganizationList /> },
-        { path: 'change password', element: <PasswordManagement /> },
         { path: 'account mangement', element: <OrganizationList /> },
         { path : 'Validate Donor Accounts' , element : < Organizations/>},
         { path: 'donors submissions', element: <DonorSubmission />},
         { path : 'user details' , element : <UserDetails/>},
         { path : 'donor requests', element : <DonorRequests/>},
         { path : 'organization requests', element : <OrganizationRequests/>},
-        { path : 'registeredOrganizations', element : <RegisteredOrganizations/>},
+        { path : 'registeredOrganizations', element : <AdminFilterOrganization/>},
         { path : 'registeredDoctors', element : <RegisteredDoctors/>},
         { path : 'registeredTeachers', element : <RegisteredTeachers/>},
         { path :'DonorTeachersRequests', element : <DonorTeacherRequests/>},

@@ -5,7 +5,6 @@ import OrganizationList from '../../OrganizationList';
 import RegisteredOrganizations from '../../RegisteredOrganizations';
 import DonorRequests from '../../DonorTeacherRequests';
 import OrganizationRequests from '../OrganizationRequests';
-import PasswordManagement from '../../../PasswordManagement';
 import DonorList from '../../DonorList';
 import { act } from 'react';
 import RegisteredDoctors from '../../RegisteredDoctors';
@@ -14,6 +13,7 @@ import DonorDoctorRequests from '../DonorDoctorRequests';
 import DonorTeacherRequests from '../../DonorTeacherRequests';
 import DoctorSubmissions from '../../../DoctorSubmissions';
 import TeacherSubmissions from '../../../TeacherSubmissions';
+import AdminFilterOrganization from '../../AdminFilterOrganization';
 
 
 // ----------------------------------------------------------------------
@@ -82,14 +82,6 @@ const NavConfig = [
   },
   {
     index: 3,
-    title: 'Change Password',
-    path: '/AdminHome/change password',
-    icon: icon('ic_password.svg'),
-    color: '#602b37',
-    element: <PasswordManagement />,
-  },
-  {
-    index: 4,
     title: 'Account Management',
     // Corrected the path to use a hyphen instead of space
     icon: icon('Cog_circle.svg.png'),
@@ -97,11 +89,11 @@ const NavConfig = [
     subMenu: [
       {
         index: 0,
-        title: 'Manage Organizations',
+        title: 'Registered Organizations',
         path: '/AdminHome/registeredOrganizations',
         icon: icon('organization.png'),
         color: '#602b37',
-        element: <RegisteredOrganizations />,
+        element: <AdminFilterOrganization />,
         active: false
       },
       {
@@ -133,7 +125,7 @@ const NavConfig = [
     ],
   },
   {
-    index: 5,
+    index: 4,
     title: 'Donation Requests',
     icon: icon('request.png'),
     color: '#602b37',
@@ -160,7 +152,7 @@ const NavConfig = [
     ],
   },
   {
-    index: 6,
+    index: 5,
     title: 'Organization Requests',
     path: '/AdminHome/organization requests',
     icon: icon('request.png'),

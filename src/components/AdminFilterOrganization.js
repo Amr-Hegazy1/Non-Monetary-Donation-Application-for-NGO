@@ -10,26 +10,13 @@ import Toolbar from '@mui/material/Toolbar';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import { COLORS } from '../values/colors';
+import { Button } from '@mui/material';
+import { AccordionActions } from '@mui/material';
 import ViewRequestedDonationImg from './ViewRequestedDonationImg.jpg';
 import { Sort } from '@mui/icons-material';
 import { set } from 'react-cool-form';
+import { Popconfirm } from 'antd';
 
-
-//area,Governorate,type
-const OrganizationsList = [
-    {Name: 'Organization1', Area: 'NasrCity', Governorate: 'Cairo', Type: 'Orphange'},
-    {Name: 'Organization2', Area: 'Maadi', Governorate: 'Cairo', Type: 'Hospital'},
-    {Name: 'Organization3', Area: 'Heliopolis', Governorate: 'Cairo', Type: 'Orphange'},
-    {Name: 'Organization4', Area: 'Dokki', Governorate: 'Giza', Type: 'Hospital'},
-    {Name: 'Organization5', Area: 'Zamalek', Governorate: 'Giza', Type: 'Orphange'},
-    {Name: 'Organization6', Area: 'semooha', Governorate: 'Alex', Type: 'Hospital'},
-    {Name: 'Organization7', Area: 'NasrCity', Governorate: 'Cairo', Type: 'Hospital'},
-    {Name: 'Organization8', Area: 'Maadi', Governorate: 'Cairo', Type: 'Hospital'},
-    {Name: 'Organization9', Area: 'Heliopolis', Governorate: 'Cairo', Type: 'Orphange'},
-    {Name: 'Organization10', Area: 'Dokki', Governorate: 'Giza', Type: 'Hospital'},
-    {Name: 'Organization11', Area: 'Zamalek', Governorate: 'Giza', Type: 'Orphange'},
-
-];
 
 const StyledAccordion = styled(Accordion)(({ theme }) => ({
     backgroundColor: 'rgba(98, 11, 55, 0.1)', // Example background color for accordion
@@ -94,12 +81,29 @@ const StyledAccordion = styled(Accordion)(({ theme }) => ({
   }));
   
 function AdminFilterOrganization() {
-    
+  const [OrganizationsList, setOrganizationsList] = useState([
+    {Name: 'Organization1', Area: 'NasrCity', Governorate: 'Cairo', Type: 'Orphange'},
+    {Name: 'Organization2', Area: 'Maadi', Governorate: 'Cairo', Type: 'Hospital'},
+    {Name: 'Organization3', Area: 'Heliopolis', Governorate: 'Cairo', Type: 'Orphange'},
+    {Name: 'Organization4', Area: 'Dokki', Governorate: 'Giza', Type: 'Hospital'},
+    {Name: 'Organization5', Area: 'Zamalek', Governorate: 'Giza', Type: 'Orphange'},
+    {Name: 'Organization6', Area: 'semooha', Governorate: 'Alex', Type: 'Hospital'},
+    {Name: 'Organization7', Area: 'Maadi', Governorate: 'Cairo', Type: 'Orphange'},
+    {Name: 'Organization8', Area: 'Maadi', Governorate: 'Cairo', Type: 'Hospital'},
+    {Name: 'Organization9', Area: 'Heliopolis', Governorate: 'Cairo', Type: 'Orphange'},
+    {Name: 'Organization10', Area: 'Dokki', Governorate: 'Giza', Type: 'Orphange'},
+    {Name: 'Organization11', Area: 'Zamalek', Governorate: 'Giza', Type: 'Hospital'},
+  ]);
     const [NameHovered, setNameHovered] = useState(false);
     const [AreaHovered, setAreaHovered] = useState(false);
     const [GovernorateHovered, setGovernorateHovered] = useState(false);
     const [TypeHovered, setTypeHovered] = useState(false);
-    
+
+    const handleDelete = (index) => {
+      const newOrganizationsList = [...OrganizationsList];
+      newOrganizationsList.splice(index, 1);
+      setOrganizationsList(newOrganizationsList);
+    };
     
     const handleAreaMouseEnter = () => {
         setAreaHovered(true);
@@ -248,6 +252,28 @@ function AdminFilterOrganization() {
               ))}
             </ul>
           </StyledAccordionDetails>
+  <AccordionActions style={{display: "flex",justifyContent: "center"}}>
+  <Button 
+    color="warning"
+    size="small" 
+    style={{ width: "20%", marginLeft: 'auto', marginRight: '30%', margin:7}}
+    onClick={() => window.location.href = "/view-org-registered-info"}
+  >
+    View All Details
+  </Button>
+  <Popconfirm
+    title="Delete the account?"
+    description="Are you sure to delete this account?"
+    onConfirm={() => handleDelete(index)}
+    okText="Yes"
+    cancelText="No"
+    okButtonProps={{ style: { width: "auto" } }}
+    cancelButtonProps={{ style: { width: "auto" } }}
+    style={{ width: "20%", marginLeft: 'auto', marginRight: '30%', margin:7}}
+  >
+    <Button style={{ width: "20%"}} color='warning'>Delete</Button>
+  </Popconfirm>
+</AccordionActions>
         </StyledAccordion>
       ))}
     </Box>

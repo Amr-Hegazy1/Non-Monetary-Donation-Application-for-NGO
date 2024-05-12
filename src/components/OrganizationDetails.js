@@ -41,10 +41,17 @@ const OrganizationDetails = () => {
   const handleAccept = () => {
     // Confirm accept action
     message.success('User accepted');
+    setTimeout(() => {
+      window.location.href = '/AdminHome?path=%2FAdminHome%2Forganizations';
+    }, 1000); // Delay of 1 seconds
   };
+  
   const handleReject = () => {
     // Confirm reject action
     message.error('User rejected');
+    setTimeout(() => {
+      window.location.href = '/AdminHome?path=%2FAdminHome%2Forganizations';
+    }, 1000); // Delay of 1 seconds
   };
   const handleDownload = () => {
     // Trigger file download when the button is clicked
@@ -74,6 +81,7 @@ const OrganizationDetails = () => {
           }
           renderItem={(item) => (
             <>
+              <h3 style={{ fontFamily: 'Arial, sans-serif', fontSize: '22px', color: '#620b37', fontWeight: 'bold', textAlign: 'center',position: 'absolute', top: '15%',left:'60%'}}>Organizaion Location</h3>
               <MapComponent style={{ height: '500px', width: '500px', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-10%, -50%)' }} />
               <List.Item
                 key={item.title}

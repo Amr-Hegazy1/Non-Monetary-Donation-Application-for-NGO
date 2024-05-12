@@ -28,24 +28,8 @@ const data = [
     ),
   },
 ];
-const TeacherDetails = () => {
+const TeacherRegisteredInfo = () => {
   const [pdfUrl, setPdfUrl] = useState(process.env.PUBLIC_URL + '/dummy.pdf'); // Example PDF URL
-
-  const handleAccept = () => {
-    // Confirm accept action
-    message.success('Teacher accepted');
-    setTimeout(() => {
-      window.location.href = '/AdminHome?path=%2FAdminHome%2FTecherSubmissions';
-    }, 1000); // Delay of 1 seconds
-  };
-  
-  const handleReject = () => {
-    // Confirm reject action
-    message.error('Teacher rejected');
-    setTimeout(() => {
-      window.location.href = '/AdminHome?path=%2FAdminHome%2FTecherSubmissions';
-    }, 1000); // Delay of 1 seconds
-  };
   const handleDownload = () => {
     // Trigger file download when the button is clicked
     saveAs(pdfUrl, 'organization_document.pdf');
@@ -86,8 +70,6 @@ const TeacherDetails = () => {
           </List.Item>
           <Flex gap="small" wrap="wrap" style={{ justifyContent: 'flex-start', marginLeft: '20px', marginTop: '20px' }} />
           <div style={{ display: 'flex', justifyContent: 'center', gap: '10px' , marginTop: '20px'}}>
-            <Button type="primary" onClick={handleAccept} style={{ width: '120px', backgroundColor: '#620b37', borderColor: '#620b37' }}>Accept</Button>
-            <Button type="primary" onClick={handleReject} style={{ width: '120px', backgroundColor: '#620b37', borderColor: '#620b37' }}>Reject</Button>
             <Button type="primary" onClick={handleDownload} style={{ width: '120px', backgroundColor: '#620b37', borderColor: '#620b37' }}>Download</Button>
           </div>
         </>
@@ -97,4 +79,4 @@ const TeacherDetails = () => {
   </>
 );
 };
-export default TeacherDetails;
+export default TeacherRegisteredInfo;
