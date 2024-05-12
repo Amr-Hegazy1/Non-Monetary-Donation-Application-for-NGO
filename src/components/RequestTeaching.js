@@ -3,7 +3,7 @@ import Avatar from '@mui/material/Avatar';
 import { ReactTags } from 'react-tag-autocomplete'
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
-import { Image,message } from 'antd';
+import { Image, message } from 'antd';
 import book from './book.png'
 import TextField from '@mui/material/TextField';
 import Checkbox from '@mui/material/Checkbox';
@@ -37,68 +37,68 @@ L.Icon.Default.mergeOptions({
 });
 
 function Copyright(props) {
-    return (
-      <Typography variant="body2" color="text.secondary" align="center" {...props}>
-        {'Copyright © '}
-        <Link color="inherit" href="/">
-          ZOMA
-        </Link>{' '}
-        {new Date().getFullYear()}
-        {'.'}
-      </Typography>
-    );
-  }
-  const defaultTheme = createTheme();
-  export default function RequestTeaching() {
-     const [subject, setSubject] = React.useState('');
-     const [area, setArea] = React.useState('');
-     const [governorate, setGovernorate] = React.useState('');
-     const [grade, setGrade] = React.useState('');
-     const success = () => {
-        message
-          .loading('Sending request to admin..', 1.5)
-          .then(() => message.success('Request sent to Admin, wait for approval :)', 2.5))
-      };
+  return (
+    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+      {'Copyright © '}
+      <Link color="inherit" href="/">
+        ZOMA
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
+const defaultTheme = createTheme();
+export default function RequestTeaching() {
+  const [subject, setSubject] = React.useState('');
+  const [area, setArea] = React.useState('');
+  const [governorate, setGovernorate] = React.useState('');
+  const [grade, setGrade] = React.useState('');
+  const success = () => {
+    message
+      .loading('Sending request to admin..', 1.5)
+      .then(() => message.success('Request sent to Admin, wait for approval :)', 2.5))
+  };
 
-      const handleSubmit = (event) => {
-        event.preventDefault();
-        if (!subject  ) {
-          message.error('Please specify subject.');
-        } else if(! grade) {
-          message.error('Please specify grade.');
-        }
-        else if(!area){
-          message.error('Please specify area.');
-        }
-        else if(!governorate){
-          message.error('Please specify governorate.');
-        }
-        else {
-         success();
-        }
-      };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (!subject) {
+      message.error('Please specify subject.');
+    } else if (!grade) {
+      message.error('Please specify grade.');
+    }
+    else if (!area) {
+      message.error('Please specify area.');
+    }
+    else if (!governorate) {
+      message.error('Please specify governorate.');
+    }
+    else {
+      success();
+    }
+  };
 
-      return(
-        <>        
-        <NavBar/>
-        
-        
+  return (
+    <>
+      <NavBar />
+
+
       <Container component="main" maxWidth="xs">
-          <CssBaseline />
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 2,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
           <Box
-            sx={{
-              marginTop: 2,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-            }}
-          >
-            <Box
             sx={{
               display: 'flex',
               justifyContent: 'center',
               marginBottom: 2,
-              width: '100%', 
+              width: '100%',
             }}
           >
             <Box
@@ -112,62 +112,62 @@ function Copyright(props) {
             />
           </Box>
 
-    <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-          <Grid container spacing={2}>
-            <Grid >
-                <TextField
-                    margin="normal"
-                    required
-                    fullWidth
-                    
-                    label="Subject"
-                    autoFocus
-                    value={subject}
-                    onChange={(event)=>setSubject(event.target.value)}
-                    />
-            </Grid>
-            <Grid >
-              <TextField
-                    margin="normal"
-                    required
-                    fullWidth
-                    label="Grade"
-                    value={grade}
-                    onChange={(event)=>setGrade(event.target.value)}
-                    />
-            </Grid>
-            <Grid>
-                    <TextField
-                    margin="normal"
-                    required
-                    fullWidth
-                    label="Area"
-                    value={area}
-                    onChange={(event)=>setArea(event.target.value)}
-                    />
-            </Grid>
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+            <Grid container spacing={2}>
 
-            <Grid>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              label="Governorate"
-              value={governorate}
-              onChange={(event)=>setGovernorate(event.target.value)}
-              
-            />
-            </Grid>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              className="btn"
-              sx={{ mt: 3, mb: 2 }}
-              style={{ backgroundColor: '#620b37', borderColor: '#620b37' }}
-            >
-              Submit
-            </Button>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+
+                label="Subject"
+                autoFocus
+                value={subject}
+                onChange={(event) => setSubject(event.target.value)}
+              />
+
+
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                label="Grade"
+                value={grade}
+                onChange={(event) => setGrade(event.target.value)}
+              />
+
+
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                label="Area"
+                value={area}
+                onChange={(event) => setArea(event.target.value)}
+              />
+
+
+
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                label="Governorate"
+                value={governorate}
+                onChange={(event) => setGovernorate(event.target.value)}
+
+              />
+
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                className="btn"
+                sx={{ mt: 3, mb: 2 }}
+                style={{ backgroundColor: '#620b37', borderColor: '#620b37' }}
+              >
+                Submit
+              </Button>
             </Grid>
           </Box>
         </Box>

@@ -137,7 +137,7 @@ export default function RequestStationary() {
                     onChange={(event) =>setType(event.target.value)}
                     />
             <Grid item>
-            <br/>
+            
                 <FormControl fullWidth required>
                     <TextField
                     margin="normal"

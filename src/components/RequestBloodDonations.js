@@ -26,6 +26,7 @@ import L from 'leaflet';
 import 'animate.css';
 import RequestBlood from './RequestBlood.png'
 import NavBar from './NavBar';
+import { Select, MenuItem } from '@mui/material';
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -177,25 +178,25 @@ function Copyright(props) {
               onChange={handleUrgencyChange}  />
              </FormControl>
 
-            <FormControl>
-              <FormLabel id="demo-row-radio-buttons-group-label">Blood Type</FormLabel>
-              <RadioGroup
-                row
-                aria-labelledby="demo-row-radio-buttons-group-label"
-                name="row-radio-buttons-group"
-                value={bloodType}
-                onChange={(event) => setBloodType(event.target.value)}
-              >
-                <FormControlLabel value="AB positive" control={<Radio />} label="AB positive" />
-                <FormControlLabel value="AB negative" control={<Radio />} label="AB negative" />
-                <FormControlLabel value="B positive" control={<Radio />} label="B positive" />
-                <FormControlLabel value="B negative" control={<Radio />} label="B negative" />
-                <FormControlLabel value="A positive" control={<Radio />} label="A positive" />
-                <FormControlLabel value="A negative" control={<Radio />} label="A negative" />
-                <FormControlLabel value="O positive" control={<Radio />} label="O positive" />
-                <FormControlLabel value="O negative" control={<Radio />} label="O negative" />
+            <FormControl fullWidth>
+              <FormLabel>Blood Type</FormLabel>
+              <Select
 
-              </RadioGroup>
+                
+                value={bloodType}
+                label="Blood Type"
+                onChange={(event)=>setBloodType(event.target.value)}
+                
+              >
+                <MenuItem value={'A+'}>A+</MenuItem>
+                <MenuItem value={'A-'}>A-</MenuItem>
+                <MenuItem value={'B+'}>B+</MenuItem>
+                <MenuItem value={'B-'}>B-</MenuItem>
+                <MenuItem value={'AB+'}>AB+</MenuItem>
+                <MenuItem value={'AB-'}>AB-</MenuItem>
+                <MenuItem value={'O+'}>O+</MenuItem>
+                <MenuItem value={'O-'}>O-</MenuItem>
+              </Select>
             </FormControl>
             <Button
               type="submit"

@@ -282,12 +282,12 @@ export default function DonorSignUp() {
           <br />
 
           <FormControl fullWidth required error={errorStates.volenteerRole}>
-            <InputLabel id="demo-multiple-name-label">Volenteer Role</InputLabel>
+            <InputLabel id="demo-multiple-name-label">Volunteer Role</InputLabel>
             <Select
               labelId="demo-multiple-name-label"
               id="demo-multiple-name"
               value={volenteerRole}
-              input={<OutlinedInput label="Volenteer Role" />}
+              input={<OutlinedInput label="Volunteer Role" />}
               onChange={(e) => setVolenteerRole(e.target.value)}
             >
               <MenuItem value="Regular Donor">Regular Donor</MenuItem>

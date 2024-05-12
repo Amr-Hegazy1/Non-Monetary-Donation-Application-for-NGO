@@ -41,11 +41,16 @@ function Login() {
     const correctAdminEmail = 'admin@gmail.com';
     const correctHashedPassword = 'password'; // Placeholder
 
-    const correctDonorEmail = 'donor@gmail.com';
+    const correctDonorDoctorEmail = 'doctor@gmail.com';
+
+    const correctDonorTeacherEmail = 'teacher@gmail.com';
 
     const correctDonationReceiverEmail = 'donation_reciever@gmail.com';
 
     const correctDeliveryPersonEmail = 'delivery_pearson@gmail.com';
+
+    const correctOrganizationEmail = 'organization@gmail.com';
+
 
     if (email === correctAdminEmail && password === correctHashedPassword) {
       // Login successful (redirect or show success message)
@@ -55,11 +60,20 @@ function Login() {
 
       // You can redirect to another page or perform other actions on success
     }
-    else if (email === correctDonorEmail && password === correctHashedPassword) {
+    else if (email === correctDonorDoctorEmail && password === correctHashedPassword) {
       // Login successful (redirect or show success message)
       window.location.href = '/';
       message.success('Logged in successfully , redirecting ...');
       setCookie("user_type", "donor");
+      setCookie("donor_type", "doctor");
+      // You can redirect to another page or perform other actions on success
+    }
+    else if (email === correctDonorTeacherEmail && password === correctHashedPassword) {
+      // Login successful (redirect or show success message)
+      window.location.href = '/';
+      message.success('Logged in successfully , redirecting ...');
+      setCookie("user_type", "donor");
+      setCookie("donor_type", "teacher");
       // You can redirect to another page or perform other actions on success
     }
     else if (email === correctDonationReceiverEmail && password === correctHashedPassword) {
@@ -74,7 +88,14 @@ function Login() {
       message.success('Logged in successfully , redirecting ...');
       setCookie("user_type", "delivery_person");
       // You can redirect to another page or perform other actions on success
-    }else {
+    } else if (email === correctOrganizationEmail && password === correctHashedPassword) {
+      // Login successful (redirect or show success message)
+      window.location.href = '/';
+      message.success('Logged in successfully , redirecting ...');
+      setCookie("user_type", "organization");
+      // You can redirect to another page or perform other actions on success
+    }
+    else {
       message.error('Invalid credentials');    
     }
   };
