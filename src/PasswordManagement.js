@@ -20,9 +20,13 @@ function PasswordManagement() {
 
     if (password === confirm && password.length > 0 && confirm.length > 0) {
       message.success('Password changed successfully');
+      window.location.href = "/login"; // Replace with your URL
 
-    } else {
+    } else if (password !== confirm){
       message.error('Passwords dont match!');
+    }
+    else if (password.length === 0 || confirm.length === 0) {
+      message.error('Please enter a password');
     }
   };
 
