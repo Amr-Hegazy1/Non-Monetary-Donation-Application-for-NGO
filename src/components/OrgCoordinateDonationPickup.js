@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { DatePicker, Space, Typography, Divider, Image, TimePicker, Row, Col, Button } from 'antd';
 import Untitled from './Untitled.png'; 
-
+import {message } from 'antd';
 const { Title } = Typography;
 const dateFormat = 'YYYY-MM-DD';
 const timeFormat = 'HH:mm';
+
 
 const App = () => {
   const [selectedDateTime, setSelectedDateTime] = useState(null);
@@ -14,12 +15,16 @@ const App = () => {
     setSelectedDateTime(date);
   };
 
+  const [error, setError] = useState(null);
   const handleSubmit = () => {
-    if (selectedDateTime) {
+    if (!error) {
       console.log('Submitted:', selectedDateTime.format(`${dateFormat} ${timeFormat}`));
+      message.success('Details submitted');
+
       // Add your submission logic here
     } else {
       console.log('Please select a date and time before submitting.');
+      message.error('Please enter Date/Time');
     }
   };
 

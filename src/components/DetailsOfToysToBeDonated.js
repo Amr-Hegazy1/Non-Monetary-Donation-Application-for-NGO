@@ -23,7 +23,7 @@ import { Upload, Divider } from 'antd';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import 'animate.css';
-
+import { useState } from 'react'; 
 
 
 delete L.Icon.Default.prototype._getIconUrl;
@@ -54,9 +54,18 @@ const defaultTheme = createTheme();
 
 export default function DetailsOfToysToBeDonated() {
 
+  const [error, setError] = useState(null);
+
   const handleSubmit = () => {
-    console.log('Form submitted');
-    message.success('Details submitted');
+    if (!error) {
+      console.log('Submitted');
+      message.success('Details submitted');
+
+      // Add your submission logic here
+    } else {
+      console.log('Not submitted');
+      message.error('Please complete your submission');
+    }
   };
 
 

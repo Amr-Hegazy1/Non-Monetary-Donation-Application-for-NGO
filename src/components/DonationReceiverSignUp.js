@@ -3,8 +3,6 @@ import Avatar from '@mui/material/Avatar';
 import { ReactTags } from 'react-tag-autocomplete'
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
-import { Image,message } from 'antd';
-import cloth from './cloth.png'
 import TextField from '@mui/material/TextField';
 import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
@@ -19,15 +17,29 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel'
-import { Upload, Divider } from 'antd';
+import { PhoneInput } from 'react-international-phone';
+import 'react-international-phone/style.css';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+import { message, Upload, Divider } from 'antd';
+import "../styles/OrganizationSignUp.css";
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import { InboxOutlined } from '@ant-design/icons';
+import { useMapEvents } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
+import TagsSelector from './TagsSelector';
 import 'animate.css';
+import AddressForm from './AddressForm';
+import { COLORS } from '../values/colors';
 import { useState } from 'react'; 
-
+const { Dragger } = Upload;
 
 
 delete L.Icon.Default.prototype._getIconUrl;
+
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
   iconUrl: require('leaflet/dist/images/marker-icon.png'),
@@ -53,13 +65,65 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
-export default function DetailsOfClothesToBeDonated() {
+export default function DonationReceiverSignUp() {
+
+
+  const [position, setPosition] = React.useState([29.98693069424653, 31.44078789655661]);
+  const [isFileUploaded, setIsFileUploaded] = React.useState(false);
+  
+  const props = {
+    name: 'file',
+    multiple: true,
+    beforeUpload: file => {
+      const reader = new FileReader();
+  
+      reader.onload = e => {
+          console.log(e.target.result);
+      };
+       
+      // save the file to public folder
+      reader.readAsDataURL(file);
+      
+      
+  
+      setIsFileUploaded(true);
+      
+  
+      // Prevent upload
+      return false;
+    },
+  
+    onChange(info) {
+  
+      const { status } = info.file;
+      if (status !== 'uploading') {
+        console.log(info.file, info.fileList);
+      }
+      if (status === 'done' || status === 'error') {
+        message.success(`${info.file.name} file uploaded successfully.`);
+      } 
+    },
+    onDrop(e) {
+      console.log('Dropped files', e.dataTransfer.files);
+    },
+    // customRequest({ file, onSuccess }) {
+    //   // console.log(file);
+    //   setTimeout(() => {
+    //     onSuccess("ok");
+    //   }, 0);
+    // },
+  };
+  
+
+
+
 
   const [error, setError] = useState(null);
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     if (!error) {
       console.log('Submitted');
-      message.success('Details submitted');
+      message.success('Submitted');
 
       // Add your submission logic here
     } else {
@@ -69,10 +133,19 @@ export default function DetailsOfClothesToBeDonated() {
   };
 
 
+  const LocationFinderDummy = () => {
+    const map = useMapEvents({
+        click(e) {
+            console.log(e.latlng);
+            setPosition([e.latlng.lat, e.latlng.lng]);
+        },
+    });
+    return null;
+  };
 
   return (
     
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="sm">
         <CssBaseline />
         <Box
           sx={{
@@ -83,7 +156,7 @@ export default function DetailsOfClothesToBeDonated() {
           }}
         >
           
-          <Image width={250} src={cloth} />          
+          
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <Grid container spacing={2}>
             <Grid item xs>
@@ -92,7 +165,7 @@ export default function DetailsOfClothesToBeDonated() {
                     required
                     fullWidth
                     
-                    label="Clothing"
+                    label="First Name"
                     autoFocus
                     />
             </Grid>
@@ -102,7 +175,7 @@ export default function DetailsOfClothesToBeDonated() {
                     required
                     fullWidth
                     
-                    label="Season"
+                    label="Last Name"
                     autoFocus
                     />
             </Grid>
@@ -114,8 +187,8 @@ export default function DetailsOfClothesToBeDonated() {
                         aria-labelledby="demo-row-radio-buttons-group-label"
                         name="row-radio-buttons-group"
                     >
-                        <FormControlLabel value="female" control={<Radio />} label="Female" />
-                        <FormControlLabel value="male" control={<Radio />} label="Male" />
+                        <FormControlLabel value="female" control={<Radio style={{color: COLORS.primary}}/>} label="Female" />
+                        <FormControlLabel value="male" control={<Radio style={{color: COLORS.primary}}/>} label="Male" />
                     </RadioGroup>
                 </FormControl>
             <TextField
@@ -123,53 +196,60 @@ export default function DetailsOfClothesToBeDonated() {
               required
               fullWidth
               id="email"
-              label="Material"
-            
+              label="Email Address"
+              name="email"
+              autoComplete="email"
               autoFocus
             />
             <TextField
               margin="normal"
               required
               fullWidth
-              name="Color"
-              label="Color"
-              autoFocus
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+            />
+            <PhoneInput
+                defaultCountry="eg"
+                style={{width: '100%'}}
+                required
             />
             <br/>
+            
+      
+            <br/>
+                <Divider>Location</Divider>
                 <FormControl fullWidth required>
-                    <TextField
-                    margin="normal"
-                    required
-                    fullWidth
-                    label="Age"
-                    autoFocus
-                    type='number'
-                    
+                    <InputLabel id="demo-multiple-name-label">Location</InputLabel>
+                    <MapContainer center={position} zoom={20} scrollWheelZoom={false} style={{ height: '50vh', width: '100wh' }} >
+                    <TileLayer
+                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     />
+                    <LocationFinderDummy />
+                    <Marker position={position}/>
+
+                    </MapContainer> 
                 </FormControl>
-                <FormControl fullWidth required>
-                    <TextField
-                    margin="normal"
-                    required
-                    fullWidth
-                    label="Quantity"
-                    autoFocus
-                    type='number'
-                    
-                    />
-                </FormControl>
+             
                 
                 
                 <br/>
+           
+                
+                
+            <Divider>Address Details</Divider>
+            <AddressForm />
             <Button
               type="submit"
               fullWidth
               variant="contained"
-              className="btn"
+              className="signup-btn"
               sx={{ mt: 3, mb: 2 }}
-              style={{ backgroundColor: '#620b37', borderColor: '#620b37' }}
             >
-              Submit
+              Sign Up
             </Button>
           </Box>
         </Box>

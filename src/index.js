@@ -20,8 +20,6 @@ import DetailsOfStationaryToBeDonated from './components/DetailsOfStationaryToBe
 import DetailsOfFoodToBeDonated from './components/DetailsOfFoodToBeDonated';
 import ViewDonorDetailsForFulfilledPosts from './components/ViewDonorDetailsForFulfilledPosts';
 import { CookiesProvider } from 'react-cookie';
-import ViewEstimatedTime from './components/ViewEstimatedArrival';
-import RequestInfo from './components/RequestInfo';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import { HelmetProvider } from 'react-helmet-async';
@@ -32,7 +30,6 @@ import OrganizationRequestInfo from './components/OrganizationRequestInfo';
 import OrganizationDetails from './components/OrganizationDetails';
 import UserDetails from './components/DoctorDetails';
 import OrganizationList from './components/OrganizationList';
-import OrgCoordinateDonationPickup from './components/OrgCoordinateDonationPickup';
 import RequestClothes from './components/RequestClothes';
 import RequestBooks from './components/RequestBooks.';
 import RequestFood from './components/RequestFood';
@@ -47,13 +44,6 @@ import Homepage from './components/Homepage';
 import Signup from './components/Signup';
 import FulfilledDonations from './components/FulfilledDonations';
 import SchedulePickup from './components/SchedulePickup';
-import DetailsOfMedicalSuppToBeDonated from './components/DetailsOfMedicalSuppToBeDonated';
-import DetailsOfToysToBeDonated from './components/DetailsOfToysToBeDonated';
-import DetailsOfBooksToBeDonated from './components/DetailsOfBooksToBeDonated';
-import DetailsOfStationaryToBeDonated from './components/DetailsOfStationaryToBeDonated';
-import DetailsOfFoodToBeDonated from './components/DetailsOfFoodToBeDonated';
-import ViewDonorDetailsForFulfilledPosts from './components/ViewDonorDetailsForFulfilledPosts';
-import { CookiesProvider } from 'react-cookie';
 import DonorMyDonations from './components/DonorMyDonations';
 import DonorMyDonationDetails from './components/DonorMyDonationDetails';
 import Dashboard from './components/DeliveryPerson/Dashboard';
@@ -68,7 +58,8 @@ import TeacherDetails from './components/TeacherDetails';
 import DoctorDetails from './components/DoctorDetails';
 
 
-import AdminLogin from './LoginAmin';
+import Login from './Login';
+import RequestInfoTeacher from './components/RequestInfoTeacher';
 import DonorProfile from './components/DonorProfile';
 import OrganizationProfile from './components/OrganizationProfile';
 import AdminProfile from './components/AdminProfile';
@@ -87,12 +78,12 @@ const theme = createTheme({
 root.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-    <ConfigProvider
-    theme={{
-      token: {
-        // Seed Token
-        colorPrimary: '#620b37',
-        borderRadius: 2,
+      <ConfigProvider
+        theme={{
+          token: {
+            // Seed Token
+            colorPrimary: '#620b37',
+            borderRadius: 2,
 
         // Alias Token
         colorBgContainer: '#ffffff',
@@ -150,15 +141,15 @@ root.render(
              <Route path="/deliveryDonationDetails" element={<DeliveryDonationDetails />} />
              <Route path= '/homePage' element={<Homepage />} />
 
-         
 
 
-            </Routes>
-          </Suspense>
-        </BrowserRouter>
-      </CookiesProvider>
-    </HelmetProvider>
-    </ConfigProvider>
+
+                </Routes>
+              </Suspense>
+            </BrowserRouter>
+          </CookiesProvider>
+        </HelmetProvider>
+      </ConfigProvider>
     </ThemeProvider>
 
   </React.StrictMode>

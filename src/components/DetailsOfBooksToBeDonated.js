@@ -24,6 +24,7 @@ import { InboxOutlined } from '@ant-design/icons';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import 'animate.css';
+import { useState } from 'react'; 
 
 
 
@@ -55,9 +56,18 @@ const defaultTheme = createTheme();
 
 export default function DetailsOfBooksToBeDonated() {
 
+  const [error, setError] = useState(null);
+
   const handleSubmit = () => {
-    console.log('Form submitted');
-    message.success('Details submitted');
+    if (!error) {
+      console.log('Submitted');
+      message.success('Details submitted');
+
+      // Add your submission logic here
+    } else {
+      console.log('Not submitted');
+      message.error('Please complete your submission');
+    }
   };
 
 
