@@ -25,6 +25,7 @@ import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import 'animate.css';
 import RequestMedSup from './RequestMedSup.png'
+import NavBar from './NavBar';
 
 
 
@@ -60,7 +61,7 @@ export default function RequestMedicalSupplies() {
     const [quantity, setQuantity] = React.useState('');
     const [area, setArea] = React.useState('');
     const [governorate, setGovernorate] = React.useState('');
-
+    const [upload, setUpload] = React.useState('');
 
 
 
@@ -76,9 +77,24 @@ export default function RequestMedicalSupplies() {
       event.preventDefault();
 
       
-      if (! deviceType || ! usage ||  ! quantity|| !area || !governorate) {
-        message.error('Please fill in all fields.');
-      } else {
+      if (! deviceType ) {
+        message.error('Please enter device type.');
+      } else if(!usage) {
+        message.error('Please enter usage.');
+      }
+      else if(!quantity) {
+        message.error('Please enter quantity.');
+      }
+      else if(!area) {
+        message.error('Please enter area.');
+      }
+      else if(!governorate) {
+        message.error('Please enter governorate.');
+      }
+      else if(!upload){
+        message.error('Please  upload picture');
+      }
+      else {
        success();
       }
     };
@@ -86,7 +102,8 @@ export default function RequestMedicalSupplies() {
 
 
   return (
-    
+    <>        
+       <NavBar/>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -136,7 +153,6 @@ export default function RequestMedicalSupplies() {
                     fullWidth
                     
                     label="Usage"
-                    autoFocus
                     value={usage}
                     onChange={(event)=>setUsage(event.target.value)}
                     />
@@ -148,7 +164,6 @@ export default function RequestMedicalSupplies() {
                     required
                     fullWidth
                     label="Quantity"
-                    autoFocus
                     type='number'
                     value={quantity}
                     onChange={(event)=>setQuantity(event.target.value)}
@@ -161,7 +176,6 @@ export default function RequestMedicalSupplies() {
               fullWidth
               name="Area"
               label="Area"
-              autoFocus
               value={area}
               onChange={(event)=>setArea(event.target.value)}
             />
@@ -172,7 +186,6 @@ export default function RequestMedicalSupplies() {
               fullWidth
               name="Governorate"
               label="Governorate"
-              autoFocus
               value={governorate}
               onChange={(event)=>setGovernorate(event.target.value)}
             />    
@@ -205,6 +218,6 @@ export default function RequestMedicalSupplies() {
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
-    
+    </>
   );
 }
