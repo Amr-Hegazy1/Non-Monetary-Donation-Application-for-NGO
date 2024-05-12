@@ -52,11 +52,11 @@ const FulfilledDonations = () => {
                         Donation {i+1}
                         </AccordionSummary>
                         <AccordionDetails>
-                        Name: John Doe <br/>
-                        Email: mail@example.com <br/>
+                        Name: Selena Adams <br/>
+                        Email: selena.adams@gmail.com <br/>
                         Phone: 123-456-7890 <br/>
                         Address: 1234 Elm Street <br/>
-                        Occupation: Doctor
+                        Occupation: Teacher
                         </AccordionDetails>
                         <AccordionActions>
                         
@@ -111,11 +111,11 @@ const FulfilledDonations = () => {
                         Donation {i+1}
                         </AccordionSummary>
                         <AccordionDetails>
-                        Name: John Doe <br/>
-                        Email: mail@example.com <br/>
+                        Name: Selena Adams <br/>
+                        Email: selena.adams@gmail.com <br/>
                         Phone: 123-456-7890 <br/>
                         Address: 1234 Elm Street <br/>
-                        Occupation: Doctor
+                        Occupation: Teacher
                         </AccordionDetails>
                         <AccordionActions>
                         <Button color='warning' onClick={() => showDeleteConfirm("Donation " + (i+1))}>Delete</Button>

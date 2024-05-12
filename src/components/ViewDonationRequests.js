@@ -12,7 +12,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import { COLORS } from '../values/colors';
 import ViewRequestedDonationImg from './ViewRequestedDonationImg.jpg';
 import { Sort } from '@mui/icons-material';
-import { useSearchParams } from 'react-router-dom';
+import { Select, Space } from 'antd';
+import Container from '@mui/material/Container';
 import NavBar from './NavBar';
 
 const donationRequests = [
@@ -34,7 +35,9 @@ const donationRequests = [
   { RequestNo: 16, OrganizationName: "Health Harmony Initiative", Category: "Medical Cases", Specialty: "Dermatologist", Area: "Mohandesin", Governorate: "Giza" },
   { RequestNo: 17, OrganizationName: "Wellness Resources Network", Category: "Medical Supplies", Type: "Medication", name: "Panadol", MedicalUse: "Headache", Area: "Heliopolis", Governorate: "Cairo" },
   { RequestNo: 18, OrganizationName: "Dar Al Shifa", Category: "Medical Cases", Specialty: "Psychiatrist", Area: "Nasr City", Governorate: "Cairo" },
-  { RequestNo: 19, OrganizationName: "Education On Top", Category: "Teaching", Subject: "Science", Area: "Heliopolis", Governorate: "Cairo" }
+  { RequestNo: 19, OrganizationName: "Education On Top", Category: "Teaching", Subject: "Science", Area: "Heliopolis", Governorate: "Cairo" },
+  { RequestNo: 20, OrganizationName: "Faithful Foundations Church", Category: "Places of Worship", Area: "Smooha", Governorate: "Alexandria", Religion: "Christianity", itemNeeded: "Candles" },
+  { RequestNo: 21, OrganizationName: "Taqwa Empowerment Council", Category: "Places of Worship", Area: "Nasr City", Governorate: "Cairo", Religion: "Islam", itemNeeded: "Prayer Mats" }
 ];
 
 
@@ -128,15 +131,8 @@ function ViewDonationRequest() {
   const [ToysAgeHovered, setToysAgeHovered] = useState(false);
   const [BloodTypeHovered, setBloodTypeHovered] = useState(false);
   const [UrgencyHovered, setUrgencyHovered] = useState(false);
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  useEffect(() => {
-    if (searchParams.has('category')) {
-      let category = searchParams.get('category').replace("_", " ");
-      setCategoryFilter(category);
-    }
-  }, [searchParams]);
-
+  const [ReligionHovered, setReligionHovered] = useState(false);
+  const value = useState('');
 
   const handleCategoryMouseEnter = () => {
     setCategoryHovered(true);
@@ -146,6 +142,14 @@ function ViewDonationRequest() {
     setCategoryHovered(false);
   };
 
+
+  const handleReligionMouseEnter = () => {
+    setReligionHovered(true);
+  };
+
+  const handleReligionMouseLeave = () => {
+    setReligionHovered(false);
+  };
 
   const handleGenderMouseEnter = () => {
     setGenderHovered(true);
@@ -314,9 +318,9 @@ function ViewDonationRequest() {
 
 
 
-  const handleCategoryChange = (event) => {
-    setCategoryFilter(event.target.value);
-    logFilteredDonationRequests(event.target.value);
+  const handleCategoryChange = (value) => {
+    setCategoryFilter(value);
+    logFilteredDonationRequests(value);
     setGenderFilter('');
     setSizeFilter('');
     setSeasonFilter('');
@@ -334,13 +338,14 @@ function ViewDonationRequest() {
     setToysAgeFilter('');
     setBloodTypeFilter('');
     setUrgencyFilter('');
+    setReligionFilter('');
 
   };
 
 
-  const handleAreaChange = (event) => {
-    setAreaFilter(event.target.value);
-    logFilteredDonationRequestsArea(event.target.value);
+  const handleAreaChange = (value) => {
+    setAreaFilter(value);
+    logFilteredDonationRequestsArea(value);
     setGenderFilter('');
     setSizeFilter('');
     setSeasonFilter('');
@@ -358,12 +363,13 @@ function ViewDonationRequest() {
     setToysAgeFilter('');
     setBloodTypeFilter('');
     setUrgencyFilter('');
+    setReligionFilter('');
 
   };
 
-  const handleGovChange = (event) => {
-    setGovFilter(event.target.value);
-    logFilteredDonationRequestsGov(event.target.value);
+  const handleGovChange = (value) => {
+    setGovFilter(value);
+    logFilteredDonationRequestsGov(value);
     setGenderFilter('');
     setSizeFilter('');
     setSeasonFilter('');
@@ -381,6 +387,7 @@ function ViewDonationRequest() {
     setToysAgeFilter('');
     setBloodTypeFilter('');
     setUrgencyFilter('');
+    setReligionFilter('');
 
   };
 
@@ -410,6 +417,7 @@ function ViewDonationRequest() {
   const [toysAgeFilter, setToysAgeFilter] = useState('');
   const [bloodTypeFilter, setBloodTypeFilter] = useState('');
   const [urgencyFilter, setUrgencyFilter] = useState('');
+  const [religionFilter, setReligionFilter] = useState('');
 
   const filteredDonationRequests = donationRequests.filter((request) => {
 
@@ -438,6 +446,7 @@ function ViewDonationRequest() {
     const toysAgeMatch = categoryFilter !== 'Toys' || toysAgeFilter === '' || request.age === toysAgeFilter;
     const bloodTypeMatch = categoryFilter !== 'Blood Donations' || bloodTypeFilter === '' || request.BloodType === bloodTypeFilter;
     const urgencyMatch = categoryFilter !== 'Blood Donations' || urgencyFilter === '' || request.Urgency === urgencyFilter;
+    const religionMatch = categoryFilter !== 'Places of Worship' || religionFilter === '' || request.Religion === religionFilter;
 
 
     return (
@@ -445,7 +454,7 @@ function ViewDonationRequest() {
       categoryMatch && areaMatch && govMatch &&
       genderMatch && sizeMatch && seasonMatch && supplyMatch && toysMatch && typeMatch
       && itemMatch && medicalTypeMatch && medicalUseMatch && hospitalNameMatch
-      && specialtyMatch && organizationNameMatch && subjectMatch && clothesAgeMatch && toysAgeMatch && bloodTypeMatch && urgencyMatch
+      && specialtyMatch && organizationNameMatch && subjectMatch && clothesAgeMatch && toysAgeMatch && bloodTypeMatch && urgencyMatch && religionMatch
     );
   });
 
@@ -529,7 +538,8 @@ function ViewDonationRequest() {
         (categoryFilter === 'Clothes' && clothesAgeFilter !== '' && request.age === clothesAgeFilter) ||
         (categoryFilter === 'Toys' && toysAgeFilter !== '' && request.age === toysAgeFilter) ||
         (categoryFilter === 'Blood Donations' && bloodTypeFilter !== '' && request.BloodType === bloodTypeFilter) ||
-        (categoryFilter === 'Blood Donations' && urgencyFilter !== '' && request.Urgency === urgencyFilter)
+        (categoryFilter === 'Blood Donations' && urgencyFilter !== '' && request.Urgency === urgencyFilter) ||
+        (categoryFilter === 'Places of Worship' && religionFilter !== '' && request.Religion === religionFilter)
       );
 
       if (filteredRequest) {
@@ -540,10 +550,11 @@ function ViewDonationRequest() {
       }
     }
 
-    // If no filtered request found, set default headers
-    setHeaders([]);
-  }, [categoryFilter, areaFilter, govFilter, filteredDonationRequests, genderFilter, sizeFilter, seasonFilter, supplyFilter, toysFilter, typeFilter, itemFilter, medicalTypeFilter, medicalUseFilter, hospitalNameFilter, subjectFilter,
-    organizationNameFilter, specialtyFilter, toysAgeFilter, clothesAgeFilter, bloodTypeFilter, urgencyFilter]);
+    //   // If no filtered request found, set default headers
+    //   setHeaders([]);
+    // }, [categoryFilter, areaFilter, govFilter, filteredDonationRequests, genderFilter, sizeFilter, seasonFilter, supplyFilter, toysFilter, typeFilter, itemFilter, medicalTypeFilter, medicalUseFilter, hospitalNameFilter , subjectFilter,
+    //    organizationNameFilter, specialtyFilter,toysAgeFilter,clothesAgeFilter, bloodTypeFilter,urgencyFilter,]
+  });
 
 
 
@@ -552,8 +563,10 @@ function ViewDonationRequest() {
   return (
     <>
       <NavBar />
-      <Box sx={{ flexGrow: 1, backgroundColor: COLORS.white }}>
-        <AppBar position="static" sx={{ backgroundColor: '#620b37', height: '100%', width: '100%', backgroundSize: 'contain' }}>
+      <AppBar position="static" sx={{ backgroundColor: '#620b37', height: '100%', width: '100%'}}>
+
+
+        <Box sx={{ flexGrow: 1 }}>
           <Toolbar>
             <Search>
               <SearchIconWrapper>
@@ -567,239 +580,284 @@ function ViewDonationRequest() {
                 style={{ color: COLORS.black }}
               />
             </Search>
-            <select value={categoryFilter} onChange={handleCategoryChange} onMouseEnter={handleCategoryMouseEnter} onMouseLeave={handleCategoryMouseLeave} style={{ color: Categoryhovered ? COLORS.white : COLORS.black, backgroundColor: Categoryhovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
-              <option value="">All Categories</option>
-              <option value="Food">Food</option>
-              <option value="Clothes">Clothes</option>
-              <option value="School Supplies">School Supplies</option>
-              <option value="Toys">Toys</option>
-              <option value="Medical Supplies">Medical Supplies</option>
-              <option value="Blood Donations">Blood Donations</option>
-              <option value="Teaching">Teaching</option>
-              <option value="Medical Cases">Medical Cases</option>
+            <>
+              <Space wrap>
+                <Select defaultValue="All Categories" onChange={handleCategoryChange} onMouseEnter={handleCategoryMouseEnter} onMouseLeave={handleCategoryMouseLeave} style={{ color: Categoryhovered ? COLORS.white : COLORS.black, backgroundColor: Categoryhovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
+                  {[
+                    { value: '', label: 'All Categories' },
+                    { value: 'Food', label: 'Food' },
+                    { value: 'Clothes', label: 'Clothes' },
+                    { value: 'School Supplies', label: 'School Supplies' },
+                    { value: 'Toys', label: 'Toys' },
+                    { value: 'Medical Supplies', label: 'Medical Supplies' },
+                    { value: 'Blood Donations', label: 'Blood Donations' },
+                    { value: 'Teaching', label: 'Teaching' },
+                    { value: 'Medical Cases', label: 'Medical Cases' },
+                    { value: 'Places of Worship', label: 'Places of Worship' }
+                  ].map(option => (
+                    <option value={option.value}>{option.label}</option>
+                  ))}
+                </Select>
 
+                <Select defaultValue="All Areas" onChange={handleAreaChange} onMouseEnter={handleAreaMouseEnter} onMouseLeave={handleAreaMouseLeave} style={{ color: AreaHovered ? COLORS.white : COLORS.black, backgroundColor: AreaHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
+                  {[
+                    { value: '', label: 'All Areas' },
+                    { value: 'Smooha', label: 'Smooha' },
+                    { value: 'New Cairo', label: 'New Cairo' },
+                    { value: 'Nasr City', label: 'Nasr City' },
+                    { value: 'Heliopolis', label: 'Heliopolis' },
+                    { value: 'Mohandesin', label: 'Mohandesin' }
+                  ].map(option => (
+                    <option value={option.value}>{option.label}</option>
+                  ))}
+                </Select>
 
+                <Select value={govFilter} onChange={handleGovChange} onMouseEnter={handleGovernorateMouseEnter} onMouseLeave={handleGovernorateMouseLeave} style={{ color: GovernorateHovered ? COLORS.white : COLORS.black, backgroundColor: GovernorateHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
+                  {[
+                    { value: '', label: 'All Governorates' },
+                    { value: 'Cairo', label: 'Cairo' },
+                    { value: 'Giza', label: 'Giza' },
+                    { value: 'Alexandria', label: 'Alexandria' }
+                  ].map(option => (
+                    <option value={option.value}>{option.label}</option>
+                  ))}
+                </Select>
 
-            </select>
-            <select value={areaFilter} onChange={handleAreaChange} onMouseEnter={handleAreaMouseEnter} onMouseLeave={handleAreaMouseLeave} style={{ color: AreaHovered ? COLORS.white : COLORS.black, backgroundColor: AreaHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
-              <option value="">All Areas</option>
-              <option value="Smooha">Smooha</option>
-              <option value="New Cairo">New Cairo</option>
-              <option value="Nasr City">Nasr City</option>
-              <option value="Heliopolis">Heliopolis</option>
-              <option value="Mohandesin">Mohandesin</option>
-            </select>
+                {categoryFilter === 'Clothes' && (
+                  <>
+                    <Select value={genderFilter} onChange={(value) => setGenderFilter(value)} onMouseEnter={handleGenderMouseEnter} onMouseLeave={handleGenderMouseLeave} style={{ color: GenderHovered ? COLORS.white : COLORS.black, backgroundColor: GenderHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
+                      {[
+                        { value: '', label: 'All Genders' },
+                        { value: 'Male', label: 'Male' },
+                        { value: 'Female', label: 'Female' }
+                      ].map(option => (
+                        <option value={option.value}>{option.label}</option>
+                      ))}
+                    </Select>
 
-            <select value={govFilter} onChange={handleGovChange} onMouseEnter={handleGovernorateMouseEnter} onMouseLeave={handleGovernorateMouseLeave} style={{ color: GovernorateHovered ? COLORS.white : COLORS.black, backgroundColor: GovernorateHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
-              <option value="">All Governorates</option>
-              <option value="Cairo">Cairo</option>
-              <option value="Giza">Giza</option>
-              <option value="Alexandria">Alexandria</option>
-            </select>
+                    <Select value={sizeFilter} onChange={(value) => setSizeFilter(value)} onMouseEnter={handleSizeMouseEnter} onMouseLeave={handleSizeMouseLeave} style={{ color: SizeHovered ? COLORS.white : COLORS.black, backgroundColor: SizeHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
+                      {[
+                        { value: '', label: 'All sizes' },
+                        { value: 'small', label: 'small' },
+                        { value: 'medium', label: 'medium' },
+                        { value: 'large', label: 'large' }
+                      ].map(option => (
+                        <option value={option.value}>{option.label}</option>
+                      ))}
+                    </Select>
 
-
-            {categoryFilter === 'Clothes' && (
-              <select value={genderFilter} onChange={(event) => setGenderFilter(event.target.value)} onMouseEnter={handleGenderMouseEnter} onMouseLeave={handleGenderMouseLeave} style={{ color: GenderHovered ? COLORS.white : COLORS.black, backgroundColor: GenderHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
-                <option value="">All Genders</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-              </select>
-
-            )}
-            {categoryFilter === 'Clothes' && (
-              <select value={sizeFilter} onChange={(event) => setSizeFilter(event.target.value)} onMouseEnter={handleSizeMouseEnter} onMouseLeave={handleSizeMouseLeave} style={{ color: SizeHovered ? COLORS.white : COLORS.black, backgroundColor: SizeHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
-                <option value="">All sizes</option>
-                <option value="small">small</option>
-                <option value="medium">medium</option>
-                <option value="large">large</option>
-              </select>
-
-            )}
-
-
-            {categoryFilter === 'Clothes' && (
-              <select value={seasonFilter} onChange={(event) => setSeasonFilter(event.target.value)} onMouseEnter={handleSeasonMouseEnter} onMouseLeave={handleSeasonMouseLeave} style={{ color: SeasonHovered ? COLORS.white : COLORS.black, backgroundColor: SeasonHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
-                <option value="">All seasons</option>
-                <option value="Summer">Summer</option>
-                <option value="Automn">Automn</option>
-                <option value="Winter">Winter</option>
-                <option value="Spring">Spring</option>
-
-              </select>
-
-            )}
-            {categoryFilter === 'School Supplies' && (
-              <select value={supplyFilter} onChange={(event) => setSupplyFilter(event.target.value)} onMouseEnter={handleSupplyMouseEnter} onMouseLeave={handleSupplyMouseLeave} style={{ color: SupplyHovered ? COLORS.white : COLORS.black, backgroundColor: SupplyHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
-                <option value="">All Supplies</option>
-                <option value="Books">Books</option>
-                <option value="Stationary">Stationary</option>
-              </select>
-
-            )}
-            {categoryFilter === 'Toys' && (
-              <select value={toysFilter} onChange={(event) => setToysFilter(event.target.value)} onMouseEnter={handleToyGenderMouseEnter} onMouseLeave={handleToyGenderMouseLeave} style={{ color: ToyGenderHovered ? COLORS.white : COLORS.black, backgroundColor: ToyGenderHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
-                <option value="">All Genders</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-              </select>
-
-            )}
-
-            {categoryFilter === 'Toys' && (
-              <select value={typeFilter} onChange={(event) => setTypeFilter(event.target.value)} onMouseEnter={handleTypeMouseEnter} onMouseLeave={handleTypeMouseLeave} style={{ color: TypeHovered ? COLORS.white : COLORS.black, backgroundColor: TypeHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
-                <option value="">All Toy Categories</option>
-                <option value="Board Games">Board Games</option>
-                <option value="Stuffed Toys">Stuffed Toys</option>
-                <option value="Dolls">Dolls</option>
-                <option value="Sports">Sports</option>
-                <option value="Cars">Cars</option>
-                <option value="Outdoor">Outdoor</option>
-              </select>
-            )}
-
-
-            {categoryFilter === 'Food' && (
-              <select value={itemFilter} onChange={(event) => setItemFilter(event.target.value)} onMouseEnter={handleItemMouseEnter} onMouseLeave={handleItemMouseLeave} style={{ color: ItemHovered ? COLORS.white : COLORS.black, backgroundColor: ItemHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
-                <option value="">All Items</option>
-                <option value="Fresh meals">Fresh meals</option>
-                <option value="Fruits and Vegetables">Fruits and Vegetables</option>
-                <option value="Canned foods">Canned Foods</option>
-                <option value="Baked Goods">Baked Goods</option>
-              </select>
-            )}
-
-            {categoryFilter === 'Medical Supplies' && (
-              <>
-                <select
-                  value={medicalTypeFilter}
-                  onChange={(event) => setMedicalTypeFilter(event.target.value)}
-                  onMouseEnter={handleMedicalTypeMouseEnter}
-                  onMouseLeave={handleMedicalTypeMouseLeave}
-                  style={{
-                    color: MedicalTypeHovered ? COLORS.white : COLORS.black,
-                    backgroundColor: MedicalTypeHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white,
-                    fontWeight: 'bold'
-                  }}
-                >
-                  <option value="">All Types</option>
-                  <option value="Medical Device">Medical Device</option>
-                  <option value="Medical Equipment">Medical Equipment</option>
-                  <option value="Medication">Medication</option>
-                </select>
-                {(medicalTypeFilter === 'Medication') && (
-                  <select
-                    value={medicalUseFilter}
-                    onChange={(event) => setMedicalUseFilter(event.target.value)}
-                    onMouseEnter={handleMedicalUseMouseEnter}
-                    onMouseLeave={handleMedicalUseMouseLeave}
-                    style={{
-                      color: MedicalUseHovered ? COLORS.white : COLORS.black,
-                      backgroundColor: MedicalUseHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white,
-                      fontWeight: 'bold',
-                    }}
-                  >
-                    <option value="">All Medical Uses</option>
-                    <option value="Headache">Headache</option>
-                    <option value="Fever">Fever</option>
-                  </select>
+                    <Select value={seasonFilter} onChange={(value) => setSeasonFilter(value)} onMouseEnter={handleSeasonMouseEnter} onMouseLeave={handleSeasonMouseLeave} style={{ color: SeasonHovered ? COLORS.white : COLORS.black, backgroundColor: SeasonHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
+                      {[
+                        { value: '', label: 'All seasons' },
+                        { value: 'Summer', label: 'Summer' },
+                        { value: 'Automn', label: 'Automn' },
+                        { value: 'Winter', label: 'Winter' },
+                        { value: 'Spring', label: 'Spring' }
+                      ].map(option => (
+                        <option value={option.value}>{option.label}</option>
+                      ))}
+                    </Select>
+                  </>
                 )}
-              </>
-            )}
+
+
+                {categoryFilter === 'School Supplies' && (
+                  <Select value={supplyFilter} onChange={(value) => setSupplyFilter(value)} onMouseEnter={handleSupplyMouseEnter} onMouseLeave={handleSupplyMouseLeave} style={{ color: SupplyHovered ? COLORS.white : COLORS.black, backgroundColor: SupplyHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
+                    {[
+                      { value: '', label: 'All Supplies' },
+                      { value: 'Books', label: 'Books' },
+                      { value: 'Stationary', label: 'Stationary' }
+                    ].map(option => (
+                      <option value={option.value}>{option.label}</option>
+                    ))}
+                  </Select>
+                )}
+
+                {categoryFilter === 'Toys' && (
+                  <>
+                    <Select value={toysFilter} onChange={(value) => setToysFilter(value)} onMouseEnter={handleToyGenderMouseEnter} onMouseLeave={handleToyGenderMouseLeave} style={{ color: ToyGenderHovered ? COLORS.white : COLORS.black, backgroundColor: ToyGenderHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
+                      {[
+                        { value: '', label: 'All Genders' },
+                        { value: 'Male', label: 'Male' },
+                        { value: 'Female', label: 'Female' }
+                      ].map(option => (
+                        <option value={option.value}>{option.label}</option>
+                      ))}
+                    </Select>
+
+                    <Select value={typeFilter} onChange={(value) => setTypeFilter(value)} onMouseEnter={handleTypeMouseEnter} onMouseLeave={handleTypeMouseLeave} style={{ color: TypeHovered ? COLORS.white : COLORS.black, backgroundColor: TypeHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
+                      {[
+                        { value: '', label: 'All Toy Categories' },
+                        { value: 'Board Games', label: 'Board Games' },
+                        { value: 'Stuffed Toys', label: 'Stuffed Toys' },
+                        { value: 'Dolls', label: 'Dolls' },
+                        { value: 'Sports', label: 'Sports' },
+                        { value: 'Cars', label: 'Cars' },
+                        { value: 'Outdoor', label: 'Outdoor' }
+                      ].map(option => (
+                        <option value={option.value}>{option.label}</option>
+                      ))}
+                    </Select>
+                  </>
+                )}
+
+
+                {categoryFilter === 'Food' && (
+                  <Select value={itemFilter} onChange={(value) => setItemFilter(value)} onMouseEnter={handleItemMouseEnter} onMouseLeave={handleItemMouseLeave} style={{ color: ItemHovered ? COLORS.white : COLORS.black, backgroundColor: ItemHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
+                    {[
+                      { value: '', label: 'All Items' },
+                      { value: 'Fresh meals', label: 'Fresh meals' },
+                      { value: 'Fruits and Vegetables', label: 'Fruits and Vegetables' },
+                      { value: 'Canned foods', label: 'Canned Foods' },
+                      { value: 'Baked Goods', label: 'Baked Goods' }
+                    ].map(option => (
+                      <option value={option.value}>{option.label}</option>
+                    ))}
+                  </Select>
+                )}
+
+                {categoryFilter === 'Medical Supplies' && (
+                  <Select defaultValue="All Medical Types" onChange={(value) => setMedicalTypeFilter(value)} onMouseEnter={handleMedicalTypeMouseEnter} onMouseLeave={handleMedicalTypeMouseLeave} style={{ color: MedicalTypeHovered ? COLORS.white : COLORS.black, backgroundColor: MedicalTypeHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
+                    {[
+                      { value: '', label: 'All Types' },
+                      { value: 'Medical Device', label: 'Medical Device' },
+                      { value: 'Medical Equipment', label: 'Medical Equipment' },
+                      { value: 'Medication', label: 'Medication' }
+                    ].map(option => (
+                      <option value={option.value}>{option.label}</option>
+                    ))}
+                  </Select>
+                )}
+
+
+                {categoryFilter === 'Blood Donations' && (
+                  <>
+                    <Select defaultValue="All Hospitals" onChange={(value) => setHospitalNameFilter(value)} onMouseEnter={handleHospitalNameMouseEnter} onMouseLeave={handleHospitalNameMouseLeave} style={{ color: HospitalNameHovered ? COLORS.white : COLORS.black, backgroundColor: HospitalNameHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
+                      {[
+                        { value: '', label: 'All Hospitals' },
+                        { value: 'Queen', label: 'Queen' },
+                        { value: 'Cleopatra', label: 'Cleopatra' }
+                      ].map(option => (
+                        <option value={option.value}>{option.label}</option>
+                      ))}
+                    </Select>
+
+                    <Select defaultValue="All Blood Types" onChange={(value) => setBloodTypeFilter(value)} onMouseEnter={handleBloodTypeMouseEnter} onMouseLeave={handleBloodTypeMouseLeave} style={{ color: BloodTypeHovered ? COLORS.white : COLORS.black, backgroundColor: BloodTypeHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
+                      {[
+                        { value: '', label: 'All Blood Types' },
+                        { value: 'AB Positive', label: 'AB Positive' },
+                        { value: 'AB Negative', label: 'AB Negative' },
+                        { value: 'A Positive', label: 'A Positive' },
+                        { value: 'A Negative', label: 'A Negative' },
+                        { value: 'B Positive', label: 'B Positive' },
+                        { value: 'B Negative', label: 'B Negative' },
+                        { value: 'O Positive', label: 'O Positive' },
+                        { value: 'O Negative', label: 'O Negative' }
+                      ].map(option => (
+                        <option value={option.value}>{option.label}</option>
+                      ))}
+                    </Select>
+
+                    <Select defaultValue="All Urgencies" onChange={(value) => setUrgencyFilter(value)} onMouseEnter={handleUrgencyMouseEnter} onMouseLeave={handleUrgencyMouseLeave} style={{ color: UrgencyHovered ? COLORS.white : COLORS.black, backgroundColor: UrgencyHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
+                      {[
+                        { value: '', label: 'All Urgencies' },
+                        { value: '1', label: 'Least Urgent' },
+                        { value: '2', label: '2' },
+                        { value: '3', label: '3' },
+                        { value: '4', label: '4' },
+                        { value: '5', label: 'Most Urgent' }
+                      ].map(option => (
+                        <option value={option.value}>{option.label}</option>
+                      ))}
+                    </Select>
+                  </>
+                )}
 
 
 
+                {categoryFilter === 'Medical Cases' && (
+                  <>
+                    <Select defaultValue="All Specialties" onChange={(value) => setSpecialtyFilter(value)} onMouseEnter={handleSpecialtyMouseEnter} onMouseLeave={handleSpecialtyMouseLeave} style={{ color: SpecialtyHovered ? COLORS.white : COLORS.black, backgroundColor: SpecialtyHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
+                      {[
+                        { value: '', label: 'All Specialties' },
+                        { value: 'Dermatologist', label: 'Dermatologist' },
+                        { value: 'Psychiatrist', label: 'Psychiatrist' }
+                      ].map(option => (
+                        <option value={option.value}>{option.label}</option>
+                      ))}
+                    </Select>
 
-            {categoryFilter === 'Blood Donations' && (
-              <select value={hospitalNameFilter} onChange={(event) => setHospitalNameFilter(event.target.value)} onMouseEnter={handleHospitalNameMouseEnter} onMouseLeave={handleHospitalNameMouseLeave} style={{ color: HospitalNameHovered ? COLORS.white : COLORS.black, backgroundColor: HospitalNameHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
-                <option value="">All Hospitals</option>
-                <option value="Queen">Queen</option>
-                <option value="Cleopatra">Cleopatra</option>
-              </select>
-            )}
+                    <Select defaultValue="All Organizations" onChange={(value) => setOrganizationNameFilter(value)} onMouseEnter={handleOrganizationNameMouseEnter} onMouseLeave={handleOrganizationNameMouseLeave} style={{ color: OrganizationNameHovered ? COLORS.white : COLORS.black, backgroundColor: OrganizationNameHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
+                      {[
+                        { value: '', label: 'All Organizations' },
+                        { value: 'Health Harmony Initiative', label: 'Health Harmony Initiative' },
+                        { value: 'Dar Al Shifa', label: 'Dar Al Shifa' }
+                      ].map(option => (
+                        <option value={option.value}>{option.label}</option>
+                      ))}
+                    </Select>
+                  </>
+                )}
 
-            {categoryFilter === 'Blood Donations' && (
-              <select value={bloodTypeFilter} onChange={(event) => setBloodTypeFilter(event.target.value)} onMouseEnter={handleBloodTypeMouseEnter} onMouseLeave={handleBloodTypeMouseLeave} style={{ color: BloodTypeHovered ? COLORS.white : COLORS.black, backgroundColor: BloodTypeHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
-                <option value="">All Blood Types</option>
-                <option value="AB positive">AB positive</option>
-                <option value="AB negative">AB negative</option>
-                <option value="A positive">A positive</option>
-                <option value="A negative">A negative</option>
-                <option value="B positive">B positive</option>
-                <option value="B negative">B negative</option>
-                <option value="O positive">O positive</option>
-                <option value="O negative">O negative</option>
+                {categoryFilter === 'Teaching' && (
+                  <Select defaultValue="All Subjects" onChange={(value) => setSubjectFilter(value)} onMouseEnter={handleSubjectMouseEnter} onMouseLeave={handleSubjectMouseLeave} style={{ color: SubjectHovered ? COLORS.white : COLORS.black, backgroundColor: SubjectHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
+                    {[
+                      { value: '', label: 'All Subjects' },
+                      { value: 'Math', label: 'Math' },
+                      { value: 'Science', label: 'Science' },
+                      { value: 'English', label: 'English' },
+                      { value: 'French', label: 'French' },
+                      { value: 'Social Studies', label: 'Social Studies' }
+                    ].map(option => (
+                      <option value={option.value}>{option.label}</option>
+                    ))}
+                  </Select>
+                )}
 
-              </select>
-            )}
-            {categoryFilter === 'Blood Donations' && (
-              <select value={urgencyFilter} onChange={(event) => setUrgencyFilter(event.target.value)} onMouseEnter={handleUrgencyMouseEnter} onMouseLeave={handleUrgencyMouseLeave} style={{ color: UrgencyHovered ? COLORS.white : COLORS.black, backgroundColor: UrgencyHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
-                <option value="">All Urgencies</option>
-                <option value="1">Least Urgent</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">Most Urgent</option>
-
-              </select>
-            )}
-
-
-
-
-
-            {categoryFilter === 'Medical Cases' && (
-              <select value={specialtyFilter} onChange={(event) => setSpecialtyFilter(event.target.value)} onMouseEnter={handleSpecialtyMouseEnter} onMouseLeave={handleSpecialtyMouseLeave} style={{ color: SpecialtyHovered ? COLORS.white : COLORS.black, backgroundColor: SpecialtyHovered ? 'rgba(98, 11, 55, 0.8)' : COLORS.white, fontWeight: 'bold' }}>
-                <option value="">All Specialties</option>
-                <option value="Dermatologist">Dermatologist</option>
-                <option value="Psychiatrist">Psychiatrist</option>
-              </select>
-            )}
-
-            {categoryFilter === 'Medical Cases' && (
-              <select value={organizationNameFilter} onChange={(event) => setOrganizationNameFilter(event.target.value)} onMouseEnter={handleOrganizationNameMouseEnter} onMouseLeave={handleOrganizationNameMouseLeave} style={{ color: OrganizationNameHovered ? COLORS.white : COLORS.black, backgroundColor: OrganizationNameHovered ? 'rgba(98, 11, 55, 0.8)' : COLORS.white, fontWeight: 'bold' }}>
-                <option value="">All Organizations</option>
-                <option value="Health Harmony Initiative">Health Harmony Initiative</option>
-                <option value="Dar Al Shifa">Dar Al Shifa</option>
-              </select>
-            )}
+                {categoryFilter === 'Clothes' && (
+                  <Select defaultValue="All Ages" onChange={(value) => setClothesAgeFilter(value)} onMouseEnter={handleClothesAgeMouseEnter} onMouseLeave={handleClothesAgeMouseLeave} style={{ color: ClothesAgeHovered ? COLORS.white : COLORS.black, backgroundColor: ClothesAgeHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
+                    {[
+                      { value: '', label: 'All Ages' },
+                      { value: '17', label: 'From 13-17' },
+                      { value: '20', label: 'From 18-22' }
+                    ].map(option => (
+                      <option value={option.value}>{option.label}</option>
+                    ))}
+                  </Select>
+                )}
 
 
+                {categoryFilter === 'Toys' && (
+                  <Select defaultValue="All Ages" onChange={(value) => setToysAgeFilter(value)} onMouseEnter={handleToysAgeMouseEnter} onMouseLeave={handleToysAgeMouseLeave} style={{ color: ToysAgeHovered ? COLORS.white : COLORS.black, backgroundColor: ToysAgeHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
+                    {[
+                      { value: '', label: 'All Ages' },
+                      { value: '5', label: 'From 0-7' },
+                      { value: '10', label: 'From 8-14' }
+                    ].map(option => (
+                      <option value={option.value}>{option.label}</option>
+                    ))}
+                  </Select>
+                )}
 
+                {categoryFilter === 'Places of Worship' && (
+                  <Select defaultValue="All Religions" onChange={(value) => setReligionFilter(value)} onMouseEnter={handleReligionMouseEnter} onMouseLeave={handleReligionMouseLeave} style={{ color: ReligionHovered ? COLORS.white : COLORS.black, backgroundColor: ReligionHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
+                    {[
+                      { value: '', label: 'All Religions' },
+                      { value: 'Christianity', label: 'Christianity' },
+                      { value: 'Islam', label: 'Islam' }
+                    ].map(option => (
+                      <option value={option.value}>{option.label}</option>
+                    ))}
+                  </Select>
+                )}
+              </Space>
 
-
-
-
-            {categoryFilter === 'Teaching' && (
-              <select value={subjectFilter} onChange={(event) => setSubjectFilter(event.target.value)} onMouseEnter={handleSubjectMouseEnter} onMouseLeave={handleSubjectMouseLeave} style={{ color: SubjectHovered ? COLORS.white : COLORS.black, backgroundColor: SubjectHovered ? 'rgba(98, 11, 55, 0.8)' : COLORS.white, fontWeight: 'bold' }}>
-                <option value="">All Subjects</option>
-                <option value="Math">Math</option>
-                <option value="Science">Science</option>
-                <option value="English">English</option>
-                <option value="French">French</option>
-                <option value="Social Studies">Social Studies</option>
-
-              </select>
-            )}
-
-            {categoryFilter === 'Clothes' && (
-              <select value={clothesAgeFilter} onChange={(event) => setClothesAgeFilter(event.target.value)} onMouseEnter={handleClothesAgeMouseEnter} onMouseLeave={handleClothesAgeMouseLeave} style={{ color: ClothesAgeHovered ? COLORS.white : COLORS.black, backgroundColor: ClothesAgeHovered ? 'rgba(98, 11, 55, 0.8)' : COLORS.white, fontWeight: 'bold' }}>
-                <option value="">All Ages</option>
-                <option value="17">From 13-17</option>
-                <option value="20">From 18-22</option>
-              </select>
-            )}
-
-            {categoryFilter === 'Toys' && (
-              <select value={toysAgeFilter} onChange={(event) => setToysAgeFilter(event.target.value)} onMouseEnter={handleToysAgeMouseEnter} onMouseLeave={handleToysAgeMouseLeave} style={{ color: ToysAgeHovered ? COLORS.white : COLORS.black, backgroundColor: ToysAgeHovered ? 'rgba(98, 11, 55, 0.8)' : COLORS.white, fontWeight: 'bold' }}>
-                <option value="">All Ages</option>
-                <option value="5">From 0-7</option>
-                <option value="10">From 8-14</option>
-              </select>
-            )}
-
+            </>
 
           </Toolbar>
-        </AppBar>
+        </Box>
+      </AppBar>
+      <Container component="main" maxWidth="md" disableGutters>
         <Box sx={{ padding: '20px' }}>
           {filteredDonationRequests.map((request, index) => (
             <StyledAccordion key={index}>
@@ -822,7 +880,7 @@ function ViewDonationRequest() {
             </StyledAccordion>
           ))}
         </Box>
-      </Box>
+      </Container>
     </>
   );
 }

@@ -15,6 +15,12 @@ import Collapse from '@mui/material/Collapse';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Header from './Navigations/header';
 import Toolbar from '@mui/material/Toolbar';
+import { useSearchParams, useNavigationType} from 'react-router-dom';
+import { sub } from 'date-fns';
+
+
+
+
 
 
 
@@ -29,6 +35,10 @@ export default function AdminSideNav() {
 
     const [currentItem, setCurrentItem] = useState(NavConfig[0]);
 
+    
+
+    
+
 
     const changeItem = (event, item) => {
         event.preventDefault();
@@ -39,8 +49,48 @@ export default function AdminSideNav() {
         setNavItems([...navItems]);
     }
 
+    
+    useEffect(() => {
+        // get url params
+
+        let urlParams = new URLSearchParams(window.location.search);
+        const path = urlParams.get('path');
+
+        console.log("path", path);
+        
+        // recursively find the item with the path
+        const findItem = (items, path) => {
+            for (let i = 0; i < items.length; i++) {
+                if (items[i].path === path) {
+                    return items[i];
+                } else if (items[i].subMenu) {
+                    let found = findItem(items[i].subMenu, path);
+                    if (found) {
+                        return found;
+                    }
+                }
+            }
+        }
+
+        let item = findItem(navItems, path);
+        if (item) {
+            navItems[currentItem.index].active = false;
+            navItems[item.index].active = true;
+            item.active = true;
+            setCurrentItem(item);
+            setNavItems([...navItems]);
+
+        }
+
+        
 
 
+
+        
+
+    }, []);
+
+   
 
 
     const upLg = UseResponsive('up', 'lg');
@@ -146,25 +196,43 @@ export default function AdminSideNav() {
 function NavItem({ item, changeItem }) {
     const [acoountOpen, setAcoountOpen] = useState(false);
     const [donorOpen, setDonorOpen] = useState(false);
-
-    const handleClick = (e, submenu) => {
+    const [searchParams, setSearchParams] = useSearchParams();
+    const handleClick = (e, submenu, clickedItem) => {
 
         if (item.subMenu) {
-            console.log("submenu", submenu, "e", e);
+            console.log("item", item, "clickedItem", clickedItem);
             e.preventDefault();
+
+            if (clickedItem && clickedItem.path){
+                setSearchParams({ path: clickedItem.path });
+            }
+
+            if(item.path){
+                setSearchParams({ path: item.path });
+            }
+
             if (submenu === "Donor") {
                 setDonorOpen(!donorOpen);
+                
             }else {
                 setAcoountOpen(!acoountOpen);
             }
             
+        }else{
+            // set url params
+            if (clickedItem && clickedItem.path){
+                setSearchParams({ path: clickedItem.path });
+            } else {
+                setSearchParams({ path: item.path });
+            }
+
         }
 
     };
 
     return (
         <div>
-            <ListItemButton onClick={handleClick}>
+            <ListItemButton onClick={(e) => handleClick(e, "Account", item)}>
                 <Box component="span" sx={{ width: 24, height: 24, mr: 2 }}>
                     {item.icon}
                 </Box>
@@ -174,7 +242,7 @@ function NavItem({ item, changeItem }) {
             {item.subMenu && (
                 <Collapse in={acoountOpen} timeout="auto" unmountOnExit>
                     {item.subMenu.map((subItem, index) => (
-                        (subItem.subMenu) ? (<>{item.subMenu && <><ListItemButton onClick={(e) => {handleClick(e, "Donor")}} >
+                        (subItem.subMenu) ? (<>{item.subMenu && <><ListItemButton onClick={(e) => {handleClick(e, "Donor", subItem)}}>
                             <Box component="span" sx={{ width: 24, height: 24, mr: 2 }}>
                                 {item.icon}
                             </Box>
@@ -185,7 +253,7 @@ function NavItem({ item, changeItem }) {
                                     <a href={subSubItem.path} onClick={(e) => changeItem(e, subSubItem)}>
                                         <ListItemButton
                                             key={index}
-                                            onClick={handleClick}
+                                            onClick={(e) => handleClick(e, "Donor", subSubItem)}
                                             sx={{
                                                 minHeight: 44,
                                                 borderRadius: 0.75,
@@ -209,7 +277,7 @@ function NavItem({ item, changeItem }) {
                             </Collapse></>) : <a href={subItem.path} onClick={(e) => changeItem(e, subItem)}>
                             <ListItemButton
                                 key={index}
-                                onClick={handleClick}
+                                onClick={(e) => handleClick(e, "Donor", subItem)}
                                 sx={{
                                     minHeight: 44,
                                     borderRadius: 0.75,

@@ -14,6 +14,7 @@
     display: inline-block; /* Add this line */
     padding: 0 0px; /* Adjust as needed */
     flex: 0 0 12%;
+    color: red;
   }
 
   .view-button {

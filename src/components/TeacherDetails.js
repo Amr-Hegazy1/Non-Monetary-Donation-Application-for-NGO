@@ -3,6 +3,8 @@ import { Avatar, List, Button, message } from 'antd';
 import { Flex } from 'antd';
 import { Divider } from 'antd';
 import { saveAs } from 'file-saver';
+import { Container } from '@mui/material';
+import Header from './AdminHomePage/Navigations/header';
 
 const data = [
   {
@@ -44,16 +46,13 @@ const TeacherDetails = () => {
 
   return (
     <>
+    <Header width="100%"/>
+    <Container component="main" maxWidth="md">
+        <h1 style={{ fontFamily: 'Arial, sans-serif', fontSize: '40px', color: '#620b37', fontWeight: 'bold', textAlign: 'center', marginTop: '15%' }}>Teacher Details</h1>
     <List
       itemLayout="vertical"
       size="large"
       marginCentre= '35px'
-      pagination={{
-        onChange: (page) => {
-          console.log(page);
-        },
-        pageSize: 3,
-      }}
       dataSource={data}
       footer={
         <div style={{ 
@@ -87,6 +86,7 @@ const TeacherDetails = () => {
         </>
       )}
     />
+  </Container>
   </>
 );
 };

@@ -742,6 +742,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #620b37;}
     text-align: center;
     max-width: 630px;
     margin:0 auto;
+
 }
 
 .subscription-input-group .subscription-input-form{
@@ -760,6 +761,8 @@ nav.navbar.bootsnav .navbar-toggle i{color: #620b37;}
     -moz-transition:0.3s linear;
     -o-transition:0.3s linear;
     transition:0.3s linear;
+    
+    
 }
 .subscription-input-group:hover .subscription-input-form{
     box-shadow: 0 5px 20px rgba(21,19,19,.4);
@@ -773,12 +776,11 @@ nav.navbar.bootsnav .navbar-toggle i{color: #620b37;}
     right: 0;
     background: #620b37;
     display: inline-block;
-    width: 180px;
+    width: 30%;
     height: 60px;
     line-height: 60px;
     text-decoration: none;
-    border-top-right-radius:3px;
-    border-bottom-right-radius:3px;
+    border-radius: 0;
     text-transform:capitalize;
     color: #fff;
     font-size: 16px;
@@ -790,6 +792,9 @@ nav.navbar.bootsnav .navbar-toggle i{color: #620b37;}
     -moz-transition:0.3s ease-in-out;
     -o-transition:0.3s ease-in-out;
     transition:0.3s ease-in-out;
+    text-align: center !important;
+    vertical-align: middle !important;
+    align-items: center !important;
 }
 .appsLand-btn:hover, .appsLand-btn:focus, .appsLand-btn:active {
     text-decoration: none;
