@@ -26,7 +26,7 @@ import L from 'leaflet';
 import 'animate.css';
 import { Language } from '@mui/icons-material';
 import RequestBookImg from './RequestBookImg.png'
-
+import NavBar from './NavBar';
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -80,11 +80,33 @@ const defaultTheme = createTheme();
       event.preventDefault();
 
       
-      if (!name || !author || !language || !edition || !bookSummary  || !quantity || !area || !governorate) {
-        message.error('Please fill in all fields.');
-      } else {
+      if (!name ) {
+        message.error('Please specify book name.');
+      } else if(!author){
+        message.error('Please specify book author.');
+      }
+      else if(!language){
+        message.error('Please specify book language.');
+      }
+      else if(!edition){
+        message.error('Please specify book edition.');
+      }
+      else if(!bookSummary){
+        message.error('Please specify book summary.');
+      }
+      else if(!quantity){
+        message.error('Please specify book quantity.');
+      }
+      else if(!area){
+        message.error('Please specify book area.');
+      }
+      else if(!governorate){
+        message.error('Please specify book governorate.');
+      }
+      else {
        success();
       }
+
     };
 
     
@@ -93,6 +115,8 @@ const defaultTheme = createTheme();
 
 
   return (
+    <>
+    <NavBar/>
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -130,7 +154,7 @@ const defaultTheme = createTheme();
                     required
                     fullWidth
                     
-                    label="Name"
+                    label="Book Name"
                     autoFocus
                     value={name}
                     onChange={(event)=>setName(event.target.value)}
@@ -143,7 +167,6 @@ const defaultTheme = createTheme();
                     fullWidth
                     
                     label="Author"
-                    autoFocus
                     value={author}
                     onChange={(event)=>setAuthor(event.target.value)}
                     />
@@ -154,7 +177,6 @@ const defaultTheme = createTheme();
               required
               fullWidth
               label="Language"
-              autoFocus
               value={language}
               onChange={(event)=>setLanguage(event.target.value)}
               
@@ -165,7 +187,6 @@ const defaultTheme = createTheme();
               fullWidth
               name="Edition"
               label="Edition"
-              autoFocus
               value={edition}
               onChange={(event)=>setEdition(event.target.value)}
             />
@@ -175,7 +196,6 @@ const defaultTheme = createTheme();
               fullWidth
               name="Book Summary"
               label="Book Summary"
-              autoFocus
               value={bookSummary}
               onChange={(event)=>setBookSummary(event.target.value)}
             />
@@ -186,7 +206,6 @@ const defaultTheme = createTheme();
                     required
                     fullWidth
                     label="Quantity"
-                    autoFocus
                     type='number'
                     value={quantity}
                     onChange={(event)=>setQuantity(event.target.value)}
@@ -199,7 +218,6 @@ const defaultTheme = createTheme();
               fullWidth
               name="Area"
               label="Area"
-              autoFocus
               value={area}
               onChange={(event)=>setArea(event.target.value)}
             />
@@ -210,7 +228,6 @@ const defaultTheme = createTheme();
               fullWidth
               name="Governorate"
               label="Governorate"
-              autoFocus
               value={governorate}
               onChange={(event)=>setGovernorate(event.target.value)}
             />    
@@ -244,6 +261,7 @@ const defaultTheme = createTheme();
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
+    </>
   );
 }
 export default RequestBooks;

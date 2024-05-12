@@ -25,6 +25,7 @@ import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import 'animate.css';
 import RequestDoc from './RequestDoc.png';
+import NavBar from './NavBar';
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -61,16 +62,21 @@ function Copyright(props) {
 
      const handleSubmit = (event) => {
        event.preventDefault();
-       if (!specialty || !area || !governorate ) {
-         message.error('Please fill in all fields.');
+       if (!specialty ) {
+         message.error('Please enter Speciality.');
+       } else if (!area) {
+          message.error('Please enter Area.');
+       }
+       else if (!governorate) {
+         message.error('Please enter Governorate.');
        } else {
         success();
        }
      };
 
      return(
-                
-       
+       <>        
+       <NavBar/>
        <ThemeProvider theme={defaultTheme}>
        <Container component="main" maxWidth="xs">
          <CssBaseline />
@@ -121,7 +127,7 @@ function Copyright(props) {
                    fullWidth
                    
                    label="Area"
-                   autoFocus
+                   
                    value={area}
                    onChange={(event)=>setArea(event.target.value)}
                    />
@@ -132,7 +138,7 @@ function Copyright(props) {
              required
              fullWidth
              label="Governorate"
-             autoFocus
+             
              value={governorate}
              onChange={(event)=>setGovernorate(event.target.value)}
              
@@ -152,5 +158,6 @@ function Copyright(props) {
        <Copyright sx={{ mt: 8, mb: 4 }} />
      </Container>
    </ThemeProvider>
+   </>
  );
 }

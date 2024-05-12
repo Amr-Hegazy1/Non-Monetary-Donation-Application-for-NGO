@@ -25,7 +25,7 @@ import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import 'animate.css';
 import RequestTeacherImg from './RequestTeacherImg.png'
-
+import NavBar from './NavBar';
 
 
 
@@ -53,7 +53,7 @@ function Copyright(props) {
      const [subject, setSubject] = React.useState('');
      const [area, setArea] = React.useState('');
      const [governorate, setGovernorate] = React.useState('');
-
+     const [grade, setGrade] = React.useState('');
      const success = () => {
         message
           .loading('Sending request to admin..', 1.5)
@@ -62,15 +62,25 @@ function Copyright(props) {
 
       const handleSubmit = (event) => {
         event.preventDefault();
-        if (!subject || !area || !governorate ) {
-          message.error('Please fill in all fields.');
-        } else {
+        if (!subject  ) {
+          message.error('Please specify subject.');
+        } else if(! grade) {
+          message.error('Please specify grade.');
+        }
+        else if(!area){
+          message.error('Please specify area.');
+        }
+        else if(!governorate){
+          message.error('Please specify governorate.');
+        }
+        else {
          success();
         }
       };
 
       return(
-                 
+              <>
+              <NavBar/> 
         
         <ThemeProvider theme={defaultTheme}>
         <Container component="main" maxWidth="xs">
@@ -104,7 +114,7 @@ function Copyright(props) {
 
     <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <Grid container spacing={2}>
-            <Grid item xs>
+            <Grid >
                 <TextField
                     margin="normal"
                     required
@@ -116,29 +126,38 @@ function Copyright(props) {
                     onChange={(event)=>setSubject(event.target.value)}
                     />
             </Grid>
-            <Grid item>
+            <Grid >
+              <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    label="Grade"
+                    value={grade}
+                    onChange={(event)=>setGrade(event.target.value)}
+                    />
+            </Grid>
+            <Grid>
                     <TextField
                     margin="normal"
                     required
                     fullWidth
-                    
                     label="Area"
-                    autoFocus
                     value={area}
                     onChange={(event)=>setArea(event.target.value)}
                     />
             </Grid>
-            </Grid>
+
+            <Grid>
             <TextField
               margin="normal"
               required
               fullWidth
               label="Governorate"
-              autoFocus
               value={governorate}
               onChange={(event)=>setGovernorate(event.target.value)}
               
             />
+            </Grid>
             <Button
               type="submit"
               fullWidth
@@ -149,10 +168,12 @@ function Copyright(props) {
             >
               Submit
             </Button>
+            </Grid>
           </Box>
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
+    </>
   );
 }

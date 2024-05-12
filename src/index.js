@@ -12,22 +12,26 @@ import AdminHome from './AdminHome';
 import DonorSubmission from './DonorSubmission';
 import Password from 'antd/es/input/Password';
 import PasswordManagement from './PasswordManagement';
-
+import OrgCoordinateDonationPickup from './components/OrgCoordinateDonationPickup';
+import DetailsOfMedicalSuppToBeDonated from './components/DetailsOfMedicalSuppToBeDonated';
+import DetailsOfToysToBeDonated from './components/DetailsOfToysToBeDonated';
+import DetailsOfBooksToBeDonated from './components/DetailsOfBooksToBeDonated';
+import DetailsOfStationaryToBeDonated from './components/DetailsOfStationaryToBeDonated';
+import DetailsOfFoodToBeDonated from './components/DetailsOfFoodToBeDonated';
+import ViewDonorDetailsForFulfilledPosts from './components/ViewDonorDetailsForFulfilledPosts';
+import { CookiesProvider } from 'react-cookie';
+import ViewEstimatedTime from './components/ViewEstimatedArrival';
 import RequestInfo from './components/RequestInfo';
-import AdminLogin from './LoginAmin';
-
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import { HelmetProvider } from 'react-helmet-async';
 import { Suspense } from 'react';
 import DetailsOfClothesToBeDonated from './components/DetailsOfClothesToBeDonated';
 import AdminApp from './components/AdminHomePage/AdminApp';
-import VerifyCodePage from './components/Verify';
 import OrganizationRequestInfo from './components/OrganizationRequestInfo';
 import OrganizationDetails from './components/OrganizationDetails';
 import UserDetails from './components/UserDetails';
 import OrganizationList from './components/OrganizationList';
-
 import RequestClothes from './components/RequestClothes';
 import RequestBooks from './components/RequestBooks.';
 import RequestFood from './components/RequestFood';
@@ -37,18 +41,23 @@ import RequestToys from './components/RequestToys';
 import RequestBloodDonations from './components/RequestBloodDonations';
 import RequestTeaching from './components/RequestTeaching';
 import RequestMedicalCases from './components/RequestMedicalCases';
-import ViewDonationRequests from './components/ViewDonationRequests';import Homepage from './components/Homepage';
+import ViewDonationRequests from './components/ViewDonationRequests';
+import Homepage from './components/Homepage';
 import Signup from './components/Signup';
 import FulfilledDonations from './components/FulfilledDonations';
 import SchedulePickup from './components/SchedulePickup';
-
-
+import AdminLogin from './LoginAmin';
+import DonorProfile from './components/DonorProfile';
+import OrganizationProfile from './components/OrganizationProfile';
+import AdminProfile from './components/AdminProfile';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
            {/* Your application components here */}
       {/* This Link component will now have access to the router context */}
       <HelmetProvider>
+      <CookiesProvider>
+
         <BrowserRouter>
           <Suspense>
             <Routes>
@@ -60,7 +69,7 @@ root.render(
               <Route path="/view-donor-submission-info" element={<UserDetails/>} />
               <Route path="/view-org-registered-info" element={<OrganizationDetails/>} />
               <Route path="/view-donor-registered-info" element={<UserDetails/>} />
-              <Route path="/AdminLogin" element={<AdminLogin/>} />
+              <Route path="/login" element={<AdminLogin/>} />
               <Route path="/AdminHome" element={<AdminApp/>} />
               <Route path="/ChangePassword" element={<PasswordManagement/>} />
               <Route path="/Verify" element={<VerifyCodePage/>} />   
@@ -84,9 +93,13 @@ root.render(
               <Route path="/signup" element={<Signup />} />
               <Route path="/fullfilledDonations" element={<FulfilledDonations />} />
               <Route path="/schedulePickup" element={<SchedulePickup />} />
+              <Route path="/DonorProfile" element={<DonorProfile />} />
+              <Route path = "/OrganizationProfile" element={<OrganizationProfile />} />
+              <Route path = "/AdminProfile" element={<AdminProfile />} />
             </Routes>
           </Suspense>
         </BrowserRouter>
+        </CookiesProvider>
       </HelmetProvider>
 
   </React.StrictMode>

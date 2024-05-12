@@ -25,6 +25,7 @@ import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import 'animate.css';
 import RequestBlood from './RequestBlood.png'
+import NavBar from './NavBar';
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -75,18 +76,32 @@ function Copyright(props) {
   
     const handleSubmit = (event) => {
       event.preventDefault();
-      if (!bloodType || !area || !governorate || !hospital || !urgency ) {
-        message.error('Please fill in all fields.');
-      } else {
+      if (!bloodType ) {
+        message.error('Please enter blood type.');
+      } else if(!area) {
+        message.error('Please enter area.');
+      }
+      else if(!governorate) {
+        message.error('Please enter governorate.');
+      }
+      else if(!hospital) {
+        message.error('Please enter hospital.');
+      }
+      else if(!urgency) {
+        message.error('Please specify urgency.');
+      }
+      else {
        success();
       }
+           
     };
 
  
 
     return(
                  
-        
+        <>
+        <NavBar/>
         <ThemeProvider theme={defaultTheme}>
         <Container component="main" maxWidth="xs">
           <CssBaseline />
@@ -126,7 +141,6 @@ function Copyright(props) {
                     fullWidth
                     
                     label="Area"
-                    autoFocus
                     value={area}
                     onChange={(event)=>setArea(event.target.value)}
                     />
@@ -138,7 +152,6 @@ function Copyright(props) {
                     fullWidth
                     
                     label="Hospital"
-                    autoFocus
                     value={hospital}
                     onChange={(event)=>setHospital(event.target.value)}
                     />
@@ -149,7 +162,6 @@ function Copyright(props) {
               required
               fullWidth
               label="Governorate"
-              autoFocus
               value={governorate}
               onChange={(event)=>setGovernorate(event.target.value)}
               
@@ -160,7 +172,6 @@ function Copyright(props) {
               required
               fullWidth
               label="Urgency, 1 being lowest and 5 highest"
-              autoFocus
               type='number'
               value={urgency}
               onChange={handleUrgencyChange}  />
@@ -201,5 +212,6 @@ function Copyright(props) {
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
+    </>
   );
 }
