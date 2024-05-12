@@ -60,6 +60,9 @@ import RegisteredTeachers from './components/RegisteredTeachers';
 import TeacherDetails from './components/TeacherDetails';
 import DoctorDetails from './components/DoctorDetails';
 import AdminFilterOrganization from './components/AdminFilterOrganization';
+import OrganizationRegisteredDetails from './components/OrganizationRegisteredDetails';
+import DoctorRegisteredInfo from './components/DoctorRegisteredInfo';
+import TeacherRegisteredInfo from './components/TeacherRegisteredInfo';
 
 
 
@@ -97,13 +100,13 @@ root.render(
             <Routes>
               <Route index element={<Homepage/>} />
               <Route path="/donateClothes" element={<DetailsOfClothesToBeDonated/>} />
-              <Route path="/view-teacher-registered-info" element={<TeacherDetails/>} />
               <Route path="/view-org-request-info" element={<OrganizationRequestInfo/>} />
               <Route path="/view-org-submission-info" element={<OrganizationDetails/>} />
               <Route path="/view-doctor-submission-info" element={<DoctorDetails/>} />
               <Route path='/view-teacher-submission-info' element={<TeacherDetails/>} />
-              <Route path="/view-org-registered-info" element={<OrganizationDetails/>} />
-              <Route path='view-doctor-registered-info' element={<DoctorDetails/>} />
+              <Route path="/view-org-registered-info" element={<OrganizationRegisteredDetails/>} />
+              <Route path='view-doctor-registered-info' element={<DoctorRegisteredInfo/>} />
+              <Route path="/view-teacher-registered-info" element={<TeacherRegisteredInfo/>} />
               <Route path="/login" element={<Login/>} />
               <Route path="/AdminHome" element={<AdminHome/>} />
               <Route path="/ChangePassword" element={<PasswordManagement/>} />
@@ -131,7 +134,6 @@ root.render(
               <Route path="/donorViewAllDonations" element={<DonorMyDonations />} />
               <Route path="/donorMyDonationDetails" element={<DonorMyDonationDetails />} />
               <Route path="/delieveyPersonDashboard" element={<Dashboard />} />
-              <Route path="/view-doctor-registered-info" element={<RequestInfoDoctor />}/>
               <Route path='/view-doctor-request-info' element={<RequestInfoDoctor />} />
               <Route path='/view-teacher-request-info' element={<RequestInfoTeacher />} />             
              <Route path="/deliveryDonationDetails" element={<DeliveryDonationDetails />} />

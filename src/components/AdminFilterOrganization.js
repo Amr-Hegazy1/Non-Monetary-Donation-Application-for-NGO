@@ -17,22 +17,6 @@ import { Sort } from '@mui/icons-material';
 import { set } from 'react-cool-form';
 
 
-//area,Governorate,type
-const OrganizationsList = [
-    {Name: 'Organization1', Area: 'NasrCity', Governorate: 'Cairo', Type: 'Orphange'},
-    {Name: 'Organization2', Area: 'Maadi', Governorate: 'Cairo', Type: 'Hospital'},
-    {Name: 'Organization3', Area: 'Heliopolis', Governorate: 'Cairo', Type: 'Orphange'},
-    {Name: 'Organization4', Area: 'Dokki', Governorate: 'Giza', Type: 'Hospital'},
-    {Name: 'Organization5', Area: 'Zamalek', Governorate: 'Giza', Type: 'Orphange'},
-    {Name: 'Organization6', Area: 'semooha', Governorate: 'Alex', Type: 'Hospital'},
-    {Name: 'Organization7', Area: 'Maadi', Governorate: 'Cairo', Type: 'Orphange'},
-    {Name: 'Organization8', Area: 'Maadi', Governorate: 'Cairo', Type: 'Hospital'},
-    {Name: 'Organization9', Area: 'Heliopolis', Governorate: 'Cairo', Type: 'Orphange'},
-    {Name: 'Organization10', Area: 'Dokki', Governorate: 'Giza', Type: 'Orphange'},
-    {Name: 'Organization11', Area: 'Zamalek', Governorate: 'Giza', Type: 'Hospital'},
-
-];
-
 const StyledAccordion = styled(Accordion)(({ theme }) => ({
     backgroundColor: 'rgba(98, 11, 55, 0.1)', // Example background color for accordion
     marginBottom: theme.spacing(1),
@@ -96,12 +80,29 @@ const StyledAccordion = styled(Accordion)(({ theme }) => ({
   }));
   
 function AdminFilterOrganization() {
-    
+  const [OrganizationsList, setOrganizationsList] = useState([
+    {Name: 'Organization1', Area: 'NasrCity', Governorate: 'Cairo', Type: 'Orphange'},
+    {Name: 'Organization2', Area: 'Maadi', Governorate: 'Cairo', Type: 'Hospital'},
+    {Name: 'Organization3', Area: 'Heliopolis', Governorate: 'Cairo', Type: 'Orphange'},
+    {Name: 'Organization4', Area: 'Dokki', Governorate: 'Giza', Type: 'Hospital'},
+    {Name: 'Organization5', Area: 'Zamalek', Governorate: 'Giza', Type: 'Orphange'},
+    {Name: 'Organization6', Area: 'semooha', Governorate: 'Alex', Type: 'Hospital'},
+    {Name: 'Organization7', Area: 'Maadi', Governorate: 'Cairo', Type: 'Orphange'},
+    {Name: 'Organization8', Area: 'Maadi', Governorate: 'Cairo', Type: 'Hospital'},
+    {Name: 'Organization9', Area: 'Heliopolis', Governorate: 'Cairo', Type: 'Orphange'},
+    {Name: 'Organization10', Area: 'Dokki', Governorate: 'Giza', Type: 'Orphange'},
+    {Name: 'Organization11', Area: 'Zamalek', Governorate: 'Giza', Type: 'Hospital'},
+  ]);
     const [NameHovered, setNameHovered] = useState(false);
     const [AreaHovered, setAreaHovered] = useState(false);
     const [GovernorateHovered, setGovernorateHovered] = useState(false);
     const [TypeHovered, setTypeHovered] = useState(false);
-    
+
+    const handleDelete = (index) => {
+      const newOrganizationsList = [...OrganizationsList];
+      newOrganizationsList.splice(index, 1);
+      setOrganizationsList(newOrganizationsList);
+    };
     
     const handleAreaMouseEnter = () => {
         setAreaHovered(true);
@@ -251,8 +252,25 @@ function AdminFilterOrganization() {
             </ul>
           </StyledAccordionDetails>
           <AccordionActions>
-            <Button variant="contained" color="primary"size="small" style={{ margin: '0 auto', display: 'flex' , background:'#602b37' }} onClick={() => window.location.href = "/view-org-registered-info"}>View All Details</Button>
-          </AccordionActions>
+  <Button 
+    variant="contained" 
+    color="primary"
+    size="small" 
+    style={{ margin: '0 auto', display: 'flex' , background:'#602b37', width: '120px' }} 
+    onClick={() => window.location.href = "/view-org-registered-info"}
+  >
+    View All Details
+  </Button>
+  <Button 
+  variant="contained" 
+  color="secondary"
+  size="small" 
+  style={{ margin: '0 auto', display: 'flex' , background:'#602b37', marginLeft: '10px', width: '80px' }} 
+  onClick={() => handleDelete(index)}
+>
+  Delete
+</Button>
+</AccordionActions>
         </StyledAccordion>
       ))}
     </Box>
