@@ -1,5 +1,5 @@
 import React from 'react';
-import React,{useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import { Button,Flex, Progress } from 'antd';
 import DeliveryPerson from './DeliveryPerson.jpg'
 import { COLORS } from '../values/colors';

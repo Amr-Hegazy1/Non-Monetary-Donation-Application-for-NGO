@@ -36,18 +36,16 @@ import { PhoneInput } from 'react-international-phone';
 
 
 
-function DonorProfile(){
+function DeliveryPersonProfile(){
     const { Title } = Typography;
     const { Text } = Typography;
     const defaultTheme = createTheme();
     const [tooltipTextName, setTooltipTextName] = React.useState('');
     const [tooltipTextAddress, setTooltipTextAddress] = React.useState('');
     const [tooltipTextCases, setTooltipTextCases] = React.useState('');
-    const [email, setEmail] = useState('yaman.ali@gmail.com');
-    const [name, setName] = useState('Yaman Ali');
+    const [email, setEmail] = useState('alaz.soysalan@gmail.com');
+    const [name, setName] = useState('Alaz Soysalan');
     const [phoneNumber] = React.useState('201003601633');
-    // const [cases, setCases] = useState('3');
-    const [position, setPosition] = React.useState([29.98693069424653, 31.44078789655661]);
 
 
     const success = () => {
@@ -58,11 +56,18 @@ function DonorProfile(){
 
       const handleSubmit = (event) => {
         event.preventDefault();
-        if (!email || !name || !position ) {
-          message.error('Please fill in all fields.');
-        } else {
-         success();
+        if (!email ) {
+          message.error('Please specify your email.');
+        } else if(!name) {
+            message.error('Please specify your name.');}
+        else if(!phoneNumber) {
+            message.error('Please specify your phone number.');
         }
+        else{
+            success();
+            }
+         
+        
       };
 
     const handleMouseEnterName = () => {
@@ -93,15 +98,6 @@ function DonorProfile(){
         setName(e.target.value);
     };
 
-    const LocationFinderDummy = () => {
-        const map = useMapEvents({
-            click(e) {
-                console.log(e.latlng);
-                setPosition([e.latlng.lat, e.latlng.lng]);
-            },
-        });
-        return null;
-      };
 
     return (
 <>
@@ -238,26 +234,7 @@ function DonorProfile(){
                 />
         </Grid>
         <Divider/>
-           
-            <Grid item xs fullWidth required>
-
-                    <InputLabel id="demo-multiple-name-label">Admin Location, click on map to change it</InputLabel>
-                    <MapContainer center={position} zoom={20} scrollWheelZoom={false} style={{ height: '50vh', width: '100wh' }} >
-                    <TileLayer
-                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                    />
-                    <LocationFinderDummy />
-                    <Marker position={position}>
-                        <Popup style={{textAlign: 'center'}}>
-                        {position[0]}, {position[1]}
-                        </Popup>
-                    </Marker>
-
-                    </MapContainer> 
-                </Grid>
-                <Divider/>
-                <Button
+        <Button
               type="submit"
               fullWidth
               variant="contained"
@@ -278,4 +255,4 @@ function DonorProfile(){
 
       );
     }
-export default DonorProfile;
+export default DeliveryPersonProfile;

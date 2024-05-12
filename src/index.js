@@ -50,6 +50,7 @@ import AdminLogin from './LoginAmin';
 import DonorProfile from './components/DonorProfile';
 import OrganizationProfile from './components/OrganizationProfile';
 import AdminProfile from './components/AdminProfile';
+import DeliveryPersonProfile from './components/DeliveryPersonProfile';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -96,6 +97,7 @@ root.render(
               <Route path="/DonorProfile" element={<DonorProfile />} />
               <Route path = "/OrganizationProfile" element={<OrganizationProfile />} />
               <Route path = "/AdminProfile" element={<AdminProfile />} />
+              <Route path = "/DeliveryPersonProfile" element={<DeliveryPersonProfile />} />
             </Routes>
           </Suspense>
         </BrowserRouter>
