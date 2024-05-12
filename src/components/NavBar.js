@@ -75,7 +75,7 @@ function NavBar() {
                 onMouseEnter={(e) => { e.target.style.borderColor = 'blue'; }}
                 onMouseLeave={(e) => { e.target.style.borderColor = 'transparent'; e.target.style.borderWidth = '1px'; }} 
               >
-
+              
               <Avatar src={'https://api.dicebear.com/7.x/miniavs/svg?seed=29'} />
             </div>) : 
               (<Flex gap="small">

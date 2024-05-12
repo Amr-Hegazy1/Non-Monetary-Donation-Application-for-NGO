@@ -7,8 +7,9 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import DonorSignUp from './DonorSignUp';
-
+import DonationReceiverSignUp from './DonationReceiverSignUp';
 import OrganizationSignUp from './OrganizationSignUp';
+import DeliveryPersonSignUp from './DeliveryPersonSignUp';
 
 
 
@@ -32,7 +33,7 @@ export default function Signup() {
     return(
     <>
    
-      <Container component="main" maxWidth="sm">
+      <Container component="main" maxWidth="md">
         <CssBaseline />
         <Box
           sx={{
@@ -60,10 +61,11 @@ export default function Signup() {
                         <FormControlLabel value="Donor" control={<Radio style={{color: COLORS.primary}}/>} label="Donor" />
                         <FormControlLabel value="Donation Reciver" control={<Radio style={{color: COLORS.primary}}/>} label="Donation Reciver" />
                         <FormControlLabel value="Organization" control={<Radio style={{color: COLORS.primary}}/>} label="Organization" />
+                        <FormControlLabel value="Delivery Person" control={<Radio style={{color: COLORS.primary}}/>} label="Delivery Person" />
                         
                     </RadioGroup>
             </FormControl>
-            {(userType === 'Donor' ? <DonorSignUp /> : userType === 'Donation Reciver' ? null : <OrganizationSignUp />)}
+            {(userType === 'Donor' ? <DonorSignUp /> : userType === 'Donation Reciver' ? <DonationReceiverSignUp /> : (userType === 'Organization' ? <OrganizationSignUp /> : <DeliveryPersonSignUp />))}
           
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />

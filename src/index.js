@@ -20,8 +20,6 @@ import DetailsOfStationaryToBeDonated from './components/DetailsOfStationaryToBe
 import DetailsOfFoodToBeDonated from './components/DetailsOfFoodToBeDonated';
 import ViewDonorDetailsForFulfilledPosts from './components/ViewDonorDetailsForFulfilledPosts';
 import { CookiesProvider } from 'react-cookie';
-import ViewEstimatedTime from './components/ViewEstimatedArrival';
-import RequestInfo from './components/RequestInfo';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import { HelmetProvider } from 'react-helmet-async';
@@ -60,7 +58,8 @@ import TeacherDetails from './components/TeacherDetails';
 import DoctorDetails from './components/DoctorDetails';
 
 
-import AdminLogin from './LoginAmin';
+import Login from './Login';
+import RequestInfoTeacher from './components/RequestInfoTeacher';
 import DonorProfile from './components/DonorProfile';
 import OrganizationProfile from './components/OrganizationProfile';
 import AdminProfile from './components/AdminProfile';
@@ -78,77 +77,77 @@ const theme = createTheme({
 root.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-    <ConfigProvider
-    theme={{
-      token: {
-        // Seed Token
-        colorPrimary: '#620b37',
-        borderRadius: 2,
+      <ConfigProvider
+        theme={{
+          token: {
+            // Seed Token
+            colorPrimary: '#620b37',
+            borderRadius: 2,
 
-        // Alias Token
-        colorBgContainer: '#ffffff',
-      },
-    }}
-  >
-    <HelmetProvider>
-      <CookiesProvider>
-        <BrowserRouter>
-          <Suspense>
-            <Routes>
-              <Route index element={<Homepage/>} />
-              <Route path="/donateClothes" element={<DetailsOfClothesToBeDonated/>} />
-              <Route path="/view-teacher-registered-info" element={<TeacherDetails/>} />
-              <Route path="/view-org-request-info" element={<OrganizationRequestInfo/>} />
-              <Route path="/view-org-submission-info" element={<OrganizationDetails/>} />
-              <Route path="/view-doctor-submission-info" element={<DoctorDetails/>} />
-              <Route path='/view-teacher-submission-info' element={<TeacherDetails/>} />
-              <Route path="/view-org-registered-info" element={<OrganizationDetails/>} />
-              <Route path='view-doctor-registered-info' element={<DoctorDetails/>} />
-              <Route path="/login" element={<Login/>} />
-              <Route path="/AdminHome" element={<AdminHome/>} />
-              <Route path="/ChangePassword" element={<PasswordManagement/>} />
-              <Route path="/Verify" element={<VerifyCodePage/>} />   
-              <Route path = "/RequestClothes" element={<RequestClothes/>} />
-              <Route path = "/RequestBooks" element={<RequestBooks/>} />
-              <Route path = "/RequestFood" element={<RequestFood/>} />
-              <Route path = "/RequestMedicalSupplies" element={<RequestMedicalSupplies/>} />
-              <Route path = "/RequestStationary" element={<RequestStationary/>} />
-              <Route path = "/RequestToys" element={<RequestToys/>} />
-              <Route path = "/RequestBloodDonations" element={<RequestBloodDonations/>} />
-              <Route path = "/RequestTeaching" element={<RequestTeaching/>} />
-              <Route path = "/RequestMedicalCases" element={<RequestMedicalCases/>} />
-              <Route path = "/ViewDonationRequests" element={<ViewDonationRequests/>}/>
-              <Route path="/donateMedicalSupplies" element={<DetailsOfMedicalSuppToBeDonated/>} />
-              <Route path="/donateToys" element={<DetailsOfToysToBeDonated/>} />
-              <Route path="/donateBooks" element={<DetailsOfBooksToBeDonated/>} />
-              <Route path="/donateStationary" element={<DetailsOfStationaryToBeDonated/>} />
-              <Route path="/donateFood" element={<DetailsOfFoodToBeDonated/>} />
-              <Route path="/coordinatePickup" element={<OrgCoordinateDonationPickup/>} />
-              <Route path="/donorDetails" element={<ViewDonorDetailsForFulfilledPosts/>} />
-              <Route path="/signup" element={<Signup />} />
-              <Route path="/fullfilledDonations" element={<FulfilledDonations />} />
-              <Route path="/schedulePickup" element={<SchedulePickup />} />
-              <Route path="/DonorProfile" element={<DonorProfile />} />
-              <Route path = "/OrganizationProfile" element={<OrganizationProfile />} />
-              <Route path = "/AdminProfile" element={<AdminProfile />} />
-              <Route path="/donorViewAllDonations" element={<DonorMyDonations />} />
-              <Route path="/donorMyDonationDetails" element={<DonorMyDonationDetails />} />
-              <Route path="/delieveyPersonDashboard" element={<Dashboard />} />
-              <Route path="/view-doctor-registered-info" element={<RequestInfoDoctor />}/>
-              <Route path='/view-doctor-request-info' element={<RequestInfoDoctor />} />
-              <Route path='/view-teacher-request-info' element={<RequestInfoTeacher />} />             
-             <Route path="/deliveryDonationDetails" element={<DeliveryDonationDetails />} />
-             <Route path= '/homePage' element={<Homepage />} />
-
-         
+            // Alias Token
+            colorBgContainer: '#ffffff',
+          },
+        }}
+      >
+        <HelmetProvider>
+          <CookiesProvider>
+            <BrowserRouter>
+              <Suspense>
+                <Routes>
+                  <Route index element={<Homepage />} />
+                  <Route path="/donateClothes" element={<DetailsOfClothesToBeDonated />} />
+                  <Route path="/view-teacher-registered-info" element={<TeacherDetails />} />
+                  <Route path="/view-org-request-info" element={<OrganizationRequestInfo />} />
+                  <Route path="/view-org-submission-info" element={<OrganizationDetails />} />
+                  <Route path="/view-doctor-submission-info" element={<DoctorDetails />} />
+                  <Route path='/view-teacher-submission-info' element={<TeacherDetails />} />
+                  <Route path="/view-org-registered-info" element={<OrganizationDetails />} />
+                  <Route path='view-doctor-registered-info' element={<DoctorDetails />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/AdminHome" element={<AdminHome />} />
+                  <Route path="/ChangePassword" element={<PasswordManagement />} />
+                  <Route path="/Verify" element={<VerifyCodePage />} />
+                  <Route path="/RequestClothes" element={<RequestClothes />} />
+                  <Route path="/RequestBooks" element={<RequestBooks />} />
+                  <Route path="/RequestFood" element={<RequestFood />} />
+                  <Route path="/RequestMedicalSupplies" element={<RequestMedicalSupplies />} />
+                  <Route path="/RequestStationary" element={<RequestStationary />} />
+                  <Route path="/RequestToys" element={<RequestToys />} />
+                  <Route path="/RequestBloodDonations" element={<RequestBloodDonations />} />
+                  <Route path="/RequestTeaching" element={<RequestTeaching />} />
+                  <Route path="/RequestMedicalCases" element={<RequestMedicalCases />} />
+                  <Route path="/ViewDonationRequests" element={<ViewDonationRequests />} />
+                  <Route path="/donateMedicalSupplies" element={<DetailsOfMedicalSuppToBeDonated />} />
+                  <Route path="/donateToys" element={<DetailsOfToysToBeDonated />} />
+                  <Route path="/donateBooks" element={<DetailsOfBooksToBeDonated />} />
+                  <Route path="/donateStationary" element={<DetailsOfStationaryToBeDonated />} />
+                  <Route path="/donateFood" element={<DetailsOfFoodToBeDonated />} />
+                  <Route path="/coordinatePickup" element={<OrgCoordinateDonationPickup />} />
+                  <Route path="/donorDetails" element={<ViewDonorDetailsForFulfilledPosts />} />
+                  <Route path="/signup" element={<Signup />} />
+                  <Route path="/fullfilledDonations" element={<FulfilledDonations />} />
+                  <Route path="/schedulePickup" element={<SchedulePickup />} />
+                  <Route path="/DonorProfile" element={<DonorProfile />} />
+                  <Route path="/OrganizationProfile" element={<OrganizationProfile />} />
+                  <Route path="/AdminProfile" element={<AdminProfile />} />
+                  <Route path="/donorViewAllDonations" element={<DonorMyDonations />} />
+                  <Route path="/donorMyDonationDetails" element={<DonorMyDonationDetails />} />
+                  <Route path="/delieveyPersonDashboard" element={<Dashboard />} />
+                  <Route path="/view-doctor-registered-info" element={<RequestInfoDoctor />} />
+                  <Route path='/view-doctor-request-info' element={<RequestInfoDoctor />} />
+                  <Route path='/view-teacher-request-info' element={<RequestInfoTeacher />} />
+                  <Route path="/deliveryDonationDetails" element={<DeliveryDonationDetails />} />
+                  <Route path='/homePage' element={<Homepage />} />
 
 
-            </Routes>
-          </Suspense>
-        </BrowserRouter>
-      </CookiesProvider>
-    </HelmetProvider>
-    </ConfigProvider>
+
+
+                </Routes>
+              </Suspense>
+            </BrowserRouter>
+          </CookiesProvider>
+        </HelmetProvider>
+      </ConfigProvider>
     </ThemeProvider>
 
   </React.StrictMode>

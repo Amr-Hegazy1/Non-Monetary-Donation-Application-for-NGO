@@ -207,7 +207,7 @@ export default function DonorSignUp() {
 
   return (
 
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="sm">
       <CssBaseline />
       <Box
         sx={{

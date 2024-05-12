@@ -119,7 +119,8 @@ export default function DonationReceiverSignUp() {
 
 
   const [error, setError] = useState(null);
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     if (!error) {
       console.log('Submitted');
       message.success('Submitted');
@@ -143,23 +144,19 @@ export default function DonationReceiverSignUp() {
   };
 
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs">
+    
+      <Container component="main" maxWidth="sm">
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: 2,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
           }}
         >
           
-          <img src="logo.png" className="signup-app-logo" alt="logo" />
           
-          <Typography component="h1" variant="h5">
-            Sign Up
-          </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <Grid container spacing={2}>
             <Grid item xs>
@@ -242,20 +239,7 @@ export default function DonationReceiverSignUp() {
                 <br/>
            
                 
-                <Divider> Organization Logo</Divider>
-                <FormControl fullWidth required>
-                    
-                    <Dragger>
-                    <p className="ant-upload-drag-icon">
-                        <InboxOutlined />
-                    </p>
-                    <p className="ant-upload-text">Click or drag file to this area to upload</p>
-                    <p className="ant-upload-hint">
-                        Support for a single or bulk upload. Strictly prohibited from uploading company data or other
-                        banned files.
-                    </p>
-                    </Dragger>
-                    </FormControl>
+                
             <Divider>Address Details</Divider>
             <AddressForm />
             <Button
@@ -271,6 +255,6 @@ export default function DonationReceiverSignUp() {
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
-    </ThemeProvider>
+    
   );
 }

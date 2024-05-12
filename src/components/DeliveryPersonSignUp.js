@@ -98,8 +98,8 @@ function DeliveryPersonSignUp() {
     return null;
   }
   return (
-    <ThemeProvider theme={createTheme()}>
-      <Container component="main" maxWidth="xs">
+    
+      <Container component="main" maxWidth="sm">
         <CssBaseline />
         <Box
           sx={{
@@ -109,10 +109,7 @@ function DeliveryPersonSignUp() {
             alignItems: 'center',
           }}
         >
-          <img src="logo.png" className="signup-app-logo" alt="logo" />
-          <Typography component="h1" variant="h5">
-            Sign Up
-          </Typography>
+          
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <Grid container spacing={2}>
               <Grid item xs>
@@ -177,18 +174,6 @@ function DeliveryPersonSignUp() {
             />
             <br />
             <br />
-            <Divider>Location</Divider>
-            <FormControl fullWidth required>
-              <InputLabel id="demo-multiple-name-label">Location</InputLabel>
-              <MapContainer center={position} zoom={20} scrollWheelZoom={false} style={{ height: '50vh', width: '100wh' }}>
-                <TileLayer
-                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                />
-                <LocationFinderDummy />
-                <Marker position={position} />
-              </MapContainer>
-            </FormControl>
             <br />
             <Divider>Driver's License</Divider>
             <FormControl fullWidth required>
@@ -203,6 +188,19 @@ function DeliveryPersonSignUp() {
                 </p>
               </Dragger>
             </FormControl>
+            <Divider>Location</Divider>
+            <FormControl fullWidth required>
+              <InputLabel id="demo-multiple-name-label">Location</InputLabel>
+              <MapContainer center={position} zoom={20} scrollWheelZoom={false} style={{ height: '50vh', width: '100wh' }}>
+                <TileLayer
+                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+                <LocationFinderDummy />
+                <Marker position={position} />
+              </MapContainer>
+            </FormControl>
+            
             <Divider>Address Details</Divider>
             <AddressForm />
             <Button
@@ -217,7 +215,7 @@ function DeliveryPersonSignUp() {
           </Box>
         </Box>
       </Container>
-    </ThemeProvider>
+    
   );
 }
 
