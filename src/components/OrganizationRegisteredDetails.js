@@ -65,7 +65,7 @@ const OrganizationRegisteredDetails = () => {
           }
           renderItem={(item) => (
             <>
-              <h3 style={{ fontFamily: 'Arial, sans-serif', fontSize: '22px', color: '#620b37', fontWeight: 'bold', textAlign: 'center',position: 'absolute', top: '15%',left:'60%'}}>Organizaion Location</h3>
+              <h3 style={{ fontFamily: 'Arial, sans-serif', fontSize: '22px', color: '#620b37', fontWeight: 'bold', textAlign: 'center',position: 'absolute', top: '17%',left:'60%'}}>Organizaion Location</h3>
               <MapComponent style={{ height: '500px', width: '500px', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-10%, -50%)' }} />
               <List.Item
                 key={item.title}

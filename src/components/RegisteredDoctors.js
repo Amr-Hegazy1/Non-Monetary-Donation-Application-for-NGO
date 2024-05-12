@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { List, Input, Button } from 'antd';
+import { List, Input } from 'antd';
 import VirtualList from 'rc-virtual-list';
 import { Row, Col } from 'antd';
 import { message } from 'antd';
@@ -7,7 +7,7 @@ import { Modal } from 'antd';
 import './RegisteredDoctors.css';
 import Container from '@mui/material/Container';
 import { Popconfirm } from 'antd';
-
+import { Button } from '@mui/material';
 
 const fakeDataUrl =
   'https://randomuser.me/api/?results=20&inc=name,gender,email,nat,picture&noinfo';
@@ -87,7 +87,7 @@ const RegisteredDoctors = () => {
                   cancelButtonProps={{ style: { width: "auto" } }}
                   style={{ width: "20%", marginLeft: 'auto', marginRight: '30%', margin: 7 }}
                 >
-                  <Button style={{ width: "20%" }}>Delete</Button>
+                  <Button color="error" style={{ width: "20%"}}>Delete</Button>
                 </Popconfirm>
               </List.Item>
             )}

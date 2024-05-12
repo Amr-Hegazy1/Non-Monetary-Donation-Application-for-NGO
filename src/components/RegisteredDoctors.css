@@ -29,7 +29,7 @@
   }
 
   .view-button:hover {
-    background-color: #76120b;
+    background-color: transparent !important;
     color:white;
   }
   

@@ -24,6 +24,8 @@ const data = [
         <li><p style={{ fontWeight: 'bold' }}>Area:</p>Springfield</li>
         <p></p>
         <li><p style={{ fontWeight: 'bold' }}>Governorate:</p>IL</li>
+        <p></p>
+        <li><p style={{ fontWeight: 'bold' }}>Subjects:</p>Math, Science</li>
       </ul>
     ),
   },
