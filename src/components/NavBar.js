@@ -51,7 +51,7 @@ function NavBar() {
 
   return (
     <Navbar color='#0C4D42' collapseOnSelect expand="lg" className="bg-body-tertiary">
-      <Image width={200} src={logo} preview="false" />
+      <a href="/"><img width={150} src={logo}  /></a>
       <Container>
 
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -111,6 +111,8 @@ function NavBar() {
                     <Box>
                       <a href="/editProfile" onClick={(handleAvatarClick)}><Typography>Edit Profile</Typography></a>
                       <Divider />
+                      {(cookies.user_type === 'donor') ? <><a href="/schedulePickup"><Typography>Schedule Pickups</Typography></a><Divider /><br /></> : null}
+                      {(cookies.user_type === 'organization' || cookies['user_type'] === "donation_receiver") ? <><a href="/coordinatePickup"><Typography>Coordinate Pickups</Typography></a><Divider /><br /></> : null}
                       <a href="/logout" onClick={handleLogout}><Typography  color={"red"}>Logout</Typography></a>
                     </Box>
                   }
