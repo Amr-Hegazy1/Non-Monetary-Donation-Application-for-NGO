@@ -6,6 +6,7 @@ const { Title } = Typography;
 const dateFormat = 'YYYY-MM-DD';
 const timeFormat = 'HH:mm';
 
+
 const App = () => {
   const [selectedDateTime, setSelectedDateTime] = useState(null);
 
@@ -14,6 +15,7 @@ const App = () => {
     setSelectedDateTime(date);
   };
 
+  const [error, setError] = useState(null);
   const handleSubmit = () => {
     if (!error) {
       console.log('Submitted:', selectedDateTime.format(`${dateFormat} ${timeFormat}`));

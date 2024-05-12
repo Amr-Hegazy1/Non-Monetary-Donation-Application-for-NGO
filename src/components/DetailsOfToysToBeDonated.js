@@ -23,7 +23,7 @@ import { Upload, Divider } from 'antd';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import 'animate.css';
-
+import { useState } from 'react'; 
 
 
 delete L.Icon.Default.prototype._getIconUrl;
@@ -53,6 +53,8 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function DetailsOfToysToBeDonated() {
+
+  const [error, setError] = useState(null);
 
   const handleSubmit = () => {
     if (!error) {

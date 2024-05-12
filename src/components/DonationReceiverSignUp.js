@@ -34,7 +34,7 @@ import TagsSelector from './TagsSelector';
 import 'animate.css';
 import AddressForm from './AddressForm';
 import { COLORS } from '../values/colors';
-
+import { useState } from 'react'; 
 const { Dragger } = Upload;
 
 
@@ -118,7 +118,7 @@ export default function DonationReceiverSignUp() {
 
 
 
-
+  const [error, setError] = useState(null);
   const handleSubmit = () => {
     if (!error) {
       console.log('Submitted');
