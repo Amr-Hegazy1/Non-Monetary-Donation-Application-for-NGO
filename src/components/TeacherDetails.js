@@ -1,69 +1,93 @@
-import { useForm } from "react-cool-form";
-import { Button, message } from 'antd';
+import React, { useState } from 'react';
+import { Avatar, List, Button, message } from 'antd';
+import { Flex } from 'antd';
+import { Divider } from 'antd';
 import { saveAs } from 'file-saver';
-import { useState } from 'react';
-import "./styles.scss";
 
-const Field = ({ label, id, ...rest }) => (
-  <div className="div">
-    <label htmlFor={id} className="label">{label}</label>
-    <input id={id} {...rest} readOnly disabled className="input"/>
-  </div>
-);
-
-function TeacherDetails() {
-  const { form } = useForm({
-    defaultValues: {
-      firstName: "Kevin",
-      lastName: "De Bruyne",
-      email: "Kevin.debruyne@gmail.com",
-      gender: "Male",
-      contactNumber: "+201234567890",
-      address: "4321 Elm St",
-      area: "Springfield",
-      governorate: "IL",
-      role: "Teacher",
-    },
-    onSubmit: (values) => alert(JSON.stringify(values, undefined, 2)),
-  });
-
+const data = [
+  {
+    title: `Mark John`,
+    avatar: `https://api.dicebear.com/7.x/miniavs/svg?seed=1`,
+    description: 'Male',
+    content: (
+      <ul style={{ fontFamily: 'Arial, sans-serif', fontSize: '20px', color: '#333', lineHeight: '1.6', marginLeft: '35px', listStyleType: 'disc' }}>
+        <li><p style={{ fontWeight: 'bold' }}>Email:</p>ak.64@gmail.com</li>
+        <p></p>
+        <li><p style={{ fontWeight: 'bold' }}>Contact Number:</p>+201234567890</li>
+        <p></p>
+        <li><p style={{ fontWeight: 'bold' }}>Role:</p>Teacher</li>
+        <p></p>
+        <li><p style={{ fontWeight: 'bold' }}>Address:</p>1234 Elm St</li>
+        <p></p>
+        <li><p style={{ fontWeight: 'bold' }}>Area:</p>Springfield</li>
+        <p></p>
+        <li><p style={{ fontWeight: 'bold' }}>Governorate:</p>IL</li>
+      </ul>
+    ),
+  },
+];
+const TeacherDetails = () => {
   const [pdfUrl, setPdfUrl] = useState(process.env.PUBLIC_URL + '/dummy.pdf'); // Example PDF URL
 
   const handleAccept = () => {
     // Confirm accept action
-    message.success('Teacher accepted');
+    message.success('User accepted');
   };
-
   const handleReject = () => {
     // Confirm reject action
-    message.error('Teacher rejected');
+    message.error('User rejected');
   };
-
   const handleDownload = () => {
     // Trigger file download when the button is clicked
-    saveAs(pdfUrl, 'user_details.pdf');
+    saveAs(pdfUrl, 'organization_document.pdf');
   };
 
   return (
-    <div>
-      <h1 style={{ textAlign: 'center' }}>Donor Details</h1>
-      <form ref={form} className="form">
-        <Field label="First Name" id="first-name" name="firstName" />
-        <Field label="Last Name" id="last-name" name="lastName" />
-        <Field label="Email" id="email" name="email" />
-        <Field label="Gender" id="gender" name="gender" />
-        <Field label="Contact Number" id="contact-number" name="contactNumber" />
-        <Field label="Address" id="address" name="address" />
-        <Field label="Area" id="area" name="area" />
-        <Field label="Governorate" id="governorate" name="governorate" />
-        <Field label="Role" id="role" name="role" />
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '10px' , marginTop: '20px'}} className="div">
-          <Button type="primary" onClick={handleAccept}>Accept</Button>
-          <Button type="primary" onClick={handleReject}>Reject</Button>
-          <Button type="primary" onClick={handleDownload}>Download</Button>
+    <>
+    <List
+      itemLayout="vertical"
+      size="large"
+      marginCentre= '35px'
+      pagination={{
+        onChange: (page) => {
+          console.log(page);
+        },
+        pageSize: 3,
+      }}
+      dataSource={data}
+      footer={
+        <div style={{ 
+          fontSize: '20px', 
+          fontFamily: 'Arial, sans-serif', 
+          color: '#666', 
+          marginRight: '35px', 
+          textAlign: 'right' 
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}></div>
         </div>
-      </form>
-    </div>
-  );
-}
+      }      
+      renderItem={(item) => (
+        <>
+          <List.Item
+            key={item.title}
+          >
+            <List.Item.Meta
+              avatar={<Avatar src={item.avatar} style={{ size: 800 }} />}
+              title={<a href={item.href} style={{ fontFamily: 'Arial, sans-serif', fontSize: '28px', color: '#620b37', fontWeight: 'bold', textDecoration: 'none' }}>{item.title}</a>}
+              description={<span style={{ fontSize: '20px', fontFamily: 'Arial, sans-serif', color: '#666', fontStyle: 'italic' }}>{item.description}</span>} />
+            <Divider />
+            {<span style={{ fontSize: '24px', fontFamily: 'Times New Roman, sans-serif', color: '#333', lineHeight: '1.6' }}>{item.content}</span>}
+          </List.Item>
+          <Flex gap="small" wrap="wrap" style={{ justifyContent: 'flex-start', marginLeft: '20px', marginTop: '20px' }} />
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '10px' , marginTop: '20px'}}>
+            <Button type="primary" onClick={handleAccept} style={{ width: '120px', backgroundColor: '#620b37', borderColor: '#620b37' }}>Accept</Button>
+            <Button type="primary" onClick={handleReject} style={{ width: '120px', backgroundColor: '#620b37', borderColor: '#620b37' }}>Reject</Button>
+            <Button type="primary" onClick={handleDownload} style={{ width: '120px', backgroundColor: '#620b37', borderColor: '#620b37' }}>Download</Button>
+          </div>
+        </>
+      )}
+    />
+  </>
+);
+};
 export default TeacherDetails;

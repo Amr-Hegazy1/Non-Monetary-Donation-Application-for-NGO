@@ -24,18 +24,19 @@ export default function RequestInfo() {
     return (
     <div className="request-info-container"> 
     <h1 className="request-info-title">Doctor Request Information</h1>
-<h3 className="donor-type-header">Donor Type: Doctor</h3>
+    <h3 className="donor-type-header">Donor Type: Doctor</h3>
       <label>
         Request Notes:
         <textarea
           className="request-info-textarea"  
           name="postContent"
-          defaultValue="I am writing to express my interest in volunteering as a Doctor with your esteemed organization. My name is John and I am passionate about helping people and giving back to the community.I have PhD in Mathematics. Teaching has always been a fulfilling endeavor for me, and I am eager to contribute my skills to support your organization's mission. I believe in the transformative power of Medical skills and its ability to change individuals and communities lives. I have experience healing patients of all ages and kinds of operations, and I am committed to creating a positive and inclusive healthy environment. Please find attached my resume for your review. Thank you for considering my application. I look forward to the opportunity to contribute to your organization and make a positive difference through Medication. I am excited about the potential to collaborate and support your mission.
-          
-          Warm regards,
-          John Doe
-          287908810
-          john.brown@gmail.com"
+          defaultValue="I hope this message finds you well. My name is Paul, and I am a  am a board-certified Psychiatrist interested in offering my medical services to support your commendable initiatives.
+          I am reaching out to express my genuine interest in volunteering with your organization to provide medical assistance to those in need. As a doctor committed to making a positive impact in the community, I am eager to contribute my skills and expertise towards the valuable work that your organization undertakes. Could you please provide me with more information about the medical services needed and the specific ways in which I can assist? I am open to participating in health clinics, providing telemedicine consultations, conducting health education workshops, or any other activities that align with your organization's mission and goals.
+          I am fully committed to offering my services pro bono (free of charge) as a volunteer to support your organization's efforts in promoting health and well-being within the community.
+          Please let me know how I can best contribute and how we can proceed further. I am looking forward to the opportunity to collaborate with your team and make a meaningful difference in the lives of individuals in need.
+          Thank you for considering my offer, and I eagerly await your response.
+          Best regards,
+          Dr. Paul"
         />
       </label>
         <div className="button-container">

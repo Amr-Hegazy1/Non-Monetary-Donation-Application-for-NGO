@@ -1,71 +1,104 @@
-import { useForm } from "react-cool-form";
-import { Button, message } from 'antd';
+import React, { useState } from 'react';
+import { Avatar, List, Button, message } from 'antd';
+import { Flex } from 'antd';
+import { Divider } from 'antd';
 import { saveAs } from 'file-saver';
-import { useState } from 'react';
-import "./styles.scss";
+import MapComponent from './MapComponent';
 
-const Field = ({ label, id, ...rest }) => (
-  <div className="div">
-    <label className="label" htmlFor={id}>{label}</label>
-    <input className="input" id={id} {...rest} readOnly disabled/>
-  </div>
-);
 
-function OrganizationDetails() {
-  const { form } = useForm({
-      defaultValues: {
-      firstName: "Kevin",
-      lastName: "Phillips",
-      gender: "Male",
-      email: "ak.64@gmail.com",
-      contactNumber: "+201234567890",
-      organizationName: "My Organization",
-      organizationType: "Educational",
-      organizationAddress: "1234 Elm St",
-      area: "Springfield",
-      governorate: "IL",
-    },
-    onSubmit: (values) => alert(JSON.stringify(values, undefined, 2)),
-  });
+const data = [
+  {
+    title: `Kevin Phillips`,
+    avatar: `https://api.dicebear.com/7.x/miniavs/svg?seed=1`,
+    description: 'Male',
+    content: (
+      <ul style={{ fontFamily: 'Arial, sans-serif', fontSize: '20px', color: '#333', lineHeight: '1.6', marginLeft: '35px', listStyleType: 'disc' }}>
+        <li><p style={{ fontWeight: 'bold' }}>Email:</p>ak.64@gmail.com</li>
+        <p></p>
+        <li><p style={{ fontWeight: 'bold' }}>Contact Number:</p>+201234567890</li>
+        <p></p>
+        <li><p style={{ fontWeight: 'bold' }}>Organization Name:</p>My Organization</li>
+        <p></p>
+        <li><p style={{ fontWeight: 'bold' }}>Organization Type:</p>Educational</li>
+        <p></p>
+        <li><p style={{ fontWeight: 'bold' }}>Organization Address:</p>1234 Elm St</li>
+        <p></p>
+        <li><p style={{ fontWeight: 'bold' }}>Area:</p>Springfield</li>
+        <p></p>
+        <li><p style={{ fontWeight: 'bold' }}>Governorate:</p>IL</li>
+      </ul>
+    
+    ),
+    
+  },
+];
 
+const OrganizationDetails = () => {
   const [pdfUrl, setPdfUrl] = useState(process.env.PUBLIC_URL + '/dummy.pdf'); // Example PDF URL
 
   const handleAccept = () => {
     // Confirm accept action
     message.success('User accepted');
   };
-
   const handleReject = () => {
     // Confirm reject action
     message.error('User rejected');
   };
-
   const handleDownload = () => {
     // Trigger file download when the button is clicked
     saveAs(pdfUrl, 'organization_document.pdf');
   };
+  return(
 
-  return (
-    <div>
-      <h1 style={{ textAlign: 'center' }}>Organization Details</h1>
-      <form ref={form} className="form">
-        <Field label="First Name" id="first-name" name="firstName" />
-        <Field label="Last Name" id="last-name" name="lastName" />
-        <Field label="Gender" id="gender" name="gender" />
-        <Field label="Email" id="email" name="email" />
-        <Field label="Contact Number" id="contact-number" name="contactNumber" />
-        <Field label="Organization Name" id="organization-name" name="organizationName" />
-        <Field label="Organization Type" id="organization-type" name="organizationType" />
-        <Field label="Organization Address" id="organization-address" name="organizationAddress" />
-        <Field label="Area" id="area" name="area" />
-        <Field label="Governorate" id="governorate" name="governorate" />
-        <div className="div" style={{ display: 'flex', justifyContent: 'center', gap: '10px' , marginTop: '20px'}}>
-          <Button type="primary" onClick={handleAccept}>Accept</Button>
-          <Button type="primary" onClick={handleReject}>Reject</Button>
-          <Button type="primary" onClick={handleDownload}>Download</Button>
+    <>
+    <List
+      itemLayout="vertical"
+      size="large"
+      marginCentre= '35px'
+      pagination={{
+        onChange: (page) => {
+          console.log(page);
+        },
+        pageSize: 3,
+      }}
+      dataSource={data}
+      footer={
+        <div style={{ 
+          fontSize: '20px', 
+          fontFamily: 'Arial, sans-serif', 
+          color: '#666', 
+          marginRight: '35px', 
+          textAlign: 'right' 
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}></div>
         </div>
-      </form>
-    </div>
-  );
-}
+      }      
+      renderItem={(item) => (
+        <>
+        <MapComponent style={{height: '500px', width: '500px', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }} />
+          <List.Item
+            key={item.title}
+          >
+
+            <List.Item.Meta
+              avatar={<Avatar src={item.avatar} style={{ size: 800 }} />}
+              title={<a href={item.href} style={{ fontFamily: 'Arial, sans-serif', fontSize: '28px', color: '#620b37', fontWeight: 'bold', textDecoration: 'none' }}>{item.title}</a>}
+              description={<span style={{ fontSize: '20px', fontFamily: 'Arial, sans-serif', color: '#666', fontStyle: 'italic' }}>{item.description}</span>} />
+            <Divider />
+            {<span style={{ fontSize: '24px', fontFamily: 'Times New Roman, sans-serif', color: '#333', lineHeight: '1.6' }}>{item.content}</span>}
+          </List.Item>
+          <Flex gap="small" wrap="wrap" style={{ justifyContent: 'flex-start', marginLeft: '20px', marginTop: '20px' }} />
+             <div style={{ display: 'flex', justifyContent: 'center', gap: '10px' , marginTop: '20px'}}>
+            <Button type="primary" onClick={handleAccept} style={{ width: '120px', backgroundColor: '#620b37', borderColor: '#620b37' }}>Accept</Button>
+            <Button type="primary" onClick={handleReject} style={{ width: '120px', backgroundColor: '#620b37', borderColor: '#620b37' }}>Reject</Button>
+            <Button type="primary" onClick={handleDownload} style={{ width: '120px', backgroundColor: '#620b37', borderColor: '#620b37' }}>Download</Button>
+          </div>
+        </>
+      )}
+    />
+  </>
+);
+  
+  };
+  
 export default OrganizationDetails;

@@ -58,6 +58,7 @@ import RequestInfoDoctor from './components/RequestInfoDoctor';
 import RegisteredDoctors from './components/RegisteredDoctors';
 import RegisteredTeachers from './components/RegisteredTeachers';
 import TeacherDetails from './components/TeacherDetails';
+import DoctorDetails from './components/DoctorDetails';
 
 
 
@@ -95,27 +96,27 @@ root.render(
             <Routes>
               <Route index element={<Homepage/>} />
               <Route path="/donateClothes" element={<DetailsOfClothesToBeDonated/>} />
-              <Route path="/view-teacher-request-info" element={<RequestInfoTeacher/>} />
+              <Route path="/view-teacher-registered-info" element={<TeacherDetails/>} />
               <Route path="/view-org-request-info" element={<OrganizationRequestInfo/>} />
               <Route path="/view-org-submission-info" element={<OrganizationDetails/>} />
-              <Route path="/view-doctor-submission-info" element={<UserDetails/>} />
-              <Route path="/view-teacher-submission-info" element={<TeacherDetails/>} />
+              <Route path="/view-doctor-submission-info" element={<DoctorDetails/>} />
+              <Route path='/view-teacher-submission-info' element={<TeacherDetails/>} />
               <Route path="/view-org-registered-info" element={<OrganizationDetails/>} />
-              <Route path="/view-donor-registered-info" element={<UserDetails/>} />
+              <Route path='view-doctor-registered-info' element={<DoctorDetails/>} />
               <Route path="/login" element={<Login/>} />
               <Route path="/AdminHome" element={<AdminHome/>} />
               <Route path="/ChangePassword" element={<PasswordManagement/>} />
               <Route path="/Verify" element={<VerifyCodePage/>} />   
-             <Route path = "/RequestClothes" element={<RequestClothes/>} />
-             <Route path = "/RequestBooks" element={<RequestBooks/>} />
-             <Route path = "/RequestFood" element={<RequestFood/>} />
-             <Route path = "/RequestMedicalSupplies" element={<RequestMedicalSupplies/>} />
-             <Route path = "/RequestStationary" element={<RequestStationary/>} />
-             <Route path = "/RequestToys" element={<RequestToys/>} />
-             <Route path = "/RequestBloodDonations" element={<RequestBloodDonations/>} />
-             <Route path = "/RequestTeaching" element={<RequestTeaching/>} />
-             <Route path = "/RequestMedicalCases" element={<RequestMedicalCases/>} />
-             <Route path = "/ViewDonationRequests" element={<ViewDonationRequests/>}/>
+              <Route path = "/RequestClothes" element={<RequestClothes/>} />
+              <Route path = "/RequestBooks" element={<RequestBooks/>} />
+              <Route path = "/RequestFood" element={<RequestFood/>} />
+              <Route path = "/RequestMedicalSupplies" element={<RequestMedicalSupplies/>} />
+              <Route path = "/RequestStationary" element={<RequestStationary/>} />
+              <Route path = "/RequestToys" element={<RequestToys/>} />
+              <Route path = "/RequestBloodDonations" element={<RequestBloodDonations/>} />
+              <Route path = "/RequestTeaching" element={<RequestTeaching/>} />
+              <Route path = "/RequestMedicalCases" element={<RequestMedicalCases/>} />
+              <Route path = "/ViewDonationRequests" element={<ViewDonationRequests/>}/>
               <Route path="/donateMedicalSupplies" element={<DetailsOfMedicalSuppToBeDonated/>} />
               <Route path="/donateToys" element={<DetailsOfToysToBeDonated/>} />
               <Route path="/donateBooks" element={<DetailsOfBooksToBeDonated/>} />
@@ -131,7 +132,11 @@ root.render(
               <Route path="/delieveyPersonDashboard" element={<Dashboard />} />
               <Route path="/view-doctor-registered-info" element={<RequestInfoDoctor />}/>
               <Route path='/view-doctor-request-info' element={<RequestInfoDoctor />} />
-              <Route path='/view-teacher-request-info' element={<RequestInfoTeacher />} />              <Route path="/deliveryDonationDetails" element={<DeliveryDonationDetails />} />
+              <Route path='/view-teacher-request-info' element={<RequestInfoTeacher />} />             
+             <Route path="/deliveryDonationDetails" element={<DeliveryDonationDetails />} />
+             <Route path= '/homePage' element={<Homepage />} />
+
+         
 
 
             </Routes>

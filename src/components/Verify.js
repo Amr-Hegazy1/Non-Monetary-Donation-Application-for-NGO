@@ -128,6 +128,7 @@ export default function VerifyCodePage() {
     doSubmit(inputValues)
       .then(() => {
         message.success('Verification code is correct.');
+        window.location.href = "/ChangePassword";
         dispatch({ type: "VERIFY_SUCCESS" });
       })
       .catch((error) => {
