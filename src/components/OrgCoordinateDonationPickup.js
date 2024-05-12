@@ -15,7 +15,7 @@ const App = () => {
   };
 
   const handleSubmit = () => {
-    if (selectedDateTime) {
+    if (!error) {
       console.log('Submitted:', selectedDateTime.format(`${dateFormat} ${timeFormat}`));
       message.success('Details submitted');
 

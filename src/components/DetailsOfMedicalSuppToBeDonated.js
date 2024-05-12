@@ -55,7 +55,7 @@ const defaultTheme = createTheme();
 export default function DetailsOfMedicalSuppToBeDonated() {
 
   const handleSubmit = () => {
-    if (selectedDateTime) {
+    if (!error) {
       console.log('Submitted');
       message.success('Details submitted');
 

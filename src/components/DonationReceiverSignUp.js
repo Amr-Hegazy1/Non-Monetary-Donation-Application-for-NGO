@@ -120,7 +120,7 @@ export default function DonationReceiverSignUp() {
 
 
   const handleSubmit = () => {
-    if (selectedDateTime) {
+    if (!error) {
       console.log('Submitted');
       message.success('Submitted');
 
