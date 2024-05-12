@@ -54,7 +54,7 @@ const defaultTheme = createTheme();
 export default function DetailsOfStationaryToBeDonated() {
 
   const handleSubmit = () => {
-    if (selectedDateTime) {
+    if (!error) {
       console.log('Submitted');
       message.success('Details submitted');
 
