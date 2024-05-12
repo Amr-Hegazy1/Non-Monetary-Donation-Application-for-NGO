@@ -15,6 +15,7 @@ import { Sort } from '@mui/icons-material';
 import { Select, Space } from 'antd';
 import Container from '@mui/material/Container';
 import NavBar from './NavBar';
+import { useSearchParams } from 'react-router-dom';
 
 const donationRequests = [
   { RequestNo: 1, OrganizationName: "Sunshine Foundation", Category: "Food", Item: "Fresh meals", name: "Chicken and rice", Area: "Smooha", Governorate: "Alexandria" },
@@ -520,6 +521,14 @@ function ViewDonationRequest() {
     });
   };
 
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  useEffect(() => {
+    if (searchParams.has('category')) {
+      let category = searchParams.get('category').split('_').join(' ');
+      setCategoryFilter(category);
+    }
+  }, [searchParams]);
 
   useEffect(() => {
     if (filteredDonationRequests.length > 0) {
@@ -563,7 +572,7 @@ function ViewDonationRequest() {
   return (
     <>
       <NavBar />
-      <AppBar position="static" sx={{ backgroundColor: '#620b37', height: '100%', width: '100%'}}>
+      <AppBar position="static" sx={{ backgroundColor: '#620b37', height: '100%', width: '100%' }}>
 
 
         <Box sx={{ flexGrow: 1 }}>
@@ -581,8 +590,8 @@ function ViewDonationRequest() {
               />
             </Search>
             <>
-              <Space wrap>
-                <Select defaultValue="All Categories" onChange={handleCategoryChange} onMouseEnter={handleCategoryMouseEnter} onMouseLeave={handleCategoryMouseLeave} style={{ color: Categoryhovered ? COLORS.white : COLORS.black, backgroundColor: Categoryhovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
+              <>
+                <Select value={categoryFilter} onChange={handleCategoryChange} onMouseEnter={handleCategoryMouseEnter} onMouseLeave={handleCategoryMouseLeave} style={{ color: Categoryhovered ? COLORS.white : COLORS.black, backgroundColor: Categoryhovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold', width: "15%" }}>
                   {[
                     { value: '', label: 'All Categories' },
                     { value: 'Food', label: 'Food' },
@@ -599,7 +608,7 @@ function ViewDonationRequest() {
                   ))}
                 </Select>
 
-                <Select defaultValue="All Areas" onChange={handleAreaChange} onMouseEnter={handleAreaMouseEnter} onMouseLeave={handleAreaMouseLeave} style={{ color: AreaHovered ? COLORS.white : COLORS.black, backgroundColor: AreaHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
+                <Select value={areaFilter} onChange={handleAreaChange} onMouseEnter={handleAreaMouseEnter} onMouseLeave={handleAreaMouseLeave} style={{ color: AreaHovered ? COLORS.white : COLORS.black, backgroundColor: AreaHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold', width: "15%" }}>
                   {[
                     { value: '', label: 'All Areas' },
                     { value: 'Smooha', label: 'Smooha' },
@@ -612,7 +621,7 @@ function ViewDonationRequest() {
                   ))}
                 </Select>
 
-                <Select value={govFilter} onChange={handleGovChange} onMouseEnter={handleGovernorateMouseEnter} onMouseLeave={handleGovernorateMouseLeave} style={{ color: GovernorateHovered ? COLORS.white : COLORS.black, backgroundColor: GovernorateHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
+                <Select value={govFilter} onChange={handleGovChange} onMouseEnter={handleGovernorateMouseEnter} onMouseLeave={handleGovernorateMouseLeave} style={{ color: GovernorateHovered ? COLORS.white : COLORS.black, backgroundColor: GovernorateHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold', width: "15%" }}>
                   {[
                     { value: '', label: 'All Governorates' },
                     { value: 'Cairo', label: 'Cairo' },
@@ -625,7 +634,7 @@ function ViewDonationRequest() {
 
                 {categoryFilter === 'Clothes' && (
                   <>
-                    <Select value={genderFilter} onChange={(value) => setGenderFilter(value)} onMouseEnter={handleGenderMouseEnter} onMouseLeave={handleGenderMouseLeave} style={{ color: GenderHovered ? COLORS.white : COLORS.black, backgroundColor: GenderHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
+                    <Select value={genderFilter} onChange={(value) => setGenderFilter(value)} onMouseEnter={handleGenderMouseEnter} onMouseLeave={handleGenderMouseLeave} style={{ color: GenderHovered ? COLORS.white : COLORS.black, backgroundColor: GenderHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold', width: "15%" }}>
                       {[
                         { value: '', label: 'All Genders' },
                         { value: 'Male', label: 'Male' },
@@ -635,7 +644,7 @@ function ViewDonationRequest() {
                       ))}
                     </Select>
 
-                    <Select value={sizeFilter} onChange={(value) => setSizeFilter(value)} onMouseEnter={handleSizeMouseEnter} onMouseLeave={handleSizeMouseLeave} style={{ color: SizeHovered ? COLORS.white : COLORS.black, backgroundColor: SizeHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
+                    <Select value={sizeFilter} onChange={(value) => setSizeFilter(value)} onMouseEnter={handleSizeMouseEnter} onMouseLeave={handleSizeMouseLeave} style={{ color: SizeHovered ? COLORS.white : COLORS.black, backgroundColor: SizeHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold', width: "15%" }}>
                       {[
                         { value: '', label: 'All sizes' },
                         { value: 'small', label: 'small' },
@@ -646,7 +655,7 @@ function ViewDonationRequest() {
                       ))}
                     </Select>
 
-                    <Select value={seasonFilter} onChange={(value) => setSeasonFilter(value)} onMouseEnter={handleSeasonMouseEnter} onMouseLeave={handleSeasonMouseLeave} style={{ color: SeasonHovered ? COLORS.white : COLORS.black, backgroundColor: SeasonHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
+                    <Select value={seasonFilter} onChange={(value) => setSeasonFilter(value)} onMouseEnter={handleSeasonMouseEnter} onMouseLeave={handleSeasonMouseLeave} style={{ color: SeasonHovered ? COLORS.white : COLORS.black, backgroundColor: SeasonHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold', width: "15%" }}>
                       {[
                         { value: '', label: 'All seasons' },
                         { value: 'Summer', label: 'Summer' },
@@ -662,7 +671,7 @@ function ViewDonationRequest() {
 
 
                 {categoryFilter === 'School Supplies' && (
-                  <Select value={supplyFilter} onChange={(value) => setSupplyFilter(value)} onMouseEnter={handleSupplyMouseEnter} onMouseLeave={handleSupplyMouseLeave} style={{ color: SupplyHovered ? COLORS.white : COLORS.black, backgroundColor: SupplyHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
+                  <Select value={supplyFilter} onChange={(value) => setSupplyFilter(value)} onMouseEnter={handleSupplyMouseEnter} onMouseLeave={handleSupplyMouseLeave} style={{ color: SupplyHovered ? COLORS.white : COLORS.black, backgroundColor: SupplyHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold', width: "15%" }}>
                     {[
                       { value: '', label: 'All Supplies' },
                       { value: 'Books', label: 'Books' },
@@ -675,7 +684,7 @@ function ViewDonationRequest() {
 
                 {categoryFilter === 'Toys' && (
                   <>
-                    <Select value={toysFilter} onChange={(value) => setToysFilter(value)} onMouseEnter={handleToyGenderMouseEnter} onMouseLeave={handleToyGenderMouseLeave} style={{ color: ToyGenderHovered ? COLORS.white : COLORS.black, backgroundColor: ToyGenderHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
+                    <Select value={toysFilter} onChange={(value) => setToysFilter(value)} onMouseEnter={handleToyGenderMouseEnter} onMouseLeave={handleToyGenderMouseLeave} style={{ color: ToyGenderHovered ? COLORS.white : COLORS.black, backgroundColor: ToyGenderHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold', width: "15%" }}>
                       {[
                         { value: '', label: 'All Genders' },
                         { value: 'Male', label: 'Male' },
@@ -685,7 +694,7 @@ function ViewDonationRequest() {
                       ))}
                     </Select>
 
-                    <Select value={typeFilter} onChange={(value) => setTypeFilter(value)} onMouseEnter={handleTypeMouseEnter} onMouseLeave={handleTypeMouseLeave} style={{ color: TypeHovered ? COLORS.white : COLORS.black, backgroundColor: TypeHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
+                    <Select value={typeFilter} onChange={(value) => setTypeFilter(value)} onMouseEnter={handleTypeMouseEnter} onMouseLeave={handleTypeMouseLeave} style={{ color: TypeHovered ? COLORS.white : COLORS.black, backgroundColor: TypeHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold', width: "15%" }}>
                       {[
                         { value: '', label: 'All Toy Categories' },
                         { value: 'Board Games', label: 'Board Games' },
@@ -703,7 +712,7 @@ function ViewDonationRequest() {
 
 
                 {categoryFilter === 'Food' && (
-                  <Select value={itemFilter} onChange={(value) => setItemFilter(value)} onMouseEnter={handleItemMouseEnter} onMouseLeave={handleItemMouseLeave} style={{ color: ItemHovered ? COLORS.white : COLORS.black, backgroundColor: ItemHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
+                  <Select value={itemFilter} onChange={(value) => setItemFilter(value)} onMouseEnter={handleItemMouseEnter} onMouseLeave={handleItemMouseLeave} style={{ color: ItemHovered ? COLORS.white : COLORS.black, backgroundColor: ItemHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold', width: "15%" }}>
                     {[
                       { value: '', label: 'All Items' },
                       { value: 'Fresh meals', label: 'Fresh meals' },
@@ -717,22 +726,45 @@ function ViewDonationRequest() {
                 )}
 
                 {categoryFilter === 'Medical Supplies' && (
-                  <Select defaultValue="All Medical Types" onChange={(value) => setMedicalTypeFilter(value)} onMouseEnter={handleMedicalTypeMouseEnter} onMouseLeave={handleMedicalTypeMouseLeave} style={{ color: MedicalTypeHovered ? COLORS.white : COLORS.black, backgroundColor: MedicalTypeHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
-                    {[
-                      { value: '', label: 'All Types' },
-                      { value: 'Medical Device', label: 'Medical Device' },
-                      { value: 'Medical Equipment', label: 'Medical Equipment' },
-                      { value: 'Medication', label: 'Medication' }
-                    ].map(option => (
-                      <option value={option.value}>{option.label}</option>
-                    ))}
-                  </Select>
+                  <>
+                    <Select value={medicalTypeFilter} onChange={(value) => setMedicalTypeFilter(value)} onMouseEnter={handleMedicalTypeMouseEnter} onMouseLeave={handleMedicalTypeMouseLeave} style={{ color: MedicalTypeHovered ? COLORS.white : COLORS.black, backgroundColor: MedicalTypeHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold', width: "15%" }}>
+                      {[
+                        { value: '', label: 'All Types' },
+                        { value: 'Medical Device', label: 'Medical Device' },
+                        { value: 'Medical Equipment', label: 'Medical Equipment' },
+                        { value: 'Medication', label: 'Medication' }
+                      ].map(option => (
+                        <option value={option.value}>{option.label}</option>
+                      ))}
+                    </Select>
+                    {(medicalTypeFilter === 'Medication') && (
+                      <Select
+                        
+                        value={medicalUseFilter}
+                        onChange={(value) => setMedicalUseFilter(value)}
+                        onMouseEnter={handleMedicalUseMouseEnter}
+                        onMouseLeave={handleMedicalUseMouseLeave}
+                        style={{
+                          color: MedicalUseHovered ? COLORS.white : COLORS.black,
+                          backgroundColor: MedicalUseHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white,
+                          fontWeight: 'bold',
+                          width: "15%"
+                          
+                        }}
+                      >
+                        <option value="">All Medical Uses</option>
+                        <option value="Headache">Headache</option>
+                        <option value="Fever">Fever</option>
+                        
+                      </Select>
+                    )}
+                  </>
                 )}
 
 
                 {categoryFilter === 'Blood Donations' && (
                   <>
-                    <Select defaultValue="All Hospitals" onChange={(value) => setHospitalNameFilter(value)} onMouseEnter={handleHospitalNameMouseEnter} onMouseLeave={handleHospitalNameMouseLeave} style={{ color: HospitalNameHovered ? COLORS.white : COLORS.black, backgroundColor: HospitalNameHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
+                    <Select defaultValue="All Hospitals" onChange={(value) => setHospitalNameFilter(value)} onMouseEnter={handleHospitalNameMouseEnter} onMouseLeave={handleHospitalNameMouseLeave} style={{ color: HospitalNameHovered ? COLORS.white : COLORS.black, backgroundColor: HospitalNameHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold', width: "15%" }}>
                       {[
                         { value: '', label: 'All Hospitals' },
                         { value: 'Queen', label: 'Queen' },
@@ -742,7 +774,7 @@ function ViewDonationRequest() {
                       ))}
                     </Select>
 
-                    <Select defaultValue="All Blood Types" onChange={(value) => setBloodTypeFilter(value)} onMouseEnter={handleBloodTypeMouseEnter} onMouseLeave={handleBloodTypeMouseLeave} style={{ color: BloodTypeHovered ? COLORS.white : COLORS.black, backgroundColor: BloodTypeHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
+                    <Select defaultValue="All Blood Types" onChange={(value) => setBloodTypeFilter(value)} onMouseEnter={handleBloodTypeMouseEnter} onMouseLeave={handleBloodTypeMouseLeave} style={{ color: BloodTypeHovered ? COLORS.white : COLORS.black, backgroundColor: BloodTypeHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold', width: "15%" }}>
                       {[
                         { value: '', label: 'All Blood Types' },
                         { value: 'AB Positive', label: 'AB Positive' },
@@ -758,7 +790,7 @@ function ViewDonationRequest() {
                       ))}
                     </Select>
 
-                    <Select defaultValue="All Urgencies" onChange={(value) => setUrgencyFilter(value)} onMouseEnter={handleUrgencyMouseEnter} onMouseLeave={handleUrgencyMouseLeave} style={{ color: UrgencyHovered ? COLORS.white : COLORS.black, backgroundColor: UrgencyHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
+                    <Select defaultValue="All Urgencies" onChange={(value) => setUrgencyFilter(value)} onMouseEnter={handleUrgencyMouseEnter} onMouseLeave={handleUrgencyMouseLeave} style={{ color: UrgencyHovered ? COLORS.white : COLORS.black, backgroundColor: UrgencyHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold', width: "15%" }}>
                       {[
                         { value: '', label: 'All Urgencies' },
                         { value: '1', label: 'Least Urgent' },
@@ -777,7 +809,7 @@ function ViewDonationRequest() {
 
                 {categoryFilter === 'Medical Cases' && (
                   <>
-                    <Select defaultValue="All Specialties" onChange={(value) => setSpecialtyFilter(value)} onMouseEnter={handleSpecialtyMouseEnter} onMouseLeave={handleSpecialtyMouseLeave} style={{ color: SpecialtyHovered ? COLORS.white : COLORS.black, backgroundColor: SpecialtyHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
+                    <Select defaultValue="All Specialties" onChange={(value) => setSpecialtyFilter(value)} onMouseEnter={handleSpecialtyMouseEnter} onMouseLeave={handleSpecialtyMouseLeave} style={{ color: SpecialtyHovered ? COLORS.white : COLORS.black, backgroundColor: SpecialtyHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold', width: "15%" }}>
                       {[
                         { value: '', label: 'All Specialties' },
                         { value: 'Dermatologist', label: 'Dermatologist' },
@@ -787,7 +819,7 @@ function ViewDonationRequest() {
                       ))}
                     </Select>
 
-                    <Select defaultValue="All Organizations" onChange={(value) => setOrganizationNameFilter(value)} onMouseEnter={handleOrganizationNameMouseEnter} onMouseLeave={handleOrganizationNameMouseLeave} style={{ color: OrganizationNameHovered ? COLORS.white : COLORS.black, backgroundColor: OrganizationNameHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
+                    <Select defaultValue="All Organizations" onChange={(value) => setOrganizationNameFilter(value)} onMouseEnter={handleOrganizationNameMouseEnter} onMouseLeave={handleOrganizationNameMouseLeave} style={{ color: OrganizationNameHovered ? COLORS.white : COLORS.black, backgroundColor: OrganizationNameHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold', width: "15%" }}>
                       {[
                         { value: '', label: 'All Organizations' },
                         { value: 'Health Harmony Initiative', label: 'Health Harmony Initiative' },
@@ -800,7 +832,7 @@ function ViewDonationRequest() {
                 )}
 
                 {categoryFilter === 'Teaching' && (
-                  <Select defaultValue="All Subjects" onChange={(value) => setSubjectFilter(value)} onMouseEnter={handleSubjectMouseEnter} onMouseLeave={handleSubjectMouseLeave} style={{ color: SubjectHovered ? COLORS.white : COLORS.black, backgroundColor: SubjectHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
+                  <Select defaultValue="All Subjects" onChange={(value) => setSubjectFilter(value)} onMouseEnter={handleSubjectMouseEnter} onMouseLeave={handleSubjectMouseLeave} style={{ color: SubjectHovered ? COLORS.white : COLORS.black, backgroundColor: SubjectHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold', width: "15%" }}>
                     {[
                       { value: '', label: 'All Subjects' },
                       { value: 'Math', label: 'Math' },
@@ -815,7 +847,7 @@ function ViewDonationRequest() {
                 )}
 
                 {categoryFilter === 'Clothes' && (
-                  <Select defaultValue="All Ages" onChange={(value) => setClothesAgeFilter(value)} onMouseEnter={handleClothesAgeMouseEnter} onMouseLeave={handleClothesAgeMouseLeave} style={{ color: ClothesAgeHovered ? COLORS.white : COLORS.black, backgroundColor: ClothesAgeHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
+                  <Select defaultValue="All Ages" onChange={(value) => setClothesAgeFilter(value)} onMouseEnter={handleClothesAgeMouseEnter} onMouseLeave={handleClothesAgeMouseLeave} style={{ color: ClothesAgeHovered ? COLORS.white : COLORS.black, backgroundColor: ClothesAgeHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold', width: "15%" }}>
                     {[
                       { value: '', label: 'All Ages' },
                       { value: '17', label: 'From 13-17' },
@@ -828,7 +860,7 @@ function ViewDonationRequest() {
 
 
                 {categoryFilter === 'Toys' && (
-                  <Select defaultValue="All Ages" onChange={(value) => setToysAgeFilter(value)} onMouseEnter={handleToysAgeMouseEnter} onMouseLeave={handleToysAgeMouseLeave} style={{ color: ToysAgeHovered ? COLORS.white : COLORS.black, backgroundColor: ToysAgeHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
+                  <Select defaultValue="All Ages" onChange={(value) => setToysAgeFilter(value)} onMouseEnter={handleToysAgeMouseEnter} onMouseLeave={handleToysAgeMouseLeave} style={{ color: ToysAgeHovered ? COLORS.white : COLORS.black, backgroundColor: ToysAgeHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold', width: "15%" }}>
                     {[
                       { value: '', label: 'All Ages' },
                       { value: '5', label: 'From 0-7' },
@@ -840,7 +872,7 @@ function ViewDonationRequest() {
                 )}
 
                 {categoryFilter === 'Places of Worship' && (
-                  <Select defaultValue="All Religions" onChange={(value) => setReligionFilter(value)} onMouseEnter={handleReligionMouseEnter} onMouseLeave={handleReligionMouseLeave} style={{ color: ReligionHovered ? COLORS.white : COLORS.black, backgroundColor: ReligionHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold' }}>
+                  <Select defaultValue="All Religions" onChange={(value) => setReligionFilter(value)} onMouseEnter={handleReligionMouseEnter} onMouseLeave={handleReligionMouseLeave} style={{ color: ReligionHovered ? COLORS.white : COLORS.black, backgroundColor: ReligionHovered ? 'rgba(98, 11, 55, 0.4)' : COLORS.white, fontWeight: 'bold', width: "15%" }}>
                     {[
                       { value: '', label: 'All Religions' },
                       { value: 'Christianity', label: 'Christianity' },
@@ -850,7 +882,7 @@ function ViewDonationRequest() {
                     ))}
                   </Select>
                 )}
-              </Space>
+              </>
 
             </>
 

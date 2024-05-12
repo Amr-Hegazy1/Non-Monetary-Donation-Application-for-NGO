@@ -24,6 +24,7 @@ import { InboxOutlined } from '@ant-design/icons';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import 'animate.css';
+import { useState } from 'react'; 
 
 
 
@@ -53,9 +54,37 @@ const defaultTheme = createTheme();
 
 export default function DetailsOfStationaryToBeDonated() {
 
-  const handleSubmit = () => {
-    console.log('Form submitted');
-    message.success('Details submitted');
+  const [type, setType] = React.useState('');
+    const [quantity, setQuantity] = React.useState('');
+    const [area, setArea] = React.useState('');
+    const [governorate, setGovernorate] = React.useState('');
+
+
+
+
+    const success = () => {
+        message
+          .loading('Sending details to admin..', 1.5)
+          .then(() => {
+            message.success('Details sent to Admin!', 1.5).then(() => {
+                window.location.href = '/';
+            });
+          })
+      };
+      
+  
+    const handleSubmit = (event) => {
+      event.preventDefault();
+
+      
+      if (!type ) {
+        message.error('Please specify item.');
+      } else if(!quantity) {
+        message.error('Please enter quantity.');
+      }
+      else{
+       success();
+      }
   };
 
 
@@ -80,12 +109,13 @@ export default function DetailsOfStationaryToBeDonated() {
                     margin="normal"
                     required
                     fullWidth
-                    
+                    value={type}
+                    onChange={(event) =>setType(event.target.value)}
                     label="Type"
                     autoFocus
                     />
             <Grid item>
-            <br/>
+            
                 <FormControl fullWidth required>
                     <TextField
                     margin="normal"
@@ -94,6 +124,9 @@ export default function DetailsOfStationaryToBeDonated() {
                     label="Quantity"
                     autoFocus
                     type='number'
+                    value={quantity}
+                    onChange={(event)=>setQuantity(event.target.value)}
+                    
                     
                     />
                 </FormControl>

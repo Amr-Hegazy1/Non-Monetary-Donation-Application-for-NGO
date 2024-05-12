@@ -25,6 +25,8 @@ import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import 'animate.css';
 import RequestBlood from './RequestBlood.png'
+import NavBar from './NavBar';
+import { Select, MenuItem } from '@mui/material';
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -58,7 +60,12 @@ function Copyright(props) {
     const success = () => {
         message
           .loading('Sending request to admin..', 1.5)
-          .then(() => message.success('Request sent to Admin, wait for approval :)', 2.5))
+          .then(() => {
+            message.success('Request sent to Admin, wait for approval :)', 1.5).then(() => {
+              window.location.href = '/';
+            
+            });
+          })
       };
       
       const handleUrgencyChange = (event) => {
@@ -75,11 +82,24 @@ function Copyright(props) {
   
     const handleSubmit = (event) => {
       event.preventDefault();
-      if (!bloodType || !area || !governorate || !hospital || !urgency ) {
-        message.error('Please fill in all fields.');
-      } else {
+      if (!bloodType ) {
+        message.error('Please enter blood type.');
+      } else if(!area) {
+        message.error('Please enter area.');
+      }
+      else if(!governorate) {
+        message.error('Please enter governorate.');
+      }
+      else if(!hospital) {
+        message.error('Please enter hospital.');
+      }
+      else if(!urgency) {
+        message.error('Please specify urgency.');
+      }
+      else {
        success();
       }
+           
     };
 
  
@@ -87,7 +107,8 @@ function Copyright(props) {
     return(
                  
         
-        
+      <>
+      <NavBar/>
         <Container component="main" maxWidth="xs">
           <CssBaseline />
           <Box
@@ -126,7 +147,6 @@ function Copyright(props) {
                     fullWidth
                     
                     label="Area"
-                    autoFocus
                     value={area}
                     onChange={(event)=>setArea(event.target.value)}
                     />
@@ -138,7 +158,6 @@ function Copyright(props) {
                     fullWidth
                     
                     label="Hospital"
-                    autoFocus
                     value={hospital}
                     onChange={(event)=>setHospital(event.target.value)}
                     />
@@ -149,7 +168,6 @@ function Copyright(props) {
               required
               fullWidth
               label="Governorate"
-              autoFocus
               value={governorate}
               onChange={(event)=>setGovernorate(event.target.value)}
               
@@ -160,31 +178,30 @@ function Copyright(props) {
               required
               fullWidth
               label="Urgency, 1 being lowest and 5 highest"
-              autoFocus
               type='number'
               value={urgency}
               onChange={handleUrgencyChange}  />
              </FormControl>
 
-            <FormControl>
-              <FormLabel id="demo-row-radio-buttons-group-label">Blood Type</FormLabel>
-              <RadioGroup
-                row
-                aria-labelledby="demo-row-radio-buttons-group-label"
-                name="row-radio-buttons-group"
-                value={bloodType}
-                onChange={(event) => setBloodType(event.target.value)}
-              >
-                <FormControlLabel value="AB positive" control={<Radio />} label="AB positive" />
-                <FormControlLabel value="AB negative" control={<Radio />} label="AB negative" />
-                <FormControlLabel value="B positive" control={<Radio />} label="B positive" />
-                <FormControlLabel value="B negative" control={<Radio />} label="B negative" />
-                <FormControlLabel value="A positive" control={<Radio />} label="A positive" />
-                <FormControlLabel value="A negative" control={<Radio />} label="A negative" />
-                <FormControlLabel value="O positive" control={<Radio />} label="O positive" />
-                <FormControlLabel value="O negative" control={<Radio />} label="O negative" />
+            <FormControl fullWidth>
+              <FormLabel>Blood Type</FormLabel>
+              <Select
 
-              </RadioGroup>
+                
+                value={bloodType}
+                label="Blood Type"
+                onChange={(event)=>setBloodType(event.target.value)}
+                
+              >
+                <MenuItem value={'A+'}>A+</MenuItem>
+                <MenuItem value={'A-'}>A-</MenuItem>
+                <MenuItem value={'B+'}>B+</MenuItem>
+                <MenuItem value={'B-'}>B-</MenuItem>
+                <MenuItem value={'AB+'}>AB+</MenuItem>
+                <MenuItem value={'AB-'}>AB-</MenuItem>
+                <MenuItem value={'O+'}>O+</MenuItem>
+                <MenuItem value={'O-'}>O-</MenuItem>
+              </Select>
             </FormControl>
             <Button
               type="submit"
@@ -200,6 +217,7 @@ function Copyright(props) {
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
+      </>
     
   );
 }

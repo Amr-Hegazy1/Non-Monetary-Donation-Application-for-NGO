@@ -12,11 +12,15 @@ import AdminHome from './components/AdminHomePage/AdminHome';
 import DonorSubmission from './DonorSubmission';
 import Password from 'antd/es/input/Password';
 import PasswordManagement from './PasswordManagement';
-
-import RequestInfoTeacher from './components/RequestInfoTeacher';
-import Login from './Login';
-
-import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom';
+import OrgCoordinateDonationPickup from './components/OrgCoordinateDonationPickup';
+import DetailsOfMedicalSuppToBeDonated from './components/DetailsOfMedicalSuppToBeDonated';
+import DetailsOfToysToBeDonated from './components/DetailsOfToysToBeDonated';
+import DetailsOfBooksToBeDonated from './components/DetailsOfBooksToBeDonated';
+import DetailsOfStationaryToBeDonated from './components/DetailsOfStationaryToBeDonated';
+import DetailsOfFoodToBeDonated from './components/DetailsOfFoodToBeDonated';
+import ViewDonorDetailsForFulfilledPosts from './components/ViewDonorDetailsForFulfilledPosts';
+import { CookiesProvider } from 'react-cookie';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import { HelmetProvider } from 'react-helmet-async';
 import { Suspense } from 'react';
@@ -26,7 +30,6 @@ import OrganizationRequestInfo from './components/OrganizationRequestInfo';
 import OrganizationDetails from './components/OrganizationDetails';
 import UserDetails from './components/DoctorDetails';
 import OrganizationList from './components/OrganizationList';
-import OrgCoordinateDonationPickup from './components/OrgCoordinateDonationPickup';
 import RequestClothes from './components/RequestClothes';
 import RequestBooks from './components/RequestBooks.';
 import RequestFood from './components/RequestFood';
@@ -36,17 +39,11 @@ import RequestToys from './components/RequestToys';
 import RequestBloodDonations from './components/RequestBloodDonations';
 import RequestTeaching from './components/RequestTeaching';
 import RequestMedicalCases from './components/RequestMedicalCases';
-import ViewDonationRequests from './components/ViewDonationRequests'; import Homepage from './components/Homepage';
+import ViewDonationRequests from './components/ViewDonationRequests';
+import Homepage from './components/Homepage';
 import Signup from './components/Signup';
 import FulfilledDonations from './components/FulfilledDonations';
 import SchedulePickup from './components/SchedulePickup';
-import DetailsOfMedicalSuppToBeDonated from './components/DetailsOfMedicalSuppToBeDonated';
-import DetailsOfToysToBeDonated from './components/DetailsOfToysToBeDonated';
-import DetailsOfBooksToBeDonated from './components/DetailsOfBooksToBeDonated';
-import DetailsOfStationaryToBeDonated from './components/DetailsOfStationaryToBeDonated';
-import DetailsOfFoodToBeDonated from './components/DetailsOfFoodToBeDonated';
-import ViewDonorDetailsForFulfilledPosts from './components/ViewDonorDetailsForFulfilledPosts';
-import { CookiesProvider } from 'react-cookie';
 import DonorMyDonations from './components/DonorMyDonations';
 import DonorMyDonationDetails from './components/DonorMyDonationDetails';
 import Dashboard from './components/DeliveryPerson/Dashboard';
@@ -54,11 +51,17 @@ import DeliveryDonationDetails from './components/DeliveryPerson/DeliveryDonatio
 import { ConfigProvider } from 'antd';
 import { createTheme, ThemeProvider } from '@mui/material';
 import RequestInfoDoctor from './components/RequestInfoDoctor';
-
-import RegisteredDoctors from './components/RegisteredDoctors';
-import RegisteredTeachers from './components/RegisteredTeachers';
 import TeacherDetails from './components/TeacherDetails';
 import DoctorDetails from './components/DoctorDetails';
+import ViewDetailsOfFulfilledPosts from './components/ViewDetailsOfFulfilledPosts';
+
+
+import Login from './Login';
+import RequestInfoTeacher from './components/RequestInfoTeacher';
+import DonorProfile from './components/DonorProfile';
+import OrganizationProfile from './components/OrganizationProfile';
+import AdminProfile from './components/AdminProfile';
+import DeliveryPersonProfile from './components/DeliveryPersonProfile';
 import AdminFilterOrganization from './components/AdminFilterOrganization';
 import OrganizationRegisteredDetails from './components/OrganizationRegisteredDetails';
 import DoctorRegisteredInfo from './components/DoctorRegisteredInfo';
@@ -81,12 +84,12 @@ const theme = createTheme({
 root.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-    <ConfigProvider
-    theme={{
-      token: {
-        // Seed Token
-        colorPrimary: '#620b37',
-        borderRadius: 2,
+      <ConfigProvider
+        theme={{
+          token: {
+            // Seed Token
+            colorPrimary: '#620b37',
+            borderRadius: 2,
 
         // Alias Token
         colorBgContainer: '#ffffff',
@@ -131,6 +134,10 @@ root.render(
               <Route path="/signup" element={<Signup />} />
               <Route path="/fullfilledDonations" element={<FulfilledDonations />} />
               <Route path="/schedulePickup" element={<SchedulePickup />} />
+              <Route path="/DonorProfile" element={<DonorProfile />} />
+              <Route path = "/OrganizationProfile" element={<OrganizationProfile />} />
+              <Route path = "/AdminProfile" element={<AdminProfile />} />
+              <Route path = "/DeliveryPersonProfile" element={<DeliveryPersonProfile />} />
               <Route path="/donorViewAllDonations" element={<DonorMyDonations />} />
               <Route path="/donorMyDonationDetails" element={<DonorMyDonationDetails />} />
               <Route path="/delieveyPersonDashboard" element={<Dashboard />} />
@@ -138,13 +145,14 @@ root.render(
               <Route path='/view-teacher-request-info' element={<RequestInfoTeacher />} />             
              <Route path="/deliveryDonationDetails" element={<DeliveryDonationDetails />} />
              <Route path= '/homePage' element={<Homepage />} />
-             <Route path= '/registeredOrganizations' element={<AdminFilterOrganization />} />
-            </Routes>
-          </Suspense>
-        </BrowserRouter>
-      </CookiesProvider>
-    </HelmetProvider>
-    </ConfigProvider>
+             <Route path="/fulfilledPostDetails" element={<ViewDetailsOfFulfilledPosts />} />
+    <Route path= '/registeredOrganizations' element={<AdminFilterOrganization />} />
+                </Routes>
+              </Suspense>
+            </BrowserRouter>
+          </CookiesProvider>
+        </HelmetProvider>
+      </ConfigProvider>
     </ThemeProvider>
 
   </React.StrictMode>

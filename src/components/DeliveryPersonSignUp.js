@@ -65,11 +65,11 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
-export default function DonorSignUp() {
+export default function DeliveryPersonSignUp() {
 
   const subjects = ["Math", "Science", "English", "History", "Art", "Music", "Physical Education", "Computer Science", "Biology", "Chemistry", "Physics", "Geography", "Economics", "Government", "Psychology", "Sociology", "Anthropology", "Philosophy", "Theology", "Engineering", "Business", "Marketing", "Accounting", "Finance", "Management", "Human Resources", "Operations", "Supply Chain", "Logistics", "Information Technology", "Data Science", "Machine Learning", "Artificial Intelligence", "Cybersecurity", "Networks", "Databases", "Web Development", "Mobile Development", "Game Development", "Software Development", "Hardware Development", "Robotics", "Automation", "Internet of Things", "Cloud Computing", "Big Data", "Blockchain", "Cryptocurrency", "Digital Marketing", "Social Media", "Search Engine Optimization", "Content Marketing", "Email Marketing", "Affiliate Marketing", "Influencer Marketing", "Public Relations", "Advertising", "Sales", "Customer Service", "Customer Success", "Customer Experience", "User Experience", "User Interface", "Product Management", "Project Management", "Quality Assurance", "Quality Control", "Compliance", "Regulatory Affairs", "Legal", "Risk Management", "Audit", "Tax", "Insurance", "Real Estate", "Construction", "Architecture", "Interior Design", "Urban Planning", "Landscape Architecture", "Civil Engineering", "Mechanical Engineering", "Electrical Engineering", "Chemical Engineering", "Aerospace Engineering", "Biomedical Engineering", "Environmental Engineering", "Materials Science", "Nanotechnology", "Physics", "Chemistry", "Biology", "Geology", "Meteorology", "Oceanography", "Astronomy", "Astrophysics", "Cosmology", "Theoretical Physics", "Particle Physics", "Quantum Physics", "Nuclear Physics", "Atomic Physics", "Molecular Physics", "Solid State Physics", "Fluid Dynamics", "Thermodynamics", "Electromagnetism", "Optics", "Acoustics", "Quantum Mechanics", "General Relativity", "Special Relativity", "String Theory", "M-Theory", "Loop Quantum Gravity", "Quantum Field Theory", "Quantum Chromodynamics", "Quantum Electrodynamics", "Quantum Gravity"];
 
-
+  
 
   const [position, setPosition] = React.useState([29.98693069424653, 31.44078789655661]);
   const [volenteerRole, setVolenteerRole] = React.useState('Regular Donor');
@@ -188,7 +188,7 @@ export default function DonorSignUp() {
 
     message.success('Form submitted');
 
-    window.location.href = '/login';
+    window.location.href = '/';
 
 
   };
@@ -236,7 +236,7 @@ export default function DonorSignUp() {
                 margin="normal"
                 required
                 fullWidth
-
+                name="lastName"
                 label="Last Name"
                 error={errorStates.lastName}
               />
@@ -247,7 +247,7 @@ export default function DonorSignUp() {
             <RadioGroup
               row
               aria-labelledby="demo-row-radio-buttons-group-label"
-              name="row-radio-buttons-group"
+              name="gender"
             >
               <FormControlLabel value="female" control={<Radio style={{ color: COLORS.primary }} />} label="Female" />
               <FormControlLabel value="male" control={<Radio style={{ color: COLORS.primary }} />} label="Male" />
@@ -278,34 +278,11 @@ export default function DonorSignUp() {
             defaultCountry="eg"
             style={{ width: '100%' }}
             required
+            name='phone'
           />
           <br />
-
-          <FormControl fullWidth required error={errorStates.volenteerRole}>
-            <InputLabel id="demo-multiple-name-label">Volunteer Role</InputLabel>
-            <Select
-              labelId="demo-multiple-name-label"
-              id="demo-multiple-name"
-              value={volenteerRole}
-              input={<OutlinedInput label="Volunteer Role" />}
-              onChange={(e) => setVolenteerRole(e.target.value)}
-            >
-              <MenuItem value="Regular Donor">Regular Donor</MenuItem>
-              <MenuItem value="Doctor">Doctor</MenuItem>
-              <MenuItem value="Teacher">Teacher</MenuItem>
-
-            </Select>
-          </FormControl>
-
-
-
-
-
-          <br />
-          {(volenteerRole !== 'Doctor') ? null : <div className="animate__animated animate__fadeIn">
-            <Divider>Doctor Details</Divider>
             <FormControl fullWidth required>
-              <InputLabel id="demo-multiple-name-label">Clinic Location</InputLabel>
+              <InputLabel id="demo-multiple-name-label">Location</InputLabel>
               <MapContainer center={position} zoom={20} scrollWheelZoom={false} style={{ height: '50vh', width: '100wh' }} >
                 <TileLayer
                   attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -325,37 +302,20 @@ export default function DonorSignUp() {
                 margin="normal"
                 required
                 fullWidth
-                label="Specialization"
+                label="Vehicle Info"
+                name="vehicle"
                 error={errorStates.specialization}
               />
             </FormControl>
-            <FormControl fullWidth required>
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                label="Available Pro-Bono Cases"
-                type='number'
-                error={errorStates.availableCases}
-
-              />
-            </FormControl>
+            
 
 
             <br />
-          </div>}
-          <div className="animate__animated animate__fadeIn" hidden={volenteerRole !== 'Teacher'}>
-            <Divider>Teacher Details</Divider>
-            <FormControl fullWidth required error={errorStates.subjects}>
-              <TagsSelector suggestions={subjects} tagLabel="subjects" />
-            </FormControl>
-          </div>
-          <div className="animate__animated animate__fadeIn" hidden={volenteerRole === 'Regular Donor'}>
-
-            <Divider>{volenteerRole} Certificates</Divider>
+      
+            <Divider>{volenteerRole} Driver's License</Divider>
             <FormControl fullWidth required error={errorStates.certificates}>
 
-              <Dragger>
+              <Dragger {...props}>
                 <p className="ant-upload-drag-icon">
                   <InboxOutlined />
                 </p>
@@ -366,7 +326,6 @@ export default function DonorSignUp() {
                 </p>
               </Dragger>
             </FormControl>
-          </div>
           <Divider>Address Details</Divider>
           <AddressForm />
           <Button

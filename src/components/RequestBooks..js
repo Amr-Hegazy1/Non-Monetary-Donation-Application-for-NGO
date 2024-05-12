@@ -26,7 +26,7 @@ import L from 'leaflet';
 import 'animate.css';
 import { Language } from '@mui/icons-material';
 import RequestBookImg from './RequestBookImg.png'
-
+import NavBar from './NavBar';
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -66,13 +66,51 @@ const defaultTheme = createTheme();
     const [governorate, setGovernorate] = React.useState('');
 
 
-
+    const props = {
+      name: 'file',
+      multiple: true,
+      beforeUpload: file => {
+        const reader = new FileReader();
+  
+        reader.onload = e => {
+          console.log(e.target.result);
+        };
+  
+        // save the file to public folder
+        reader.readAsDataURL(file);
+  
+        
+  
+  
+        // Prevent upload
+        return false;
+      },
+  
+      onChange(info) {
+  
+        const { status } = info.file;
+        if (status !== 'uploading') {
+          console.log(info.file, info.fileList);
+        }
+        if (status === 'done' || status === 'error') {
+          message.success(`${info.file.name} file uploaded successfully.`);
+        }
+      },
+      onDrop(e) {
+        console.log('Dropped files', e.dataTransfer.files);
+      },
+      
+    };
 
 
     const success = () => {
         message
           .loading('Sending request to admin..', 1.5)
-          .then(() => message.success('Request sent to Admin, wait for approval :)', 2.5))
+          .then(() => {
+            message.success('Request sent to Admin, wait for approval :)', 1.5).then(() => {
+              window.location.href = '/';
+            });
+          })
       };
       
   
@@ -80,11 +118,33 @@ const defaultTheme = createTheme();
       event.preventDefault();
 
       
-      if (!name || !author || !language || !edition || !bookSummary  || !quantity || !area || !governorate) {
-        message.error('Please fill in all fields.');
-      } else {
+      if (!name ) {
+        message.error('Please specify book name.');
+      } else if(!author){
+        message.error('Please specify book author.');
+      }
+      else if(!language){
+        message.error('Please specify book language.');
+      }
+      else if(!edition){
+        message.error('Please specify book edition.');
+      }
+      else if(!bookSummary){
+        message.error('Please specify book summary.');
+      }
+      else if(!quantity){
+        message.error('Please specify book quantity.');
+      }
+      else if(!area){
+        message.error('Please specify book area.');
+      }
+      else if(!governorate){
+        message.error('Please specify book governorate.');
+      }
+      else {
        success();
       }
+
     };
 
     
@@ -93,7 +153,8 @@ const defaultTheme = createTheme();
 
 
   return (
-    
+    <>
+    <NavBar/>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -130,7 +191,7 @@ const defaultTheme = createTheme();
                     required
                     fullWidth
                     
-                    label="Name"
+                    label="Book Name"
                     autoFocus
                     value={name}
                     onChange={(event)=>setName(event.target.value)}
@@ -143,7 +204,6 @@ const defaultTheme = createTheme();
                     fullWidth
                     
                     label="Author"
-                    autoFocus
                     value={author}
                     onChange={(event)=>setAuthor(event.target.value)}
                     />
@@ -154,7 +214,6 @@ const defaultTheme = createTheme();
               required
               fullWidth
               label="Language"
-              autoFocus
               value={language}
               onChange={(event)=>setLanguage(event.target.value)}
               
@@ -165,7 +224,6 @@ const defaultTheme = createTheme();
               fullWidth
               name="Edition"
               label="Edition"
-              autoFocus
               value={edition}
               onChange={(event)=>setEdition(event.target.value)}
             />
@@ -175,7 +233,6 @@ const defaultTheme = createTheme();
               fullWidth
               name="Book Summary"
               label="Book Summary"
-              autoFocus
               value={bookSummary}
               onChange={(event)=>setBookSummary(event.target.value)}
             />
@@ -186,7 +243,6 @@ const defaultTheme = createTheme();
                     required
                     fullWidth
                     label="Quantity"
-                    autoFocus
                     type='number'
                     value={quantity}
                     onChange={(event)=>setQuantity(event.target.value)}
@@ -199,7 +255,6 @@ const defaultTheme = createTheme();
               fullWidth
               name="Area"
               label="Area"
-              autoFocus
               value={area}
               onChange={(event)=>setArea(event.target.value)}
             />
@@ -210,13 +265,12 @@ const defaultTheme = createTheme();
               fullWidth
               name="Governorate"
               label="Governorate"
-              autoFocus
               value={governorate}
               onChange={(event)=>setGovernorate(event.target.value)}
             />    
                 <FormControl fullWidth required>
                     
-                    <Dragger>
+                    <Dragger {...props}>
                     <p className="ant-upload-drag-icon">
                         <InboxOutlined />
                     </p>
@@ -243,7 +297,7 @@ const defaultTheme = createTheme();
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
-    
+              </>
   );
 }
 export default RequestBooks;

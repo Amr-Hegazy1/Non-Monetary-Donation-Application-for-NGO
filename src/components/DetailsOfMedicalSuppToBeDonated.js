@@ -24,6 +24,7 @@ import { InboxOutlined } from '@ant-design/icons';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import 'animate.css';
+import { useState } from 'react'; 
 
 
 
@@ -54,11 +55,83 @@ const defaultTheme = createTheme();
 
 export default function DetailsOfMedicalSuppToBeDonated() {
 
-  const handleSubmit = () => {
-    console.log('Form submitted');
-    message.success('Details submitted');
+  const [deviceType, setDeviceType] = React.useState('');
+  const [usage, setUsage] = React.useState('');
+  const [quantity, setQuantity] = React.useState('');
+ 
+  const [upload, setUpload] = React.useState('');
+
+
+
+
+  const success = () => {
+      message
+        .loading('Sending details to admin..', 1.5)
+        .then(() => {
+          message.success('Details sent to Admin', 2.5).then(() => {
+            window.location.href = '/';
+          }
+          );
+
+        })
+    };
+    
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    
+    if (! deviceType ) {
+      message.error('Please enter device type.');
+    } else if(!usage) {
+      message.error('Please enter usage.');
+    }
+    else if(!quantity) {
+      message.error('Please enter quantity.');
+    }
+    else if(!upload) {
+      message.error('Please upload picture(s) of the device(s).');
+    }
+    else {
+     success();
+    }
   };
 
+  const props = {
+    name: 'file',
+    multiple: true,
+    beforeUpload: file => {
+      const reader = new FileReader();
+
+      reader.onload = e => {
+        console.log(e.target.result);
+      };
+
+      // save the file to public folder
+      reader.readAsDataURL(file);
+
+      setUpload(file);
+
+
+      // Prevent upload
+      return false;
+    },
+
+    onChange(info) {
+
+      const { status } = info.file;
+      if (status !== 'uploading') {
+        console.log(info.file, info.fileList);
+      }
+      if (status === 'done' || status === 'error') {
+        message.success(`${info.file.name} file uploaded successfully.`);
+      }
+    },
+    onDrop(e) {
+      console.log('Dropped files', e.dataTransfer.files);
+    },
+    
+  };
 
 
   return (
@@ -82,7 +155,8 @@ export default function DetailsOfMedicalSuppToBeDonated() {
                     margin="normal"
                     required
                     fullWidth
-                    
+                    value={deviceType}
+                    onChange = {(event)=>setDeviceType(event.target.value)} 
                     label="Device Type"
                     autoFocus
                     />
@@ -92,7 +166,8 @@ export default function DetailsOfMedicalSuppToBeDonated() {
                     margin="normal"
                     required
                     fullWidth
-                    
+                    value={usage}
+                    onChange={(event)=>setUsage(event.target.value)}
                     label="Usage"
                     autoFocus
                     />
@@ -106,12 +181,13 @@ export default function DetailsOfMedicalSuppToBeDonated() {
                     label="Quantity"
                     autoFocus
                     type='number'
-                    
+                    value={quantity}
+                    onChange={(event)=>setQuantity(event.target.value)}
                     />
                 </FormControl>
                 <FormControl fullWidth required>
                     
-                    <Dragger>
+                    <Dragger {...props}>
                     <p className="ant-upload-drag-icon">
                         <InboxOutlined />
                     </p>

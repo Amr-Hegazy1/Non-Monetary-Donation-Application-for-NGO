@@ -25,7 +25,7 @@ import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import 'animate.css';
 import RequestToysImg from './RequestToysImg.png'
-
+import NavBar from './NavBar';
 
 
 delete L.Icon.Default.prototype._getIconUrl;
@@ -56,7 +56,7 @@ const defaultTheme = createTheme();
 
 export default function RequestToys() {
 
-    const [type, setType] = React.useState('');
+    //const [type, setType] = React.useState('');
     const [category, setCategory] = React.useState('');
     const [gender, setGender] = React.useState('');
     const [color, setColor] = React.useState('');
@@ -65,14 +65,53 @@ export default function RequestToys() {
     const [area, setArea] = React.useState('');
     const [governorate, setGovernorate] = React.useState('');
 
-
+    const props = {
+      name: 'file',
+      multiple: true,
+      beforeUpload: file => {
+        const reader = new FileReader();
+  
+        reader.onload = e => {
+          console.log(e.target.result);
+        };
+  
+        // save the file to public folder
+        reader.readAsDataURL(file);
+  
+        
+  
+  
+        // Prevent upload
+        return false;
+      },
+  
+      onChange(info) {
+  
+        const { status } = info.file;
+        if (status !== 'uploading') {
+          console.log(info.file, info.fileList);
+        }
+        if (status === 'done' || status === 'error') {
+          message.success(`${info.file.name} file uploaded successfully.`);
+        }
+      },
+      onDrop(e) {
+        console.log('Dropped files', e.dataTransfer.files);
+      },
+      
+    };
 
 
 
     const success = () => {
         message
           .loading('Sending request to admin..', 1.5)
-          .then(() => message.success('Request sent to Admin, wait for approval :)', 2.5))
+          .then(() => {
+            message.success('Request sent to Admin, wait for approval :)', 1.5).then(() => {
+              window.location.href = '/';
+            
+            });
+          })
       };
       
   
@@ -80,18 +119,38 @@ export default function RequestToys() {
       event.preventDefault();
 
       
-      if (!type || !category || !gender || !color || !age  || !quantity|| !area || !governorate) {
-        message.error('Please fill in all fields.');
-      } else {
+      if (!category ) {
+        message.error('Please enter category.');
+      } else if(  !gender ){
+        message.error('Please specify gender.');
+      }
+      else if( !color ){
+        message.error('Please specify color.');
+      }
+      else if( !age ){
+        message.error('Please specify age.');
+      }
+      else if( !quantity ){
+        message.error('Please specify quantity.');
+      }
+      else if( !area ){
+        message.error('Please specify area.');
+      }
+      else if( !governorate ){
+        message.error('Please specify governorate.');
+      }
+      else {
        success();
       }
+
     };
 
 
 
 
   return (
-    
+    <>
+    <NavBar/>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -122,17 +181,17 @@ export default function RequestToys() {
           </Box>
           
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-            <Grid item xs>
+            {/* <Grid item xs>
                 <TextField
                     margin="normal"
                     required
                     fullWidth
                     
                     label="Type"
-                    autoFocus
+                    
                     value={type}
                     onChange={(event) =>setType(event.target.value)}
-                    />
+                    /> */}
             <Grid item>
                     <TextField
                     margin="normal"
@@ -145,7 +204,7 @@ export default function RequestToys() {
                     onChange={(event) =>setCategory(event.target.value)}
                     />
             </Grid>
-            </Grid>
+            {/* </Grid> */}
             <FormControl>
                 <FormLabel id="demo-row-radio-buttons-group-label">Gender</FormLabel>
                     <RadioGroup
@@ -167,7 +226,7 @@ export default function RequestToys() {
               fullWidth
               name="Color"
               label="Color"
-              autoFocus
+              
               value={color}
               onChange={(event)=>setColor(event.target.value)}
             />
@@ -178,7 +237,7 @@ export default function RequestToys() {
                     required
                     fullWidth
                     label="Age"
-                    autoFocus
+                    
                     type='number'
                     value={age}
                     onChange={(event)=>setAge(event.target.value)}
@@ -191,7 +250,7 @@ export default function RequestToys() {
                     required
                     fullWidth
                     label="Quantity"
-                    autoFocus
+                    
                     type='number'
                     value={quantity}
                     onChange={(event)=>setQuantity(event.target.value)}
@@ -202,7 +261,7 @@ export default function RequestToys() {
               fullWidth
               name="Area"
               label="Area"
-              autoFocus
+              
               value={area}
               onChange={(event)=>setArea(event.target.value)}
             />
@@ -213,11 +272,11 @@ export default function RequestToys() {
               fullWidth
               name="Governorate"
               label="Governorate"
-              autoFocus
+              
               value={governorate}
               onChange={(event)=>setGovernorate(event.target.value)}
             />    
-                     <Dragger>
+                     <Dragger {...props}>
                     <p className="ant-upload-drag-icon">
                         <InboxOutlined />
                     </p>
@@ -245,6 +304,7 @@ export default function RequestToys() {
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
+      </>
     
   );
 }

@@ -24,6 +24,7 @@ import { InboxOutlined } from '@ant-design/icons';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import 'animate.css';
+import { useState } from 'react'; 
 
 
 
@@ -53,9 +54,37 @@ const defaultTheme = createTheme();
 
 export default function DetailsOfFoodToBeDonated() {
 
-  const handleSubmit = () => {
-    console.log('Form submitted');
-    message.success('Details submitted');
+      const [itemName, setItemName] = React.useState('');
+      const [quantity, setQuantity] = React.useState('');
+      const [area, setArea] = React.useState('');
+      const [governorate, setGovernorate] = React.useState('');
+  
+  
+  
+      const success = () => {
+          message
+            .loading('Sending details to admin..', 1.5)
+            .then(() => {
+              message.success('Details sent to Admin!', 1.5).then(() => {
+                window.location.href = '/';
+              });
+            })
+        };
+        
+    
+      const handleSubmit = (event) => {
+        event.preventDefault();
+  
+        
+        if (!itemName) {
+          message.error('Please specify item name.');
+        } else if(!quantity) {
+          message.error('Please specify quantity.');
+        }
+        else {
+         success();
+        }
+  
   };
 
 
@@ -80,19 +109,22 @@ export default function DetailsOfFoodToBeDonated() {
                     margin="normal"
                     required
                     fullWidth
-                    
+                    value={itemName}
+                    onChange={(event) =>setItemName(event.target.value)}
                     label="Item Name"
                     autoFocus
                     />
             <Grid item>
-            <br/>
+            
                 <FormControl fullWidth required>
                     <TextField
                     margin="normal"
                     required
                     fullWidth
                     label="Quantity(in KGs for fruit & vegetable)"
-                
+                    value={quantity}
+                    onChange={(event) => setQuantity(event.target.value)}
+                    
                     autoFocus
                     type='number'
                     

@@ -3,7 +3,7 @@ import Avatar from '@mui/material/Avatar';
 import { ReactTags } from 'react-tag-autocomplete'
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
-import { Image,message } from 'antd';
+import { Image, message } from 'antd';
 import cloth from './cloth.png'
 import TextField from '@mui/material/TextField';
 import Checkbox from '@mui/material/Checkbox';
@@ -24,7 +24,7 @@ import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import 'animate.css';
 import RequestClothes from './RequestClothes.png';
-
+import NavBar from './NavBar';
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -34,73 +34,101 @@ L.Icon.Default.mergeOptions({
 });
 
 function Copyright(props) {
-    return (
-      <Typography variant="body2" color="text.secondary" align="center" {...props}>
-        {'Copyright © '}
-        <Link color="inherit" href="/">
-          ZOMA
-        </Link>{' '}
-        {new Date().getFullYear()}
-        {'.'}
-      </Typography>
-    );
-  }
+  return (
+    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+      {'Copyright © '}
+      <Link color="inherit" href="/">
+        ZOMA
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
 
-  const defaultTheme = createTheme();
-  function OrgRequestClothes() {
-    const [clothingItem, setClothingItem] = React.useState('');
-    const [season, setSeason] = React.useState('');
-    const [gender, setGender] = React.useState('');
-    const [material, setMaterial] = React.useState('');
-    const [color, setColor] = React.useState('');
-    const [age, setAge] = React.useState('');
-    const [quantity, setQuantity] = React.useState('');
-    const [area, setArea] = React.useState('');
-    const [governorate, setGovernorate] = React.useState('');
-
-
+const defaultTheme = createTheme();
+function OrgRequestClothes() {
+  const [clothingItem, setClothingItem] = React.useState('');
+  const [season, setSeason] = React.useState('');
+  const [gender, setGender] = React.useState('');
+  const [material, setMaterial] = React.useState('');
+  const [color, setColor] = React.useState('');
+  const [age, setAge] = React.useState('');
+  const [quantity, setQuantity] = React.useState('');
+  const [area, setArea] = React.useState('');
+  const [governorate, setGovernorate] = React.useState('');
 
 
-    const success = () => {
-        message
-          .loading('Sending request to admin..', 1.5)
-          .then(() => message.success('Request sent to Admin, wait for approval :)', 2.5))
-      };
-      
-  
-    const handleSubmit = (event) => {
-      event.preventDefault();
-      if (!clothingItem || !season || !gender || !material || !color || !age || !quantity|| !area || !governorate) {
-        message.error('Please fill in all fields.');
-      } else {
-       success();
-      }
-    };
 
- 
 
-      return(
-                 
+  const success = () => {
+    message
+      .loading('Sending request to admin..', 1.5)
+      .then(() => {
+        message.success('Request sent to Admin, wait for approval :)', 1.5).then(() => {
+          window.location.href = '/';
+        });
+      })
+  };
 
-        
-        <Container component="main" maxWidth="xs">
-          <CssBaseline />
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (!clothingItem) {
+      message.error('Please specify clothing item.');
+    } else if (!season) {
+      message.error('Please specify season.');
+    }
+    else if (!gender) {
+      message.error('Please specify gender.');
+    }
+    else if (!material) {
+      message.error('Please specify material.');
+    }
+    else if (!color) {
+      message.error('Please specify color.');
+    }
+    else if (!age) {
+      message.error('Please specify age.');
+    }
+    else if (!quantity) {
+      message.error('Please specify quantity.');
+    }
+    else if (!area) {
+      message.error('Please specify area.');
+    }
+    else if (!governorate) {
+      message.error('Please specify governorate.');
+    } else {
+      success();
+    }
+  };
+
+
+
+  return (
+
+    <>
+      <NavBar />
+
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 2,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+
+
           <Box
-            sx={{
-              marginTop: 2,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-            }}
-          >
-
-       
-<Box
             sx={{
               display: 'flex',
               justifyContent: 'center',
               marginBottom: 2,
-              width: '100%', 
+              width: '100%',
             }}
           >
             <Box
@@ -112,7 +140,7 @@ function Copyright(props) {
                 backgroundPosition: 'center',
               }}
             />
-          </Box>        
+          </Box>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <Grid container spacing={2}>
               <Grid item xs>
@@ -132,7 +160,6 @@ function Copyright(props) {
                   required
                   fullWidth
                   label="Season"
-                  autoFocus
                   value={season}
                   onChange={(event) => setSeason(event.target.value)}
                 />
@@ -157,7 +184,6 @@ function Copyright(props) {
               fullWidth
               id="email"
               label="Material"
-              autoFocus
               value={material}
               onChange={(event) => setMaterial(event.target.value)}
             />
@@ -167,31 +193,28 @@ function Copyright(props) {
               fullWidth
               name="Color"
               label="Color"
-              autoFocus
               value={color}
               onChange={(event) => setColor(event.target.value)}
             />
-               <TextField
+            <TextField
               margin="normal"
               required
               fullWidth
               name="Area"
               label="Area"
-              autoFocus
               value={area}
-              onChange={(event)=>setArea(event.target.value)}
+              onChange={(event) => setArea(event.target.value)}
             />
 
-        <TextField
+            <TextField
               margin="normal"
               required
               fullWidth
               name="Governorate"
               label="Governorate"
-              autoFocus
               value={governorate}
-              onChange={(event)=>setGovernorate(event.target.value)}
-            />    
+              onChange={(event) => setGovernorate(event.target.value)}
+            />
             <br />
             <FormControl fullWidth required>
               <TextField
@@ -199,7 +222,6 @@ function Copyright(props) {
                 required
                 fullWidth
                 label="Age"
-                autoFocus
                 type="number"
                 value={age}
                 onChange={(event) => setAge(event.target.value)}
@@ -211,7 +233,7 @@ function Copyright(props) {
                 required
                 fullWidth
                 label="Quantity"
-                
+                name="quantity"
                 type="number"
                 value={quantity}
                 onChange={(event) => setQuantity(event.target.value)}
@@ -232,7 +254,7 @@ function Copyright(props) {
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
-    
+    </>
   );
 }
 

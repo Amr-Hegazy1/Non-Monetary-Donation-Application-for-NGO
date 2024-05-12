@@ -1,6 +1,7 @@
-import React, { useEffect, useRef, useReducer,useState } from "react";
+import React, { useEffect, useRef, useReducer, useState } from "react";
 import "./Verify.css";
 import { message } from 'antd';
+import Container from "@mui/material/Container";
 
 function doSubmit(submittedValues) {
   const hardcodedCode = "000000"; // This is the hardcoded verification code
@@ -74,11 +75,11 @@ function reducer(state, action) {
         status: "idle"
       };
 
-      case "VERIFY_FAILURE":
-        return {
-          ...state,
-          status: "error"
-        };
+    case "VERIFY_FAILURE":
+      return {
+        ...state,
+        status: "error"
+      };
 
     default:
       throw new Error("unknown action");
@@ -123,7 +124,7 @@ export default function VerifyCodePage() {
 
   function handleSubmit(e) {
     e.preventDefault();
-  
+
     dispatch({ type: "VERIFY" });
     doSubmit(inputValues)
       .then(() => {
@@ -140,42 +141,44 @@ export default function VerifyCodePage() {
   // update the style of body to have display grid
   useEffect(() => {
     document.body.style.display = "grid";
-    
+
     return () => {
       document.body.style.display = "";
-      
+
     };
   }, []);
 
   return (
-    <div className="text-center">
-      <img src="logo.png" style={{ width: '185px' }} alt="logo" />
-    <h1 style={{ textAlign: 'center' , color:'#602b37 '}}>Please enter the verification code</h1>
-    <h2 style={{ textAlign: 'center' , color:'#602b37' }}>A code has been sent to your email *****@*mail.com</h2>
-    <form onSubmit={handleSubmit}>
-      <div className="inputs">
-        {inputValues.map((value, index) => {
-          return (
-            <Input
-              key={index}
-              index={index}
-              value={value}
-              onChange={handleInput}
-              onBackspace={handleBack}
-              onPaste={handlePaste}
-              isFocused={index === focusedIndex}
-              onFocus={handleFocus}
-              isDisabled={status === "pending"}
-            />
-          );
-        })}
-        {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+    <Container component="main" maxWidth="sm">
+      <div className="text-center">
+        <img src="logo.png" style={{ width: '60%' }} alt="logo" />
+        <h1 style={{ textAlign: 'center', color: '#602b37 ' }}>Please enter the verification code</h1>
+        <h2 style={{ textAlign: 'center', color: '#602b37' }}>A code has been sent to your email *****@*mail.com</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="inputs">
+            {inputValues.map((value, index) => {
+              return (
+                <Input
+                  key={index}
+                  index={index}
+                  value={value}
+                  onChange={handleInput}
+                  onBackspace={handleBack}
+                  onPaste={handlePaste}
+                  isFocused={index === focusedIndex}
+                  onFocus={handleFocus}
+                  isDisabled={status === "pending"}
+                />
+              );
+            })}
+            {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+          </div>
+          <button href='/ChangePassword' style={{ background: '#602b37' }} disabled={status === "pending"}>
+            {status === "pending" ? "Verifying..." : "Verify"}
+          </button>
+        </form>
       </div>
-      <button href= '/ChangePassword' style={{background:'#602b37'}}disabled={status === "pending" }>
-        {status === "pending" ? "Verifying..." : "Verify"}
-      </button>
-    </form>
-    </div>
+    </Container>
   );
 }
 

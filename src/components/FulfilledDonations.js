@@ -56,6 +56,7 @@ const FulfilledDonations = () => {
                         Email: selena.adams@gmail.com <br/>
                         Phone: 123-456-7890 <br/>
                         Address: 1234 Elm Street <br/>
+                        Donation Type: Winter Clothes <br/>
                         Occupation: Teacher
                         </AccordionDetails>
                         <AccordionActions>
@@ -72,7 +73,7 @@ const FulfilledDonations = () => {
                             <Button style={{width: "100%"}} color='warning'>Delete</Button>
                         </Popconfirm>
                         <Button style={{width: "100%"}} color='success'>Acknowledge</Button>
-                        <Button style={{width: "100%"}} onClick={() => window.location.href = '/donorDetails'}>View Details</Button>
+                        <Button style={{width: "100%"}} onClick={() => window.location.href = '/fulfilledPostDetails'}>View Details</Button>
                         </AccordionActions>
                 </Accordion>
                 );
@@ -110,6 +111,7 @@ const FulfilledDonations = () => {
                         Email: selena.adams@gmail.com <br/>
                         Phone: 123-456-7890 <br/>
                         Address: 1234 Elm Street <br/>
+                        Donation Type: Winter Clothes <br/>
                         Occupation: Teacher
                         </AccordionDetails>
                         <AccordionActions>
@@ -125,7 +127,7 @@ const FulfilledDonations = () => {
                             <Button style={{width: "100%"}} color='warning'>Delete</Button>
                         </Popconfirm>
                         <Button style={{width: "100%"}} color='success'>Acknowledge</Button>
-                        <Button style={{width: "100%"}} onClick={() => window.location.href = '/donorDetails'}>View Details</Button>
+                        <Button style={{width: "100%"}} onClick={() => window.location.href = '/fulfilledPostDetails'}>View Details</Button>
                         </AccordionActions>
                 </Accordion>
             );

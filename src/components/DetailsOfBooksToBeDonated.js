@@ -24,6 +24,7 @@ import { InboxOutlined } from '@ant-design/icons';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import 'animate.css';
+import { useState } from 'react'; 
 
 
 
@@ -55,9 +56,91 @@ const defaultTheme = createTheme();
 
 export default function DetailsOfBooksToBeDonated() {
 
-  const handleSubmit = () => {
-    console.log('Form submitted');
-    message.success('Details submitted');
+  const [name, setName] = React.useState('');
+  const [author, setAuthor] = React.useState('');
+  const [language, setLanguage] = React.useState('');
+  const [edition, setEdition] = React.useState('');
+  const [bookSummary, setBookSummary] = React.useState('');
+  const [quantity, setQuantity] = React.useState('');
+  const [area, setArea] = React.useState('');
+  const [governorate, setGovernorate] = React.useState('');
+
+
+  const props = {
+    name: 'file',
+    multiple: true,
+    beforeUpload: file => {
+      const reader = new FileReader();
+
+      reader.onload = e => {
+        console.log(e.target.result);
+      };
+
+      // save the file to public folder
+      reader.readAsDataURL(file);
+
+      
+
+
+      // Prevent upload
+      return false;
+    },
+
+    onChange(info) {
+
+      const { status } = info.file;
+      if (status !== 'uploading') {
+        console.log(info.file, info.fileList);
+      }
+      if (status === 'done' || status === 'error') {
+        message.success(`${info.file.name} file uploaded successfully.`);
+      }
+    },
+    onDrop(e) {
+      console.log('Dropped files', e.dataTransfer.files);
+    },
+    
+  };
+
+
+  const success = () => {
+      message
+        .loading('Sending details to admin..', 1.5)
+        .then(() => {
+          message.success('Details sent to admin!', 2.5).then(() => {
+            window.location.href = '/';
+          }
+          );
+
+        
+        })
+    };
+    
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    
+    if (!name ) {
+      message.error('Please specify book name.');
+    } else if(!author){
+      message.error('Please specify book author.');
+    }
+    else if(!language){
+      message.error('Please specify book language.');
+    }
+    else if(!edition){
+      message.error('Please specify book edition.');
+    }
+    else if(!bookSummary){
+      message.error('Please specify book summary.');
+    }
+    else if(!quantity){
+      message.error('Please specify book quantity.');
+    }
+    else {
+     success();
+    }
   };
 
 
@@ -83,7 +166,8 @@ export default function DetailsOfBooksToBeDonated() {
                     margin="normal"
                     required
                     fullWidth
-                    
+                    value={name}
+                    onChange={(event)=>setName(event.target.value)}
                     label="Name"
                     autoFocus
                     />
@@ -93,7 +177,8 @@ export default function DetailsOfBooksToBeDonated() {
                     margin="normal"
                     required
                     fullWidth
-                    
+                    value={author}
+                    onChange={(event)=>setAuthor(event.target.value)}
                     label="Author"
                     autoFocus
                     />
@@ -104,7 +189,8 @@ export default function DetailsOfBooksToBeDonated() {
               required
               fullWidth
               label="Language"
-            
+              value={language}
+              onChange={(event)=>setLanguage(event.target.value)}
               autoFocus
             />
             <TextField
@@ -113,6 +199,8 @@ export default function DetailsOfBooksToBeDonated() {
               fullWidth
               name="Edition"
               label="Edition"
+              value={edition}
+              onChange={(event)=>setEdition(event.target.value)}
               autoFocus
             />
                <TextField
@@ -121,6 +209,8 @@ export default function DetailsOfBooksToBeDonated() {
               fullWidth
               name="Book Summary"
               label="Book Summary"
+              value={bookSummary}
+              onChange={(event)=>setBookSummary(event.target.value)}
               autoFocus
             />
             <br/>
@@ -132,12 +222,13 @@ export default function DetailsOfBooksToBeDonated() {
                     label="Quantity"
                     autoFocus
                     type='number'
-                    
+                    value={quantity}
+                    onChange={(event)=>setQuantity(event.target.value)}
                     />
                 </FormControl>
                 <FormControl fullWidth required>
                     
-                    <Dragger>
+                    <Dragger {...props}>
                     <p className="ant-upload-drag-icon">
                         <InboxOutlined />
                     </p>

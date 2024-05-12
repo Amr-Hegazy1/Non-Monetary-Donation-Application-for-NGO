@@ -25,6 +25,7 @@ import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import 'animate.css';
 import RequestMedSup from './RequestMedSup.png'
+import NavBar from './NavBar';
 
 
 
@@ -60,15 +61,54 @@ export default function RequestMedicalSupplies() {
     const [quantity, setQuantity] = React.useState('');
     const [area, setArea] = React.useState('');
     const [governorate, setGovernorate] = React.useState('');
+    const [upload, setUpload] = React.useState('');
 
-
-
+    const props = {
+      name: 'file',
+      multiple: true,
+      beforeUpload: file => {
+        const reader = new FileReader();
+  
+        reader.onload = e => {
+          console.log(e.target.result);
+        };
+  
+        // save the file to public folder
+        reader.readAsDataURL(file);
+  
+        
+        setUpload(file.name);
+  
+        // Prevent upload
+        return false;
+      },
+  
+      onChange(info) {
+  
+        const { status } = info.file;
+        if (status !== 'uploading') {
+          console.log(info.file, info.fileList);
+        }
+        if (status === 'done' || status === 'error') {
+          message.success(`${info.file.name} file uploaded successfully.`);
+        }
+      },
+      onDrop(e) {
+        console.log('Dropped files', e.dataTransfer.files);
+      },
+      
+    };
 
 
     const success = () => {
         message
           .loading('Sending request to admin..', 1.5)
-          .then(() => message.success('Request sent to Admin, wait for approval :)', 2.5))
+          .then(() => {
+            message.success('Request sent to Admin, wait for approval :)', 1.5).then(() => {
+              window.location.href = '/';
+            
+            });
+          })
       };
       
   
@@ -76,9 +116,24 @@ export default function RequestMedicalSupplies() {
       event.preventDefault();
 
       
-      if (! deviceType || ! usage ||  ! quantity|| !area || !governorate) {
-        message.error('Please fill in all fields.');
-      } else {
+      if (! deviceType ) {
+        message.error('Please enter device type.');
+      } else if(!usage) {
+        message.error('Please enter usage.');
+      }
+      else if(!quantity) {
+        message.error('Please enter quantity.');
+      }
+      else if(!area) {
+        message.error('Please enter area.');
+      }
+      else if(!governorate) {
+        message.error('Please enter governorate.');
+      }
+      else if(!upload){
+        message.error('Please  upload picture');
+      }
+      else {
        success();
       }
     };
@@ -86,7 +141,8 @@ export default function RequestMedicalSupplies() {
 
 
   return (
-    
+    <>        
+       <NavBar/>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -136,7 +192,6 @@ export default function RequestMedicalSupplies() {
                     fullWidth
                     
                     label="Usage"
-                    autoFocus
                     value={usage}
                     onChange={(event)=>setUsage(event.target.value)}
                     />
@@ -148,7 +203,6 @@ export default function RequestMedicalSupplies() {
                     required
                     fullWidth
                     label="Quantity"
-                    autoFocus
                     type='number'
                     value={quantity}
                     onChange={(event)=>setQuantity(event.target.value)}
@@ -161,7 +215,6 @@ export default function RequestMedicalSupplies() {
               fullWidth
               name="Area"
               label="Area"
-              autoFocus
               value={area}
               onChange={(event)=>setArea(event.target.value)}
             />
@@ -172,13 +225,12 @@ export default function RequestMedicalSupplies() {
               fullWidth
               name="Governorate"
               label="Governorate"
-              autoFocus
               value={governorate}
               onChange={(event)=>setGovernorate(event.target.value)}
             />    
                 <FormControl fullWidth required>
                     
-                    <Dragger>
+                    <Dragger {...props}>
                     <p className="ant-upload-drag-icon">
                         <InboxOutlined />
                     </p>
@@ -205,6 +257,6 @@ export default function RequestMedicalSupplies() {
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
-    
+    </>
   );
 }

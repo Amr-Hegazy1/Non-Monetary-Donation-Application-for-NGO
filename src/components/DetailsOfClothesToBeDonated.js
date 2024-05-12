@@ -23,6 +23,7 @@ import { Upload, Divider } from 'antd';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import 'animate.css';
+import { useState } from 'react'; 
 
 
 
@@ -54,9 +55,54 @@ const defaultTheme = createTheme();
 
 export default function DetailsOfClothesToBeDonated() {
 
-  const handleSubmit = () => {
-    console.log('Form submitted');
-    message.success('Details submitted');
+  const [clothingItem, setClothingItem] = React.useState('');
+    const [season, setSeason] = React.useState('');
+    const [gender, setGender] = React.useState('');
+    const [material, setMaterial] = React.useState('');
+    const [color, setColor] = React.useState('');
+    const [age, setAge] = React.useState('');
+    const [quantity, setQuantity] = React.useState('');
+    const [area, setArea] = React.useState('');
+    const [governorate, setGovernorate] = React.useState('');
+      
+  
+    const success = () => {
+      message
+        .loading('Sending details to admin..', 1.5)
+        .then(() => {
+          message.success('Details Sent!', 1.5).then(() => {
+            window.location.href = '/';
+          });
+        }
+      )
+    };
+
+    const handleSubmit = (event) => {
+      event.preventDefault();
+      if (!clothingItem) {
+        message.error('Please specify clothing item.');
+      } else  if(!season) {
+        message.error('Please specify season.');
+      }
+      else if(!gender) {
+        message.error('Please specify gender.');
+      }
+      else if(!material) {
+        message.error('Please specify material.');
+      }
+      else if(!color) {
+        message.error('Please specify color.');
+      }
+      else if(!age) {
+        message.error('Please specify age.');
+      }
+      else if(!quantity) {
+        message.error('Please specify quantity.');
+      }
+      
+      else {
+       success();
+      }
   };
 
 
@@ -82,9 +128,10 @@ export default function DetailsOfClothesToBeDonated() {
                     margin="normal"
                     required
                     fullWidth
-                    
+                    value={clothingItem}
                     label="Clothing"
                     autoFocus
+                    onChange={(event) => setClothingItem(event.target.value)}
                     />
             </Grid>
             <Grid item>
@@ -92,9 +139,10 @@ export default function DetailsOfClothesToBeDonated() {
                     margin="normal"
                     required
                     fullWidth
-                    
+                    value={season}
                     label="Season"
                     autoFocus
+                    onChange={(event) => setSeason(event.target.value)}
                     />
             </Grid>
             </Grid>
@@ -102,8 +150,11 @@ export default function DetailsOfClothesToBeDonated() {
                 <FormLabel id="demo-row-radio-buttons-group-label">Gender</FormLabel>
                     <RadioGroup
                         row
+                        value={gender}
                         aria-labelledby="demo-row-radio-buttons-group-label"
                         name="row-radio-buttons-group"
+                        onChange={(event) => setGender(event.target.value)}
+
                     >
                         <FormControlLabel value="female" control={<Radio />} label="Female" />
                         <FormControlLabel value="male" control={<Radio />} label="Male" />
@@ -113,9 +164,11 @@ export default function DetailsOfClothesToBeDonated() {
               margin="normal"
               required
               fullWidth
-              id="email"
+              id="material"
+              value={material}
               label="Material"
-            
+              onChange={(event) => setMaterial(event.target.value)}
+
               autoFocus
             />
             <TextField
@@ -123,8 +176,11 @@ export default function DetailsOfClothesToBeDonated() {
               required
               fullWidth
               name="Color"
+              value={color}
               label="Color"
               autoFocus
+              onChange={(event) => setColor(event.target.value)}
+
             />
             <br/>
                 <FormControl fullWidth required>
@@ -133,9 +189,11 @@ export default function DetailsOfClothesToBeDonated() {
                     required
                     fullWidth
                     label="Age"
+                    value={age}
                     autoFocus
                     type='number'
-                    
+                    onChange={(event) => setAge(event.target.value)}
+
                     />
                 </FormControl>
                 <FormControl fullWidth required>
@@ -144,9 +202,10 @@ export default function DetailsOfClothesToBeDonated() {
                     required
                     fullWidth
                     label="Quantity"
+                    value={quantity}
                     autoFocus
                     type='number'
-                    
+                    onChange={(event) => setQuantity(event.target.value)}
                     />
                 </FormControl>
                 

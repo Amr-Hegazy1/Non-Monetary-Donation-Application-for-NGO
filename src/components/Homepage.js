@@ -50,13 +50,13 @@ export default function Homepage() {
                 <div className="container">
                     <div className="list-topics-content">
                         <ul className="center">
-                            <a className="homepage-anchors" href="/ViewDonationRequests?category=Medical_Cases">
+                            <a className="homepage-anchors" href="/ViewDonationRequests?category=Medical_Supplies">
                                 <li>
                                     <div className="single-list-topics-content">
                                         <div className="single-list-topics-icon">
                                             <i className="icon icon-hospital"></i>
                                         </div>
-                                        <h2 className="homepage-headers"><a className="homepage-anchors" href="#">Hospitals</a></h2>
+                                        <h2 className="homepage-headers"><a className="homepage-anchors" href="#">Medical Supplies</a></h2>
                                         <p>200 listings</p>
                                     </div>
                                 </li>
@@ -72,28 +72,18 @@ export default function Homepage() {
                                     </div>
                                 </li>
                             </a>
-                            <a className="homepage-anchors" href="/ViewDonationRequests?category=Mosques">
+                            <a className="homepage-anchors" href="/ViewDonationRequests?category=Places_of_Worship">
                                 <li>
                                     <div className="single-list-topics-content">
                                         <div className="single-list-topics-icon">
                                             <i className="icon icon-mosque"></i>
                                         </div>
-                                        <h2 className="homepage-headers"><a className="homepage-anchors" href="#">Mosques</a></h2>
+                                        <h2 className="homepage-headers"><a className="homepage-anchors" href="#">Places of Worship</a></h2>
                                         <p>214 listings</p>
                                     </div>
                                 </li>
                             </a>
-                            <a className="homepage-anchors" href="/ViewDonationRequests?category=Churches">
-                                <li>
-                                    <div className="single-list-topics-content">
-                                        <div className="single-list-topics-icon">
-                                            <i className="icon icon-church"></i>
-                                        </div>
-                                        <h2 className="homepage-headers"><a className="homepage-anchors" href="#">Churches</a></h2>
-                                        <p>185 listings</p>
-                                    </div>
-                                </li>
-                            </a>
+                            
                             <a className="homepage-anchors" href="/ViewDonationRequests?category=Orphanages">
                                 <li>
                                     <div className="single-list-topics-content">
