@@ -24,6 +24,9 @@ function NavBar() {
       else if(cookies.user_type === 'admin') {
         window.location.href ='/AdminProfile';
       }
+      else if(cookies.user_type === 'delivery_person'){
+        window.location.href ='/DeliveryPersonProfile';
+      }
     };
     
     return (
